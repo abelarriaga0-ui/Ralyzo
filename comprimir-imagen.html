@@ -1,103 +1,317 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comprimir Imagen Online | Ralyzo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,sans-serif;
+      background:#0B1220;
+      color:#F8FAFC;
+    }
 
-<title>Comprimir Imagen Online | Ralyzo</title>
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 40px;
+      border-bottom:1px solid #1F2937;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    .logo{
+      font-weight:700;
+      font-size:20px;
+      letter-spacing:1px;
+    }
 
-<style>
+    .logo a{
+      color:#F8FAFC;
+      text-decoration:none;
+    }
 
-body{
-font-family:Inter;
-background:#0B1220;
-color:#F8FAFC;
-margin:0;
-text-align:center;
-}
+    .page{
+      max-width:1000px;
+      margin:0 auto;
+      padding:60px 20px;
+    }
 
-header{
-padding:20px;
-border-bottom:1px solid #1F2937;
-}
+    h1{
+      font-size:42px;
+      margin:0 0 12px;
+      text-align:center;
+    }
 
-.logo{
-font-weight:600;
-font-size:20px;
-}
+    .subtitle{
+      text-align:center;
+      color:#94A3B8;
+      margin-bottom:40px;
+    }
 
-.container{
-padding:80px 20px;
-}
+    .card{
+      background:#111827;
+      border:1px solid #1F2937;
+      border-radius:16px;
+      padding:24px;
+      margin-bottom:24px;
+    }
 
-.upload{
-border:2px dashed #2563EB;
-padding:60px;
-border-radius:10px;
-margin-top:30px;
-}
+    .upload{
+      border:2px dashed #2563EB;
+      border-radius:14px;
+      padding:40px 20px;
+      text-align:center;
+      background:rgba(37,99,235,.06);
+    }
 
-button{
-margin-top:20px;
-background:#2563EB;
-color:white;
-border:none;
-padding:12px 20px;
-border-radius:8px;
-cursor:pointer;
-}
+    input[type="file"]{
+      margin-top:16px;
+      color:#F8FAFC;
+    }
 
-</style>
+    .controls{
+      display:grid;
+      gap:16px;
+      margin-top:24px;
+    }
 
+    label{
+      font-size:14px;
+      color:#CBD5E1;
+      display:block;
+      margin-bottom:8px;
+    }
+
+    select{
+      width:100%;
+      padding:12px 14px;
+      border-radius:10px;
+      border:1px solid #334155;
+      background:#0F172A;
+      color:#F8FAFC;
+    }
+
+    button{
+      background:#2563EB;
+      color:#fff;
+      border:none;
+      padding:14px 20px;
+      border-radius:10px;
+      cursor:pointer;
+      font-size:16px;
+      font-weight:600;
+    }
+
+    button:hover{
+      opacity:.95;
+    }
+
+    button:disabled{
+      opacity:.5;
+      cursor:not-allowed;
+    }
+
+    .preview-wrap{
+      display:grid;
+      gap:24px;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      margin-top:24px;
+    }
+
+    .preview-box{
+      background:#0F172A;
+      border:1px solid #1F2937;
+      border-radius:14px;
+      padding:16px;
+    }
+
+    .preview-box h3{
+      margin-top:0;
+      font-size:18px;
+    }
+
+    .preview-box img{
+      width:100%;
+      max-height:320px;
+      object-fit:contain;
+      border-radius:10px;
+      background:#020617;
+    }
+
+    .meta{
+      margin-top:12px;
+      color:#94A3B8;
+      font-size:14px;
+      line-height:1.7;
+    }
+
+    .status{
+      margin-top:18px;
+      color:#93C5FD;
+      text-align:center;
+      min-height:24px;
+    }
+
+    .download{
+      display:inline-block;
+      margin-top:14px;
+      background:#10B981;
+      color:#fff;
+      text-decoration:none;
+      padding:12px 16px;
+      border-radius:10px;
+      font-weight:600;
+    }
+  </style>
 </head>
-
 <body>
+  <header>
+    <div class="logo"><a href="index.html">◢ RALYZO</a></div>
+  </header>
 
-<header>
+  <main class="page">
+    <h1>Comprimir Imagen</h1>
+    <p class="subtitle">Reduce el tamaño de tus imágenes desde el navegador.</p>
 
-<div class="logo">◢ RALYZO</div>
+    <section class="card">
+      <div class="upload">
+        <p>Selecciona una imagen JPG, JPEG o PNG</p>
+        <input type="file" id="imageInput" accept="image/png, image/jpeg, image/jpg" />
+      </div>
 
-</header>
+      <div class="controls">
+        <div>
+          <label for="quality">Nivel de compresión</label>
+          <select id="quality">
+            <option value="0.9">Baja compresión / mejor calidad</option>
+            <option value="0.7" selected>Media</option>
+            <option value="0.5">Alta compresión</option>
+            <option value="0.3">Máxima compresión</option>
+          </select>
+        </div>
 
-<div class="container">
+        <button id="compressBtn">Comprimir imagen</button>
+      </div>
 
-<h1>Comprimir Imagen</h1>
+      <p id="status" class="status"></p>
+    </section>
 
-<p>Reduce el tamaño de tus imágenes sin perder calidad.</p>
+    <section id="resultSection" class="preview-wrap" style="display:none;">
+      <div class="preview-box">
+        <h3>Original</h3>
+        <img id="originalPreview" alt="Vista previa original">
+        <div id="originalMeta" class="meta"></div>
+      </div>
 
-<div class="upload">
+      <div class="preview-box">
+        <h3>Comprimida</h3>
+        <img id="compressedPreview" alt="Vista previa comprimida">
+        <div id="compressedMeta" class="meta"></div>
+        <a id="downloadLink" class="download" download="ralyzo-comprimida.jpg">Descargar imagen</a>
+      </div>
+    </section>
+  </main>
 
-<input type="file" id="imageInput">
+  <script>
+    const imageInput = document.getElementById("imageInput");
+    const qualitySelect = document.getElementById("quality");
+    const compressBtn = document.getElementById("compressBtn");
+    const statusText = document.getElementById("status");
 
-<br>
+    const resultSection = document.getElementById("resultSection");
+    const originalPreview = document.getElementById("originalPreview");
+    const compressedPreview = document.getElementById("compressedPreview");
+    const originalMeta = document.getElementById("originalMeta");
+    const compressedMeta = document.getElementById("compressedMeta");
+    const downloadLink = document.getElementById("downloadLink");
 
-<button onclick="compress()">Comprimir</button>
+    function formatBytes(bytes) {
+      if (bytes < 1024) return bytes + " B";
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
+      return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+    }
 
-</div>
+    function loadImage(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const img = new Image();
+          img.onload = () => resolve({ img, dataUrl: reader.result });
+          img.onerror = reject;
+          img.src = reader.result;
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
 
-<p id="status"></p>
+    function canvasToBlob(canvas, quality) {
+      return new Promise((resolve) => {
+        canvas.toBlob((blob) => resolve(blob), "image/jpeg", quality);
+      });
+    }
 
-</div>
+    async function compressImage() {
+      const file = imageInput.files[0];
 
-<script>
+      if (!file) {
+        alert("Selecciona una imagen primero.");
+        return;
+      }
 
-function compress(){
+      compressBtn.disabled = true;
+      statusText.textContent = "Procesando imagen...";
 
-let file = document.getElementById("imageInput").files[0]
+      try {
+        const quality = parseFloat(qualitySelect.value);
+        const { img, dataUrl } = await loadImage(file);
 
-if(!file){
-alert("Selecciona una imagen")
-return
-}
+        originalPreview.src = dataUrl;
+        originalMeta.innerHTML = `
+          Nombre: ${file.name}<br>
+          Tamaño: ${formatBytes(file.size)}<br>
+          Resolución: ${img.width} × ${img.height}
+        `;
 
-document.getElementById("status").innerText = "Procesando imagen..."
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
 
-}
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
 
-</script>
+        const compressedBlob = await canvasToBlob(canvas, quality);
 
+        if (!compressedBlob) {
+          throw new Error("No se pudo comprimir la imagen.");
+        }
+
+        const compressedUrl = URL.createObjectURL(compressedBlob);
+        compressedPreview.src = compressedUrl;
+
+        const reduction = ((1 - (compressedBlob.size / file.size)) * 100).toFixed(1);
+
+        compressedMeta.innerHTML = `
+          Tamaño: ${formatBytes(compressedBlob.size)}<br>
+          Resolución: ${img.width} × ${img.height}<br>
+          Reducción: ${reduction > 0 ? reduction : 0}%
+        `;
+
+        downloadLink.href = compressedUrl;
+        resultSection.style.display = "grid";
+        statusText.textContent = "Compresión completada.";
+      } catch (error) {
+        statusText.textContent = "Ocurrió un error al procesar la imagen.";
+      } finally {
+        compressBtn.disabled = false;
+      }
+    }
+
+    compressBtn.addEventListener("click", compressImage);
+  </script>
 </body>
 </html>
