@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Comprimir Imagen Online | Ralyzo</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+font-family:Inter;
+background:#0B1220;
+color:#F8FAFC;
+margin:0;
+text-align:center;
+}
+
+header{
+padding:20px;
+border-bottom:1px solid #1F2937;
+}
+
+.logo{
+font-weight:600;
+font-size:20px;
+}
+
+.container{
+padding:80px 20px;
+}
+
+.upload{
+border:2px dashed #2563EB;
+padding:60px;
+border-radius:10px;
+margin-top:30px;
+}
+
+button{
+margin-top:20px;
+background:#2563EB;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:8px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">◢ RALYZO</div>
+
+</header>
+
+<div class="container">
+
+<h1>Comprimir Imagen</h1>
+
+<p>Reduce el tamaño de tus imágenes sin perder calidad.</p>
+
+<div class="upload">
+
+<input type="file" id="imageInput">
+
+<br>
+
+<button onclick="compress()">Comprimir</button>
+
+</div>
+
+<p id="status"></p>
+
+</div>
+
+<script>
+
+function compress(){
+
+let file = document.getElementById("imageInput").files[0]
+
+if(!file){
+alert("Selecciona una imagen")
+return
+}
+
+document.getElementById("status").innerText = "Procesando imagen..."
+
+}
+
+</script>
+
+</body>
+</html>
