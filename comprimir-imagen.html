@@ -173,6 +173,8 @@
       padding:12px 16px;
       border-radius:10px;
       font-weight:600;
+      border:none;
+      cursor:pointer;
     }
 
     .seo-section{
@@ -362,9 +364,9 @@
       <h3>Comprimida</h3>
       <img id="compressedPreview" alt="Vista previa comprimida">
       <div id="compressedMeta" class="meta"></div>
-      <button id="unlockBtn" class="download">
-  Ver anuncio para descargar
-</button>
+      <button id="unlockBtn" class="download" type="button">
+        Ver anuncio para descargar
+      </button>
     </div>
   </section>
 
@@ -424,8 +426,10 @@
   const compressedPreview = document.getElementById("compressedPreview");
   const originalMeta = document.getElementById("originalMeta");
   const compressedMeta = document.getElementById("compressedMeta");
-  const downloadLink = document.getElementById("downloadLink");
+  const unlockBtn = document.getElementById("unlockBtn");
   const dropOverlay = document.getElementById("dropOverlay");
+
+  let compressedUrl = "";
 
   function formatBytes(bytes) {
     if (bytes < 1024) return bytes + " B";
@@ -466,6 +470,11 @@
     statusText.textContent = "Imagen cargada correctamente.";
   }
 
+  function resetUnlockButton() {
+    unlockBtn.textContent = "Ver anuncio para descargar";
+    unlockBtn.disabled = false;
+  }
+
   async function compressImage() {
     const file = imageInput.files[0];
 
@@ -501,7 +510,11 @@
         throw new Error("No se pudo comprimir la imagen.");
       }
 
-      const compressedUrl = URL.createObjectURL(compressedBlob);
+      if (compressedUrl) {
+        URL.revokeObjectURL(compressedUrl);
+      }
+
+      compressedUrl = URL.createObjectURL(compressedBlob);
       compressedPreview.src = compressedUrl;
 
       const reduction = ((1 - (compressedBlob.size / file.size)) * 100).toFixed(1);
@@ -512,17 +525,41 @@
         Reducción: ${reduction > 0 ? reduction : 0}%
       `;
 
-      downloadLink.href = compressedUrl;
+      resetUnlockButton();
       resultSection.style.display = "grid";
       statusText.textContent = "Compresión completada.";
     } catch (error) {
-      statusText.textContent = "Ocurrió un error al procesar la imagen.";
+      console.error(error);
+      statusText.textContent = "Error: " + error.message;
     } finally {
       compressBtn.disabled = false;
     }
   }
 
   compressBtn.addEventListener("click", compressImage);
+
+  unlockBtn.addEventListener("click", () => {
+    if (!compressedUrl) return;
+
+    if (unlockBtn.dataset.ready === "true") {
+      const link = document.createElement("a");
+      link.href = compressedUrl;
+      link.download = "ralyzo-comprimida.jpg";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      return;
+    }
+
+    unlockBtn.textContent = "Cargando anuncio...";
+    unlockBtn.disabled = true;
+
+    setTimeout(() => {
+      unlockBtn.textContent = "Descargar imagen";
+      unlockBtn.disabled = false;
+      unlockBtn.dataset.ready = "true";
+    }, 3000);
+  });
 
   let dragCounter = 0;
 
