@@ -7,6 +7,61 @@
   <meta name="description" content="Recorta imágenes online gratis con Ralyzo. Ajusta tus fotos fácilmente, rápido y sin subir archivos.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <style>
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px 40px;
+      border-bottom:1px solid #1F2937;
+      background:rgba(11,18,32,.88);
+      backdrop-filter:blur(10px);
+    }
+
+    .logo{
+      text-align:center;
+      font-weight:700;
+      font-size:20px;
+    }
+
+    .tools-section{
+      text-align:center;
+    }
+
+    .tools-section h3{
+      margin:0 0 20px;
+      font-size:18px;
+      color:#F8FAFC;
+    }
+
+    .tool-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:center;
+    }
+
+    .tool-links a{
+      padding:10px 16px;
+      border-radius:10px;
+      background:#0F172A;
+      border:1px solid #334155;
+      color:#CBD5E1;
+      text-decoration:none;
+      font-size:14px;
+      transition:.2s ease;
+    }
+
+    .tool-links a:hover{
+      border-color:#2563EB;
+      color:#F8FAFC;
+      background:#111c34;
+    }
+  </style>
 </head>
 <body>
 
@@ -15,6 +70,7 @@
 </header>
 
 <main class="page">
+
   <h1>Recortar imagen</h1>
   <p class="subtitle">Recorta tus imágenes de forma rápida y sencilla.</p>
 
@@ -30,32 +86,35 @@
 
     <p id="status" class="status"></p>
   </section>
-<section class="card ad-slot">
-  <p class="ad-label">Publicidad</p>
-  <div class="ad-box">
-    Espacio reservado para anuncio
-  </div>
-</section>
+
+  <section class="card ad-slot">
+    <p class="ad-label">Publicidad</p>
+    <div class="ad-box">
+      Espacio reservado para anuncio
+    </div>
+  </section>
+
   <section id="resultSection" class="preview-wrap" style="display:none;">
     <div class="preview-box">
       <h3>Original</h3>
-      <img id="originalPreview" alt="Vista previa de la imagen original">
+      <img id="originalPreview">
     </div>
 
     <div class="preview-box">
       <h3>Recortada</h3>
-      <img id="resultPreview" alt="Vista previa de la imagen recortada">
+      <img id="resultPreview">
       <a id="downloadLink" class="download">Descargar</a>
     </div>
   </section>
 
+  <!-- SEO LIMPIO -->
   <section class="card seo-section">
     <h2>Recortar imagen online gratis sin marca de agua</h2>
     <p>
-Recorta imágenes online gratis sin marca de agua de manera sencilla. 
-Elimina partes no deseadas y enfoca solo lo importante en tus fotos 
-sin necesidad de instalar programas.
-</p>
+      Recorta imágenes online gratis sin marca de agua de manera sencilla. 
+      Elimina partes no deseadas y enfoca solo lo importante en tus fotos 
+      sin necesidad de instalar programas.
+    </p>
 
     <h3>¿Cómo recortar una imagen?</h3>
     <ul>
@@ -77,11 +136,23 @@ sin necesidad de instalar programas.
       Tus imágenes no se suben a ningún servidor.
     </p>
   </section>
+
+  <!-- OTRAS HERRAMIENTAS -->
+  <section class="card tools-section">
+    <h3>Otras herramientas</h3>
+    <div class="tool-links">
+      <a href="/comprimir-imagen">Comprimir</a>
+      <a href="/png-a-jpg">PNG a JPG</a>
+      <a href="/jpg-a-png">JPG a PNG</a>
+      <a href="/redimensionar-imagen">Redimensionar</a>
+      <a href="/girar-imagen">Girar</a>
+    </div>
+  </section>
+
 </main>
 
 <footer>© 2026 Ralyzo</footer>
 
-<!-- OVERLAY PRO -->
 <div id="dropOverlay" class="drop-overlay">
   <div class="drop-overlay-content">
     <p>📥 Suelta tu imagen aquí</p>
@@ -89,7 +160,6 @@ sin necesidad de instalar programas.
   </div>
 </div>
 
-<!-- SCRIPTS -->
 <script src="js/recortar-imagen.js"></script>
 <script src="js/file-input-enhancer.js"></script>
 
