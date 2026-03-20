@@ -169,7 +169,6 @@
       background:#111c34;
     }
 
-    /* FOOTER CORREGIDO */
     footer{
       margin-top:40px;
       padding:20px;
@@ -283,7 +282,107 @@
 </div>
 
 <script>
-// (tu script igual, no lo toqué)
+function convert(){
+  const file = document.getElementById("imageInput").files[0];
+
+  if(!file){
+    alert("Selecciona un archivo PNG");
+    return;
+  }
+
+  document.getElementById("status").innerText = "Convirtiendo imagen...";
+
+  const reader = new FileReader();
+
+  reader.onload = function(event){
+    const img = new Image();
+    img.src = event.target.result;
+
+    img.onload = function(){
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0);
+
+      canvas.toBlob(function(blob){
+        const url = URL.createObjectURL(blob);
+
+        document.getElementById("status").innerHTML = `
+          <br>
+          <img src="${url}" alt="Vista previa JPG convertida">
+          <br><br>
+          <a href="${url}" download="imagen.jpg">
+            <button>Descargar JPG</button>
+          </a>
+        `;
+      }, "image/jpeg", 0.9);
+    };
+  };
+
+  reader.readAsDataURL(file);
+}
+
+/* DRAG + PASTE */
+const imageInput = document.getElementById("imageInput");
+const dropOverlay = document.getElementById("dropOverlay");
+
+let dragCounter = 0;
+
+function assignFile(file){
+  if (!file || !file.type.startsWith("image/")) return;
+
+  const dt = new DataTransfer();
+  dt.items.add(file);
+  imageInput.files = dt.files;
+}
+
+document.addEventListener("dragenter", (e) => {
+  e.preventDefault();
+  dragCounter++;
+  dropOverlay.classList.add("active");
+});
+
+document.addEventListener("dragover", (e) => {
+  e.preventDefault();
+});
+
+document.addEventListener("dragleave", (e) => {
+  e.preventDefault();
+  dragCounter--;
+  if(dragCounter <= 0){
+    dragCounter = 0;
+    dropOverlay.classList.remove("active");
+  }
+});
+
+document.addEventListener("drop", (e) => {
+  e.preventDefault();
+  dragCounter = 0;
+  dropOverlay.classList.remove("active");
+
+  const file = e.dataTransfer.files[0];
+  if(file && file.type.startsWith("image/")){
+    assignFile(file);
+  }
+});
+
+document.addEventListener("paste", (e) => {
+  const items = e.clipboardData?.items;
+  if (!items) return;
+
+  for(let item of items){
+    if(item.type.startsWith("image/")){
+      const file = item.getAsFile();
+      if (file) assignFile(file);
+      break;
+    }
+  }
+});
 </script>
 
 </body>
