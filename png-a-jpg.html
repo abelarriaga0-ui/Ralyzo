@@ -19,13 +19,22 @@
     }
 
     header{
-      padding:20px;
+      position:sticky;
+      top:0;
+      z-index:1000;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px 40px;
       border-bottom:1px solid #1F2937;
+      background:rgba(11,18,32,.88);
+      backdrop-filter:blur(10px);
     }
 
     .logo{
       font-weight:600;
       font-size:20px;
+      text-align:center;
     }
 
     .logo a{
@@ -34,7 +43,7 @@
     }
 
     .container{
-      padding:80px 20px;
+      padding:40px 20px 60px;
       max-width:900px;
       margin:0 auto;
     }
@@ -122,6 +131,48 @@
       padding:20px;
     }
 
+    .tools-section{
+      text-align:center;
+      margin-top:24px;
+      background:#111827;
+      border:1px solid #1F2937;
+      border-radius:14px;
+      padding:24px;
+    }
+
+    .tools-section h3{
+      margin:0 0 20px;
+      font-size:18px;
+      color:#F8FAFC;
+    }
+
+    .tool-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:center;
+    }
+
+    .tool-links a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 16px;
+      border-radius:10px;
+      background:#0F172A;
+      border:1px solid #334155;
+      color:#CBD5E1;
+      text-decoration:none;
+      font-size:14px;
+      transition:.2s ease;
+    }
+
+    .tool-links a:hover{
+      border-color:#2563EB;
+      color:#F8FAFC;
+      background:#111c34;
+    }
+
     .drop-overlay{
       position:fixed;
       inset:0;
@@ -182,12 +233,11 @@
 
   <section class="seo-section">
     <h2>Convertir PNG a JPG online gratis sin perder calidad</h2>
-
-   <p>
-Convierte imágenes PNG a JPG online gratis y sin perder calidad. 
-Ideal para reducir el peso de tus archivos y mejorar la compatibilidad 
-en páginas web, dispositivos y redes sociales.
-</p>
+    <p>
+      Convierte imágenes PNG a JPG online gratis y sin perder calidad.
+      Ideal para reducir el peso de tus archivos y mejorar la compatibilidad
+      en páginas web, dispositivos y redes sociales.
+    </p>
 
     <h3>¿Cómo convertir PNG a JPG?</h3>
     <ul>
@@ -195,6 +245,17 @@ en páginas web, dispositivos y redes sociales.
       <li>Haz clic en convertir</li>
       <li>Descarga el JPG</li>
     </ul>
+  </section>
+
+  <section class="tools-section">
+    <h3>Otras herramientas</h3>
+    <div class="tool-links">
+      <a href="/comprimir-imagen">Comprimir</a>
+      <a href="/jpg-a-png">JPG a PNG</a>
+      <a href="/redimensionar-imagen">Redimensionar</a>
+      <a href="/recortar-imagen">Recortar</a>
+      <a href="/girar-imagen">Girar</a>
+    </div>
   </section>
 </main>
 
