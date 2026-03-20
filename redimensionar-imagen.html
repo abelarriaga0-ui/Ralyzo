@@ -7,6 +7,61 @@
   <meta name="description" content="Redimensiona imágenes online gratis con Ralyzo. Cambia el ancho y alto de tus fotos de forma rápida, segura y sin subir archivos.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <style>
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px 40px;
+      border-bottom:1px solid #1F2937;
+      background:rgba(11,18,32,.88);
+      backdrop-filter:blur(10px);
+    }
+
+    .logo{
+      text-align:center;
+      font-weight:700;
+      font-size:20px;
+    }
+
+    .tools-section{
+      text-align:center;
+    }
+
+    .tools-section h3{
+      margin:0 0 20px;
+      font-size:18px;
+      color:#F8FAFC;
+    }
+
+    .tool-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:center;
+    }
+
+    .tool-links a{
+      padding:10px 16px;
+      border-radius:10px;
+      background:#0F172A;
+      border:1px solid #334155;
+      color:#CBD5E1;
+      text-decoration:none;
+      font-size:14px;
+      transition:.2s ease;
+    }
+
+    .tool-links a:hover{
+      border-color:#2563EB;
+      color:#F8FAFC;
+      background:#111c34;
+    }
+  </style>
 </head>
 <body>
 
@@ -15,6 +70,7 @@
 </header>
 
 <main class="page">
+
   <h1>Redimensionar imagen</h1>
   <p class="subtitle">Cambia el tamaño de tus imágenes fácilmente.</p>
 
@@ -40,12 +96,14 @@
 
     <p id="status" class="status"></p>
   </section>
-<section class="card ad-slot">
-  <p class="ad-label">Publicidad</p>
-  <div class="ad-box">
-    Espacio reservado para anuncio
-  </div>
-</section>
+
+  <section class="card ad-slot">
+    <p class="ad-label">Publicidad</p>
+    <div class="ad-box">
+      Espacio reservado para anuncio
+    </div>
+  </section>
+
   <section id="resultSection" class="preview-wrap" style="display:none;">
     <div class="preview-box">
       <h3>Original</h3>
@@ -63,11 +121,11 @@
 
   <section class="card seo-section">
     <h2>Redimensionar imagen sin perder calidad online gratis</h2>
-  <p>
-Redimensiona imágenes sin perder calidad online de forma rápida. 
-Cambia el tamaño de tus fotos ajustando ancho y alto para adaptarlas 
-a páginas web, redes sociales o cualquier plataforma.
-</p>
+    <p>
+      Redimensiona imágenes sin perder calidad online de forma rápida. 
+      Cambia el tamaño de tus fotos ajustando ancho y alto para adaptarlas 
+      a páginas web, redes sociales o cualquier plataforma.
+    </p>
 
     <h3>¿Cómo redimensionar una imagen?</h3>
     <ul>
@@ -89,11 +147,22 @@ a páginas web, redes sociales o cualquier plataforma.
       Tus imágenes no salen de tu dispositivo.
     </p>
   </section>
+
+  <section class="card tools-section">
+    <h3>Otras herramientas</h3>
+    <div class="tool-links">
+      <a href="/comprimir-imagen">Comprimir</a>
+      <a href="/png-a-jpg">PNG a JPG</a>
+      <a href="/jpg-a-png">JPG a PNG</a>
+      <a href="/recortar-imagen">Recortar</a>
+      <a href="/girar-imagen">Girar</a>
+    </div>
+  </section>
+
 </main>
 
 <footer>© 2026 Ralyzo</footer>
 
-<!-- OVERLAY PRO -->
 <div id="dropOverlay" class="drop-overlay">
   <div class="drop-overlay-content">
     <p>📥 Suelta tu imagen aquí</p>
@@ -101,7 +170,6 @@ a páginas web, redes sociales o cualquier plataforma.
   </div>
 </div>
 
-<!-- SCRIPTS -->
 <script src="js/redimensionar-imagen.js"></script>
 <script src="js/file-input-enhancer.js"></script>
 
