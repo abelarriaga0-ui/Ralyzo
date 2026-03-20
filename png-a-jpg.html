@@ -91,111 +91,182 @@
     .seo-section ul{
       padding-left:20px;
     }
+
+    /* OVERLAY PRO */
+    .drop-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.75);
+      backdrop-filter:blur(3px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+    }
+
+    .drop-overlay.active{
+      display:flex;
+    }
+
+    .drop-overlay-content{
+      text-align:center;
+      color:#fff;
+    }
+
+    .drop-overlay-content p{
+      font-size:40px;
+      font-weight:700;
+      margin:0 0 10px;
+    }
+
+    .drop-overlay-content span{
+      color:#CBD5E1;
+    }
   </style>
 </head>
 
 <body>
 
-  <header>
-    <div class="logo"><a href="/">◢ RALYZO</a></div>
-  </header>
+<header>
+  <div class="logo"><a href="/">◢ RALYZO</a></div>
+</header>
 
-  <main class="container">
-    <h1>Convertir PNG a JPG</h1>
+<main class="container">
+  <h1>Convertir PNG a JPG</h1>
 
-    <p>Convierte imágenes PNG a formato JPG rápidamente.</p>
+  <p>Convierte imágenes PNG a formato JPG rápidamente.</p>
 
-    <div class="upload">
-      <input type="file" id="imageInput" accept="image/png">
-      <br>
-      <button onclick="convert()">Convertir</button>
-    </div>
+  <div class="upload">
+    <input type="file" id="imageInput" accept="image/png">
+    <br>
+    <button onclick="convert()">Convertir</button>
+  </div>
 
-    <p id="status"></p>
+  <p id="status"></p>
 
-    <section class="seo-section">
-      <h2>Convertir PNG a JPG online gratis</h2>
+  <section class="seo-section">
+    <h2>Convertir PNG a JPG online gratis</h2>
 
-      <p>
-        Convierte imágenes PNG a JPG de forma rápida, gratuita y sin perder calidad.
-        Esta herramienta funciona directamente en tu navegador, por lo que no necesitas
-        subir archivos ni registrarte para usarla.
-      </p>
+    <p>
+      Convierte imágenes PNG a JPG de forma rápida, gratuita y sin perder calidad.
+      Esta herramienta funciona directamente en tu navegador.
+    </p>
 
-      <h3>¿Cómo convertir PNG a JPG?</h3>
-      <ul>
-        <li>Selecciona tu imagen en formato PNG</li>
-        <li>Haz clic en el botón convertir</li>
-        <li>Descarga tu archivo convertido en formato JPG</li>
-      </ul>
+    <h3>¿Cómo convertir PNG a JPG?</h3>
+    <ul>
+      <li>Selecciona tu imagen en formato PNG</li>
+      <li>Haz clic en convertir</li>
+      <li>Descarga el JPG</li>
+    </ul>
+  </section>
+</main>
 
-      <h3>Ventajas de convertir PNG a JPG</h3>
-      <ul>
-        <li>Reduce el peso del archivo en muchos casos</li>
-        <li>Mejora la compatibilidad con sitios web y dispositivos</li>
-        <li>Es ideal para compartir imágenes más ligeras</li>
-      </ul>
-
-      <h3>Conversión segura y privada</h3>
-      <p>
-        Todo el proceso se realiza en tu navegador usando JavaScript y Canvas API.
-        Tus archivos no se suben a ningún servidor, lo que mejora la privacidad y la velocidad.
-      </p>
-    </section>
-  </main>
-
-  <script>
-    function convert(){
-      let file = document.getElementById("imageInput").files[0]
-
-      if(!file){
-        alert("Selecciona un archivo PNG")
-        return
-      }
-
-      document.getElementById("status").innerText = "Convirtiendo imagen..."
-
-      let reader = new FileReader()
-
-      reader.onload = function(event){
-        let img = new Image()
-        img.src = event.target.result
-
-        img.onload = function(){
-          let canvas = document.createElement("canvas")
-          let ctx = canvas.getContext("2d")
-
-          canvas.width = img.width
-          canvas.height = img.height
-
-          ctx.fillStyle = "#ffffff"
-          ctx.fillRect(0,0,canvas.width,canvas.height)
-
-          ctx.drawImage(img,0,0)
-
-          canvas.toBlob(function(blob){
-            let url = URL.createObjectURL(blob)
-
-            document.getElementById("status").innerHTML = `
-              <br>
-              <img src="${url}" alt="Vista previa JPG convertida">
-              <br><br>
-              <a href="${url}" download="imagen.jpg">
-                <button>Descargar JPG</button>
-              </a>
-            `
-          }, "image/jpeg", 0.9)
-        }
-      }
-
-      reader.readAsDataURL(file)
-    }
-  </script>
+<!-- OVERLAY -->
 <div id="dropOverlay" class="drop-overlay">
-  <div class="drop-overlay-box">
-    <p>Suelta tu imagen aquí</p>
+  <div class="drop-overlay-content">
+    <p>📥 Suelta tu imagen aquí</p>
     <span>También puedes pegarla con Ctrl + V</span>
   </div>
 </div>
+
+<script>
+function convert(){
+  let file = document.getElementById("imageInput").files[0]
+
+  if(!file){
+    alert("Selecciona un archivo PNG")
+    return
+  }
+
+  document.getElementById("status").innerText = "Convirtiendo imagen..."
+
+  let reader = new FileReader()
+
+  reader.onload = function(event){
+    let img = new Image()
+    img.src = event.target.result
+
+    img.onload = function(){
+      let canvas = document.createElement("canvas")
+      let ctx = canvas.getContext("2d")
+
+      canvas.width = img.width
+      canvas.height = img.height
+
+      ctx.fillStyle = "#ffffff"
+      ctx.fillRect(0,0,canvas.width,canvas.height)
+
+      ctx.drawImage(img,0,0)
+
+      canvas.toBlob(function(blob){
+        let url = URL.createObjectURL(blob)
+
+        document.getElementById("status").innerHTML = `
+          <br>
+          <img src="${url}">
+          <br><br>
+          <a href="${url}" download="imagen.jpg">
+            <button>Descargar JPG</button>
+          </a>
+        `
+      },"image/jpeg",0.9)
+    }
+  }
+
+  reader.readAsDataURL(file)
+}
+
+/* DRAG + PASTE */
+const imageInput = document.getElementById("imageInput")
+const dropOverlay = document.getElementById("dropOverlay")
+
+let dragCounter = 0
+
+function assignFile(file){
+  const dt = new DataTransfer()
+  dt.items.add(file)
+  imageInput.files = dt.files
+}
+
+document.addEventListener("dragenter", e=>{
+  e.preventDefault()
+  dragCounter++
+  dropOverlay.classList.add("active")
+})
+
+document.addEventListener("dragover", e=>{
+  e.preventDefault()
+})
+
+document.addEventListener("dragleave", e=>{
+  e.preventDefault()
+  dragCounter--
+  if(dragCounter<=0){
+    dropOverlay.classList.remove("active")
+  }
+})
+
+document.addEventListener("drop", e=>{
+  e.preventDefault()
+  dragCounter=0
+  dropOverlay.classList.remove("active")
+
+  const file = e.dataTransfer.files[0]
+  if(file && file.type.startsWith("image/")){
+    assignFile(file)
+  }
+})
+
+document.addEventListener("paste", e=>{
+  const items = e.clipboardData.items
+  for(let item of items){
+    if(item.type.startsWith("image/")){
+      const file = item.getAsFile()
+      assignFile(file)
+    }
+  }
+})
+</script>
+
 </body>
 </html>
