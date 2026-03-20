@@ -7,6 +7,61 @@
   <meta name="description" content="Convierte imágenes JPG a PNG online gratis con Ralyzo. Herramienta rápida, segura y sin necesidad de subir archivos.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <style>
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px 40px;
+      border-bottom:1px solid #1F2937;
+      background:rgba(11,18,32,.88);
+      backdrop-filter:blur(10px);
+    }
+
+    .logo{
+      text-align:center;
+      font-weight:700;
+      font-size:20px;
+    }
+
+    .tools-section{
+      text-align:center;
+    }
+
+    .tools-section h3{
+      margin:0 0 20px;
+      font-size:18px;
+      color:#F8FAFC;
+    }
+
+    .tool-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:center;
+    }
+
+    .tool-links a{
+      padding:10px 16px;
+      border-radius:10px;
+      background:#0F172A;
+      border:1px solid #334155;
+      color:#CBD5E1;
+      text-decoration:none;
+      font-size:14px;
+      transition:.2s ease;
+    }
+
+    .tool-links a:hover{
+      border-color:#2563EB;
+      color:#F8FAFC;
+      background:#111c34;
+    }
+  </style>
 </head>
 <body>
 
@@ -15,6 +70,7 @@
 </header>
 
 <main class="page">
+
   <h1>Convertir JPG a PNG</h1>
   <p class="subtitle">Convierte imágenes JPG o JPEG a formato PNG rápidamente.</p>
 
@@ -30,34 +86,37 @@
 
     <p id="status" class="status"></p>
   </section>
-<section class="card ad-slot">
-  <p class="ad-label">Publicidad</p>
-  <div class="ad-box">
-    Espacio reservado para anuncio
-  </div>
-</section>
+
+  <section class="card ad-slot">
+    <p class="ad-label">Publicidad</p>
+    <div class="ad-box">
+      Espacio reservado para anuncio
+    </div>
+  </section>
+
   <section id="resultSection" class="preview-wrap" style="display:none;">
     <div class="preview-box">
       <h3>Original</h3>
-      <img id="originalPreview" alt="Vista previa de la imagen JPG original">
+      <img id="originalPreview">
       <div id="originalMeta" class="meta"></div>
     </div>
 
     <div class="preview-box">
       <h3>Convertida</h3>
-      <img id="resultPreview" alt="Vista previa de la imagen convertida a PNG">
+      <img id="resultPreview">
       <div id="resultMeta" class="meta"></div>
       <a id="downloadLink" class="download">Descargar</a>
     </div>
   </section>
 
+  <!-- SEO LIMPIO -->
   <section class="card seo-section">
     <h2>Convertir JPG a PNG online gratis y rápido</h2>
-   <p>
-Convierte imágenes JPG a PNG online gratis de forma rápida y segura. 
-Esta herramienta es perfecta para obtener imágenes con mejor calidad 
-y usarlas en diseño, edición o gráficos digitales.
-</p>
+    <p>
+      Convierte imágenes JPG a PNG online gratis de forma rápida y segura. 
+      Esta herramienta es perfecta para obtener imágenes con mejor calidad 
+      y usarlas en diseño, edición o gráficos digitales.
+    </p>
 
     <h3>¿Cómo convertir JPG a PNG?</h3>
     <ul>
@@ -79,11 +138,24 @@ y usarlas en diseño, edición o gráficos digitales.
       Tus imágenes no se suben a ningún servidor.
     </p>
   </section>
+
+  <!-- OTRAS HERRAMIENTAS -->
+  <section class="card tools-section">
+    <h3>Otras herramientas</h3>
+    <div class="tool-links">
+      <a href="/comprimir-imagen">Comprimir</a>
+      <a href="/png-a-jpg">PNG a JPG</a>
+      <a href="/redimensionar-imagen">Redimensionar</a>
+      <a href="/recortar-imagen">Recortar</a>
+      <a href="/girar-imagen">Girar</a>
+    </div>
+  </section>
+
 </main>
 
 <footer>© 2026 Ralyzo</footer>
 
-<!-- OVERLAY MEJORADO -->
+<!-- OVERLAY -->
 <div id="dropOverlay" class="drop-overlay">
   <div class="drop-overlay-content">
     <p>📥 Suelta tu imagen aquí</p>
