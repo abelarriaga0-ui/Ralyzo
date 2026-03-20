@@ -3,9 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Comprimir Imagen Online | Ralyzo</title>
-  <meta name="description" content="Comprime imágenes online gratis con Ralyzo. Reduce el peso de archivos JPG y PNG sin instalar programas." />
+
+  <title>Comprimir Imagen Online Gratis | Ralyzo</title>
+  <meta name="description" content="Comprime imágenes online gratis con Ralyzo. Reduce el peso de archivos JPG y PNG sin instalar programas y directamente desde tu navegador." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://ralyzo.com/comprimir-imagen" />
+
+  <meta property="og:title" content="Comprimir Imagen Online Gratis | Ralyzo" />
+  <meta property="og:description" content="Reduce el tamaño de tus imágenes JPG y PNG online gratis y sin instalar programas." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ralyzo.com/comprimir-imagen" />
+  <meta property="og:site_name" content="Ralyzo" />
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Google AdSense -->
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXX"
+    crossorigin="anonymous"></script>
 
   <style>
     *{box-sizing:border-box}
@@ -74,6 +89,12 @@
       padding:40px 20px;
       text-align:center;
       background:rgba(37,99,235,.06);
+      transition:.2s ease;
+    }
+
+    .upload.dragging{
+      border-color:#60A5FA;
+      background:rgba(37,99,235,.12);
     }
 
     input[type="file"]{
@@ -177,6 +198,10 @@
       cursor:pointer;
     }
 
+    .download:hover{
+      opacity:.95;
+    }
+
     .seo-section{
       margin-top:40px;
     }
@@ -194,6 +219,7 @@
 
     .ad-slot{
       text-align:center;
+      padding:20px;
     }
 
     .ad-label{
@@ -202,19 +228,6 @@
       letter-spacing:.08em;
       color:#94A3B8;
       margin:0 0 12px;
-    }
-
-    .ad-box{
-      min-height:120px;
-      border:1px dashed #334155;
-      border-radius:14px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:#0F172A;
-      color:#64748B;
-      font-size:14px;
-      padding:20px;
     }
 
     .tools-section{
@@ -282,6 +295,7 @@
       align-items:center;
       justify-content:center;
       z-index:9999;
+      pointer-events:none;
     }
 
     .drop-overlay.active{
@@ -306,9 +320,27 @@
       color:#CBD5E1;
     }
 
+    .hidden{
+      display:none !important;
+    }
+
     @keyframes fadeIn{
       from{opacity:0;transform:scale(.96)}
       to{opacity:1;transform:scale(1)}
+    }
+
+    @media (max-width:640px){
+      header{
+        padding:16px 20px;
+      }
+
+      h1{
+        font-size:32px;
+      }
+
+      .drop-overlay-content p{
+        font-size:30px;
+      }
     }
   </style>
 </head>
@@ -321,10 +353,10 @@
 <main class="page">
 
   <h1>Comprimir Imagen</h1>
-  <p class="subtitle">Reduce el tamaño de tus imágenes desde el navegador.</p>
+  <p class="subtitle">Reduce el tamaño de tus imágenes JPG y PNG directamente desde tu navegador.</p>
 
   <section class="card">
-    <div class="upload">
+    <div class="upload" id="uploadArea">
       <p>Selecciona una imagen JPG, JPEG o PNG</p>
       <input type="file" id="imageInput" accept="image/png, image/jpeg, image/jpg" />
     </div>
@@ -340,17 +372,21 @@
         </select>
       </div>
 
-      <button id="compressBtn">Comprimir imagen</button>
+      <button id="compressBtn" type="button">Comprimir imagen</button>
     </div>
 
     <p id="status" class="status"></p>
   </section>
 
-  <section class="card ad-slot">
+  <!-- Anuncio 1 -->
+  <section class="card ad-slot" aria-label="Publicidad">
     <p class="ad-label">Publicidad</p>
-    <div class="ad-box">
-      Espacio reservado para anuncio
-    </div>
+    <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-XXXXXXXXXXXXXXX"
+      data-ad-slot="1234567890"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
   </section>
 
   <section id="resultSection" class="preview-wrap" style="display:none;">
@@ -364,27 +400,38 @@
       <h3>Comprimida</h3>
       <img id="compressedPreview" alt="Vista previa comprimida">
       <div id="compressedMeta" class="meta"></div>
-      <button id="unlockBtn" class="download" type="button">
-        Ver anuncio para descargar
-      </button>
+      <button id="downloadBtn" class="download hidden" type="button">Descargar imagen</button>
     </div>
+  </section>
+
+  <!-- Anuncio 2 -->
+  <section class="card ad-slot" aria-label="Publicidad">
+    <p class="ad-label">Publicidad</p>
+    <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-XXXXXXXXXXXXXXX"
+      data-ad-slot="2345678901"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
   </section>
 
   <section class="card seo-section">
     <h2>Comprimir imagen sin perder calidad online gratis</h2>
     <p>
-      Puedes comprimir imágenes sin perder calidad de forma rápida y gratuita.
-      Esta herramienta te permite reducir el tamaño de una imagen online sin instalar programas.
+      Con esta herramienta puedes comprimir imágenes online gratis de forma rápida y sencilla.
+      Solo tienes que subir tu archivo y elegir el nivel de compresión que prefieras para reducir el peso de la imagen.
     </p>
 
-    <h2>¿Cómo comprimir una imagen?</h2>
+    <h2>¿Cómo comprimir una imagen online?</h2>
     <p>
-      Sube tu archivo, elige el nivel de compresión y descarga la versión optimizada.
+      Selecciona una imagen JPG o PNG, elige el nivel de compresión y espera unos segundos.
+      Después podrás descargar la versión optimizada directamente en tu dispositivo.
     </p>
 
     <h2>Ventajas de comprimir imágenes</h2>
     <p>
-      Comprimir imágenes ayuda a ahorrar espacio y mejorar la velocidad de carga.
+      Comprimir imágenes ayuda a ahorrar espacio, mejorar la velocidad de carga de una web,
+      compartir archivos más rápido y optimizar el rendimiento general de tus páginas.
     </p>
   </section>
 
@@ -397,6 +444,17 @@
       <a href="/recortar-imagen">Recortar</a>
       <a href="/girar-imagen">Girar</a>
     </div>
+  </section>
+
+  <!-- Anuncio 3 -->
+  <section class="card ad-slot" aria-label="Publicidad">
+    <p class="ad-label">Publicidad</p>
+    <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-XXXXXXXXXXXXXXX"
+      data-ad-slot="3456789012"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
   </section>
 
 </main>
@@ -421,12 +479,13 @@
   const compressBtn = document.getElementById("compressBtn");
   const statusText = document.getElementById("status");
 
+  const uploadArea = document.getElementById("uploadArea");
   const resultSection = document.getElementById("resultSection");
   const originalPreview = document.getElementById("originalPreview");
   const compressedPreview = document.getElementById("compressedPreview");
   const originalMeta = document.getElementById("originalMeta");
   const compressedMeta = document.getElementById("compressedMeta");
-  const unlockBtn = document.getElementById("unlockBtn");
+  const downloadBtn = document.getElementById("downloadBtn");
   const dropOverlay = document.getElementById("dropOverlay");
 
   let compressedUrl = "";
@@ -470,9 +529,8 @@
     statusText.textContent = "Imagen cargada correctamente.";
   }
 
-  function resetUnlockButton() {
-    unlockBtn.textContent = "Ver anuncio para descargar";
-    unlockBtn.disabled = false;
+  function resetDownloadButton() {
+    downloadBtn.classList.add("hidden");
   }
 
   async function compressImage() {
@@ -517,16 +575,21 @@
       compressedUrl = URL.createObjectURL(compressedBlob);
       compressedPreview.src = compressedUrl;
 
-      const reduction = ((1 - (compressedBlob.size / file.size)) * 100).toFixed(1);
+      const reductionValue = file.size > 0
+        ? ((1 - (compressedBlob.size / file.size)) * 100)
+        : 0;
+
+      const reduction = reductionValue > 0 ? reductionValue.toFixed(1) : "0.0";
 
       compressedMeta.innerHTML = `
         Tamaño: ${formatBytes(compressedBlob.size)}<br>
         Resolución: ${img.width} × ${img.height}<br>
-        Reducción: ${reduction > 0 ? reduction : 0}%
+        Reducción: ${reduction}%
       `;
 
-      resetUnlockButton();
+      resetDownloadButton();
       resultSection.style.display = "grid";
+      downloadBtn.classList.remove("hidden");
       statusText.textContent = "Compresión completada.";
     } catch (error) {
       console.error(error);
@@ -538,27 +601,15 @@
 
   compressBtn.addEventListener("click", compressImage);
 
-  unlockBtn.addEventListener("click", () => {
+  downloadBtn.addEventListener("click", () => {
     if (!compressedUrl) return;
 
-    if (unlockBtn.dataset.ready === "true") {
-      const link = document.createElement("a");
-      link.href = compressedUrl;
-      link.download = "ralyzo-comprimida.jpg";
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      return;
-    }
-
-    unlockBtn.textContent = "Cargando anuncio...";
-    unlockBtn.disabled = true;
-
-    setTimeout(() => {
-      unlockBtn.textContent = "Descargar imagen";
-      unlockBtn.disabled = false;
-      unlockBtn.dataset.ready = "true";
-    }, 3000);
+    const link = document.createElement("a");
+    link.href = compressedUrl;
+    link.download = "ralyzo-comprimida.jpg";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
   });
 
   let dragCounter = 0;
@@ -567,6 +618,7 @@
     e.preventDefault();
     dragCounter++;
     dropOverlay.classList.add("active");
+    uploadArea.classList.add("dragging");
   });
 
   document.addEventListener("dragover", (e) => {
@@ -580,6 +632,7 @@
     if (dragCounter <= 0) {
       dragCounter = 0;
       dropOverlay.classList.remove("active");
+      uploadArea.classList.remove("dragging");
     }
   });
 
@@ -587,6 +640,7 @@
     e.preventDefault();
     dragCounter = 0;
     dropOverlay.classList.remove("active");
+    uploadArea.classList.remove("dragging");
 
     const files = e.dataTransfer.files;
     if (!files || !files.length) return;
@@ -613,6 +667,23 @@
         }
         break;
       }
+    }
+  });
+
+  window.addEventListener("beforeunload", () => {
+    if (compressedUrl) {
+      URL.revokeObjectURL(compressedUrl);
+    }
+  });
+
+  // Inicializar anuncios AdSense
+  window.addEventListener("load", () => {
+    try {
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {
+      console.warn("AdSense no se pudo inicializar todavía.", e);
     }
   });
 </script>
