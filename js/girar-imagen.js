@@ -1,93 +1,93 @@
 const imageInput = document.getElementById("imageInput");
-const angleSelect = document.getElementById("angleSelect");
-const runBtn = document.getElementById("runBtn");
+const rotateLeftBtn = document.getElementById("rotateLeftBtn");
+const rotateRightBtn = document.getElementById("rotateRightBtn");
 const statusText = document.getElementById("status");
 const resultSection = document.getElementById("resultSection");
 const originalPreview = document.getElementById("originalPreview");
 const resultPreview = document.getElementById("resultPreview");
-const originalMeta = document.getElementById("originalMeta");
-const resultMeta = document.getElementById("resultMeta");
 const downloadLink = document.getElementById("downloadLink");
 
-function formatBytes(bytes){
-  if(bytes < 1024) return bytes + " B";
-  if(bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
-  return (bytes / (1024 * 1024)).toFixed(2) + " MB";
-}
+let currentImage = null;
+let currentFileName = "imagen-girada.png";
+let currentRotation = 0;
 
-function loadImage(file){
-  return new Promise((resolve,reject)=>{
-    const reader = new FileReader();
-    reader.onload = ()=>{
-      const img = new Image();
-      img.onload = ()=> resolve({img,dataUrl:reader.result});
-      img.onerror = reject;
-      img.src = reader.result;
-    };
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-}
-
-async function runTool(){
+imageInput.addEventListener("change", function () {
   const file = imageInput.files[0];
 
-  if(!file){
-    alert("Selecciona una imagen.");
+  if (!file) {
+    currentImage = null;
+    originalPreview.src = "";
+    resultPreview.src = "";
+    resultSection.style.display = "none";
+    statusText.textContent = "";
     return;
   }
 
-  runBtn.disabled = true;
-  statusText.textContent = "Girando imagen...";
+  currentFileName = file.name.replace(/\.[^/.]+$/, "") + "-girada.png";
 
-  try{
-    const {img,dataUrl} = await loadImage(file);
-    const angle = parseInt(angleSelect.value);
+  const reader = new FileReader();
 
-    originalPreview.src = dataUrl;
-    originalMeta.innerHTML = `
-      Nombre: ${file.name}<br>
-      Tamaño: ${formatBytes(file.size)}<br>
-      Resolución: ${img.width} × ${img.height}
-    `;
+  reader.onload = function (event) {
+    const img = new Image();
 
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
+    img.onload = function () {
+      currentImage = img;
+      currentRotation = 0;
 
-    if(angle === 90 || angle === 270){
-      canvas.width = img.height;
-      canvas.height = img.width;
-    }else{
-      canvas.width = img.width;
-      canvas.height = img.height;
-    }
-
-    ctx.translate(canvas.width / 2, canvas.height / 2);
-    ctx.rotate(angle * Math.PI / 180);
-    ctx.drawImage(img, -img.width / 2, -img.height / 2);
-
-    canvas.toBlob((blob)=>{
-      const url = URL.createObjectURL(blob);
-
-      resultPreview.src = url;
-      resultMeta.innerHTML = `
-        Tamaño: ${formatBytes(blob.size)}<br>
-        Ángulo: ${angle}°<br>
-        Resolución: ${canvas.width} × ${canvas.height}
-      `;
-
-      downloadLink.href = url;
-      downloadLink.download = "ralyzo-girada.png";
-      downloadLink.textContent = "Descargar imagen";
+      originalPreview.src = img.src;
+      resultPreview.src = img.src;
+      downloadLink.href = img.src;
+      downloadLink.download = currentFileName;
 
       resultSection.style.display = "grid";
-      statusText.textContent = "Imagen girada.";
-      runBtn.disabled = false;
-    },"image/png");
-  }catch(e){
-    statusText.textContent = "Error al girar la imagen.";
-    runBtn.disabled = false;
-  }
-}
+      statusText.textContent = "Imagen cargada. Ahora puedes girarla.";
+    };
 
-runBtn.addEventListener("click", runTool);
+    img.src = event.target.result;
+  };
+
+  reader.readAsDataURL(file);
+});
+
+rotateLeftBtn.addEventListener("click", function () {
+  rotateImage(-90);
+});
+
+rotateRightBtn.addEventListener("click", function () {
+  rotateImage(90);
+});
+
+function rotateImage(degrees) {
+  if (!currentImage) {
+    statusText.textContent = "Primero selecciona una imagen.";
+    return;
+  }
+
+  currentRotation = (currentRotation + degrees) % 360;
+
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+
+  const normalizedRotation = ((currentRotation % 360) + 360) % 360;
+
+  if (normalizedRotation === 90 || normalizedRotation === 270) {
+    canvas.width = currentImage.height;
+    canvas.height = currentImage.width;
+  } else {
+    canvas.width = currentImage.width;
+    canvas.height = currentImage.height;
+  }
+
+  ctx.translate(canvas.width / 2, canvas.height / 2);
+  ctx.rotate((normalizedRotation * Math.PI) / 180);
+  ctx.drawImage(currentImage, -currentImage.width / 2, -currentImage.height / 2);
+
+  const rotatedUrl = canvas.toDataURL("image/png");
+
+  resultPreview.src = rotatedUrl;
+  downloadLink.href = rotatedUrl;
+  downloadLink.download = currentFileName;
+
+  resultSection.style.display = "grid";
+  statusText.textContent = "Imagen girada correctamente.";
+}
