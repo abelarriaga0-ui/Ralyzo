@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Girar imagen online | Ralyzo</title>
-  <meta name="description" content="Gira imágenes online gratis con Ralyzo.">
+  <title>Girar Imagen Online Gratis | Ralyzo</title>
+  <meta name="description" content="Gira imágenes online gratis con Ralyzo. Rota fotos fácilmente desde tu navegador, rápido, seguro y sin subir archivos.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header>
-  <div class="logo"><a href="index.html">◢ RALYZO</a></div>
+  <div class="logo"><a href="/">◢ RALYZO</a></div>
 </header>
 
 <main class="page">
   <h1>Girar imagen</h1>
-  <p class="subtitle">Rota tus imágenes en segundos.</p>
+  <p class="subtitle">Rota tus imágenes fácilmente en segundos.</p>
 
   <section class="card">
     <div class="upload">
@@ -25,16 +25,8 @@
     </div>
 
     <div class="controls">
-      <div>
-        <label for="angleSelect">Ángulo</label>
-        <select id="angleSelect">
-          <option value="90">90°</option>
-          <option value="180">180°</option>
-          <option value="270">270°</option>
-        </select>
-      </div>
-
-      <button id="runBtn">Girar imagen</button>
+      <button id="rotateLeftBtn">Girar a la izquierda</button>
+      <button id="rotateRightBtn">Girar a la derecha</button>
     </div>
 
     <p id="status" class="status"></p>
@@ -43,16 +35,43 @@
   <section id="resultSection" class="preview-wrap" style="display:none;">
     <div class="preview-box">
       <h3>Original</h3>
-      <img id="originalPreview">
-      <div id="originalMeta" class="meta"></div>
+      <img id="originalPreview" alt="Vista previa de la imagen original">
     </div>
 
     <div class="preview-box">
-      <h3>Giradа</h3>
-      <img id="resultPreview">
-      <div id="resultMeta" class="meta"></div>
+      <h3>Girada</h3>
+      <img id="resultPreview" alt="Vista previa de la imagen girada">
       <a id="downloadLink" class="download">Descargar</a>
     </div>
+  </section>
+
+  <section class="card seo-section">
+    <h2>Girar imagen online gratis</h2>
+    <p>
+      Gira imágenes online de forma rápida y gratuita. Esta herramienta te permite
+      rotar fotos directamente desde tu navegador sin instalar programas ni subir
+      archivos a servidores externos.
+    </p>
+
+    <h3>¿Cómo girar una imagen?</h3>
+    <ul>
+      <li>Selecciona una imagen desde tu dispositivo</li>
+      <li>Elige si deseas girarla a la izquierda o a la derecha</li>
+      <li>Descarga la imagen ya corregida</li>
+    </ul>
+
+    <h3>¿Para qué sirve girar una imagen?</h3>
+    <ul>
+      <li>Corregir fotos tomadas con mala orientación</li>
+      <li>Ajustar imágenes para presentaciones o documentos</li>
+      <li>Preparar fotografías para compartir o publicar</li>
+    </ul>
+
+    <h3>Seguro y privado</h3>
+    <p>
+      Todo el proceso se realiza localmente en tu navegador usando JavaScript y Canvas API.
+      Tus imágenes no salen de tu dispositivo, lo que hace la herramienta más rápida y privada.
+    </p>
   </section>
 </main>
 
