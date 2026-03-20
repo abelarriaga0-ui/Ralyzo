@@ -1,95 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>JPG a PNG online | Ralyzo</title>
-
-<meta name="description" content="Convierte imágenes JPG a PNG online gratis con Ralyzo.">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="styles.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JPG a PNG online | Ralyzo</title>
+  <meta name="description" content="Convierte imágenes JPG a PNG online gratis con Ralyzo.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
 <header>
-
-<div class="logo">
-<a href="index.html">◢ RALYZO</a>
-</div>
-
+  <div class="logo"><a href="index.html">◢ RALYZO</a></div>
 </header>
 
 <main class="page">
+  <h1>Convertir JPG a PNG</h1>
+  <p class="subtitle">Convierte imágenes JPG o JPEG a formato PNG rápidamente.</p>
 
-<h1>Convertir JPG a PNG</h1>
+  <section class="card">
+    <div class="upload">
+      <p>Selecciona una imagen JPG o JPEG</p>
+      <input type="file" id="imageInput" accept="image/jpeg, image/jpg">
+    </div>
 
-<p class="subtitle">
-Convierte imágenes JPG o JPEG a formato PNG rápidamente.
-</p>
+    <div class="controls">
+      <button id="runBtn">Convertir a PNG</button>
+    </div>
 
-<section class="card">
+    <p id="status" class="status"></p>
+  </section>
 
-<div class="upload">
+  <section id="resultSection" class="preview-wrap" style="display:none;">
+    <div class="preview-box">
+      <h3>Original</h3>
+      <img id="originalPreview">
+      <div id="originalMeta" class="meta"></div>
+    </div>
 
-<p>Selecciona una imagen JPG o JPEG</p>
-
-<input type="file" id="imageInput" accept="image/jpeg, image/jpg">
-
-</div>
-
-<div class="controls">
-
-<button id="runBtn">Convertir a PNG</button>
-
-</div>
-
-<p id="status" class="status"></p>
-
-</section>
-
-<section id="resultSection" class="preview-wrap" style="display:none;">
-
-<div class="preview-box">
-
-<h3>Original</h3>
-
-<img id="originalPreview">
-
-<div id="originalMeta" class="meta"></div>
-
-</div>
-
-<div class="preview-box">
-
-<h3>Convertida</h3>
-
-<img id="resultPreview">
-
-<div id="resultMeta" class="meta"></div>
-
-<a id="downloadLink" class="download">Descargar</a>
-
-</div>
-
-</section>
-
+    <div class="preview-box">
+      <h3>Convertida</h3>
+      <img id="resultPreview">
+      <div id="resultMeta" class="meta"></div>
+      <a id="downloadLink" class="download">Descargar</a>
+    </div>
+  </section>
 </main>
 
-<footer>
-
-© 2026 Ralyzo
-
-</footer>
+<footer>© 2026 Ralyzo</footer>
 
 <script src="js/jpg-a-png.js"></script>
-
 </body>
-
 </html>
