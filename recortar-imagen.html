@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recortar imagen online | Ralyzo</title>
+  <meta name="description" content="Recorta imágenes online gratis con Ralyzo.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="logo"><a href="index.html">◢ RALYZO</a></div>
+</header>
+
+<main class="page">
+  <h1>Recortar imagen</h1>
+  <p class="subtitle">Recorta tus imágenes indicando el área exacta.</p>
+
+  <section class="card">
+    <div class="upload">
+      <p>Selecciona una imagen</p>
+      <input type="file" id="imageInput" accept="image/png, image/jpeg, image/jpg">
+    </div>
+
+    <div class="controls">
+      <div>
+        <label for="xInput">Posición X</label>
+        <input type="number" id="xInput" placeholder="Ej. 0">
+      </div>
+
+      <div>
+        <label for="yInput">Posición Y</label>
+        <input type="number" id="yInput" placeholder="Ej. 0">
+      </div>
+
+      <div>
+        <label for="widthInput">Ancho del recorte</label>
+        <input type="number" id="widthInput" placeholder="Ej. 300">
+      </div>
+
+      <div>
+        <label for="heightInput">Alto del recorte</label>
+        <input type="number" id="heightInput" placeholder="Ej. 300">
+      </div>
+
+      <button id="runBtn">Recortar imagen</button>
+    </div>
+
+    <p id="status" class="status"></p>
+  </section>
+
+  <section id="resultSection" class="preview-wrap" style="display:none;">
+    <div class="preview-box">
+      <h3>Original</h3>
+      <img id="originalPreview">
+      <div id="originalMeta" class="meta"></div>
+    </div>
+
+    <div class="preview-box">
+      <h3>Recortada</h3>
+      <img id="resultPreview">
+      <div id="resultMeta" class="meta"></div>
+      <a id="downloadLink" class="download">Descargar</a>
+    </div>
+  </section>
+</main>
+
+<footer>© 2026 Ralyzo</footer>
+
+<script src="js/recortar-imagen.js"></script>
+</body>
+</html>
