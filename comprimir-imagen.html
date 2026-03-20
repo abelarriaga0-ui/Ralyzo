@@ -182,11 +182,49 @@
       line-height:1.8;
       margin:0 0 18px;
     }
+
+    .drop-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.75);
+      backdrop-filter:blur(3px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+    }
+
+    .drop-overlay.active{
+      display:flex;
+    }
+
+    .drop-overlay-content{
+      text-align:center;
+      color:#fff;
+      animation:fadeIn .2s ease;
+      padding:20px;
+    }
+
+    .drop-overlay-content p{
+      font-size:42px;
+      font-weight:700;
+      margin:0 0 10px;
+    }
+
+    .drop-overlay-content span{
+      font-size:16px;
+      color:#CBD5E1;
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0;transform:scale(.96)}
+      to{opacity:1;transform:scale(1)}
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo"><a href="index.html">◢ RALYZO</a></div>
+    <div class="logo"><a href="/">◢ RALYZO</a></div>
   </header>
 
   <main class="page">
@@ -234,25 +272,32 @@
     <section class="card seo-section">
       <h2>Comprimir imagen online</h2>
       <p>
-        Usa esta herramienta para comprimir imágenes online sin instalar programas. 
-        Ralyzo te permite reducir el peso de archivos JPG y PNG de forma rápida 
+        Usa esta herramienta para comprimir imágenes online sin instalar programas.
+        Ralyzo te permite reducir el peso de archivos JPG y PNG de forma rápida
         directamente desde tu navegador.
       </p>
 
       <h2>¿Cómo comprimir una imagen?</h2>
       <p>
-        Sube tu archivo, elige el nivel de compresión y descarga la versión optimizada. 
-        Esta herramienta es útil para reducir imágenes para páginas web, correos, 
+        Sube tu archivo, elige el nivel de compresión y descarga la versión optimizada.
+        Esta herramienta es útil para reducir imágenes para páginas web, correos,
         formularios o redes sociales.
       </p>
 
       <h2>Ventajas de comprimir imágenes</h2>
       <p>
-        Comprimir imágenes ayuda a ahorrar espacio, mejorar la velocidad de carga 
+        Comprimir imágenes ayuda a ahorrar espacio, mejorar la velocidad de carga
         de una web y facilitar el envío de archivos pesados.
       </p>
     </section>
   </main>
+
+  <div id="dropOverlay" class="drop-overlay">
+    <div class="drop-overlay-content">
+      <p>📥 Suelta tu imagen aquí</p>
+      <span>También puedes pegarla con Ctrl + V</span>
+    </div>
+  </div>
 
   <script>
     const imageInput = document.getElementById("imageInput");
@@ -266,6 +311,7 @@
     const originalMeta = document.getElementById("originalMeta");
     const compressedMeta = document.getElementById("compressedMeta");
     const downloadLink = document.getElementById("downloadLink");
+    const dropOverlay = document.getElementById("dropOverlay");
 
     function formatBytes(bytes) {
       if (bytes < 1024) return bytes + " B";
@@ -291,6 +337,19 @@
       return new Promise((resolve) => {
         canvas.toBlob((blob) => resolve(blob), "image/jpeg", quality);
       });
+    }
+
+    function isImageFile(file) {
+      return file && file.type && file.type.startsWith("image/");
+    }
+
+    function assignFileToInput(file) {
+      if (!isImageFile(file)) return;
+
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.add(file);
+      imageInput.files = dataTransfer.files;
+      statusText.textContent = "Imagen cargada correctamente.";
     }
 
     async function compressImage() {
@@ -350,12 +409,61 @@
     }
 
     compressBtn.addEventListener("click", compressImage);
+
+    let dragCounter = 0;
+
+    document.addEventListener("dragenter", (e) => {
+      e.preventDefault();
+      dragCounter++;
+      dropOverlay.classList.add("active");
+    });
+
+    document.addEventListener("dragover", (e) => {
+      e.preventDefault();
+    });
+
+    document.addEventListener("dragleave", (e) => {
+      e.preventDefault();
+      dragCounter--;
+
+      if (dragCounter <= 0) {
+        dragCounter = 0;
+        dropOverlay.classList.remove("active");
+      }
+    });
+
+    document.addEventListener("drop", (e) => {
+      e.preventDefault();
+      dragCounter = 0;
+      dropOverlay.classList.remove("active");
+
+      const files = e.dataTransfer.files;
+      if (!files || !files.length) return;
+
+      const file = files[0];
+
+      if (!isImageFile(file)) {
+        alert("Suelta una imagen válida.");
+        return;
+      }
+
+      assignFileToInput(file);
+    });
+
+    document.addEventListener("paste", (e) => {
+      const items = e.clipboardData?.items;
+      if (!items) return;
+
+      for (const item of items) {
+        if (item.type.startsWith("image/")) {
+          const file = item.getAsFile();
+          if (file) {
+            assignFileToInput(file);
+          }
+          break;
+        }
+      }
+    });
   </script>
-  <div id="dropOverlay" class="drop-overlay">
-  <div class="drop-overlay-box">
-    <p>Suelta tu imagen aquí</p>
-    <span>También puedes pegarla con Ctrl + V</span>
-  </div>
-</div>
 </body>
 </html>
