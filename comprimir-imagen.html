@@ -9,6 +9,7 @@
 
   <style>
     *{box-sizing:border-box}
+
     body{
       margin:0;
       font-family:Inter,sans-serif;
@@ -17,11 +18,16 @@
     }
 
     header{
+      position:sticky;
+      top:0;
+      z-index:1000;
       display:flex;
       justify-content:space-between;
       align-items:center;
       padding:20px 40px;
       border-bottom:1px solid #1F2937;
+      background:rgba(11,18,32,.88);
+      backdrop-filter:blur(10px);
     }
 
     .logo{
@@ -38,7 +44,7 @@
     .page{
       max-width:1000px;
       margin:0 auto;
-      padding:60px 20px;
+      padding:40px 20px 60px;
     }
 
     h1{
@@ -183,13 +189,36 @@
       margin:0 0 18px;
     }
 
-    .seo-section a{
-      color:#93C5FD;
-      text-decoration:none;
+    .tools-section h3{
+      margin:0 0 16px;
+      font-size:18px;
+      color:#F8FAFC;
     }
 
-    .seo-section a:hover{
-      text-decoration:underline;
+    .tool-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .tool-links a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 14px;
+      border-radius:10px;
+      background:#0F172A;
+      border:1px solid #334155;
+      color:#CBD5E1;
+      text-decoration:none;
+      font-size:14px;
+      transition:.2s ease;
+    }
+
+    .tool-links a:hover{
+      border-color:#2563EB;
+      color:#F8FAFC;
+      background:#111c34;
     }
 
     .drop-overlay{
@@ -304,13 +333,15 @@
         Comprimir imágenes ayuda a ahorrar espacio, mejorar la velocidad de carga
         de una web y facilitar el envío de archivos pesados.
       </p>
+    </section>
 
-      <p>
-        También puedes usar nuestras herramientas para
-        <a href="/png-a-jpg">convertir PNG a JPG</a>,
-        <a href="/jpg-a-png">convertir JPG a PNG</a> o
-        <a href="/redimensionar-imagen">redimensionar imágenes</a>.
-      </p>
+    <section class="card tools-section">
+      <h3>Otras herramientas</h3>
+      <div class="tool-links">
+        <a href="/png-a-jpg">PNG a JPG</a>
+        <a href="/jpg-a-png">JPG a PNG</a>
+        <a href="/redimensionar-imagen">Redimensionar imagen</a>
+      </div>
     </section>
   </main>
 
