@@ -206,3 +206,16 @@ footer{
   border-top:1px solid #1F2937;
   margin-top:60px;
 }
+.seo-section{
+  text-align:left;
+}
+
+.seo-section h2,
+.seo-section h3{
+  margin-top:0;
+}
+
+.seo-section p,
+.seo-section li{
+  line-height:1.7;
+}
