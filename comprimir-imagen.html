@@ -5,13 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Comprimir Imagen Online Gratis | Ralyzo</title>
-  <meta name="description" content="Comprime imágenes online gratis con Ralyzo. Reduce el peso de archivos JPG y PNG sin instalar programas." />
+  <meta name="description" content="Comprime imágenes online gratis con Ralyzo. Reduce el peso de archivos JPG y PNG sin instalar programas y directamente desde tu navegador." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://ralyzo.com/comprimir-imagen" />
 
-  <!-- 🔥 AdSense (YA BIEN PUESTO) -->
+  <meta property="og:title" content="Comprimir Imagen Online Gratis | Ralyzo" />
+  <meta property="og:description" content="Reduce el tamaño de tus imágenes JPG y PNG online gratis y sin instalar programas." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ralyzo.com/comprimir-imagen" />
+  <meta property="og:site_name" content="Ralyzo" />
+
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337166112417872"
-     crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -41,6 +46,8 @@
     .logo{
       font-weight:700;
       font-size:20px;
+      letter-spacing:1px;
+      text-align:center;
     }
 
     .logo a{
@@ -120,6 +127,15 @@
       font-weight:600;
     }
 
+    button:hover{
+      opacity:.95;
+    }
+
+    button:disabled{
+      opacity:.5;
+      cursor:not-allowed;
+    }
+
     .preview-wrap{
       display:grid;
       gap:24px;
@@ -134,6 +150,11 @@
       padding:16px;
     }
 
+    .preview-box h3{
+      margin-top:0;
+      font-size:18px;
+    }
+
     .preview-box img{
       width:100%;
       max-height:320px;
@@ -146,26 +167,79 @@
       margin-top:12px;
       color:#94A3B8;
       font-size:14px;
+      line-height:1.7;
     }
 
     .status{
       margin-top:18px;
       color:#93C5FD;
       text-align:center;
+      min-height:24px;
     }
 
     .download{
+      display:inline-block;
       margin-top:14px;
       background:#10B981;
       color:#fff;
+      text-decoration:none;
       padding:12px 16px;
       border-radius:10px;
-      cursor:pointer;
+      font-weight:600;
       border:none;
+      cursor:pointer;
     }
 
     .seo-section{
       margin-top:40px;
+    }
+
+    .seo-section h2{
+      font-size:28px;
+      margin:0 0 16px;
+    }
+
+    .seo-section p{
+      color:#CBD5E1;
+      line-height:1.8;
+      margin:0 0 18px;
+    }
+
+    .tools-section{
+      text-align:center;
+    }
+
+    .tools-section h3{
+      margin:0 0 20px;
+      font-size:18px;
+      color:#F8FAFC;
+    }
+
+    .tool-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:center;
+    }
+
+    .tool-links a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 16px;
+      border-radius:10px;
+      background:#0F172A;
+      border:1px solid #334155;
+      color:#CBD5E1;
+      text-decoration:none;
+      font-size:14px;
+      transition:.2s ease;
+    }
+
+    .tool-links a:hover{
+      border-color:#2563EB;
+      color:#F8FAFC;
+      background:#111c34;
     }
 
     footer{
@@ -175,6 +249,54 @@
       text-align:center;
       color:#94A3B8;
       font-size:14px;
+    }
+
+    footer a{
+      color:#93C5FD;
+      text-decoration:none;
+      margin:0 4px;
+    }
+
+    footer a:hover{
+      text-decoration:underline;
+    }
+
+    .drop-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.75);
+      backdrop-filter:blur(3px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+    }
+
+    .drop-overlay.active{
+      display:flex;
+    }
+
+    .drop-overlay-content{
+      text-align:center;
+      color:#fff;
+      animation:fadeIn .2s ease;
+      padding:20px;
+    }
+
+    .drop-overlay-content p{
+      font-size:42px;
+      font-weight:700;
+      margin:0 0 10px;
+    }
+
+    .drop-overlay-content span{
+      font-size:16px;
+      color:#CBD5E1;
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0;transform:scale(.96)}
+      to{opacity:1;transform:scale(1)}
     }
   </style>
 </head>
@@ -197,11 +319,12 @@
 
     <div class="controls">
       <div>
-        <label>Nivel de compresión</label>
+        <label for="quality">Nivel de compresión</label>
         <select id="quality">
-          <option value="0.9">Baja compresión</option>
+          <option value="0.9">Baja compresión / mejor calidad</option>
           <option value="0.7" selected>Media</option>
-          <option value="0.5">Alta</option>
+          <option value="0.5">Alta compresión</option>
+          <option value="0.3">Máxima compresión</option>
         </select>
       </div>
 
@@ -214,81 +337,251 @@
   <section id="resultSection" class="preview-wrap" style="display:none;">
     <div class="preview-box">
       <h3>Original</h3>
-      <img id="originalPreview">
+      <img id="originalPreview" alt="Vista previa original">
       <div id="originalMeta" class="meta"></div>
     </div>
 
     <div class="preview-box">
       <h3>Comprimida</h3>
-      <img id="compressedPreview">
+      <img id="compressedPreview" alt="Vista previa comprimida">
       <div id="compressedMeta" class="meta"></div>
-      <button id="downloadBtn" class="download">Descargar</button>
+      <button id="downloadBtn" class="download" type="button">Descargar imagen</button>
+    </div>
+  </section>
+
+  <section class="card seo-section">
+    <h2>Comprimir imagen sin perder calidad online gratis</h2>
+    <p>
+      Puedes comprimir imágenes sin perder calidad de forma rápida y gratuita.
+      Esta herramienta te permite reducir el tamaño de una imagen online sin instalar programas.
+    </p>
+
+    <h2>¿Cómo comprimir una imagen?</h2>
+    <p>
+      Sube tu archivo, elige el nivel de compresión y descarga la versión optimizada.
+    </p>
+
+    <h2>Ventajas de comprimir imágenes</h2>
+    <p>
+      Comprimir imágenes ayuda a ahorrar espacio y mejorar la velocidad de carga.
+    </p>
+  </section>
+
+  <section class="card tools-section">
+    <h3>Otras herramientas</h3>
+    <div class="tool-links">
+      <a href="/png-a-jpg">PNG a JPG</a>
+      <a href="/jpg-a-png">JPG a PNG</a>
+      <a href="/redimensionar-imagen">Redimensionar</a>
+      <a href="/recortar-imagen">Recortar</a>
+      <a href="/girar-imagen">Girar</a>
     </div>
   </section>
 
 </main>
 
 <footer>
-  © 2026 Ralyzo
+  © 2026 Ralyzo ·
+  <a href="/politica-privacidad">Privacidad</a> ·
+  <a href="/terminos-condiciones">Términos</a> ·
+  <a href="/cookies">Cookies</a>
 </footer>
 
+<div id="dropOverlay" class="drop-overlay">
+  <div class="drop-overlay-content">
+    <p>📥 Suelta tu imagen aquí</p>
+    <span>También puedes pegarla con Ctrl + V</span>
+  </div>
+</div>
+
 <script>
-const imageInput = document.getElementById("imageInput");
-const compressBtn = document.getElementById("compressBtn");
-const qualitySelect = document.getElementById("quality");
-const statusText = document.getElementById("status");
+  const imageInput = document.getElementById("imageInput");
+  const qualitySelect = document.getElementById("quality");
+  const compressBtn = document.getElementById("compressBtn");
+  const statusText = document.getElementById("status");
 
-const resultSection = document.getElementById("resultSection");
-const originalPreview = document.getElementById("originalPreview");
-const compressedPreview = document.getElementById("compressedPreview");
-const originalMeta = document.getElementById("originalMeta");
-const compressedMeta = document.getElementById("compressedMeta");
-const downloadBtn = document.getElementById("downloadBtn");
+  const resultSection = document.getElementById("resultSection");
+  const originalPreview = document.getElementById("originalPreview");
+  const compressedPreview = document.getElementById("compressedPreview");
+  const originalMeta = document.getElementById("originalMeta");
+  const compressedMeta = document.getElementById("compressedMeta");
+  const downloadBtn = document.getElementById("downloadBtn");
+  const dropOverlay = document.getElementById("dropOverlay");
 
-let compressedUrl = "";
+  let compressedUrl = "";
 
-function formatBytes(bytes){
-  return (bytes/1024).toFixed(1)+" KB";
-}
+  function formatBytes(bytes) {
+    if (bytes < 1024) return bytes + " B";
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
+    return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+  }
 
-compressBtn.onclick = async ()=>{
-  const file = imageInput.files[0];
-  if(!file){ alert("Sube una imagen"); return; }
+  function loadImage(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const img = new Image();
+        img.onload = () => resolve({ img, dataUrl: reader.result });
+        img.onerror = reject;
+        img.src = reader.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
 
-  statusText.textContent = "Procesando...";
+  function canvasToBlob(canvas, quality) {
+    return new Promise((resolve) => {
+      canvas.toBlob((blob) => resolve(blob), "image/jpeg", quality);
+    });
+  }
 
-  const img = new Image();
-  img.src = URL.createObjectURL(file);
+  function isImageFile(file) {
+    return file && file.type && file.type.startsWith("image/");
+  }
 
-  img.onload = async ()=>{
-    originalPreview.src = img.src;
-    originalMeta.innerHTML = "Tamaño: "+formatBytes(file.size);
+  function assignFileToInput(file) {
+    if (!isImageFile(file)) return;
 
-    const canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(file);
+    imageInput.files = dataTransfer.files;
+    statusText.textContent = "Imagen cargada correctamente.";
+  }
 
-    const ctx = canvas.getContext("2d");
-    ctx.drawImage(img,0,0);
+  async function compressImage() {
+    const file = imageInput.files[0];
 
-    canvas.toBlob(blob=>{
-      compressedUrl = URL.createObjectURL(blob);
+    if (!file) {
+      alert("Selecciona una imagen primero.");
+      return;
+    }
+
+    compressBtn.disabled = true;
+    statusText.textContent = "Procesando imagen...";
+
+    try {
+      const quality = parseFloat(qualitySelect.value);
+      const { img, dataUrl } = await loadImage(file);
+
+      originalPreview.src = dataUrl;
+      originalMeta.innerHTML = `
+        Nombre: ${file.name}<br>
+        Tamaño: ${formatBytes(file.size)}<br>
+        Resolución: ${img.width} × ${img.height}
+      `;
+
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0);
+
+      const compressedBlob = await canvasToBlob(canvas, quality);
+
+      if (!compressedBlob) {
+        throw new Error("No se pudo comprimir la imagen.");
+      }
+
+      if (compressedUrl) {
+        URL.revokeObjectURL(compressedUrl);
+      }
+
+      compressedUrl = URL.createObjectURL(compressedBlob);
       compressedPreview.src = compressedUrl;
 
-      compressedMeta.innerHTML = "Tamaño: "+formatBytes(blob.size);
+      const reduction = ((1 - (compressedBlob.size / file.size)) * 100).toFixed(1);
 
-      resultSection.style.display="grid";
-      statusText.textContent="Listo";
-    },"image/jpeg",parseFloat(qualitySelect.value));
+      compressedMeta.innerHTML = `
+        Tamaño: ${formatBytes(compressedBlob.size)}<br>
+        Resolución: ${img.width} × ${img.height}<br>
+        Reducción: ${reduction > 0 ? reduction : 0}%
+      `;
+
+      resultSection.style.display = "grid";
+      statusText.textContent = "Compresión completada.";
+    } catch (error) {
+      console.error(error);
+      statusText.textContent = "Error: " + error.message;
+    } finally {
+      compressBtn.disabled = false;
+    }
   }
-}
 
-downloadBtn.onclick = ()=>{
-  const a = document.createElement("a");
-  a.href = compressedUrl;
-  a.download = "ralyzo.jpg";
-  a.click();
-}
+  compressBtn.addEventListener("click", compressImage);
+
+  downloadBtn.addEventListener("click", () => {
+    if (!compressedUrl) return;
+
+    const link = document.createElement("a");
+    link.href = compressedUrl;
+    link.download = "ralyzo-comprimida.jpg";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  });
+
+  let dragCounter = 0;
+
+  document.addEventListener("dragenter", (e) => {
+    e.preventDefault();
+    dragCounter++;
+    dropOverlay.classList.add("active");
+  });
+
+  document.addEventListener("dragover", (e) => {
+    e.preventDefault();
+  });
+
+  document.addEventListener("dragleave", (e) => {
+    e.preventDefault();
+    dragCounter--;
+
+    if (dragCounter <= 0) {
+      dragCounter = 0;
+      dropOverlay.classList.remove("active");
+    }
+  });
+
+  document.addEventListener("drop", (e) => {
+    e.preventDefault();
+    dragCounter = 0;
+    dropOverlay.classList.remove("active");
+
+    const files = e.dataTransfer.files;
+    if (!files || !files.length) return;
+
+    const file = files[0];
+
+    if (!isImageFile(file)) {
+      alert("Suelta una imagen válida.");
+      return;
+    }
+
+    assignFileToInput(file);
+  });
+
+  document.addEventListener("paste", (e) => {
+    const items = e.clipboardData?.items;
+    if (!items) return;
+
+    for (const item of items) {
+      if (item.type.startsWith("image/")) {
+        const file = item.getAsFile();
+        if (file) {
+          assignFileToInput(file);
+        }
+        break;
+      }
+    }
+  });
+
+  window.addEventListener("beforeunload", () => {
+    if (compressedUrl) {
+      URL.revokeObjectURL(compressedUrl);
+    }
+  });
 </script>
 
 </body>
