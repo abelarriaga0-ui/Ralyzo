@@ -1,154 +1,196 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Convertir PNG a JPG Online Gratis | Ralyzo</title>
+  <meta name="description" content="Convierte imágenes PNG a JPG online gratis, rápido y sin perder calidad. Herramienta segura que funciona directamente en tu navegador.">
 
-<title>PNG a JPG | Ralyzo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body{
+      font-family:Inter,sans-serif;
+      background:#0B1220;
+      color:#F8FAFC;
+      margin:0;
+      text-align:center;
+    }
 
-<style>
+    header{
+      padding:20px;
+      border-bottom:1px solid #1F2937;
+    }
 
-body{
-font-family:Inter,sans-serif;
-background:#0B1220;
-color:#F8FAFC;
-margin:0;
-text-align:center;
-}
+    .logo{
+      font-weight:600;
+      font-size:20px;
+    }
 
-header{
-padding:20px;
-border-bottom:1px solid #1F2937;
-}
+    .logo a{
+      color:#F8FAFC;
+      text-decoration:none;
+    }
 
-.logo{
-font-weight:600;
-font-size:20px;
-}
+    .container{
+      padding:80px 20px;
+      max-width:900px;
+      margin:0 auto;
+    }
 
-.logo a{
-color:#F8FAFC;
-text-decoration:none;
-}
+    .upload{
+      border:2px dashed #2563EB;
+      padding:60px;
+      border-radius:10px;
+      margin-top:30px;
+      background:#111827;
+    }
 
-.container{
-padding:80px 20px;
-}
+    button{
+      margin-top:20px;
+      background:#2563EB;
+      color:white;
+      border:none;
+      padding:12px 20px;
+      border-radius:8px;
+      cursor:pointer;
+      font-family:inherit;
+    }
 
-.upload{
-border:2px dashed #2563EB;
-padding:60px;
-border-radius:10px;
-margin-top:30px;
-}
+    button:hover{
+      opacity:.92;
+    }
 
-button{
-margin-top:20px;
-background:#2563EB;
-color:white;
-border:none;
-padding:12px 20px;
-border-radius:8px;
-cursor:pointer;
-}
+    img{
+      margin-top:20px;
+      max-width:300px;
+      border-radius:10px;
+    }
 
-img{
-margin-top:20px;
-max-width:300px;
-border-radius:10px;
-}
+    .seo-section{
+      text-align:left;
+      margin-top:60px;
+      background:#111827;
+      border:1px solid #1F2937;
+      border-radius:14px;
+      padding:32px;
+    }
 
-</style>
+    .seo-section h2,
+    .seo-section h3{
+      color:#F8FAFC;
+    }
 
+    .seo-section p,
+    .seo-section li{
+      color:#CBD5E1;
+      line-height:1.7;
+    }
+
+    .seo-section ul{
+      padding-left:20px;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-<div class="logo"><a href="index.html">◢ RALYZO</a></div>
-</header>
+  <header>
+    <div class="logo"><a href="/">◢ RALYZO</a></div>
+  </header>
 
-<div class="container">
+  <main class="container">
+    <h1>Convertir PNG a JPG</h1>
 
-<h1>Convertir PNG a JPG</h1>
+    <p>Convierte imágenes PNG a formato JPG rápidamente.</p>
 
-<p>Convierte imágenes PNG a formato JPG rápidamente.</p>
+    <div class="upload">
+      <input type="file" id="imageInput" accept="image/png">
+      <br>
+      <button onclick="convert()">Convertir</button>
+    </div>
 
-<div class="upload">
+    <p id="status"></p>
 
-<input type="file" id="imageInput" accept="image/png">
+    <section class="seo-section">
+      <h2>Convertir PNG a JPG online gratis</h2>
 
-<br>
+      <p>
+        Convierte imágenes PNG a JPG de forma rápida, gratuita y sin perder calidad.
+        Esta herramienta funciona directamente en tu navegador, por lo que no necesitas
+        subir archivos ni registrarte para usarla.
+      </p>
 
-<button onclick="convert()">Convertir</button>
+      <h3>¿Cómo convertir PNG a JPG?</h3>
+      <ul>
+        <li>Selecciona tu imagen en formato PNG</li>
+        <li>Haz clic en el botón convertir</li>
+        <li>Descarga tu archivo convertido en formato JPG</li>
+      </ul>
 
-</div>
+      <h3>Ventajas de convertir PNG a JPG</h3>
+      <ul>
+        <li>Reduce el peso del archivo en muchos casos</li>
+        <li>Mejora la compatibilidad con sitios web y dispositivos</li>
+        <li>Es ideal para compartir imágenes más ligeras</li>
+      </ul>
 
-<p id="status"></p>
+      <h3>Conversión segura y privada</h3>
+      <p>
+        Todo el proceso se realiza en tu navegador usando JavaScript y Canvas API.
+        Tus archivos no se suben a ningún servidor, lo que mejora la privacidad y la velocidad.
+      </p>
+    </section>
+  </main>
 
-</div>
+  <script>
+    function convert(){
+      let file = document.getElementById("imageInput").files[0]
 
-<script>
+      if(!file){
+        alert("Selecciona un archivo PNG")
+        return
+      }
 
-function convert(){
+      document.getElementById("status").innerText = "Convirtiendo imagen..."
 
-let file = document.getElementById("imageInput").files[0]
+      let reader = new FileReader()
 
-if(!file){
-alert("Selecciona un archivo PNG")
-return
-}
+      reader.onload = function(event){
+        let img = new Image()
+        img.src = event.target.result
 
-document.getElementById("status").innerText = "Convirtiendo imagen..."
+        img.onload = function(){
+          let canvas = document.createElement("canvas")
+          let ctx = canvas.getContext("2d")
 
-let reader = new FileReader()
+          canvas.width = img.width
+          canvas.height = img.height
 
-reader.onload = function(event){
+          ctx.fillStyle = "#ffffff"
+          ctx.fillRect(0,0,canvas.width,canvas.height)
 
-let img = new Image()
+          ctx.drawImage(img,0,0)
 
-img.src = event.target.result
+          canvas.toBlob(function(blob){
+            let url = URL.createObjectURL(blob)
 
-img.onload = function(){
+            document.getElementById("status").innerHTML = `
+              <br>
+              <img src="${url}" alt="Vista previa JPG convertida">
+              <br><br>
+              <a href="${url}" download="imagen.jpg">
+                <button>Descargar JPG</button>
+              </a>
+            `
+          }, "image/jpeg", 0.9)
+        }
+      }
 
-let canvas = document.createElement("canvas")
-let ctx = canvas.getContext("2d")
-
-canvas.width = img.width
-canvas.height = img.height
-
-ctx.fillStyle = "#ffffff"
-ctx.fillRect(0,0,canvas.width,canvas.height)
-
-ctx.drawImage(img,0,0)
-
-canvas.toBlob(function(blob){
-
-let url = URL.createObjectURL(blob)
-
-document.getElementById("status").innerHTML = `
-<br>
-<img src="${url}">
-<br><br>
-<a href="${url}" download="imagen.jpg">
-<button>Descargar JPG</button>
-</a>
-`
-
-},"image/jpeg",0.9)
-
-}
-
-}
-
-reader.readAsDataURL(file)
-
-}
-
-</script>
+      reader.readAsDataURL(file)
+    }
+  </script>
 
 </body>
 </html>
