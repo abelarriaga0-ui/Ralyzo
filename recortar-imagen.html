@@ -32,16 +32,44 @@
       backdrop-filter:blur(10px);
     }
 
+    .header-inner{
+      width:100%;
+      max-width:1200px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
     .logo{
       text-align:center;
       font-weight:700;
       font-size:20px;
       letter-spacing:1px;
+      line-height:1;
     }
 
     .logo a{
       color:#F8FAFC;
       text-decoration:none;
+    }
+
+    .header-tool-select{
+      width:260px;
+      padding:14px 18px;
+      border-radius:14px;
+      border:1px solid #334155;
+      background:#0F172A;
+      color:#F8FAFC;
+      font-size:14px;
+      font-family:Inter,sans-serif;
+      outline:none;
+      cursor:pointer;
+    }
+
+    .header-tool-select:focus{
+      border-color:#2563EB;
     }
 
     .page{
@@ -313,6 +341,15 @@
         padding:16px 20px;
       }
 
+      .header-inner{
+        gap:12px;
+      }
+
+      .header-tool-select{
+        width:230px;
+        padding:12px 14px;
+      }
+
       h1{
         font-size:32px;
       }
@@ -326,7 +363,18 @@
 <body>
 
 <header>
-  <div class="logo"><a href="/">◢ RALYZO</a></div>
+  <div class="header-inner">
+    <div class="logo"><a href="/">◢ RALYZO</a></div>
+
+    <select class="header-tool-select" id="headerToolSelect">
+      <option value="">Ir a otra herramienta</option>
+      <option value="/comprimir-imagen">Comprimir</option>
+      <option value="/png-a-jpg">PNG a JPG</option>
+      <option value="/jpg-a-png">JPG a PNG</option>
+      <option value="/redimensionar-imagen">Redimensionar</option>
+      <option value="/girar-imagen">Girar</option>
+    </select>
+  </div>
 </header>
 
 <main class="page">
@@ -687,6 +735,12 @@
         if (file) assignFileToInput(file);
         break;
       }
+    }
+  });
+
+  document.getElementById("headerToolSelect").addEventListener("change", function(){
+    if(this.value){
+      window.location.href = this.value;
     }
   });
 </script>
