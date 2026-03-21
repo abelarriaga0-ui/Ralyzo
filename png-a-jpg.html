@@ -101,36 +101,6 @@
       padding-left:20px;
     }
 
-    .ad-slot{
-      text-align:center;
-      margin-top:30px;
-      background:#111827;
-      border:1px solid #1F2937;
-      border-radius:14px;
-      padding:24px;
-    }
-
-    .ad-label{
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      color:#94A3B8;
-      margin:0 0 12px;
-    }
-
-    .ad-box{
-      min-height:120px;
-      border:1px dashed #334155;
-      border-radius:14px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:#0F172A;
-      color:#64748B;
-      font-size:14px;
-      padding:20px;
-    }
-
     .tools-section{
       text-align:center;
       margin-top:24px;
@@ -167,6 +137,30 @@
       border-color:#2563EB;
       color:#F8FAFC;
       background:#111c34;
+    }
+
+    .tool-select-wrap{
+      display:flex;
+      justify-content:center;
+      margin-top:10px;
+    }
+
+    .tool-select{
+      width:100%;
+      max-width:320px;
+      padding:12px 14px;
+      border-radius:10px;
+      border:1px solid #334155;
+      background:#0F172A;
+      color:#CBD5E1;
+      font-size:14px;
+      font-family:inherit;
+      outline:none;
+      cursor:pointer;
+    }
+
+    .tool-select:focus{
+      border-color:#2563EB;
     }
 
     footer{
@@ -237,13 +231,6 @@
     <button onclick="convert()">Convertir</button>
   </div>
 
-  <section class="ad-slot">
-    <p class="ad-label">Publicidad</p>
-    <div class="ad-box">
-      Espacio reservado para anuncio
-    </div>
-  </section>
-
   <p id="status"></p>
 
   <section class="seo-section">
@@ -256,12 +243,15 @@
 
   <section class="tools-section">
     <h3>Otras herramientas</h3>
-    <div class="tool-links">
-      <a href="/comprimir-imagen">Comprimir</a>
-      <a href="/jpg-a-png">JPG a PNG</a>
-      <a href="/redimensionar-imagen">Redimensionar</a>
-      <a href="/recortar-imagen">Recortar</a>
-      <a href="/girar-imagen">Girar</a>
+    <div class="tool-select-wrap">
+      <select class="tool-select" id="toolSelect">
+        <option value="">Selecciona una herramienta</option>
+        <option value="/comprimir-imagen">Comprimir</option>
+        <option value="/jpg-a-png">JPG a PNG</option>
+        <option value="/redimensionar-imagen">Redimensionar</option>
+        <option value="/recortar-imagen">Recortar</option>
+        <option value="/girar-imagen">Girar</option>
+      </select>
     </div>
   </section>
 
@@ -381,6 +371,12 @@ document.addEventListener("paste", (e) => {
       if (file) assignFile(file);
       break;
     }
+  }
+});
+
+document.getElementById("toolSelect").addEventListener("change", function(){
+  if(this.value){
+    window.location.href = this.value;
   }
 });
 </script>
