@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>PNG vs JPG: diferencias y cuál usar | Ralyzo</title>
+  <meta name="description" content="Descubre las diferencias entre PNG y JPG, cuándo conviene usar cada formato y cuál elegir según calidad, transparencia y peso del archivo." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://ralyzo.com/png-vs-jpg" />
+
+  <meta property="og:title" content="PNG vs JPG: diferencias y cuál usar | Ralyzo" />
+  <meta property="og:description" content="Aprende cuándo usar PNG o JPG según calidad, transparencia y tamaño del archivo." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://ralyzo.com/png-vs-jpg" />
+  <meta property="og:site_name" content="Ralyzo" />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337166112417872"
+    crossorigin="anonymous"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,sans-serif;
+      background:linear-gradient(180deg,#020B1F 0%, #06112A 100%);
+      color:#F8FAFC;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(2,11,31,.9);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(148,163,184,.14);
+    }
+
+    .nav{
+      max-width:1200px;
+      margin:0 auto;
+      min-height:72px;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      padding:0 24px;
+    }
+
+    .logo-center{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:20px;
+      font-weight:800;
+      letter-spacing:.04em;
+      white-space:nowrap;
+    }
+
+    .logo-mark{
+      width:0;
+      height:0;
+      border-left:16px solid transparent;
+      border-bottom:16px solid #ffffff;
+      opacity:.95;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      color:#CBD5E1;
+      font-size:16px;
+      font-weight:500;
+    }
+
+    .nav-links a:hover{
+      color:#ffffff;
+    }
+
+    .page{
+      max-width:1000px;
+      margin:0 auto;
+      padding:0 24px 56px;
+    }
+
+    .hero{
+      padding:88px 0 30px;
+      text-align:center;
+    }
+
+    .hero h1{
+      margin:0 0 18px;
+      font-size:54px;
+      line-height:1.08;
+      font-weight:800;
+      letter-spacing:-.03em;
+    }
+
+    .hero p{
+      margin:0 auto;
+      max-width:760px;
+      font-size:22px;
+      color:#94A3B8;
+      line-height:1.7;
+    }
+
+    .article{
+      margin-top:28px;
+      background:#111827;
+      border:1px solid #1F2937;
+      border-radius:22px;
+      padding:34px 28px;
+    }
+
+    .article h2{
+      font-size:30px;
+      margin:0 0 14px;
+    }
+
+    .article h3{
+      font-size:22px;
+      margin:28px 0 12px;
+    }
+
+    .article p{
+      color:#CBD5E1;
+      line-height:1.9;
+      font-size:17px;
+      margin:0 0 18px;
+    }
+
+    .article ul{
+      margin:0 0 22px 18px;
+      color:#CBD5E1;
+      line-height:1.9;
+      font-size:17px;
+    }
+
+    .highlight{
+      background:#0F172A;
+      border:1px solid #334155;
+      border-radius:18px;
+      padding:22px;
+      margin:24px 0;
+    }
+
+    .highlight strong{
+      color:#F8FAFC;
+    }
+
+    .compare-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:18px;
+      margin:24px 0;
+    }
+
+    .compare-card{
+      background:#0F172A;
+      border:1px solid #334155;
+      border-radius:18px;
+      padding:22px;
+    }
+
+    .compare-card h3{
+      margin-top:0;
+      font-size:24px;
+    }
+
+    .compare-card p{
+      margin-bottom:14px;
+    }
+
+    .cta-box{
+      margin-top:30px;
+      background:linear-gradient(180deg,#0D1A35 0%, #101827 100%);
+      border:1px solid #2563EB;
+      border-radius:20px;
+      padding:28px;
+      text-align:center;
+    }
+
+    .cta-box h2{
+      margin:0 0 12px;
+      font-size:30px;
+    }
+
+    .cta-box p{
+      margin:0 0 22px;
+      color:#CBD5E1;
+      line-height:1.8;
+      font-size:17px;
+    }
+
+    .cta-actions{
+      display:flex;
+      justify-content:center;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 20px;
+      border-radius:12px;
+      font-weight:700;
+      transition:.2s ease;
+    }
+
+    .btn-primary{
+      background:#2563EB;
+      color:#fff;
+    }
+
+    .btn-primary:hover{
+      background:#1d4ed8;
+    }
+
+    .btn-secondary{
+      background:#0F172A;
+      color:#E2E8F0;
+      border:1px solid #334155;
+    }
+
+    .btn-secondary:hover{
+      border-color:#2563EB;
+      color:#fff;
+    }
+
+    .faq{
+      margin-top:30px;
+    }
+
+    .faq-item{
+      background:#0F172A;
+      border:1px solid #334155;
+      border-radius:16px;
+      padding:20px;
+      margin-bottom:16px;
+    }
+
+    .faq-item h3{
+      margin:0 0 10px;
+      font-size:20px;
+    }
+
+    footer{
+      margin-top:48px;
+      border-top:1px solid rgba(148,163,184,.14);
+      padding:28px 24px 36px;
+    }
+
+    .footer-inner{
+      max-width:1200px;
+      margin:0 auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+      color:#94A3B8;
+      font-size:14px;
+    }
+
+    .footer-links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .footer-links a{
+      color:#93C5FD;
+    }
+
+    .footer-links a:hover{
+      text-decoration:underline;
+    }
+
+    @media (max-width:950px){
+      .compare-grid{
+        grid-template-columns:1fr;
+      }
+
+      .nav{
+        justify-content:center;
+        padding-top:70px;
+        padding-bottom:14px;
+      }
+
+      .logo-center{
+        top:18px;
+      }
+
+      .hero h1{
+        font-size:42px;
+      }
+
+      .hero p{
+        font-size:19px;
+      }
+    }
+
+    @media (max-width:640px){
+      .nav-links{
+        gap:16px;
+        font-size:14px;
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+
+      .hero{
+        padding:72px 0 22px;
+      }
+
+      .hero h1{
+        font-size:34px;
+      }
+
+      .hero p{
+        font-size:17px;
+      }
+
+      .article{
+        padding:24px 20px;
+      }
+
+      .article h2,
+      .cta-box h2{
+        font-size:26px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="/" class="logo-center" aria-label="Ralyzo inicio">
+      <span class="logo-mark"></span>
+      <span>RALYZO</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="/#herramientas">Herramientas</a>
+      <a href="/#precios">Precios</a>
+      <a href="/#blog">Blog</a>
+    </div>
+  </nav>
+</header>
+
+<main class="page">
+  <section class="hero">
+    <h1>PNG vs JPG: cuál usar en cada caso</h1>
+    <p>Conoce las diferencias entre PNG y JPG para elegir el formato correcto según calidad, transparencia, peso del archivo y uso final.</p>
+  </section>
+
+  <article class="article">
+    <h2>Diferencia entre PNG y JPG</h2>
+    <p>
+      PNG y JPG son dos de los formatos de imagen más utilizados en internet. Aunque ambos sirven para guardar imágenes digitales, no están pensados para lo mismo.
+      Elegir el formato adecuado puede ayudarte a mejorar la calidad visual, reducir el peso del archivo y optimizar el rendimiento de tu página web.
+    </p>
+
+    <div class="compare-grid">
+      <div class="compare-card">
+        <h3>PNG</h3>
+        <p>El formato PNG mantiene mejor la calidad visual y permite fondos transparentes.</p>
+        <ul>
+          <li>Ideal para logos, iconos y gráficos</li>
+          <li>Permite transparencia</li>
+          <li>Conserva más detalle</li>
+          <li>Suele pesar más</li>
+        </ul>
+      </div>
+
+      <div class="compare-card">
+        <h3>JPG</h3>
+        <p>El formato JPG reduce mucho más el tamaño del archivo, lo que lo hace útil para fotos y contenido web.</p>
+        <ul>
+          <li>Ideal para fotografías</li>
+          <li>No permite transparencia</li>
+          <li>Pesa menos</li>
+          <li>Puede perder algo de calidad</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Cuándo usar PNG</h3>
+    <p>
+      El formato PNG conviene cuando necesitas una imagen con bordes limpios, fondos transparentes o elementos gráficos que no deben perder nitidez.
+      Por eso es una opción habitual para logotipos, capturas de pantalla, iconos y diseños con texto.
+    </p>
+
+    <h3>Cuándo usar JPG</h3>
+    <p>
+      JPG suele ser la mejor elección para fotografías, imágenes de productos y archivos que necesitas subir rápido a una página web o compartir por internet.
+      Su principal ventaja es que reduce mucho el tamaño del archivo, aunque a cambio puede perder algo de detalle dependiendo del nivel de compresión.
+    </p>
+
+    <div class="highlight">
+      <p>
+        <strong>Resumen rápido:</strong> si necesitas transparencia y máxima nitidez en gráficos, usa PNG. Si necesitas una imagen más ligera para web, correo o carga rápida, normalmente conviene JPG.
+      </p>
+    </div>
+
+    <h3>Qué formato es mejor para una página web</h3>
+    <p>
+      No existe un formato universalmente mejor. Todo depende del tipo de imagen. Para fotografías, banners y miniaturas, JPG suele ser más eficiente porque pesa menos.
+      Para logos, elementos de interfaz y gráficos con transparencia, PNG sigue siendo una opción más adecuada.
+    </p>
+
+    <h3>Cómo convertir PNG a JPG</h3>
+    <p>
+      Si tienes una imagen PNG y quieres reducir su tamaño para usarla en una web o compartirla más fácilmente, puedes convertirla a JPG en pocos segundos.
+      Esta opción es útil cuando no necesitas transparencia y prefieres un archivo más ligero.
+    </p>
+
+    <h3>Cómo optimizar imágenes antes de subirlas</h3>
+    <p>
+      Antes de subir cualquier imagen a una web, conviene elegir el formato correcto y comprimir el archivo. Esto mejora la velocidad de carga y también ayuda al posicionamiento en buscadores.
+      Una imagen optimizada puede marcar una gran diferencia en rendimiento y experiencia de usuario.
+    </p>
+
+    <div class="cta-box">
+      <h2>Usa nuestras herramientas ahora</h2>
+      <p>
+        Convierte tus imágenes o reduce su peso online con Ralyzo. Elige la herramienta que necesites y optimiza tus archivos directamente desde el navegador.
+      </p>
+      <div class="cta-actions">
+        <a href="/png-a-jpg" class="btn btn-primary">Convertir PNG a JPG</a>
+        <a href="/comprimir-imagen" class="btn btn-secondary">Comprimir imagen</a>
+      </div>
+    </div>
+
+    <section class="faq">
+      <h2>Preguntas frecuentes</h2>
+
+      <div class="faq-item">
+        <h3>¿PNG tiene mejor calidad que JPG?</h3>
+        <p>
+          En muchos casos sí, especialmente para gráficos, texto, capturas y logotipos. Sin embargo, también suele generar archivos más pesados que JPG.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>¿JPG pesa menos que PNG?</h3>
+        <p>
+          Sí, normalmente JPG produce archivos más ligeros, por eso se usa tanto para fotografías y contenido web.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>¿Qué formato permite fondo transparente?</h3>
+        <p>
+          PNG. JPG no permite transparencia.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>¿Qué formato conviene para una foto?</h3>
+        <p>
+          En la mayoría de casos, JPG, porque ofrece un equilibrio muy bueno entre calidad visual y tamaño del archivo.
+        </p>
+      </div>
+    </section>
+  </article>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>© 2026 Ralyzo</div>
+    <div class="footer-links">
+      <a href="/politica-privacidad">Privacidad</a>
+      <a href="/terminos-condiciones">Términos</a>
+      <a href="/cookies">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
