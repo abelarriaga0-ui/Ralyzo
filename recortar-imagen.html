@@ -5,10 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recortar Imagen Online Gratis | Ralyzo</title>
   <meta name="description" content="Recorta imágenes online gratis con Ralyzo. Ajusta tus fotos fácilmente, rápido y sin subir archivos.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://ralyzo.com/recortar-imagen">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
 
   <style>
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:Inter,sans-serif;
+      background:#0B1220;
+      color:#F8FAFC;
+    }
+
     header{
       position:sticky;
       top:0;
@@ -26,6 +36,184 @@
       text-align:center;
       font-weight:700;
       font-size:20px;
+      letter-spacing:1px;
+    }
+
+    .logo a{
+      color:#F8FAFC;
+      text-decoration:none;
+    }
+
+    .page{
+      max-width:1100px;
+      margin:0 auto;
+      padding:40px 20px 60px;
+    }
+
+    h1{
+      font-size:42px;
+      margin:0 0 12px;
+      text-align:center;
+    }
+
+    .subtitle{
+      text-align:center;
+      color:#94A3B8;
+      margin-bottom:40px;
+    }
+
+    .card{
+      background:#111827;
+      border:1px solid #1F2937;
+      border-radius:16px;
+      padding:24px;
+      margin-bottom:24px;
+    }
+
+    .upload{
+      border:2px dashed #2563EB;
+      border-radius:14px;
+      padding:30px 20px;
+      text-align:center;
+      background:rgba(37,99,235,.06);
+    }
+
+    input[type="file"]{
+      margin-top:16px;
+      color:#F8FAFC;
+    }
+
+    .controls{
+      display:grid;
+      gap:16px;
+      margin-top:24px;
+    }
+
+    button{
+      background:#2563EB;
+      color:#fff;
+      border:none;
+      padding:14px 20px;
+      border-radius:10px;
+      cursor:pointer;
+      font-size:16px;
+      font-weight:600;
+    }
+
+    button:hover{
+      opacity:.95;
+    }
+
+    button:disabled{
+      opacity:.5;
+      cursor:not-allowed;
+    }
+
+    .status{
+      margin-top:18px;
+      color:#93C5FD;
+      text-align:center;
+      min-height:24px;
+    }
+
+    .workspace{
+      display:grid;
+      grid-template-columns:1.3fr .9fr;
+      gap:24px;
+      align-items:start;
+      margin-top:24px;
+    }
+
+    .canvas-wrap{
+      background:#0F172A;
+      border:1px solid #1F2937;
+      border-radius:14px;
+      padding:16px;
+    }
+
+    .canvas-wrap h3,
+    .preview-box h3{
+      margin:0 0 14px;
+      font-size:18px;
+    }
+
+    .canvas-stage{
+      width:100%;
+      background:#020617;
+      border-radius:10px;
+      overflow:auto;
+      min-height:280px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:8px;
+    }
+
+    canvas{
+      max-width:100%;
+      height:auto;
+      display:block;
+      border-radius:8px;
+      cursor:crosshair;
+      background:#020617;
+    }
+
+    .preview-box{
+      background:#0F172A;
+      border:1px solid #1F2937;
+      border-radius:14px;
+      padding:16px;
+    }
+
+    .preview-box img{
+      width:100%;
+      max-height:360px;
+      object-fit:contain;
+      border-radius:10px;
+      background:#020617;
+    }
+
+    .download{
+      display:inline-block;
+      margin-top:14px;
+      background:#10B981;
+      color:#fff;
+      text-decoration:none;
+      padding:12px 16px;
+      border-radius:10px;
+      font-weight:600;
+    }
+
+    .download.hidden{
+      display:none;
+    }
+
+    .helper{
+      margin-top:12px;
+      color:#94A3B8;
+      font-size:14px;
+      line-height:1.7;
+    }
+
+    .seo-section h2{
+      font-size:28px;
+      margin:0 0 16px;
+    }
+
+    .seo-section h3{
+      font-size:20px;
+      margin:24px 0 12px;
+    }
+
+    .seo-section p,
+    .seo-section li{
+      color:#CBD5E1;
+      line-height:1.8;
+    }
+
+    .seo-section ul{
+      margin:0 0 16px 18px;
+      padding:0;
     }
 
     .tools-section{
@@ -61,6 +249,78 @@
       color:#F8FAFC;
       background:#111c34;
     }
+
+    footer{
+      margin-top:40px;
+      padding:20px;
+      border-top:1px solid #1F2937;
+      text-align:center;
+      color:#94A3B8;
+      font-size:14px;
+    }
+
+    footer a{
+      color:#93C5FD;
+      text-decoration:none;
+      margin:0 4px;
+    }
+
+    footer a:hover{
+      text-decoration:underline;
+    }
+
+    .drop-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.75);
+      backdrop-filter:blur(3px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      pointer-events:none;
+    }
+
+    .drop-overlay.active{
+      display:flex;
+    }
+
+    .drop-overlay-content{
+      text-align:center;
+      color:#fff;
+      padding:20px;
+    }
+
+    .drop-overlay-content p{
+      font-size:42px;
+      font-weight:700;
+      margin:0 0 10px;
+    }
+
+    .drop-overlay-content span{
+      font-size:16px;
+      color:#CBD5E1;
+    }
+
+    @media (max-width:900px){
+      .workspace{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:640px){
+      header{
+        padding:16px 20px;
+      }
+
+      h1{
+        font-size:32px;
+      }
+
+      .drop-overlay-content p{
+        font-size:30px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -76,50 +336,49 @@
 
   <section class="card">
     <div class="upload">
-      <p>Selecciona una imagen</p>
-      <input type="file" id="imageInput" accept="image/png, image/jpeg, image/jpg">
+      <p>Selecciona una imagen o arrástrala aquí</p>
+      <input type="file" id="imageInput" accept="image/png, image/jpeg, image/jpg, image/webp">
     </div>
 
     <div class="controls">
-      <button id="runBtn">Recortar imagen</button>
+      <button id="runBtn" disabled>Recortar imagen</button>
     </div>
 
     <p id="status" class="status"></p>
-  </section>
 
-  <section class="card ad-slot">
-    <p class="ad-label">Publicidad</p>
-    <div class="ad-box">
-      Espacio reservado para anuncio
+    <div class="workspace">
+      <div class="canvas-wrap">
+        <h3>Selecciona el área a recortar</h3>
+        <div class="canvas-stage">
+          <canvas id="cropCanvas"></canvas>
+        </div>
+        <p class="helper">
+          Carga una imagen y arrastra sobre ella para seleccionar el área que deseas conservar.
+        </p>
+      </div>
+
+      <div class="preview-box">
+        <h3>Vista previa recortada</h3>
+        <img id="resultPreview" alt="Vista previa recortada">
+        <a id="downloadLink" class="download hidden" download="ralyzo-recortada.png">Descargar</a>
+        <p class="helper" id="previewInfo">La vista previa aparecerá aquí después de recortar.</p>
+      </div>
     </div>
   </section>
 
-  <section id="resultSection" class="preview-wrap" style="display:none;">
-    <div class="preview-box">
-      <h3>Original</h3>
-      <img id="originalPreview">
-    </div>
-
-    <div class="preview-box">
-      <h3>Recortada</h3>
-      <img id="resultPreview">
-      <a id="downloadLink" class="download">Descargar</a>
-    </div>
-  </section>
-
-  <!-- SEO LIMPIO -->
   <section class="card seo-section">
     <h2>Recortar imagen online gratis sin marca de agua</h2>
     <p>
-      Recorta imágenes online gratis sin marca de agua de manera sencilla. 
-      Elimina partes no deseadas y enfoca solo lo importante en tus fotos 
+      Recorta imágenes online gratis sin marca de agua de manera sencilla.
+      Elimina partes no deseadas y enfoca solo lo importante en tus fotos
       sin necesidad de instalar programas.
     </p>
 
     <h3>¿Cómo recortar una imagen?</h3>
     <ul>
       <li>Selecciona la imagen que deseas recortar</li>
-      <li>Define el área que quieres conservar</li>
+      <li>Marca con el mouse el área que quieres conservar</li>
+      <li>Haz clic en recortar imagen</li>
       <li>Descarga la imagen recortada</li>
     </ul>
 
@@ -137,7 +396,6 @@
     </p>
   </section>
 
-  <!-- OTRAS HERRAMIENTAS -->
   <section class="card tools-section">
     <h3>Otras herramientas</h3>
     <div class="tool-links">
@@ -165,8 +423,274 @@
   </div>
 </div>
 
-<script src="js/recortar-imagen.js"></script>
-<script src="js/file-input-enhancer.js"></script>
+<script>
+  const imageInput = document.getElementById("imageInput");
+  const runBtn = document.getElementById("runBtn");
+  const statusText = document.getElementById("status");
+  const cropCanvas = document.getElementById("cropCanvas");
+  const ctx = cropCanvas.getContext("2d");
+  const resultPreview = document.getElementById("resultPreview");
+  const downloadLink = document.getElementById("downloadLink");
+  const previewInfo = document.getElementById("previewInfo");
+  const dropOverlay = document.getElementById("dropOverlay");
+
+  let image = null;
+  let imageLoaded = false;
+  let imageScale = 1;
+
+  let selection = null;
+  let isDragging = false;
+  let startX = 0;
+  let startY = 0;
+
+  function isImageFile(file) {
+    return file && file.type && file.type.startsWith("image/");
+  }
+
+  function assignFileToInput(file) {
+    if (!isImageFile(file)) return;
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(file);
+    imageInput.files = dataTransfer.files;
+    loadSelectedFile(file);
+  }
+
+  function getCanvasCoordinates(event) {
+    const rect = cropCanvas.getBoundingClientRect();
+    const scaleX = cropCanvas.width / rect.width;
+    const scaleY = cropCanvas.height / rect.height;
+
+    return {
+      x: (event.clientX - rect.left) * scaleX,
+      y: (event.clientY - rect.top) * scaleY
+    };
+  }
+
+  function drawCanvas() {
+    if (!imageLoaded || !image) return;
+
+    ctx.clearRect(0, 0, cropCanvas.width, cropCanvas.height);
+    ctx.drawImage(image, 0, 0, cropCanvas.width, cropCanvas.height);
+
+    if (selection && selection.width > 0 && selection.height > 0) {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.45)";
+      ctx.fillRect(0, 0, cropCanvas.width, cropCanvas.height);
+
+      ctx.clearRect(selection.x, selection.y, selection.width, selection.height);
+      ctx.drawImage(
+        image,
+        selection.x * imageScale,
+        selection.y * imageScale,
+        selection.width * imageScale,
+        selection.height * imageScale,
+        selection.x,
+        selection.y,
+        selection.width,
+        selection.height
+      );
+
+      ctx.strokeStyle = "#3B82F6";
+      ctx.lineWidth = 2;
+      ctx.setLineDash([8, 6]);
+      ctx.strokeRect(selection.x, selection.y, selection.width, selection.height);
+      ctx.setLineDash([]);
+    }
+  }
+
+  function normalizeSelection(sel) {
+    const x = Math.max(0, Math.min(sel.x, sel.x + sel.width));
+    const y = Math.max(0, Math.min(sel.y, sel.y + sel.height));
+    const width = Math.abs(sel.width);
+    const height = Math.abs(sel.height);
+
+    const maxWidth = cropCanvas.width - x;
+    const maxHeight = cropCanvas.height - y;
+
+    return {
+      x,
+      y,
+      width: Math.min(width, maxWidth),
+      height: Math.min(height, maxHeight)
+    };
+  }
+
+  function loadSelectedFile(file) {
+    if (!isImageFile(file)) {
+      statusText.textContent = "Selecciona una imagen válida.";
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        image = img;
+        imageLoaded = true;
+
+        const maxWidth = 760;
+        const maxHeight = 500;
+        const scale = Math.min(maxWidth / img.width, maxHeight / img.height, 1);
+
+        cropCanvas.width = Math.round(img.width * scale);
+        cropCanvas.height = Math.round(img.height * scale);
+        imageScale = img.width / cropCanvas.width;
+
+        selection = null;
+        resultPreview.removeAttribute("src");
+        downloadLink.classList.add("hidden");
+        previewInfo.textContent = "La vista previa aparecerá aquí después de recortar.";
+        runBtn.disabled = false;
+        statusText.textContent = "Imagen cargada. Selecciona el área a recortar.";
+        drawCanvas();
+      };
+      img.onerror = () => {
+        statusText.textContent = "No se pudo cargar la imagen.";
+      };
+      img.src = reader.result;
+    };
+    reader.onerror = () => {
+      statusText.textContent = "No se pudo leer el archivo.";
+    };
+    reader.readAsDataURL(file);
+  }
+
+  imageInput.addEventListener("change", () => {
+    const file = imageInput.files[0];
+    if (file) loadSelectedFile(file);
+  });
+
+  cropCanvas.addEventListener("mousedown", (event) => {
+    if (!imageLoaded) return;
+
+    const pos = getCanvasCoordinates(event);
+    isDragging = true;
+    startX = pos.x;
+    startY = pos.y;
+    selection = { x: startX, y: startY, width: 0, height: 0 };
+    drawCanvas();
+  });
+
+  window.addEventListener("mousemove", (event) => {
+    if (!isDragging || !imageLoaded) return;
+
+    const pos = getCanvasCoordinates(event);
+    selection = {
+      x: startX,
+      y: startY,
+      width: pos.x - startX,
+      height: pos.y - startY
+    };
+    drawCanvas();
+  });
+
+  window.addEventListener("mouseup", () => {
+    if (!isDragging) return;
+    isDragging = false;
+
+    if (selection) {
+      selection = normalizeSelection(selection);
+      if (selection.width < 5 || selection.height < 5) {
+        selection = null;
+        statusText.textContent = "Selecciona un área más grande para recortar.";
+      } else {
+        statusText.textContent = "Área seleccionada. Ahora pulsa “Recortar imagen”.";
+      }
+      drawCanvas();
+    }
+  });
+
+  runBtn.addEventListener("click", () => {
+    if (!imageLoaded || !image) {
+      statusText.textContent = "Primero selecciona una imagen.";
+      return;
+    }
+
+    if (!selection || selection.width <= 0 || selection.height <= 0) {
+      statusText.textContent = "Selecciona primero el área que deseas recortar.";
+      return;
+    }
+
+    try {
+      const outputCanvas = document.createElement("canvas");
+      outputCanvas.width = Math.round(selection.width * imageScale);
+      outputCanvas.height = Math.round(selection.height * imageScale);
+
+      const outputCtx = outputCanvas.getContext("2d");
+      outputCtx.drawImage(
+        image,
+        Math.round(selection.x * imageScale),
+        Math.round(selection.y * imageScale),
+        Math.round(selection.width * imageScale),
+        Math.round(selection.height * imageScale),
+        0,
+        0,
+        outputCanvas.width,
+        outputCanvas.height
+      );
+
+      const outputUrl = outputCanvas.toDataURL("image/png");
+      resultPreview.src = outputUrl;
+      downloadLink.href = outputUrl;
+      downloadLink.classList.remove("hidden");
+      previewInfo.textContent = `Resultado listo: ${outputCanvas.width} × ${outputCanvas.height}px`;
+      statusText.textContent = "Imagen recortada correctamente.";
+    } catch (error) {
+      console.error(error);
+      statusText.textContent = "No se pudo procesar la imagen. Intenta con otra.";
+    }
+  });
+
+  let dragCounter = 0;
+
+  document.addEventListener("dragenter", (e) => {
+    e.preventDefault();
+    dragCounter++;
+    dropOverlay.classList.add("active");
+  });
+
+  document.addEventListener("dragover", (e) => {
+    e.preventDefault();
+  });
+
+  document.addEventListener("dragleave", (e) => {
+    e.preventDefault();
+    dragCounter--;
+    if (dragCounter <= 0) {
+      dragCounter = 0;
+      dropOverlay.classList.remove("active");
+    }
+  });
+
+  document.addEventListener("drop", (e) => {
+    e.preventDefault();
+    dragCounter = 0;
+    dropOverlay.classList.remove("active");
+
+    const files = e.dataTransfer.files;
+    if (!files || !files.length) return;
+
+    const file = files[0];
+    if (!isImageFile(file)) {
+      statusText.textContent = "Suelta una imagen válida.";
+      return;
+    }
+
+    assignFileToInput(file);
+  });
+
+  document.addEventListener("paste", (e) => {
+    const items = e.clipboardData?.items;
+    if (!items) return;
+
+    for (const item of items) {
+      if (item.type.startsWith("image/")) {
+        const file = item.getAsFile();
+        if (file) assignFileToInput(file);
+        break;
+      }
+    }
+  });
+</script>
 
 </body>
 </html>
