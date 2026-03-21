@@ -29,6 +29,8 @@
       border-bottom:1px solid #1F2937;
       background:rgba(11,18,32,.88);
       backdrop-filter:blur(10px);
+      gap:16px;
+      flex-wrap:wrap;
     }
 
     .logo{
@@ -40,6 +42,23 @@
     .logo a{
       color:#F8FAFC;
       text-decoration:none;
+    }
+
+    .header-tool-select{
+      padding:10px 14px;
+      border-radius:10px;
+      border:1px solid #334155;
+      background:#0F172A;
+      color:#CBD5E1;
+      font-size:14px;
+      font-family:inherit;
+      outline:none;
+      cursor:pointer;
+      min-width:190px;
+    }
+
+    .header-tool-select:focus{
+      border-color:#2563EB;
     }
 
     .container{
@@ -139,30 +158,6 @@
       background:#111c34;
     }
 
-    .tool-select-wrap{
-      display:flex;
-      justify-content:center;
-      margin-top:10px;
-    }
-
-    .tool-select{
-      width:100%;
-      max-width:320px;
-      padding:12px 14px;
-      border-radius:10px;
-      border:1px solid #334155;
-      background:#0F172A;
-      color:#CBD5E1;
-      font-size:14px;
-      font-family:inherit;
-      outline:none;
-      cursor:pointer;
-    }
-
-    .tool-select:focus{
-      border-color:#2563EB;
-    }
-
     footer{
       margin-top:40px;
       padding:20px;
@@ -211,6 +206,18 @@
     .drop-overlay-content span{
       color:#CBD5E1;
     }
+
+    @media (max-width:640px){
+      header{
+        padding:16px 20px;
+        gap:12px;
+      }
+
+      .header-tool-select{
+        width:100%;
+        max-width:260px;
+      }
+    }
   </style>
 </head>
 
@@ -218,6 +225,15 @@
 
 <header>
   <div class="logo"><a href="/">◢ RALYZO</a></div>
+
+  <select class="header-tool-select" id="headerToolSelect">
+    <option value="">Ir a otra herramienta</option>
+    <option value="/comprimir-imagen">Comprimir</option>
+    <option value="/jpg-a-png">JPG a PNG</option>
+    <option value="/redimensionar-imagen">Redimensionar</option>
+    <option value="/recortar-imagen">Recortar</option>
+    <option value="/girar-imagen">Girar</option>
+  </select>
 </header>
 
 <main class="container">
@@ -243,15 +259,12 @@
 
   <section class="tools-section">
     <h3>Otras herramientas</h3>
-    <div class="tool-select-wrap">
-      <select class="tool-select" id="toolSelect">
-        <option value="">Selecciona una herramienta</option>
-        <option value="/comprimir-imagen">Comprimir</option>
-        <option value="/jpg-a-png">JPG a PNG</option>
-        <option value="/redimensionar-imagen">Redimensionar</option>
-        <option value="/recortar-imagen">Recortar</option>
-        <option value="/girar-imagen">Girar</option>
-      </select>
+    <div class="tool-links">
+      <a href="/comprimir-imagen">Comprimir</a>
+      <a href="/jpg-a-png">JPG a PNG</a>
+      <a href="/redimensionar-imagen">Redimensionar</a>
+      <a href="/recortar-imagen">Recortar</a>
+      <a href="/girar-imagen">Girar</a>
     </div>
   </section>
 
@@ -374,7 +387,7 @@ document.addEventListener("paste", (e) => {
   }
 });
 
-document.getElementById("toolSelect").addEventListener("change", function(){
+document.getElementById("headerToolSelect").addEventListener("change", function(){
   if(this.value){
     window.location.href = this.value;
   }
