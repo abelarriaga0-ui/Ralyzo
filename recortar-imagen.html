@@ -340,10 +340,6 @@
       <input type="file" id="imageInput" accept="image/png, image/jpeg, image/jpg, image/webp">
     </div>
 
-    <div class="controls">
-      <button id="runBtn" disabled>Recortar imagen</button>
-    </div>
-
     <p id="status" class="status"></p>
 
     <div class="workspace">
@@ -360,6 +356,9 @@
       <div class="preview-box">
         <h3>Vista previa recortada</h3>
         <img id="resultPreview" alt="Vista previa recortada">
+        <div class="controls">
+          <button id="runBtn" disabled>Recortar imagen</button>
+        </div>
         <a id="downloadLink" class="download hidden" download="ralyzo-recortada.png">Descargar</a>
         <p class="helper" id="previewInfo">La vista previa aparecerá aquí después de recortar.</p>
       </div>
