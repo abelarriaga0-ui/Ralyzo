@@ -1,1 +1,1150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Formatos de Imagen: JPG, PNG, WEBP y SVG Explicados | Ralyzo</title>
+  <meta name="description" content="Descubre los principales formatos de imagen como JPG, PNG, WEBP y SVG, sus diferencias, ventajas y cuándo usar cada uno para web, diseño y redes sociales." />
+  <meta name="keywords" content="formatos de imagen, JPG, PNG, WEBP, SVG, diferencias entre jpg y png, mejor formato de imagen, formatos para web, optimizar imagen" />
+  <meta name="author" content="Ralyzo" />
+  <link rel="canonical" href="https://ralyzo.com/blog/formatos-imagen.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Formatos de Imagen: JPG, PNG, WEBP y SVG Explicados | Ralyzo" />
+  <meta property="og:description" content="Conoce qué formato de imagen usar según tu necesidad: JPG, PNG, WEBP o SVG. Guía práctica para web, diseño y optimización." />
+  <meta property="og:url" content="https://ralyzo.com/blog/formatos-imagen.html" />
+  <meta property="og:site_name" content="Ralyzo" />
+  <meta property="og:image" content="https://ralyzo.com/assets/og-blog-formatos-imagen.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Formatos de Imagen: JPG, PNG, WEBP y SVG Explicados | Ralyzo" />
+  <meta name="twitter:description" content="Aprende las diferencias entre JPG, PNG, WEBP y SVG y elige el formato de imagen ideal para cada caso." />
+  <meta name="twitter:image" content="https://ralyzo.com/assets/og-blog-formatos-imagen.jpg" />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337166112417872" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg:#0B1220;
+      --bg-soft:#101A2E;
+      --card:#111C31;
+      --card-2:#0F172A;
+      --text:#F8FAFC;
+      --muted:#CBD5E1;
+      --muted-2:#94A3B8;
+      --line:rgba(255,255,255,.08);
+      --primary:#4F46E5;
+      --primary-2:#7C3AED;
+      --accent:#22C55E;
+      --warning:#F59E0B;
+      --shadow:0 18px 50px rgba(0,0,0,.28);
+      --radius:18px;
+      --radius-sm:14px;
+      --container:1200px;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      margin:0;
+      font-family:'Inter',sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(79,70,229,.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(124,58,237,.18), transparent 28%),
+        linear-gradient(180deg,#0B1220 0%,#0A1120 100%);
+      color:var(--text);
+      line-height:1.7;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    .container{
+      width:min(var(--container), calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(14px);
+      background:rgba(11,18,32,.78);
+      border-bottom:1px solid var(--line);
+    }
+
+    .header-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      min-height:76px;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:800;
+      letter-spacing:.2px;
+      font-size:1.1rem;
+    }
+
+    .logo-mark{
+      width:40px;
+      height:40px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      color:#fff;
+      background:linear-gradient(135deg,var(--primary),var(--primary-2));
+      box-shadow:0 10px 30px rgba(79,70,229,.35);
+      flex-shrink:0;
+    }
+
+    .main-nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .nav-link,
+    .dropdown-toggle{
+      color:var(--muted);
+      padding:12px 14px;
+      border-radius:12px;
+      font-size:.96rem;
+      font-weight:600;
+      transition:.2s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .nav-link:hover,
+    .dropdown-toggle:hover{
+      color:var(--text);
+      background:rgba(255,255,255,.04);
+    }
+
+    .header-actions{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 18px;
+      border:none;
+      border-radius:14px;
+      font-weight:700;
+      font-size:.95rem;
+      cursor:pointer;
+      transition:transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+    }
+
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(135deg,var(--primary),var(--primary-2));
+      box-shadow:0 16px 35px rgba(79,70,229,.32);
+    }
+
+    .btn-secondary{
+      color:var(--text);
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--line);
+    }
+
+    .dropdown{
+      position:relative;
+    }
+
+    .dropdown::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      top:100%;
+      height:18px;
+    }
+
+    .dropdown-menu{
+      position:absolute;
+      top:calc(100% + 16px);
+      left:0;
+      min-width:260px;
+      padding:12px;
+      background:rgba(12,18,32,.98);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(8px);
+      transition:all .2s ease;
+    }
+
+    .dropdown:hover .dropdown-menu{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
+    }
+
+    .dropdown-menu a{
+      display:block;
+      padding:12px 14px;
+      border-radius:12px;
+      color:var(--muted);
+      font-size:.95rem;
+      font-weight:600;
+      transition:.2s ease;
+    }
+
+    .dropdown-menu a:hover{
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+    }
+
+    .hero{
+      padding:72px 0 28px;
+    }
+
+    .breadcrumb{
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom:22px;
+      color:var(--muted-2);
+      font-size:.92rem;
+    }
+
+    .breadcrumb a:hover{
+      color:var(--text);
+    }
+
+    .hero-card{
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)),
+        linear-gradient(135deg, rgba(79,70,229,.16), rgba(124,58,237,.08));
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:40px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      width:240px;
+      height:240px;
+      border-radius:50%;
+      right:-60px;
+      top:-60px;
+      background:radial-gradient(circle, rgba(124,58,237,.26), transparent 70%);
+      pointer-events:none;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      color:#C4B5FD;
+      font-size:.82rem;
+      font-weight:800;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+
+    .hero h1{
+      font-size:clamp(2rem, 4vw, 3.5rem);
+      line-height:1.08;
+      margin:0 0 18px;
+      max-width:900px;
+      letter-spacing:-.03em;
+    }
+
+    .hero p{
+      margin:0;
+      color:var(--muted);
+      font-size:1.08rem;
+      max-width:820px;
+    }
+
+    .hero-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:26px;
+      color:var(--muted-2);
+      font-size:.95rem;
+      font-weight:600;
+    }
+
+    .hero-meta span{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:12px;
+    }
+
+    .content-wrap{
+      padding:20px 0 80px;
+    }
+
+    .content-grid{
+      display:grid;
+      grid-template-columns:minmax(0, 1fr) 320px;
+      gap:28px;
+      align-items:start;
+    }
+
+    .article-card,
+    .sidebar-card,
+    .related-card,
+    .footer-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .article-card{
+      padding:34px;
+    }
+
+    .article-intro{
+      font-size:1.05rem;
+      color:var(--muted);
+      margin-bottom:30px;
+    }
+
+    .article-card h2{
+      font-size:1.6rem;
+      line-height:1.2;
+      margin:38px 0 16px;
+      letter-spacing:-.02em;
+    }
+
+    .article-card h3{
+      font-size:1.12rem;
+      margin:24px 0 10px;
+      color:#E2E8F0;
+    }
+
+    .article-card p{
+      margin:0 0 16px;
+      color:var(--muted);
+    }
+
+    .article-card ul,
+    .article-card ol{
+      margin:0 0 18px 0;
+      padding-left:20px;
+      color:var(--muted);
+    }
+
+    .article-card li{
+      margin-bottom:10px;
+    }
+
+    .article-card strong{
+      color:var(--text);
+    }
+
+    .highlight-box{
+      margin:26px 0;
+      padding:22px 22px 22px 20px;
+      border-radius:20px;
+      background:linear-gradient(135deg, rgba(34,197,94,.12), rgba(79,70,229,.10));
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .highlight-box h3{
+      margin-top:0;
+      font-size:1.05rem;
+    }
+
+    .compare-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:16px;
+      margin:24px 0;
+    }
+
+    .mini-card{
+      background:rgba(255,255,255,.035);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px;
+    }
+
+    .mini-card h3{
+      margin:0 0 10px;
+      font-size:1rem;
+    }
+
+    .cta-box{
+      margin-top:34px;
+      padding:26px;
+      border-radius:22px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.03)),
+        linear-gradient(135deg, rgba(79,70,229,.16), rgba(124,58,237,.12));
+      border:1px solid var(--line);
+    }
+
+    .cta-box h3{
+      margin:0 0 10px;
+      font-size:1.28rem;
+    }
+
+    .cta-box p{
+      margin:0 0 18px;
+    }
+
+    .cta-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .sidebar{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      position:sticky;
+      top:98px;
+    }
+
+    .sidebar-card{
+      padding:22px;
+    }
+
+    .sidebar-card h3{
+      margin:0 0 14px;
+      font-size:1.05rem;
+    }
+
+    .sidebar-card p{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:.96rem;
+    }
+
+    .sidebar-links{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .sidebar-links a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:rgba(255,255,255,.035);
+      border:1px solid transparent;
+      color:var(--muted);
+      font-weight:600;
+      transition:.2s ease;
+    }
+
+    .sidebar-links a:hover{
+      color:var(--text);
+      border-color:var(--line);
+      background:rgba(255,255,255,.05);
+    }
+
+    .tag-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .tag{
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:.84rem;
+      font-weight:700;
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--line);
+      color:var(--muted);
+    }
+
+    .related-section{
+      padding:0 0 80px;
+    }
+
+    .section-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:22px;
+    }
+
+    .section-title h2{
+      margin:0;
+      font-size:1.8rem;
+      letter-spacing:-.03em;
+    }
+
+    .section-title p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .related-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:20px;
+    }
+
+    .related-card{
+      padding:22px;
+      transition:transform .2s ease, border-color .2s ease;
+    }
+
+    .related-card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(255,255,255,.14);
+    }
+
+    .related-card .badge{
+      display:inline-flex;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(79,70,229,.14);
+      border:1px solid rgba(255,255,255,.08);
+      color:#C4B5FD;
+      font-size:.78rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      margin-bottom:14px;
+    }
+
+    .related-card h3{
+      margin:0 0 10px;
+      font-size:1.12rem;
+      line-height:1.35;
+    }
+
+    .related-card p{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:.96rem;
+    }
+
+    .related-card .read-more{
+      font-weight:700;
+      color:#C4B5FD;
+    }
+
+    .site-footer{
+      padding:0 0 40px;
+    }
+
+    .footer-card{
+      padding:28px;
+    }
+
+    .footer-top{
+      display:flex;
+      justify-content:space-between;
+      gap:24px;
+      flex-wrap:wrap;
+      margin-bottom:22px;
+    }
+
+    .footer-brand{
+      max-width:540px;
+    }
+
+    .footer-brand p{
+      color:var(--muted);
+      margin:12px 0 0;
+    }
+
+    .footer-links{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .footer-links a{
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .footer-links a:hover{
+      color:var(--text);
+    }
+
+    .footer-bottom{
+      border-top:1px solid var(--line);
+      padding-top:18px;
+      color:var(--muted-2);
+      font-size:.92rem;
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width: 1080px){
+      .content-grid{
+        grid-template-columns:1fr;
+      }
+
+      .sidebar{
+        position:static;
+      }
+
+      .related-grid{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    @media (max-width: 820px){
+      .header-inner{
+        min-height:auto;
+        padding:14px 0;
+        align-items:flex-start;
+        flex-direction:column;
+      }
+
+      .main-nav{
+        width:100%;
+      }
+
+      .hero-card{
+        padding:28px 22px;
+      }
+
+      .article-card{
+        padding:24px 20px;
+      }
+
+      .compare-grid{
+        grid-template-columns:1fr;
+      }
+
+      .related-grid{
+        grid-template-columns:1fr;
+      }
+
+      .section-title{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+
+    @media (max-width: 560px){
+      .container{
+        width:min(var(--container), calc(100% - 20px));
+      }
+
+      .nav-link,
+      .dropdown-toggle{
+        padding:10px 12px;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .header-actions{
+        width:100%;
+      }
+
+      .cta-actions{
+        flex-direction:column;
+      }
+
+      .hero-meta{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BlogPosting",
+    "headline":"Formatos de Imagen: JPG, PNG, WEBP y SVG Explicados",
+    "description":"Guía práctica sobre los formatos de imagen más usados, sus ventajas, desventajas y cuándo conviene utilizar cada uno.",
+    "author":{
+      "@type":"Organization",
+      "name":"Ralyzo"
+    },
+    "publisher":{
+      "@type":"Organization",
+      "name":"Ralyzo",
+      "logo":{
+        "@type":"ImageObject",
+        "url":"https://ralyzo.com/assets/logo.png"
+      }
+    },
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://ralyzo.com/blog/formatos-imagen.html"
+    },
+    "datePublished":"2026-03-31",
+    "dateModified":"2026-03-31",
+    "articleSection":"Blog",
+    "keywords":["formatos de imagen","JPG","PNG","WEBP","SVG","optimización web"]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo" aria-label="Ralyzo Inicio">
+        <span class="logo-mark">R</span>
+        <span>Ralyzo</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="/" class="nav-link">Herramientas</a>
+        <a href="/precios.html" class="nav-link">Precios</a>
+
+        <div class="dropdown">
+          <button class="dropdown-toggle" aria-label="Abrir menú del blog">
+            Blog
+            <span>▾</span>
+          </button>
+
+          <div class="dropdown-menu" role="menu">
+            <a href="/blog/index.html">Ver todos los artículos</a>
+            <a href="/blog/como-comprimir-imagen.html">Cómo comprimir una imagen</a>
+            <a href="/blog/jpg-vs-png.html">JPG vs PNG</a>
+            <a href="/blog/optimizar-imagenes-web.html">Optimizar imágenes para web</a>
+            <a href="/blog/formatos-imagen.html">Formatos de imagen</a>
+            <a href="/blog/reducir-peso-imagen.html">Reducir peso de una imagen</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <a href="/#herramientas" class="btn btn-primary">Probar herramientas</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Inicio</a>
+          <span>•</span>
+          <a href="/blog/index.html">Blog</a>
+          <span>•</span>
+          <span>Formatos de imagen</span>
+        </div>
+
+        <div class="hero-card">
+          <div class="eyebrow">Guía práctica • Imágenes</div>
+          <h1>Formatos de imagen: qué son, cuáles existen y cuándo usar cada uno</h1>
+          <p>
+            Elegir bien un formato de imagen puede marcar la diferencia entre una web rápida,
+            una foto con buena calidad o un diseño con fondo transparente. En esta guía te
+            explicamos de forma clara las diferencias entre <strong>JPG, PNG, WEBP y SVG</strong>,
+            sus ventajas, sus limitaciones y en qué casos conviene usar cada uno.
+          </p>
+
+          <div class="hero-meta">
+            <span>Lectura: 7 min</span>
+            <span>SEO + UX + rendimiento web</span>
+            <span>Actualizado: 31 de marzo de 2026</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-wrap">
+      <div class="container">
+        <div class="content-grid">
+          <article class="article-card">
+            <p class="article-intro">
+              Si alguna vez te has preguntado por qué una imagen pesa más que otra, por qué unas
+              permiten transparencia y otras no, o cuál conviene usar en una página web, la respuesta
+              casi siempre está en el <strong>formato de archivo</strong>. Entender esto te ayudará a
+              mejorar tus diseños, tus publicaciones y también el rendimiento de tu sitio.
+            </p>
+
+            <h2>¿Qué es un formato de imagen?</h2>
+            <p>
+              Un formato de imagen es la manera en que un archivo guarda la información visual.
+              Cada formato utiliza un sistema distinto de compresión, calidad y compatibilidad,
+              lo que influye en aspectos como:
+            </p>
+            <ul>
+              <li>el tamaño del archivo,</li>
+              <li>la calidad visual,</li>
+              <li>la transparencia,</li>
+              <li>la escalabilidad,</li>
+              <li>y la velocidad de carga en una web.</li>
+            </ul>
+
+            <p>
+              No existe un formato único perfecto para todo. La mejor opción depende del tipo de
+              imagen y del uso que le vas a dar.
+            </p>
+
+            <div class="highlight-box">
+              <h3>Idea clave</h3>
+              <p>
+                Una fotografía, un logo y una ilustración no deberían guardarse necesariamente en el
+                mismo formato. Elegir el correcto mejora calidad, peso y compatibilidad al mismo tiempo.
+              </p>
+            </div>
+
+            <h2>Los formatos de imagen más usados</h2>
+            <p>
+              Aunque existen muchos formatos, los más comunes y útiles para usuarios, diseñadores y
+              sitios web son estos:
+            </p>
+
+            <div class="compare-grid">
+              <div class="mini-card">
+                <h3>JPG / JPEG</h3>
+                <p>Ideal para fotografías y contenido con muchos colores. Muy popular por su buena compresión.</p>
+              </div>
+              <div class="mini-card">
+                <h3>PNG</h3>
+                <p>Perfecto para imágenes con transparencia, capturas de pantalla e interfaces.</p>
+              </div>
+              <div class="mini-card">
+                <h3>WEBP</h3>
+                <p>Formato moderno pensado para la web. Ofrece archivos más ligeros con buena calidad.</p>
+              </div>
+              <div class="mini-card">
+                <h3>SVG</h3>
+                <p>Formato vectorial ideal para logos, íconos y gráficos que deben verse nítidos en cualquier tamaño.</p>
+              </div>
+            </div>
+
+            <h2>Formato JPG: cuándo conviene usarlo</h2>
+            <p>
+              <strong>JPG</strong> es uno de los formatos más conocidos. Se utiliza sobre todo en
+              fotografías porque logra reducir bastante el peso del archivo manteniendo una calidad
+              visual aceptable.
+            </p>
+
+            <h3>Ventajas del JPG</h3>
+            <ul>
+              <li>Archivos relativamente ligeros.</li>
+              <li>Muy compatible con casi todos los dispositivos y navegadores.</li>
+              <li>Excelente para fotos, paisajes, retratos y publicaciones generales.</li>
+            </ul>
+
+            <h3>Desventajas del JPG</h3>
+            <ul>
+              <li>La compresión puede hacer perder calidad.</li>
+              <li>No admite fondo transparente.</li>
+              <li>No es la mejor opción para gráficos con texto o bordes muy definidos.</li>
+            </ul>
+
+            <p>
+              Si tu imagen es una fotografía y necesitas un archivo liviano, JPG suele ser una
+              alternativa muy práctica.
+            </p>
+
+            <h2>Formato PNG: ideal para transparencia y detalles</h2>
+            <p>
+              <strong>PNG</strong> es muy usado cuando se necesita mantener bordes nítidos o fondo
+              transparente. Por eso es frecuente en logos, iconos, elementos gráficos y capturas de pantalla.
+            </p>
+
+            <h3>Ventajas del PNG</h3>
+            <ul>
+              <li>Soporta transparencia.</li>
+              <li>Conserva mejor los detalles finos que JPG.</li>
+              <li>Muy útil para gráficos, interfaces y diseños digitales.</li>
+            </ul>
+
+            <h3>Desventajas del PNG</h3>
+            <ul>
+              <li>Los archivos suelen pesar más.</li>
+              <li>No siempre es la mejor opción para fotografías pesadas.</li>
+            </ul>
+
+            <p>
+              Si necesitas que una imagen se vea limpia sobre diferentes fondos o conservar detalles
+              sin pérdidas visibles, PNG es una gran elección.
+            </p>
+
+            <h2>Formato WEBP: la opción moderna para la web</h2>
+            <p>
+              <strong>WEBP</strong> fue creado para ofrecer mejor compresión que JPG y PNG, manteniendo
+              buena calidad. Se ha convertido en uno de los formatos más recomendados para sitios web
+              porque ayuda a cargar páginas más rápido.
+            </p>
+
+            <h3>Ventajas del WEBP</h3>
+            <ul>
+              <li>Archivos más ligeros que JPG y PNG en muchos casos.</li>
+              <li>Puede soportar transparencia.</li>
+              <li>Excelente para optimizar el rendimiento web.</li>
+            </ul>
+
+            <h3>Desventajas del WEBP</h3>
+            <ul>
+              <li>Algunos flujos de trabajo antiguos no lo manejan tan bien.</li>
+              <li>No siempre es el favorito para edición manual en programas más tradicionales.</li>
+            </ul>
+
+            <p>
+              Para blogs, landing pages, tiendas online y cualquier proyecto enfocado en SEO y velocidad,
+              WEBP suele ser una de las mejores decisiones.
+            </p>
+
+            <div class="highlight-box">
+              <h3>Consejo para sitios web</h3>
+              <p>
+                Si tu prioridad es rendimiento, velocidad de carga y experiencia de usuario,
+                <strong>WEBP</strong> normalmente ofrece el mejor equilibrio entre calidad y peso.
+              </p>
+            </div>
+
+            <h2>Formato SVG: perfecto para logos e iconos</h2>
+            <p>
+              <strong>SVG</strong> funciona de forma distinta a los formatos anteriores porque no guarda
+              la imagen como una cuadrícula de píxeles, sino como vectores. Eso significa que puede
+              ampliarse o reducirse sin perder nitidez.
+            </p>
+
+            <h3>Ventajas del SVG</h3>
+            <ul>
+              <li>Escala sin perder calidad.</li>
+              <li>Ideal para logos, íconos, ilustraciones simples y gráficos.</li>
+              <li>Puede ser muy ligero en elementos sencillos.</li>
+            </ul>
+
+            <h3>Desventajas del SVG</h3>
+            <ul>
+              <li>No es adecuado para fotografías complejas.</li>
+              <li>Su uso depende del tipo de gráfico.</li>
+            </ul>
+
+            <p>
+              Si trabajas con branding, botones, gráficos de interfaz o elementos decorativos limpios,
+              SVG suele ser la mejor solución.
+            </p>
+
+            <h2>¿Cuál es el mejor formato de imagen según el caso?</h2>
+            <p>
+              La respuesta depende del uso específico. Estas reglas rápidas te ayudarán:
+            </p>
+
+            <ul>
+              <li><strong>Usa JPG</strong> para fotografías comunes y archivos ligeros.</li>
+              <li><strong>Usa PNG</strong> para transparencias, capturas y gráficos con mucho detalle.</li>
+              <li><strong>Usa WEBP</strong> para optimizar imágenes en páginas web.</li>
+              <li><strong>Usa SVG</strong> para logos, iconos y gráficos escalables.</li>
+            </ul>
+
+            <h2>Errores comunes al elegir un formato de imagen</h2>
+            <p>
+              Muchas personas usan el mismo formato para todo, y eso genera problemas de calidad
+              o rendimiento. Estos son algunos errores frecuentes:
+            </p>
+
+            <ol>
+              <li><strong>Guardar logos en JPG</strong>, perdiendo transparencia y nitidez.</li>
+              <li><strong>Subir fotos pesadas en PNG</strong>, haciendo que la web cargue más lento.</li>
+              <li><strong>No optimizar imágenes para internet</strong>, aunque el formato sea correcto.</li>
+              <li><strong>Ignorar WEBP</strong>, desaprovechando una opción más eficiente para la web.</li>
+            </ol>
+
+            <h2>Cómo elegir el formato correcto más rápido</h2>
+            <p>
+              Una forma sencilla de decidir es hacerte estas preguntas antes de guardar o convertir una imagen:
+            </p>
+            <ul>
+              <li>¿Es una fotografía o un gráfico?</li>
+              <li>¿Necesita transparencia?</li>
+              <li>¿Se va a usar en una página web?</li>
+              <li>¿Debe ampliarse sin perder calidad?</li>
+              <li>¿La prioridad es calidad máxima o menor peso?</li>
+            </ul>
+
+            <p>
+              Con esas respuestas, normalmente la elección se vuelve bastante obvia.
+            </p>
+
+            <h2>Conclusión</h2>
+            <p>
+              Conocer los formatos de imagen más importantes te ayuda a tomar mejores decisiones en
+              diseño, contenido y rendimiento. No se trata solo de guardar una imagen, sino de usar el
+              archivo adecuado para cada necesidad.
+            </p>
+            <p>
+              En términos generales, <strong>JPG</strong> sigue siendo útil para fotos, <strong>PNG</strong>
+              destaca en transparencias y gráficos, <strong>WEBP</strong> es excelente para optimización web,
+              y <strong>SVG</strong> es la mejor alternativa para elementos vectoriales como logos e iconos.
+            </p>
+
+            <div class="cta-box">
+              <h3>Optimiza tus imágenes online con Ralyzo</h3>
+              <p>
+                Convierte, comprime y ajusta tus imágenes gratis desde tu navegador para mejorar la
+                velocidad de tu web y preparar archivos en el formato correcto.
+              </p>
+              <div class="cta-actions">
+                <a href="/#herramientas" class="btn btn-primary">Ir a las herramientas</a>
+                <a href="/blog/jpg-vs-png.html" class="btn btn-secondary">Leer JPG vs PNG</a>
+              </div>
+            </div>
+          </article>
+
+          <aside class="sidebar">
+            <div class="sidebar-card">
+              <h3>Herramientas recomendadas</h3>
+              <p>Accede rápido a las herramientas más útiles para trabajar con imágenes.</p>
+              <div class="sidebar-links">
+                <a href="/jpg-a-png.html"><span>Convertir JPG a PNG</span><span>→</span></a>
+                <a href="/png-a-jpg.html"><span>Convertir PNG a JPG</span><span>→</span></a>
+                <a href="/comprimir-imagen.html"><span>Comprimir imagen</span><span>→</span></a>
+                <a href="/redimensionar-imagen.html"><span>Redimensionar imagen</span><span>→</span></a>
+                <a href="/girar-imagen.html"><span>Girar imagen</span><span>→</span></a>
+              </div>
+            </div>
+
+            <div class="sidebar-card">
+              <h3>Navegación del blog</h3>
+              <div class="sidebar-links">
+                <a href="/blog/index.html"><span>Índice del blog</span><span>→</span></a>
+                <a href="/blog/como-comprimir-imagen.html"><span>Cómo comprimir una imagen</span><span>→</span></a>
+                <a href="/blog/jpg-vs-png.html"><span>JPG vs PNG</span><span>→</span></a>
+                <a href="/blog/optimizar-imagenes-web.html"><span>Optimizar imágenes web</span><span>→</span></a>
+                <a href="/blog/reducir-peso-imagen.html"><span>Reducir peso de una imagen</span><span>→</span></a>
+              </div>
+            </div>
+
+            <div class="sidebar-card">
+              <h3>Temas relacionados</h3>
+              <div class="tag-list">
+                <span class="tag">SEO</span>
+                <span class="tag">Imágenes</span>
+                <span class="tag">WEBP</span>
+                <span class="tag">PNG</span>
+                <span class="tag">JPG</span>
+                <span class="tag">Rendimiento</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="related-section">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h2>Artículos relacionados</h2>
+            <p>Sigue explorando contenido útil para mejorar imágenes y optimizar tu web.</p>
+          </div>
+        </div>
+
+        <div class="related-grid">
+          <a href="/blog/jpg-vs-png.html" class="related-card">
+            <span class="badge">Comparativa</span>
+            <h3>JPG vs PNG: diferencias, ventajas y cuál conviene usar</h3>
+            <p>Descubre en qué casos es mejor usar JPG o PNG según calidad, peso y transparencia.</p>
+            <span class="read-more">Leer artículo →</span>
+          </a>
+
+          <a href="/blog/optimizar-imagenes-web.html" class="related-card">
+            <span class="badge">SEO</span>
+            <h3>Cómo optimizar imágenes para web y mejorar velocidad de carga</h3>
+            <p>Aprende a reducir peso, elegir dimensiones correctas y mejorar la experiencia del usuario.</p>
+            <span class="read-more">Leer artículo →</span>
+          </a>
+
+          <a href="/blog/como-comprimir-imagen.html" class="related-card">
+            <span class="badge">Tutorial</span>
+            <h3>Cómo comprimir una imagen sin perder calidad</h3>
+            <p>Guía rápida para disminuir el tamaño de tus imágenes sin afectar demasiado el resultado final.</p>
+            <span class="read-more">Leer artículo →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-card">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="logo">
+              <span class="logo-mark">R</span>
+              <span>Ralyzo</span>
+            </div>
+            <p>
+              Herramientas online gratuitas para comprimir, convertir y optimizar imágenes de forma
+              rápida, segura y directamente desde tu navegador.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <a href="/">Inicio</a>
+            <a href="/#herramientas">Herramientas</a>
+            <a href="/blog/index.html">Blog</a>
+            <a href="/precios.html">Precios</a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>© 2026 Ralyzo. Todos los derechos reservados.</span>
+          <span>Contenido útil para SEO, UX y optimización web.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
