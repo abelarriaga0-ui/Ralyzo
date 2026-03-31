@@ -1,1 +1,1135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Cómo Reducir el Peso de una Imagen sin Perder Calidad | Ralyzo</title>
+  <meta name="description" content="Aprende cómo reducir el peso de una imagen sin perder calidad. Descubre métodos, formatos recomendados y consejos para optimizar imágenes para web, correo y redes sociales." />
+  <meta name="keywords" content="reducir peso de imagen, comprimir imagen sin perder calidad, optimizar imagen para web, bajar peso de foto, reducir tamaño imagen online, comprimir jpg, comprimir png" />
+  <meta name="author" content="Ralyzo" />
+  <link rel="canonical" href="https://ralyzo.com/blog/reducir-peso-imagen.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Cómo Reducir el Peso de una Imagen sin Perder Calidad | Ralyzo" />
+  <meta property="og:description" content="Guía práctica para reducir el peso de imágenes sin perder calidad y mejorar velocidad de carga, SEO y experiencia de usuario." />
+  <meta property="og:url" content="https://ralyzo.com/blog/reducir-peso-imagen.html" />
+  <meta property="og:site_name" content="Ralyzo" />
+  <meta property="og:image" content="https://ralyzo.com/assets/og-blog-reducir-peso-imagen.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Cómo Reducir el Peso de una Imagen sin Perder Calidad | Ralyzo" />
+  <meta name="twitter:description" content="Descubre cómo bajar el peso de una imagen manteniendo buena calidad para web, redes y documentos." />
+  <meta name="twitter:image" content="https://ralyzo.com/assets/og-blog-reducir-peso-imagen.jpg" />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337166112417872" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg:#0B1220;
+      --bg-soft:#101A2E;
+      --card:#111C31;
+      --card-2:#0F172A;
+      --text:#F8FAFC;
+      --muted:#CBD5E1;
+      --muted-2:#94A3B8;
+      --line:rgba(255,255,255,.08);
+      --primary:#4F46E5;
+      --primary-2:#7C3AED;
+      --accent:#22C55E;
+      --warning:#F59E0B;
+      --shadow:0 18px 50px rgba(0,0,0,.28);
+      --radius:18px;
+      --radius-sm:14px;
+      --container:1200px;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      margin:0;
+      font-family:'Inter',sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(79,70,229,.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(124,58,237,.18), transparent 28%),
+        linear-gradient(180deg,#0B1220 0%,#0A1120 100%);
+      color:var(--text);
+      line-height:1.7;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    .container{
+      width:min(var(--container), calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(14px);
+      background:rgba(11,18,32,.78);
+      border-bottom:1px solid var(--line);
+    }
+
+    .header-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      min-height:76px;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:800;
+      letter-spacing:.2px;
+      font-size:1.1rem;
+    }
+
+    .logo-mark{
+      width:40px;
+      height:40px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      color:#fff;
+      background:linear-gradient(135deg,var(--primary),var(--primary-2));
+      box-shadow:0 10px 30px rgba(79,70,229,.35);
+      flex-shrink:0;
+    }
+
+    .main-nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .nav-link,
+    .dropdown-toggle{
+      color:var(--muted);
+      padding:12px 14px;
+      border-radius:12px;
+      font-size:.96rem;
+      font-weight:600;
+      transition:.2s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .nav-link:hover,
+    .dropdown-toggle:hover{
+      color:var(--text);
+      background:rgba(255,255,255,.04);
+    }
+
+    .header-actions{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 18px;
+      border:none;
+      border-radius:14px;
+      font-weight:700;
+      font-size:.95rem;
+      cursor:pointer;
+      transition:transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+    }
+
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(135deg,var(--primary),var(--primary-2));
+      box-shadow:0 16px 35px rgba(79,70,229,.32);
+    }
+
+    .btn-secondary{
+      color:var(--text);
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--line);
+    }
+
+    .dropdown{
+      position:relative;
+    }
+
+    .dropdown::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      top:100%;
+      height:18px;
+    }
+
+    .dropdown-menu{
+      position:absolute;
+      top:calc(100% + 16px);
+      left:0;
+      min-width:260px;
+      padding:12px;
+      background:rgba(12,18,32,.98);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(8px);
+      transition:all .2s ease;
+    }
+
+    .dropdown:hover .dropdown-menu{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
+    }
+
+    .dropdown-menu a{
+      display:block;
+      padding:12px 14px;
+      border-radius:12px;
+      color:var(--muted);
+      font-size:.95rem;
+      font-weight:600;
+      transition:.2s ease;
+    }
+
+    .dropdown-menu a:hover{
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+    }
+
+    .hero{
+      padding:72px 0 28px;
+    }
+
+    .breadcrumb{
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom:22px;
+      color:var(--muted-2);
+      font-size:.92rem;
+    }
+
+    .breadcrumb a:hover{
+      color:var(--text);
+    }
+
+    .hero-card{
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)),
+        linear-gradient(135deg, rgba(79,70,229,.16), rgba(124,58,237,.08));
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:40px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      width:240px;
+      height:240px;
+      border-radius:50%;
+      right:-60px;
+      top:-60px;
+      background:radial-gradient(circle, rgba(124,58,237,.26), transparent 70%);
+      pointer-events:none;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      color:#C4B5FD;
+      font-size:.82rem;
+      font-weight:800;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      margin-bottom:18px;
+    }
+
+    .hero h1{
+      font-size:clamp(2rem, 4vw, 3.5rem);
+      line-height:1.08;
+      margin:0 0 18px;
+      max-width:900px;
+      letter-spacing:-.03em;
+    }
+
+    .hero p{
+      margin:0;
+      color:var(--muted);
+      font-size:1.08rem;
+      max-width:820px;
+    }
+
+    .hero-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:26px;
+      color:var(--muted-2);
+      font-size:.95rem;
+      font-weight:600;
+    }
+
+    .hero-meta span{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:12px;
+    }
+
+    .content-wrap{
+      padding:20px 0 80px;
+    }
+
+    .content-grid{
+      display:grid;
+      grid-template-columns:minmax(0, 1fr) 320px;
+      gap:28px;
+      align-items:start;
+    }
+
+    .article-card,
+    .sidebar-card,
+    .related-card,
+    .footer-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .article-card{
+      padding:34px;
+    }
+
+    .article-intro{
+      font-size:1.05rem;
+      color:var(--muted);
+      margin-bottom:30px;
+    }
+
+    .article-card h2{
+      font-size:1.6rem;
+      line-height:1.2;
+      margin:38px 0 16px;
+      letter-spacing:-.02em;
+    }
+
+    .article-card h3{
+      font-size:1.12rem;
+      margin:24px 0 10px;
+      color:#E2E8F0;
+    }
+
+    .article-card p{
+      margin:0 0 16px;
+      color:var(--muted);
+    }
+
+    .article-card ul,
+    .article-card ol{
+      margin:0 0 18px 0;
+      padding-left:20px;
+      color:var(--muted);
+    }
+
+    .article-card li{
+      margin-bottom:10px;
+    }
+
+    .article-card strong{
+      color:var(--text);
+    }
+
+    .highlight-box{
+      margin:26px 0;
+      padding:22px 22px 22px 20px;
+      border-radius:20px;
+      background:linear-gradient(135deg, rgba(34,197,94,.12), rgba(79,70,229,.10));
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .highlight-box h3{
+      margin-top:0;
+      font-size:1.05rem;
+    }
+
+    .compare-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:16px;
+      margin:24px 0;
+    }
+
+    .mini-card{
+      background:rgba(255,255,255,.035);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px;
+    }
+
+    .mini-card h3{
+      margin:0 0 10px;
+      font-size:1rem;
+    }
+
+    .cta-box{
+      margin-top:34px;
+      padding:26px;
+      border-radius:22px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.03)),
+        linear-gradient(135deg, rgba(79,70,229,.16), rgba(124,58,237,.12));
+      border:1px solid var(--line);
+    }
+
+    .cta-box h3{
+      margin:0 0 10px;
+      font-size:1.28rem;
+    }
+
+    .cta-box p{
+      margin:0 0 18px;
+    }
+
+    .cta-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .sidebar{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      position:sticky;
+      top:98px;
+    }
+
+    .sidebar-card{
+      padding:22px;
+    }
+
+    .sidebar-card h3{
+      margin:0 0 14px;
+      font-size:1.05rem;
+    }
+
+    .sidebar-card p{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:.96rem;
+    }
+
+    .sidebar-links{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .sidebar-links a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:rgba(255,255,255,.035);
+      border:1px solid transparent;
+      color:var(--muted);
+      font-weight:600;
+      transition:.2s ease;
+    }
+
+    .sidebar-links a:hover{
+      color:var(--text);
+      border-color:var(--line);
+      background:rgba(255,255,255,.05);
+    }
+
+    .tag-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .tag{
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:.84rem;
+      font-weight:700;
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--line);
+      color:var(--muted);
+    }
+
+    .related-section{
+      padding:0 0 80px;
+    }
+
+    .section-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:22px;
+    }
+
+    .section-title h2{
+      margin:0;
+      font-size:1.8rem;
+      letter-spacing:-.03em;
+    }
+
+    .section-title p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .related-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:20px;
+    }
+
+    .related-card{
+      padding:22px;
+      transition:transform .2s ease, border-color .2s ease;
+    }
+
+    .related-card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(255,255,255,.14);
+    }
+
+    .related-card .badge{
+      display:inline-flex;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(79,70,229,.14);
+      border:1px solid rgba(255,255,255,.08);
+      color:#C4B5FD;
+      font-size:.78rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      margin-bottom:14px;
+    }
+
+    .related-card h3{
+      margin:0 0 10px;
+      font-size:1.12rem;
+      line-height:1.35;
+    }
+
+    .related-card p{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:.96rem;
+    }
+
+    .related-card .read-more{
+      font-weight:700;
+      color:#C4B5FD;
+    }
+
+    .site-footer{
+      padding:0 0 40px;
+    }
+
+    .footer-card{
+      padding:28px;
+    }
+
+    .footer-top{
+      display:flex;
+      justify-content:space-between;
+      gap:24px;
+      flex-wrap:wrap;
+      margin-bottom:22px;
+    }
+
+    .footer-brand{
+      max-width:540px;
+    }
+
+    .footer-brand p{
+      color:var(--muted);
+      margin:12px 0 0;
+    }
+
+    .footer-links{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .footer-links a{
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .footer-links a:hover{
+      color:var(--text);
+    }
+
+    .footer-bottom{
+      border-top:1px solid var(--line);
+      padding-top:18px;
+      color:var(--muted-2);
+      font-size:.92rem;
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width: 1080px){
+      .content-grid{
+        grid-template-columns:1fr;
+      }
+
+      .sidebar{
+        position:static;
+      }
+
+      .related-grid{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    @media (max-width: 820px){
+      .header-inner{
+        min-height:auto;
+        padding:14px 0;
+        align-items:flex-start;
+        flex-direction:column;
+      }
+
+      .main-nav{
+        width:100%;
+      }
+
+      .hero-card{
+        padding:28px 22px;
+      }
+
+      .article-card{
+        padding:24px 20px;
+      }
+
+      .compare-grid{
+        grid-template-columns:1fr;
+      }
+
+      .related-grid{
+        grid-template-columns:1fr;
+      }
+
+      .section-title{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+
+    @media (max-width: 560px){
+      .container{
+        width:min(var(--container), calc(100% - 20px));
+      }
+
+      .nav-link,
+      .dropdown-toggle{
+        padding:10px 12px;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .header-actions{
+        width:100%;
+      }
+
+      .cta-actions{
+        flex-direction:column;
+      }
+
+      .hero-meta{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BlogPosting",
+    "headline":"Cómo Reducir el Peso de una Imagen sin Perder Calidad",
+    "description":"Guía práctica para reducir el peso de imágenes manteniendo una buena calidad para web, correo, documentos y redes sociales.",
+    "author":{
+      "@type":"Organization",
+      "name":"Ralyzo"
+    },
+    "publisher":{
+      "@type":"Organization",
+      "name":"Ralyzo",
+      "logo":{
+        "@type":"ImageObject",
+        "url":"https://ralyzo.com/assets/logo.png"
+      }
+    },
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://ralyzo.com/blog/reducir-peso-imagen.html"
+    },
+    "datePublished":"2026-03-31",
+    "dateModified":"2026-03-31",
+    "articleSection":"Blog",
+    "keywords":["reducir peso de imagen","comprimir imagen","optimizar imagen","SEO","velocidad web"]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo" aria-label="Ralyzo Inicio">
+        <span class="logo-mark">R</span>
+        <span>Ralyzo</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="/" class="nav-link">Herramientas</a>
+        <a href="/precios.html" class="nav-link">Precios</a>
+
+        <div class="dropdown">
+          <button class="dropdown-toggle" aria-label="Abrir menú del blog">
+            Blog
+            <span>▾</span>
+          </button>
+
+          <div class="dropdown-menu" role="menu">
+            <a href="/blog/index.html">Ver todos los artículos</a>
+            <a href="/blog/como-comprimir-imagen.html">Cómo comprimir una imagen</a>
+            <a href="/blog/jpg-vs-png.html">JPG vs PNG</a>
+            <a href="/blog/optimizar-imagenes-web.html">Optimizar imágenes para web</a>
+            <a href="/blog/formatos-imagen.html">Formatos de imagen</a>
+            <a href="/blog/reducir-peso-imagen.html">Reducir peso de una imagen</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <a href="/#herramientas" class="btn btn-primary">Probar herramientas</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Inicio</a>
+          <span>•</span>
+          <a href="/blog/index.html">Blog</a>
+          <span>•</span>
+          <span>Reducir peso de imagen</span>
+        </div>
+
+        <div class="hero-card">
+          <div class="eyebrow">Guía práctica • Optimización</div>
+          <h1>Cómo reducir el peso de una imagen sin perder calidad</h1>
+          <p>
+            Reducir el peso de una imagen es clave para mejorar la velocidad de carga de una web,
+            enviar archivos más rápido y ahorrar espacio sin sacrificar demasiado la calidad visual.
+            En esta guía te explicamos cómo hacerlo correctamente y qué factores influyen más en el resultado.
+          </p>
+
+          <div class="hero-meta">
+            <span>Lectura: 7 min</span>
+            <span>SEO + velocidad + UX</span>
+            <span>Actualizado: 31 de marzo de 2026</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-wrap">
+      <div class="container">
+        <div class="content-grid">
+          <article class="article-card">
+            <p class="article-intro">
+              Muchas veces una imagen pesa más de lo necesario. Esto afecta el tiempo de carga de una página,
+              dificulta compartir archivos por correo o mensajería y puede perjudicar el posicionamiento en buscadores.
+              La buena noticia es que sí es posible <strong>reducir el tamaño de una imagen</strong> sin que se vea mal,
+              siempre que uses el método adecuado.
+            </p>
+
+            <h2>¿Qué significa reducir el peso de una imagen?</h2>
+            <p>
+              Reducir el peso de una imagen significa disminuir el tamaño del archivo, normalmente medido en KB o MB,
+              para que ocupe menos espacio y se cargue más rápido. Esto no siempre implica cambiar sus dimensiones visibles;
+              muchas veces se logra mediante compresión o ajustando el formato.
+            </p>
+
+            <p>
+              En otras palabras, una imagen puede seguir viéndose casi igual, pero pesar mucho menos si está bien optimizada.
+            </p>
+
+            <div class="highlight-box">
+              <h3>Idea clave</h3>
+              <p>
+                Reducir el peso no se trata solo de “hacerla más pequeña”, sino de encontrar el equilibrio correcto
+                entre <strong>calidad visual</strong>, <strong>dimensiones</strong> y <strong>formato de archivo</strong>.
+              </p>
+            </div>
+
+            <h2>¿Por qué es importante bajar el peso de las imágenes?</h2>
+            <p>
+              Las imágenes demasiado pesadas generan varios problemas, especialmente en sitios web y plataformas digitales.
+              Reducirlas correctamente aporta beneficios como:
+            </p>
+
+            <ul>
+              <li><strong>Mejor velocidad de carga</strong> en páginas web.</li>
+              <li><strong>Mejor experiencia de usuario</strong> en móviles y conexiones lentas.</li>
+              <li><strong>Mejor SEO</strong>, ya que el rendimiento influye en el posicionamiento.</li>
+              <li><strong>Más facilidad para compartir</strong> por correo, formularios o mensajería.</li>
+              <li><strong>Ahorro de almacenamiento</strong> en servidores y dispositivos.</li>
+            </ul>
+
+            <h2>Principales formas de reducir el peso de una imagen</h2>
+            <p>
+              Existen varias formas efectivas de hacerlo, y cada una influye de manera distinta en el resultado final.
+            </p>
+
+            <div class="compare-grid">
+              <div class="mini-card">
+                <h3>Compresión</h3>
+                <p>Reduce información innecesaria del archivo para mantener una calidad aceptable con menos peso.</p>
+              </div>
+              <div class="mini-card">
+                <h3>Cambio de formato</h3>
+                <p>Pasar de PNG a JPG o WEBP puede generar una reducción notable según el tipo de imagen.</p>
+              </div>
+              <div class="mini-card">
+                <h3>Redimensionado</h3>
+                <p>Disminuir ancho y alto evita cargar imágenes mucho más grandes de lo que realmente se necesita.</p>
+              </div>
+              <div class="mini-card">
+                <h3>Optimización para web</h3>
+                <p>Combina formato, compresión y tamaño correcto para obtener un archivo ligero y funcional.</p>
+              </div>
+            </div>
+
+            <h2>1. Comprimir la imagen</h2>
+            <p>
+              La compresión es una de las maneras más comunes de bajar el peso. Consiste en reducir la cantidad de datos
+              del archivo para que ocupe menos espacio. Dependiendo del nivel de compresión, la pérdida de calidad puede
+              ser mínima o casi imperceptible.
+            </p>
+
+            <h3>Cuándo conviene comprimir</h3>
+            <ul>
+              <li>Cuando una foto pesa demasiado para subirla a una web.</li>
+              <li>Cuando quieres enviarla por correo o formulario.</li>
+              <li>Cuando necesitas mantener dimensiones, pero reducir tamaño del archivo.</li>
+            </ul>
+
+            <p>
+              Si la compresión se aplica correctamente, puedes obtener archivos más ligeros sin afectar demasiado la apariencia.
+            </p>
+
+            <h2>2. Elegir el formato correcto</h2>
+            <p>
+              El formato influye muchísimo en el peso final. Dos imágenes visualmente parecidas pueden tener tamaños muy distintos
+              solo por estar guardadas en formatos diferentes.
+            </p>
+
+            <h3>Recomendaciones rápidas</h3>
+            <ul>
+              <li><strong>JPG</strong> suele ser ideal para fotografías.</li>
+              <li><strong>PNG</strong> es mejor para transparencias o gráficos con bordes definidos.</li>
+              <li><strong>WEBP</strong> suele ofrecer archivos más ligeros para web manteniendo buena calidad.</li>
+            </ul>
+
+            <p>
+              Elegir mal el formato es uno de los errores más frecuentes. Por ejemplo, usar PNG para una fotografía grande
+              suele dar como resultado archivos innecesariamente pesados.
+            </p>
+
+            <div class="highlight-box">
+              <h3>Consejo práctico</h3>
+              <p>
+                Si tu prioridad es la web, revisa si puedes usar <strong>WEBP</strong>. En muchos casos ofrece una
+                mejor relación entre calidad y peso que JPG o PNG.
+              </p>
+            </div>
+
+            <h2>3. Reducir dimensiones cuando sea necesario</h2>
+            <p>
+              Muchas imágenes pesan demasiado porque tienen una resolución mayor de la que realmente hace falta.
+              Por ejemplo, no tiene sentido subir una imagen de 4000 px de ancho si en tu sitio solo se mostrará a 1200 px.
+            </p>
+
+            <h3>Ventajas de redimensionar</h3>
+            <ul>
+              <li>Reduce notablemente el peso del archivo.</li>
+              <li>Mejora el tiempo de carga.</li>
+              <li>Evita desperdiciar recursos del navegador y del servidor.</li>
+            </ul>
+
+            <p>
+              Esta técnica es especialmente útil para blogs, tiendas online, landing pages y catálogos digitales.
+            </p>
+
+            <h2>¿Cómo reducir el peso sin perder calidad?</h2>
+            <p>
+              La clave está en no exagerar con ninguno de los ajustes. Para mantener una buena calidad, lo ideal es combinar:
+            </p>
+
+            <ol>
+              <li>el formato correcto,</li>
+              <li>una compresión moderada,</li>
+              <li>y dimensiones acordes al uso real de la imagen.</li>
+            </ol>
+
+            <p>
+              En la mayoría de los casos, una imagen optimizada correctamente seguirá viéndose bien para el usuario normal,
+              aunque pese mucho menos que el archivo original.
+            </p>
+
+            <h2>Errores comunes al intentar bajar el peso de una imagen</h2>
+            <p>
+              No todo consiste en aplicar la compresión más fuerte. Algunos errores pueden arruinar el resultado final:
+            </p>
+
+            <ul>
+              <li><strong>Comprimir demasiado</strong> hasta que la imagen se vea borrosa o pixelada.</li>
+              <li><strong>Usar PNG para todo</strong> aunque no haga falta transparencia.</li>
+              <li><strong>No redimensionar</strong> imágenes demasiado grandes para el uso real.</li>
+              <li><strong>Guardar varias veces en JPG</strong>, acumulando pérdida de calidad.</li>
+              <li><strong>Ignorar el contexto</strong>: una imagen para impresión no se optimiza igual que una para web.</li>
+            </ul>
+
+            <h2>¿Cuánto debería pesar una imagen para web?</h2>
+            <p>
+              No existe una única cifra exacta, porque depende del tipo de imagen, del diseño del sitio y del uso.
+              Aun así, como criterio general, conviene que las imágenes web sean lo más ligeras posible sin verse mal.
+            </p>
+
+            <p>
+              Para artículos de blog, portadas, miniaturas o banners, normalmente vale más una imagen bien optimizada
+              que una calidad excesiva que el usuario casi no percibe, pero sí nota en el tiempo de carga.
+            </p>
+
+            <h2>Cuándo conviene usar una herramienta online</h2>
+            <p>
+              Las herramientas online son útiles cuando quieres optimizar imágenes rápido, sin instalar programas y
+              directamente desde el navegador. Son especialmente prácticas para:
+            </p>
+
+            <ul>
+              <li>reducir peso de fotos antes de subirlas a tu web,</li>
+              <li>convertir entre formatos,</li>
+              <li>ajustar tamaño para redes sociales,</li>
+              <li>y preparar archivos para compartir o enviar.</li>
+            </ul>
+
+            <p>
+              En un flujo de trabajo simple, una herramienta web te permite resolver la mayoría de necesidades en pocos pasos.
+            </p>
+
+            <h2>Recomendación final según el tipo de imagen</h2>
+            <p>
+              Si todavía dudas sobre qué hacer, esta referencia rápida puede ayudarte:
+            </p>
+
+            <ul>
+              <li><strong>Fotografías:</strong> usa JPG o WEBP.</li>
+              <li><strong>Capturas de pantalla:</strong> PNG o WEBP.</li>
+              <li><strong>Logos con transparencia:</strong> PNG o SVG.</li>
+              <li><strong>Imágenes para blog o páginas web:</strong> prioriza WEBP si es compatible con tu flujo.</li>
+            </ul>
+
+            <h2>Conclusión</h2>
+            <p>
+              Reducir el peso de una imagen es una de las optimizaciones más útiles que puedes hacer para mejorar
+              velocidad, SEO y experiencia de usuario. No se trata de sacrificar calidad, sino de aplicar decisiones inteligentes:
+              elegir el formato adecuado, comprimir con equilibrio y usar dimensiones acordes a la necesidad real.
+            </p>
+
+            <p>
+              Si haces esto de forma consistente, tus imágenes cargarán más rápido, tus páginas funcionarán mejor
+              y tu contenido se verá más profesional.
+            </p>
+
+            <div class="cta-box">
+              <h3>Reduce y optimiza imágenes online con Ralyzo</h3>
+              <p>
+                Usa nuestras herramientas gratuitas para comprimir, convertir y redimensionar imágenes directamente
+                desde tu navegador, sin complicaciones.
+              </p>
+              <div class="cta-actions">
+                <a href="/#herramientas" class="btn btn-primary">Ir a las herramientas</a>
+                <a href="/blog/como-comprimir-imagen.html" class="btn btn-secondary">Leer cómo comprimir imágenes</a>
+              </div>
+            </div>
+          </article>
+
+          <aside class="sidebar">
+            <div class="sidebar-card">
+              <h3>Herramientas recomendadas</h3>
+              <p>Accede rápido a las herramientas más útiles para optimizar y convertir imágenes.</p>
+              <div class="sidebar-links">
+                <a href="/comprimir-imagen.html"><span>Comprimir imagen</span><span>→</span></a>
+                <a href="/redimensionar-imagen.html"><span>Redimensionar imagen</span><span>→</span></a>
+                <a href="/jpg-a-png.html"><span>Convertir JPG a PNG</span><span>→</span></a>
+                <a href="/png-a-jpg.html"><span>Convertir PNG a JPG</span><span>→</span></a>
+                <a href="/girar-imagen.html"><span>Girar imagen</span><span>→</span></a>
+              </div>
+            </div>
+
+            <div class="sidebar-card">
+              <h3>Navegación del blog</h3>
+              <div class="sidebar-links">
+                <a href="/blog/index.html"><span>Índice del blog</span><span>→</span></a>
+                <a href="/blog/como-comprimir-imagen.html"><span>Cómo comprimir una imagen</span><span>→</span></a>
+                <a href="/blog/jpg-vs-png.html"><span>JPG vs PNG</span><span>→</span></a>
+                <a href="/blog/optimizar-imagenes-web.html"><span>Optimizar imágenes web</span><span>→</span></a>
+                <a href="/blog/formatos-imagen.html"><span>Formatos de imagen</span><span>→</span></a>
+              </div>
+            </div>
+
+            <div class="sidebar-card">
+              <h3>Temas relacionados</h3>
+              <div class="tag-list">
+                <span class="tag">Compresión</span>
+                <span class="tag">SEO</span>
+                <span class="tag">WEBP</span>
+                <span class="tag">JPG</span>
+                <span class="tag">Rendimiento</span>
+                <span class="tag">Velocidad web</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="related-section">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h2>Artículos relacionados</h2>
+            <p>Sigue aprendiendo cómo mejorar imágenes para web, SEO y rendimiento.</p>
+          </div>
+        </div>
+
+        <div class="related-grid">
+          <a href="/blog/como-comprimir-imagen.html" class="related-card">
+            <span class="badge">Tutorial</span>
+            <h3>Cómo comprimir una imagen sin perder calidad</h3>
+            <p>Aprende a reducir el tamaño de archivos de imagen manteniendo un buen equilibrio entre peso y calidad.</p>
+            <span class="read-more">Leer artículo →</span>
+          </a>
+
+          <a href="/blog/optimizar-imagenes-web.html" class="related-card">
+            <span class="badge">SEO</span>
+            <h3>Cómo optimizar imágenes para web y mejorar velocidad de carga</h3>
+            <p>Descubre cómo preparar imágenes para sitios web más rápidos y mejor posicionados.</p>
+            <span class="read-more">Leer artículo →</span>
+          </a>
+
+          <a href="/blog/formatos-imagen.html" class="related-card">
+            <span class="badge">Guía</span>
+            <h3>Formatos de imagen: JPG, PNG, WEBP y SVG explicados</h3>
+            <p>Conoce qué formato conviene usar según el tipo de imagen y el resultado que buscas.</p>
+            <span class="read-more">Leer artículo →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-card">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="logo">
+              <span class="logo-mark">R</span>
+              <span>Ralyzo</span>
+            </div>
+            <p>
+              Herramientas online gratuitas para comprimir, convertir y optimizar imágenes de forma
+              rápida, segura y directamente desde tu navegador.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <a href="/">Inicio</a>
+            <a href="/#herramientas">Herramientas</a>
+            <a href="/blog/index.html">Blog</a>
+            <a href="/precios.html">Precios</a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>© 2026 Ralyzo. Todos los derechos reservados.</span>
+          <span>Contenido útil para SEO, UX y optimización web.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
