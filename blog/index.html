@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Blog de Ralyzo | Guías y consejos sobre imágenes</title>
+  <meta name="description" content="Explora el blog de Ralyzo con guías prácticas para comprimir, optimizar y elegir formatos de imagen correctamente." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://ralyzo.com/blog/" />
+
+  <meta property="og:title" content="Blog de Ralyzo | Guías y consejos sobre imágenes" />
+  <meta property="og:description" content="Artículos útiles para optimizar imágenes, reducir peso y elegir el formato adecuado." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ralyzo.com/blog/" />
+  <meta property="og:site_name" content="Ralyzo" />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337166112417872"
+    crossorigin="anonymous"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,sans-serif;
+      background:linear-gradient(180deg,#020B1F 0%, #06112A 100%);
+      color:#F8FAFC;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(2,11,31,.9);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(148,163,184,.14);
+    }
+
+    .nav{
+      max-width:1200px;
+      margin:0 auto;
+      min-height:72px;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      padding:0 24px;
+    }
+
+    .logo-center{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:20px;
+      font-weight:800;
+      letter-spacing:.04em;
+      white-space:nowrap;
+    }
+
+    .logo-mark{
+      width:0;
+      height:0;
+      border-left:16px solid transparent;
+      border-bottom:16px solid #ffffff;
+      opacity:.95;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      color:#CBD5E1;
+      font-size:16px;
+      font-weight:500;
+    }
+
+    .nav-links a:hover{
+      color:#ffffff;
+    }
+
+    .page{
+      max-width:1200px;
+      margin:0 auto;
+      padding:0 24px;
+    }
+
+    .hero{
+      padding:88px 0 34px;
+      text-align:center;
+    }
+
+    .hero h1{
+      margin:0 0 18px;
+      font-size:58px;
+      line-height:1.08;
+      font-weight:800;
+      letter-spacing:-.03em;
+    }
+
+    .hero p{
+      margin:0 auto;
+      max-width:780px;
+      font-size:22px;
+      color:#94A3B8;
+      line-height:1.7;
+    }
+
+    .section{
+      padding:30px 0 54px;
+    }
+
+    .blog-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:20px;
+    }
+
+    .blog-card{
+      background:#111827;
+      border:1px solid #1F2937;
+      border-radius:18px;
+      padding:22px;
+      transition:.2s ease;
+      display:flex;
+      flex-direction:column;
+      min-height:220px;
+    }
+
+    .blog-card:hover{
+      border-color:#2563EB;
+      transform:translateY(-2px);
+    }
+
+    .blog-card h2{
+      margin:0 0 12px;
+      font-size:22px;
+      line-height:1.4;
+    }
+
+    .blog-card p{
+      margin:0 0 18px;
+      color:#94A3B8;
+      line-height:1.8;
+      font-size:15px;
+      flex:1;
+    }
+
+    .read-more{
+      color:#93C5FD;
+      font-weight:700;
+    }
+
+    footer{
+      margin-top:48px;
+      border-top:1px solid rgba(148,163,184,.14);
+      padding:28px 24px 36px;
+    }
+
+    .footer-inner{
+      max-width:1200px;
+      margin:0 auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+      color:#94A3B8;
+      font-size:14px;
+    }
+
+    .footer-links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .footer-links a{
+      color:#93C5FD;
+    }
+
+    .footer-links a:hover{
+      text-decoration:underline;
+    }
+
+    @media (max-width:950px){
+      .blog-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero h1{
+        font-size:42px;
+      }
+
+      .hero p{
+        font-size:19px;
+      }
+
+      .nav{
+        justify-content:center;
+        padding-top:70px;
+        padding-bottom:14px;
+      }
+
+      .logo-center{
+        top:18px;
+      }
+    }
+
+    @media (max-width:640px){
+      .nav-links{
+        gap:16px;
+        font-size:14px;
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+
+      .hero{
+        padding:72px 0 22px;
+      }
+
+      .hero h1{
+        font-size:34px;
+      }
+
+      .hero p{
+        font-size:17px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="/" class="logo-center" aria-label="Ralyzo inicio">
+      <span class="logo-mark"></span>
+      <span>RALYZO</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="/#herramientas">Herramientas</a>
+      <a href="/#precios">Precios</a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </nav>
+</header>
+
+<main class="page">
+  <section class="hero">
+    <h1>Blog de Ralyzo</h1>
+    <p>
+      Guías y consejos prácticos para comprimir, optimizar y elegir correctamente el formato de tus imágenes.
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="blog-grid">
+      <a class="blog-card" href="/blog/como-comprimir-imagen.html">
+        <h2>Cómo comprimir imágenes sin perder calidad</h2>
+        <p>Aprende a reducir el peso de tus imágenes sin afectar demasiado su apariencia y mejora la velocidad de carga.</p>
+        <span class="read-more">Leer artículo →</span>
+      </a>
+
+      <a class="blog-card" href="/blog/jpg-vs-png.html">
+        <h2>JPG vs PNG: cuál usar en cada caso</h2>
+        <p>Descubre las diferencias más importantes entre ambos formatos y cuándo conviene elegir uno u otro.</p>
+        <span class="read-more">Leer artículo →</span>
+      </a>
+
+      <a class="blog-card" href="/blog/optimizar-imagenes-web.html">
+        <h2>Cómo optimizar imágenes para una web más rápida</h2>
+        <p>Mejora el rendimiento de tu sitio usando imágenes bien preparadas para escritorio y móvil.</p>
+        <span class="read-more">Leer artículo →</span>
+      </a>
+
+      <a class="blog-card" href="/blog/formatos-imagen.html">
+        <h2>Formatos de imagen: guía rápida</h2>
+        <p>Conoce para qué sirve cada formato y qué opción te conviene según el tipo de imagen que uses.</p>
+        <span class="read-more">Leer artículo →</span>
+      </a>
+
+      <a class="blog-card" href="/blog/reducir-peso-imagen.html">
+        <h2>Cómo reducir el peso de una imagen</h2>
+        <p>Consejos simples para disminuir el tamaño de tus archivos y compartirlos o publicarlos más fácilmente.</p>
+        <span class="read-more">Leer artículo →</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>© 2026 Ralyzo</div>
+    <div class="footer-links">
+      <a href="/politica-privacidad">Privacidad</a>
+      <a href="/terminos-condiciones">Términos</a>
+      <a href="/cookies">Cookies</a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
