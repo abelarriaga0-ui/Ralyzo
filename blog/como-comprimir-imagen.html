@@ -90,6 +90,91 @@
       color:#ffffff;
     }
 
+    .dropdown{
+      position:relative;
+    }
+
+    .dropdown-toggle{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      cursor:pointer;
+      color:#CBD5E1;
+      font-size:16px;
+      font-weight:500;
+      background:none;
+      border:none;
+      padding:0;
+      font-family:inherit;
+    }
+
+    .dropdown-toggle:hover{
+      color:#ffffff;
+    }
+
+    .dropdown-arrow{
+      font-size:12px;
+      opacity:.85;
+      transition:transform .2s ease;
+    }
+
+    .dropdown:hover .dropdown-arrow,
+    .dropdown:focus-within .dropdown-arrow{
+      transform:rotate(180deg);
+    }
+
+    .dropdown-menu{
+      position:absolute;
+      top:calc(100% + 16px);
+      right:0;
+      min-width:320px;
+      background:#0F172A;
+      border:1px solid rgba(51,65,85,.95);
+      border-radius:16px;
+      padding:12px;
+      box-shadow:0 16px 40px rgba(0,0,0,.35);
+      display:none;
+      z-index:9999;
+    }
+
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu{
+      display:block;
+    }
+
+    .dropdown-menu a{
+      display:block;
+      padding:12px 14px;
+      border-radius:12px;
+      color:#E2E8F0;
+      line-height:1.5;
+      transition:.2s ease;
+    }
+
+    .dropdown-menu a:hover{
+      background:#111827;
+      color:#ffffff;
+    }
+
+    .menu-title{
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:#94A3B8;
+      padding:6px 14px 10px;
+    }
+
+    .dropdown-divider{
+      height:1px;
+      background:rgba(148,163,184,.14);
+      margin:8px 0;
+    }
+
+    .all-posts{
+      color:#93C5FD !important;
+      font-weight:700;
+    }
+
     .page{
       max-width:1200px;
       margin:0 auto;
@@ -422,6 +507,13 @@
       .logo-center{
         top:18px;
       }
+
+      .dropdown-menu{
+        right:auto;
+        left:50%;
+        transform:translateX(-50%);
+        width:min(92vw,340px);
+      }
     }
 
     @media (max-width:640px){
@@ -470,7 +562,24 @@
     <div class="nav-links">
       <a href="/#herramientas">Herramientas</a>
       <a href="/#precios">Precios</a>
-      <a href="/#blog">Blog</a>
+
+      <div class="dropdown">
+        <button class="dropdown-toggle" type="button" aria-label="Abrir menú de blog">
+          <span>Blog</span>
+          <span class="dropdown-arrow">▾</span>
+        </button>
+
+        <div class="dropdown-menu">
+          <div class="menu-title">Artículos</div>
+          <a href="/blog/como-comprimir-imagen.html">Cómo comprimir imágenes sin perder calidad</a>
+          <a href="/blog/jpg-vs-png.html">JPG vs PNG: cuál usar en cada caso</a>
+          <a href="/blog/optimizar-imagenes-web.html">Cómo optimizar imágenes para una web más rápida</a>
+          <a href="/blog/formatos-imagen.html">Formatos de imagen: guía rápida</a>
+          <a href="/blog/reducir-peso-imagen.html">Cómo reducir el peso de una imagen</a>
+          <div class="dropdown-divider"></div>
+          <a class="all-posts" href="/blog/">Ver todos los artículos</a>
+        </div>
+      </div>
     </div>
   </nav>
 </header>
@@ -576,7 +685,7 @@
         <a class="side-link" href="/png-a-jpg">Convertir PNG a JPG</a>
         <a class="side-link" href="/jpg-a-png">Convertir JPG a PNG</a>
         <a class="side-link" href="/redimensionar-imagen">Redimensionar Imagen</a>
-        <a class="side-link" href="/#blog">Volver al Blog</a>
+        <a class="side-link" href="/blog/">Volver al Blog</a>
         <a class="side-link" href="/">Ir al inicio</a>
       </div>
     </aside>
@@ -589,7 +698,7 @@
     </p>
 
     <div class="blog-grid">
-      <a class="blog-card" href="/png-vs-jpg">
+      <a class="blog-card" href="/blog/jpg-vs-png.html">
         <h3>PNG vs JPG: cuál usar en cada caso</h3>
         <p>Descubre las diferencias entre ambos formatos y cuándo conviene elegir uno u otro.</p>
       </a>
@@ -614,7 +723,7 @@
       <a href="/politica-privacidad">Privacidad</a>
       <a href="/terminos-condiciones">Términos</a>
       <a href="/cookies">Cookies</a>
-      <a href="/blog/como-comprimir-imagen.html">Blog</a>
+      <a href="/blog/">Blog</a>
     </div>
   </div>
 </footer>
