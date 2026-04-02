@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -33,17 +32,11 @@
       --muted:#CBD5E1;
       --muted-2:#94A3B8;
       --line:rgba(148,163,184,.14);
-      --line-strong:rgba(51,65,85,.9);
       --primary:#2563EB;
       --primary-hover:#1D4ED8;
       --success:#22C55E;
-      --warning:#F59E0B;
       --danger:#EF4444;
-      --soft:#0D1A35;
       --shadow:0 16px 40px rgba(0,0,0,.28);
-      --radius-xl:24px;
-      --radius-lg:18px;
-      --radius-md:14px;
       --container:1200px;
     }
 
@@ -293,15 +286,16 @@
     }
 
     .upload-zone{
-      border:1.5px dashed rgba(148,163,184,.28);
+      width:100%;
+      border:2px dashed rgba(96,165,250,.35);
       border-radius:22px;
-      background:rgba(255,255,255,.02);
-      min-height:240px;
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      min-height:260px;
       display:flex;
       align-items:center;
       justify-content:center;
       text-align:center;
-      padding:26px;
+      padding:28px;
       transition:.2s ease;
       cursor:pointer;
       margin-bottom:18px;
@@ -309,24 +303,47 @@
 
     .upload-zone:hover,
     .upload-zone.dragover{
-      border-color:#2563EB;
-      background:rgba(37,99,235,.06);
+      border-color:#60A5FA;
+      background:rgba(37,99,235,.08);
     }
 
     .upload-zone.hidden{
       display:none;
     }
 
+    .upload-inner{
+      width:100%;
+      max-width:620px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .upload-icon{
+      width:70px;
+      height:70px;
+      border-radius:18px;
+      background:rgba(37,99,235,.14);
+      border:1px solid rgba(96,165,250,.2);
+      display:grid;
+      place-items:center;
+      font-size:28px;
+      margin-bottom:18px;
+    }
+
     .upload-inner h2{
       margin:0 0 10px;
       font-size:28px;
       line-height:1.2;
+      color:#F8FAFC;
     }
 
     .upload-inner p{
-      margin:0 0 14px;
+      margin:0 0 16px;
       color:var(--muted-2);
       line-height:1.7;
+      font-size:16px;
     }
 
     .upload-actions{
@@ -334,6 +351,14 @@
       justify-content:center;
       gap:12px;
       flex-wrap:wrap;
+      margin-top:4px;
+    }
+
+    .hint{
+      margin-top:14px;
+      color:#93C5FD;
+      font-size:14px;
+      font-weight:600;
     }
 
     .btn{
@@ -952,5 +977,527 @@
 
   <section class="app-grid">
     <div class="panel workspace">
-      <label class="upload-zone" id="uploadZone" for="fileInput">
+      <div class="upload-zone" id="uploadZone" role="button" tabindex="0">
         <div class="upload-inner">
+          <div class="upload-icon">🖼️</div>
+          <h2>Sube tu imagen para mejorarla con IA</h2>
+          <p>
+            Arrastra tu archivo aquí o selecciónalo desde tu dispositivo. También puedes pegar una imagen
+            directamente desde el portapapeles.
+          </p>
+          <div class="upload-actions">
+            <button type="button" class="btn btn-primary" id="selectImageBtn">Seleccionar imagen</button>
+            <button type="button" class="btn btn-secondary" id="pasteHintBtn">Pegar imagen</button>
+          </div>
+          <div class="hint">Formatos compatibles: JPG, PNG y WEBP</div>
+        </div>
+      </div>
+
+      <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp" class="hidden" />
+
+      <div id="previewShell" class="preview-shell">
+        <div class="top-toolbar">
+          <div class="view-switch">
+            <button type="button" class="view-btn active" data-view="compare">Comparar</button>
+            <button type="button" class="view-btn" data-view="original">Original</button>
+            <button type="button" class="view-btn" data-view="result">Resultado</button>
+          </div>
+
+          <div class="actions-stack" style="flex-direction:row; flex-wrap:wrap;">
+            <button type="button" class="btn btn-secondary" id="replaceBtn">Cambiar imagen</button>
+            <button type="button" class="btn btn-primary" id="processBtn">Mejorar con IA</button>
+          </div>
+        </div>
+
+        <div class="loader-wrap" id="loaderWrap">
+          <div class="spinner"></div>
+          <span>Procesando con IA, esto puede tardar un poco...</span>
+        </div>
+
+        <div class="image-stage">
+          <div class="compare-wrap active" id="compareWrap">
+            <div class="compare-base">
+              <span class="image-label">Original</span>
+              <canvas id="compareOriginalCanvas"></canvas>
+            </div>
+
+            <div class="compare-overlay" id="compareOverlay">
+              <span class="image-label right">Mejorada</span>
+              <canvas id="compareEnhancedCanvas"></canvas>
+            </div>
+
+            <div class="compare-handle" id="compareHandle"></div>
+            <div class="compare-knob" id="compareKnob">↔</div>
+            <input id="compareRange" class="compare-range" type="range" min="0" max="100" value="50" />
+          </div>
+
+          <div id="singleOriginalWrap" class="hidden" style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; position:relative;">
+            <span class="image-label">Original</span>
+            <canvas id="originalCanvas"></canvas>
+          </div>
+
+          <div id="singleResultWrap" class="hidden" style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; position:relative;">
+            <span class="image-label right" style="left:14px; right:auto;">Resultado</span>
+            <canvas id="enhancedCanvas"></canvas>
+          </div>
+        </div>
+
+        <div class="info-row" id="infoRow"></div>
+      </div>
+    </div>
+
+    <aside class="panel sidebar">
+      <div class="side-card">
+        <h3>Opciones de descarga</h3>
+
+        <div class="control-group">
+          <div class="control-top">
+            <label for="outputFormat">Formato final</label>
+          </div>
+          <select id="outputFormat">
+            <option value="image/jpeg">JPG</option>
+            <option value="image/png">PNG</option>
+            <option value="image/webp">WEBP</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <div class="control-top">
+            <label for="qualityRange">Calidad</label>
+            <span class="value" id="qualityValue">92%</span>
+          </div>
+          <input id="qualityRange" type="range" min="50" max="100" value="92" />
+        </div>
+
+        <div class="actions-stack">
+          <button type="button" class="btn btn-success" id="downloadBtn" disabled>Descargar imagen</button>
+          <button type="button" class="btn btn-danger" id="resetBtn" disabled>Restablecer</button>
+        </div>
+
+        <div class="status" id="statusText">Sube una imagen para empezar.</div>
+      </div>
+
+      <div class="side-card">
+        <h3>Cómo funciona</h3>
+        <ul class="tips">
+          <li>Sube una imagen desde tu dispositivo.</li>
+          <li>Pulsa <strong>Mejorar con IA</strong>.</li>
+          <li>Espera a que el servidor procese el archivo.</li>
+          <li>Compara el antes y el después.</li>
+          <li>Descarga el resultado en el formato que prefieras.</li>
+        </ul>
+      </div>
+
+      <div class="side-card">
+        <h3>Herramientas relacionadas</h3>
+        <div class="tool-links">
+          <a href="/comprimir-imagen"><span>Comprimir imagen</span><span>→</span></a>
+          <a href="/redimensionar-imagen"><span>Redimensionar imagen</span><span>→</span></a>
+          <a href="/jpg-a-png"><span>JPG a PNG</span><span>→</span></a>
+          <a href="/png-a-jpg"><span>PNG a JPG</span><span>→</span></a>
+        </div>
+      </div>
+    </aside>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-card">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="logo-mark"></span>
+          <span>RALYZO</span>
+        </div>
+        <p>
+          Herramientas online gratuitas para comprimir, convertir y optimizar imágenes de forma rápida,
+          segura y directamente desde tu navegador.
+        </p>
+      </div>
+
+      <div class="footer-nav">
+        <a href="/">Inicio</a>
+        <a href="/#herramientas">Herramientas</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#precios">Precios</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 Ralyzo. Todos los derechos reservados.</div>
+      <div>Contenido útil para SEO, UX y optimización web.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const fileInput = document.getElementById('fileInput');
+  const uploadZone = document.getElementById('uploadZone');
+  const selectImageBtn = document.getElementById('selectImageBtn');
+  const pasteHintBtn = document.getElementById('pasteHintBtn');
+  const previewShell = document.getElementById('previewShell');
+  const processBtn = document.getElementById('processBtn');
+  const replaceBtn = document.getElementById('replaceBtn');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const statusText = document.getElementById('statusText');
+  const compareRange = document.getElementById('compareRange');
+  const compareOverlay = document.getElementById('compareOverlay');
+  const compareHandle = document.getElementById('compareHandle');
+  const compareKnob = document.getElementById('compareKnob');
+  const compareWrap = document.getElementById('compareWrap');
+  const infoRow = document.getElementById('infoRow');
+  const loaderWrap = document.getElementById('loaderWrap');
+
+  const originalCanvas = document.getElementById('originalCanvas');
+  const enhancedCanvas = document.getElementById('enhancedCanvas');
+  const compareOriginalCanvas = document.getElementById('compareOriginalCanvas');
+  const compareEnhancedCanvas = document.getElementById('compareEnhancedCanvas');
+
+  const singleOriginalWrap = document.getElementById('singleOriginalWrap');
+  const singleResultWrap = document.getElementById('singleResultWrap');
+
+  const outputFormat = document.getElementById('outputFormat');
+  const qualityRange = document.getElementById('qualityRange');
+  const qualityValue = document.getElementById('qualityValue');
+
+  const viewButtons = document.querySelectorAll('.view-btn');
+
+  let originalImage = null;
+  let enhancedImage = null;
+  let originalName = 'imagen';
+  let originalFile = null;
+  let enhancedImageUrl = null;
+  let originalCanvasSource = document.createElement('canvas');
+
+  function setStatus(text, type = '') {
+    statusText.textContent = text;
+    statusText.className = 'status';
+    if (type) statusText.classList.add(type);
+  }
+
+  function toggleLoader(show) {
+    loaderWrap.classList.toggle('active', show);
+  }
+
+  function updateQualityLabel() {
+    qualityValue.textContent = `${qualityRange.value}%`;
+  }
+
+  qualityRange.addEventListener('input', updateQualityLabel);
+  updateQualityLabel();
+
+  function bytesToSize(bytes) {
+    if (!bytes && bytes !== 0) return '-';
+    const units = ['B', 'KB', 'MB', 'GB'];
+    let i = 0;
+    let value = bytes;
+    while (value >= 1024 && i < units.length - 1) {
+      value /= 1024;
+      i++;
+    }
+    return `${value.toFixed(value >= 10 || i === 0 ? 0 : 1)} ${units[i]}`;
+  }
+
+  function updateCompareUI() {
+    const value = Number(compareRange.value);
+    compareOverlay.style.width = `${value}%`;
+    compareHandle.style.left = `${value}%`;
+    compareKnob.style.left = `${value}%`;
+  }
+
+  compareRange.addEventListener('input', updateCompareUI);
+  updateCompareUI();
+
+  function switchView(view) {
+    viewButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.view === view));
+    compareWrap.classList.toggle('active', view === 'compare');
+    singleOriginalWrap.classList.toggle('hidden', view !== 'original');
+    singleResultWrap.classList.toggle('hidden', view !== 'result');
+  }
+
+  viewButtons.forEach(btn => {
+    btn.addEventListener('click', () => switchView(btn.dataset.view));
+  });
+
+  function fitCanvasToImage(canvas, img, maxW = 1800, maxH = 1800) {
+    let { width, height } = img;
+    const ratio = Math.min(maxW / width, maxH / height, 1);
+    canvas.width = Math.round(width * ratio);
+    canvas.height = Math.round(height * ratio);
+
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  }
+
+  function mirrorCanvas(source, target) {
+    target.width = source.width;
+    target.height = source.height;
+    const ctx = target.getContext('2d');
+    ctx.clearRect(0, 0, target.width, target.height);
+    ctx.drawImage(source, 0, 0);
+  }
+
+  function renderOriginal() {
+    if (!originalImage) return;
+    fitCanvasToImage(originalCanvasSource, originalImage, 1800, 1800);
+    mirrorCanvas(originalCanvasSource, originalCanvas);
+    mirrorCanvas(originalCanvasSource, compareOriginalCanvas);
+  }
+
+  function renderEnhanced() {
+    if (!enhancedImage) return;
+    const tempCanvas = document.createElement('canvas');
+    fitCanvasToImage(tempCanvas, enhancedImage, 1800, 1800);
+    mirrorCanvas(tempCanvas, enhancedCanvas);
+    mirrorCanvas(tempCanvas, compareEnhancedCanvas);
+  }
+
+  function renderInfo(extra = null) {
+    const items = [];
+
+    if (originalImage) {
+      items.push(`Nombre: ${originalName}`);
+      items.push(`Tamaño original: ${originalImage.naturalWidth} × ${originalImage.naturalHeight}`);
+      if (originalFile) items.push(`Peso original: ${bytesToSize(originalFile.size)}`);
+    }
+
+    if (enhancedImage) {
+      items.push(`Tamaño mejorado: ${enhancedImage.naturalWidth} × ${enhancedImage.naturalHeight}`);
+    }
+
+    if (extra) items.push(extra);
+
+    infoRow.innerHTML = items.map(item => `<div class="info-pill">${item}</div>`).join('');
+  }
+
+  function loadImageElement(src) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = src;
+    });
+  }
+
+  async function loadOriginalFile(file) {
+    if (!file || !file.type.startsWith('image/')) return;
+
+    originalFile = file;
+    originalName = file.name || 'imagen';
+
+    const reader = new FileReader();
+    reader.onload = async e => {
+      try {
+        originalImage = await loadImageElement(e.target.result);
+        enhancedImage = null;
+        enhancedImageUrl = null;
+
+        renderOriginal();
+
+        uploadZone.classList.add('hidden');
+        previewShell.classList.add('active');
+        switchView('compare');
+
+        const emptyCanvas = document.createElement('canvas');
+        emptyCanvas.width = originalCanvas.width || 1;
+        emptyCanvas.height = originalCanvas.height || 1;
+        mirrorCanvas(emptyCanvas, enhancedCanvas);
+        mirrorCanvas(emptyCanvas, compareEnhancedCanvas);
+
+        downloadBtn.disabled = true;
+        resetBtn.disabled = false;
+        setStatus('Imagen cargada. Pulsa "Mejorar con IA".');
+        renderInfo();
+      } catch (error) {
+        console.error(error);
+        setStatus('No se pudo cargar la imagen.', 'error');
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+
+  async function processImage() {
+    if (!originalFile) {
+      setStatus('Primero sube una imagen.', 'warning');
+      return;
+    }
+
+    processBtn.disabled = true;
+    downloadBtn.disabled = true;
+    toggleLoader(true);
+    setStatus('Enviando imagen a la IA, espera un momento...', 'warning');
+
+    try {
+      const formData = new FormData();
+      formData.append('image', originalFile);
+
+      const response = await fetch('http://localhost:3000/api/enhance-image', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.details || data.error || 'Error desconocido.');
+      }
+
+      let resultUrl = data.output;
+      if (Array.isArray(resultUrl)) resultUrl = resultUrl[0];
+
+      if (!resultUrl) {
+        throw new Error('Replicate no devolvió una imagen válida.');
+      }
+
+      enhancedImageUrl = resultUrl;
+      enhancedImage = await loadImageElement(resultUrl);
+
+      renderEnhanced();
+      renderInfo('Procesada con IA real');
+      downloadBtn.disabled = false;
+      setStatus('Imagen mejorada correctamente con IA.', 'success');
+    } catch (error) {
+      console.error(error);
+      setStatus(`Error: ${error.message}`, 'error');
+    } finally {
+      processBtn.disabled = false;
+      toggleLoader(false);
+    }
+  }
+
+  async function downloadEnhancedImage() {
+    if (!enhancedImageUrl) {
+      setStatus('Primero mejora la imagen.', 'warning');
+      return;
+    }
+
+    try {
+      setStatus('Preparando descarga...', 'warning');
+
+      const response = await fetch(enhancedImageUrl);
+      const blob = await response.blob();
+
+      const mime = outputFormat.value;
+      const extension = mime === 'image/png' ? 'png' : mime === 'image/webp' ? 'webp' : 'jpg';
+      let finalBlob = blob;
+
+      if (mime !== blob.type || mime !== 'image/png') {
+        const blobUrl = URL.createObjectURL(blob);
+        const img = await loadImageElement(blobUrl);
+
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = img.naturalWidth;
+        tempCanvas.height = img.naturalHeight;
+
+        const ctx = tempCanvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+
+        finalBlob = await new Promise(resolve => {
+          tempCanvas.toBlob(resolve, mime, Number(qualityRange.value) / 100);
+        });
+
+        URL.revokeObjectURL(blobUrl);
+      }
+
+      const url = URL.createObjectURL(finalBlob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${originalName.replace(/\.[^.]+$/, '')}-mejorada.${extension}`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      setStatus('Descarga lista.', 'success');
+    } catch (error) {
+      console.error(error);
+      setStatus('No se pudo descargar la imagen.', 'error');
+    }
+  }
+
+  function resetAll() {
+    originalImage = null;
+    enhancedImage = null;
+    originalFile = null;
+    enhancedImageUrl = null;
+    fileInput.value = '';
+
+    originalCanvas.getContext('2d').clearRect(0, 0, originalCanvas.width, originalCanvas.height);
+    enhancedCanvas.getContext('2d').clearRect(0, 0, enhancedCanvas.width, enhancedCanvas.height);
+    compareOriginalCanvas.getContext('2d').clearRect(0, 0, compareOriginalCanvas.width, compareOriginalCanvas.height);
+    compareEnhancedCanvas.getContext('2d').clearRect(0, 0, compareEnhancedCanvas.width, compareEnhancedCanvas.height);
+
+    previewShell.classList.remove('active');
+    uploadZone.classList.remove('hidden');
+    downloadBtn.disabled = true;
+    resetBtn.disabled = true;
+    processBtn.disabled = false;
+    toggleLoader(false);
+
+    infoRow.innerHTML = '';
+    setStatus('Sube una imagen para empezar.');
+  }
+
+  selectImageBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    fileInput.click();
+  });
+
+  pasteHintBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    setStatus('Ahora pega la imagen con Ctrl + V.', 'warning');
+  });
+
+  uploadZone.addEventListener('click', () => fileInput.click());
+  uploadZone.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      fileInput.click();
+    }
+  });
+
+  uploadZone.addEventListener('dragover', e => {
+    e.preventDefault();
+    uploadZone.classList.add('dragover');
+  });
+
+  uploadZone.addEventListener('dragleave', () => {
+    uploadZone.classList.remove('dragover');
+  });
+
+  uploadZone.addEventListener('drop', e => {
+    e.preventDefault();
+    uploadZone.classList.remove('dragover');
+    const file = e.dataTransfer.files[0];
+    loadOriginalFile(file);
+  });
+
+  fileInput.addEventListener('change', e => {
+    const file = e.target.files[0];
+    loadOriginalFile(file);
+  });
+
+  replaceBtn.addEventListener('click', () => fileInput.click());
+  processBtn.addEventListener('click', processImage);
+  downloadBtn.addEventListener('click', downloadEnhancedImage);
+  resetBtn.addEventListener('click', resetAll);
+
+  document.addEventListener('paste', e => {
+    const items = Array.from(e.clipboardData?.items || []);
+    const imageItem = items.find(item => item.type.startsWith('image/'));
+    if (!imageItem) return;
+    const file = imageItem.getAsFile();
+    if (file) {
+      loadOriginalFile(file);
+      setStatus('Imagen pegada desde el portapapeles.', 'success');
+    }
+  });
+</script>
+
+</body>
+</html>
