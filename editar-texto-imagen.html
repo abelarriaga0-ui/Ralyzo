@@ -27,7 +27,6 @@
   <style>
     :root{
       --bg:#020B1F;
-      --bg-2:#06112A;
       --panel:#0F172A;
       --panel-2:#111827;
       --panel-3:#0B1325;
@@ -38,7 +37,6 @@
       --primary:#2563EB;
       --primary-hover:#1D4ED8;
       --success:#22C55E;
-      --warning:#F59E0B;
       --danger:#EF4444;
       --shadow:0 16px 40px rgba(0,0,0,.28);
       --container:1200px;
@@ -127,13 +125,10 @@
     }
 
     .dropdown{position:relative}
-
     .dropdown::after{
       content:"";
       position:absolute;
-      left:0;
-      right:0;
-      top:100%;
+      left:0; right:0; top:100%;
       height:18px;
     }
 
@@ -147,7 +142,6 @@
       font-weight:600;
       background:none;
       border:none;
-      font-family:inherit;
     }
 
     .dropdown-arrow{
@@ -277,9 +271,7 @@
       box-shadow:var(--shadow);
     }
 
-    .workspace{
-      padding:16px;
-    }
+    .workspace{padding:16px}
 
     .upload-zone{
       width:100%;
@@ -385,12 +377,13 @@
     }
     .btn-danger:hover{background:rgba(239,68,68,.18);transform:translateY(-1px)}
 
+    .hidden{display:none !important}
+
     .editor-shell{
       display:none;
       gap:14px;
       flex-direction:column;
     }
-
     .editor-shell.active{display:flex}
 
     .top-toolbar{
@@ -447,14 +440,7 @@
       animation:spin .8s linear infinite;
       flex-shrink:0;
     }
-
     @keyframes spin{to{transform:rotate(360deg)}}
-
-    .editor-area{
-      display:grid;
-      grid-template-columns:minmax(0,1fr);
-      gap:12px;
-    }
 
     .canvas-card{
       border-radius:20px;
@@ -483,24 +469,22 @@
       border:1px solid rgba(96,165,250,.16);
     }
 
-    .canvas-wrap{
-      padding:12px;
-    }
+    .canvas-wrap{padding:12px}
 
     .canvas-stage{
       width:100%;
-      min-height:520px;
+      min-height:420px;
       max-height:calc(100vh - 300px);
       overflow:auto;
       background:#091122;
       border-radius:16px;
       border:1px solid rgba(51,65,85,.8);
-      display:flex;
-      align-items:flex-start;
-      justify-content:flex-start;
     }
 
     #konvaMount{
+      display:flex;
+      align-items:flex-start;
+      justify-content:flex-start;
       min-width:100%;
       min-height:100%;
     }
@@ -617,7 +601,6 @@
       font-size:14px;
       font-weight:600;
     }
-
     .status.success{color:#86EFAC}
     .status.warning{color:#FCD34D}
     .status.error{color:#FCA5A5}
@@ -743,60 +726,44 @@
         padding-top:70px;
         padding-bottom:14px;
       }
-
       .logo-center{top:18px}
-
       .dropdown-menu{
         right:auto;
         left:50%;
         transform:translateX(-50%) translateY(8px);
         width:min(92vw,340px);
       }
-
       .dropdown:hover .dropdown-menu,
       .dropdown:focus-within .dropdown-menu{
         transform:translateX(-50%) translateY(0);
       }
-
       h1{font-size:34px}
       .hero p{font-size:16px}
-      .canvas-stage{max-height:none;min-height:420px}
+      .canvas-stage{max-height:none;min-height:360px}
     }
 
     @media (max-width:640px){
-      .container{
-        width:min(var(--container), calc(100% - 24px));
-      }
-
+      .container{width:min(var(--container), calc(100% - 24px))}
       .nav-links{
         gap:8px;
         font-size:14px;
         flex-wrap:wrap;
         justify-content:center;
       }
-
       .nav-links > a,
       .dropdown-toggle{
         padding:10px 12px;
       }
-
       main{padding-top:20px}
       .workspace,.sidebar{padding:12px}
-      .top-toolbar{
-        flex-direction:column;
-        align-items:stretch;
-      }
+      .top-toolbar{flex-direction:column;align-items:stretch}
       .mini-grid{grid-template-columns:1fr}
       .footer-card{padding:18px}
-      .footer-top,.footer-bottom{
-        flex-direction:column;
-        align-items:flex-start;
-      }
+      .footer-top,.footer-bottom{flex-direction:column;align-items:flex-start}
     }
   </style>
 </head>
 <body>
-
 <header>
   <nav class="nav">
     <a href="/" class="logo-center" aria-label="Ralyzo inicio">
@@ -807,13 +774,11 @@
     <div class="nav-links">
       <a href="/#herramientas">Herramientas</a>
       <a href="/#precios">Precios</a>
-
       <div class="dropdown">
         <button class="dropdown-toggle" type="button" aria-label="Abrir menú de blog">
           <span>Blog</span>
           <span class="dropdown-arrow">▾</span>
         </button>
-
         <div class="dropdown-menu">
           <div class="menu-title">Artículos</div>
           <a href="/blog/como-comprimir-imagen.html">Cómo comprimir imágenes sin perder calidad</a>
@@ -881,16 +846,14 @@
           </div>
         </div>
 
-        <div class="editor-area">
-          <div class="canvas-card">
-            <div class="canvas-head">
-              <strong>Documento editable</strong>
-              <span class="badge" id="canvasBadge">Sin seleccionar</span>
-            </div>
-            <div class="canvas-wrap">
-              <div class="canvas-stage">
-                <div id="konvaMount"></div>
-              </div>
+        <div class="canvas-card">
+          <div class="canvas-head">
+            <strong>Documento editable</strong>
+            <span class="badge" id="canvasBadge">Sin seleccionar</span>
+          </div>
+          <div class="canvas-wrap">
+            <div class="canvas-stage">
+              <div id="konvaMount"></div>
             </div>
           </div>
         </div>
@@ -904,9 +867,7 @@
         <h3>Ajustes OCR</h3>
 
         <div class="control-group">
-          <div class="control-top">
-            <label for="languageSelect">Idioma</label>
-          </div>
+          <div class="control-top"><label for="languageSelect">Idioma</label></div>
           <select id="languageSelect">
             <option value="spa" selected>Español</option>
             <option value="eng">Inglés</option>
@@ -915,9 +876,7 @@
         </div>
 
         <div class="control-group">
-          <div class="control-top">
-            <label for="psmSelect">Modo de lectura</label>
-          </div>
+          <div class="control-top"><label for="psmSelect">Modo de lectura</label></div>
           <select id="psmSelect">
             <option value="6" selected>Bloque uniforme</option>
             <option value="3">Página automática</option>
@@ -960,9 +919,7 @@
         </div>
 
         <div class="control-group">
-          <div class="control-top">
-            <label for="preprocessMode">Preprocesado</label>
-          </div>
+          <div class="control-top"><label for="preprocessMode">Preprocesado</label></div>
           <select id="preprocessMode">
             <option value="auto" selected>Auto OCR</option>
             <option value="grayscale">Escala de grises</option>
@@ -977,24 +934,18 @@
         <h3>Edición manual</h3>
 
         <div class="control-group">
-          <div class="control-top">
-            <label for="textInput">Texto</label>
-          </div>
+          <div class="control-top"><label for="textInput">Texto</label></div>
           <textarea id="textInput" placeholder="Selecciona un bloque para editarlo"></textarea>
         </div>
 
         <div class="mini-grid">
           <div class="control-group">
-            <div class="control-top">
-              <label for="fontSizeInput">Tamaño</label>
-            </div>
+            <div class="control-top"><label for="fontSizeInput">Tamaño</label></div>
             <input id="fontSizeInput" type="number" min="8" max="200" value="20" />
           </div>
 
           <div class="control-group">
-            <div class="control-top">
-              <label for="fontFamilySelect">Fuente</label>
-            </div>
+            <div class="control-top"><label for="fontFamilySelect">Fuente</label></div>
             <select id="fontFamilySelect">
               <option value="Arial" selected>Arial</option>
               <option value="Times New Roman">Times New Roman</option>
@@ -1008,17 +959,13 @@
 
         <div class="mini-grid">
           <div class="control-group">
-            <div class="control-top">
-              <label for="textColorInput">Color texto</label>
-            </div>
-            <input id="textColorInput" type="color" value="#000000" style="padding:6px;height:42px;" />
+            <div class="control-top"><label for="textColorInput">Color texto</label></div>
+            <input id="textColorInput" type="color" value="#000000" style="padding:6px;height:42px;">
           </div>
 
           <div class="control-group">
-            <div class="control-top">
-              <label for="bgColorInput">Color fondo</label>
-            </div>
-            <input id="bgColorInput" type="color" value="#ffffff" style="padding:6px;height:42px;" />
+            <div class="control-top"><label for="bgColorInput">Color fondo</label></div>
+            <input id="bgColorInput" type="color" value="#ffffff" style="padding:6px;height:42px;">
           </div>
         </div>
 
@@ -1051,16 +998,6 @@
           <li>Cambiar fuente, tamaño, color y estilo.</li>
           <li>Tapar el texto original con fondo de reemplazo.</li>
         </ul>
-      </div>
-
-      <div class="side-card">
-        <h3>Herramientas relacionadas</h3>
-        <div class="tool-links">
-          <a href="/imagen-a-texto.html"><span>Imagen a texto</span><span>→</span></a>
-          <a href="/comprimir-imagen"><span>Comprimir imagen</span><span>→</span></a>
-          <a href="/redimensionar-imagen"><span>Redimensionar imagen</span><span>→</span></a>
-          <a href="/png-a-jpg"><span>PNG a JPG</span><span>→</span></a>
-        </div>
       </div>
     </aside>
   </section>
@@ -1142,6 +1079,7 @@
 
   let originalFile = null;
   let originalImageUrl = null;
+  let originalImageElement = null;
   let worker = null;
   let workerLang = null;
   let ocrRunning = false;
@@ -1311,58 +1249,13 @@
     }
   }
 
-  function buildStage(imageObj) {
-    const mount = document.getElementById('konvaMount');
-    mount.innerHTML = '';
-
-    const availableWidth = mount.parentElement.clientWidth - 2;
-    const maxHeight = Math.max(420, window.innerHeight - 320);
-
-    const ratio = Math.min(availableWidth / imageObj.width, maxHeight / imageObj.height, 1);
-    displayScale = ratio;
-
-    const stageWidth = Math.round(imageObj.width * ratio);
-    const stageHeight = Math.round(imageObj.height * ratio);
-
-    stage = new Konva.Stage({
-      container: 'konvaMount',
-      width: stageWidth,
-      height: stageHeight
-    });
-
-    layer = new Konva.Layer();
-    stage.add(layer);
-
-    backgroundNode = new Konva.Image({
-      image: imageObj,
-      x: 0,
-      y: 0,
-      width: stageWidth,
-      height: stageHeight,
-      listening: false
-    });
-
-    layer.add(backgroundNode);
-
-    transformer = new Konva.Transformer({
-      rotateEnabled: false,
-      ignoreStroke: true,
-      enabledAnchors: ['top-left','top-right','bottom-left','bottom-right'],
-      boundBoxFunc: (oldBox, newBox) => {
-        if (newBox.width < 20 || newBox.height < 12) return oldBox;
-        return newBox;
-      }
-    });
-
-    layer.add(transformer);
-
-    stage.on('click tap', (e) => {
-      if (e.target === stage || e.target === backgroundNode) {
-        selectGroup(null);
-      }
-    });
-
-    layer.draw();
+  function rgbToHex(value) {
+    if (!value) return '#000000';
+    if (value.startsWith('#')) return value;
+    const match = value.match(/\d+/g);
+    if (!match) return '#000000';
+    const [r, g, b] = match.map(Number);
+    return '#' + [r, g, b].map(v => v.toString(16).padStart(2, '0')).join('');
   }
 
   function computeTextStyleFlags(textNode) {
@@ -1383,10 +1276,8 @@
     rect.height(Math.max(8, text.height() + 8));
     text.x(5);
     text.y(4);
-
     group.width(rect.width());
     group.height(rect.height());
-
     layer.batchDraw();
   }
 
@@ -1438,8 +1329,7 @@
       fill,
       fontStyle,
       textDecoration: underline ? 'underline' : '',
-      padding: 0,
-      listening: true
+      padding: 0
     });
 
     group.add(bg);
@@ -1452,14 +1342,9 @@
       selectGroup(group);
     });
 
-    group.on('dragmove transform', () => {
-      layer.batchDraw();
-    });
-
     group.on('transformend', () => {
       const scaleX = group.scaleX();
       const scaleY = group.scaleY();
-
       textNode.fontSize(Math.max(8, textNode.fontSize() * Math.max(scaleX, scaleY)));
       group.scaleX(1);
       group.scaleY(1);
@@ -1470,20 +1355,13 @@
     return group;
   }
 
-  function selectGroup(group) {
-    selectedGroup = group;
-
-    if (!group) {
-      transformer.nodes([]);
-      canvasBadge.textContent = 'Sin seleccionar';
-      textInput.value = '';
-      return;
-    }
-
-    transformer.nodes([group]);
-    canvasBadge.textContent = 'Bloque seleccionado';
-    syncControlsFromSelection();
-    layer.batchDraw();
+  function refreshStyleButtons() {
+    [boldBtn, italicBtn, underlineBtn, toggleBgBtn].forEach(btn => {
+      const active = btn.dataset.active === '1';
+      btn.style.background = active ? '#2563EB' : 'rgba(255,255,255,.03)';
+      btn.style.color = '#fff';
+      btn.style.border = active ? 'none' : '1px solid rgba(148,163,184,.18)';
+    });
   }
 
   function syncControlsFromSelection() {
@@ -1502,28 +1380,22 @@
     italicBtn.dataset.active = flags.italic ? '1' : '0';
     underlineBtn.dataset.active = flags.underline ? '1' : '0';
     toggleBgBtn.dataset.active = bg.opacity() > 0 ? '1' : '0';
-
     refreshStyleButtons();
   }
 
-  function refreshStyleButtons() {
-    [boldBtn, italicBtn, underlineBtn, toggleBgBtn].forEach(btn => {
-      const active = btn.dataset.active === '1';
-      btn.style.background = active ? '#2563EB' : 'rgba(255,255,255,.03)';
-      btn.style.color = '#fff';
-      btn.style.border = active ? 'none' : '1px solid rgba(148,163,184,.18)';
-    });
-  }
-
-  function rgbToHex(value) {
-    if (!value) return '#000000';
-    if (value.startsWith('#')) return value;
-
-    const match = value.match(/\d+/g);
-    if (!match) return '#000000';
-
-    const [r, g, b] = match.map(Number);
-    return '#' + [r, g, b].map(v => v.toString(16).padStart(2, '0')).join('');
+  function selectGroup(group) {
+    selectedGroup = group;
+    if (!group) {
+      transformer.nodes([]);
+      canvasBadge.textContent = 'Sin seleccionar';
+      textInput.value = '';
+      layer.batchDraw();
+      return;
+    }
+    transformer.nodes([group]);
+    canvasBadge.textContent = 'Bloque seleccionado';
+    syncControlsFromSelection();
+    layer.batchDraw();
   }
 
   function applyTextChange() {
@@ -1565,7 +1437,6 @@
     if (!selectedGroup) return;
     const textNode = selectedGroup.findOne('.text-content');
     const flags = computeTextStyleFlags(textNode);
-
     flags[flag] = !flags[flag];
 
     let style = 'normal';
@@ -1575,7 +1446,6 @@
 
     textNode.fontStyle(style);
     textNode.textDecoration(flags.underline ? 'underline' : '');
-
     syncControlsFromSelection();
     updateGroupVisual(selectedGroup);
   }
@@ -1594,11 +1464,7 @@
       x: 40,
       y: 40,
       text: 'Nuevo texto',
-      fontSize: 22,
-      fontFamily: 'Arial',
-      fill: '#000000',
-      bgFill: '#ffffff',
-      bgEnabled: true
+      fontSize: 22
     });
     selectGroup(group);
     setStatus('Nuevo bloque añadido.', 'success');
@@ -1609,7 +1475,6 @@
       setStatus('Selecciona un bloque para duplicarlo.', 'warning');
       return;
     }
-
     const textNode = selectedGroup.findOne('.text-content');
     const bg = selectedGroup.findOne('.text-bg');
     const flags = computeTextStyleFlags(textNode);
@@ -1637,11 +1502,112 @@
       setStatus('Selecciona un bloque para eliminarlo.', 'warning');
       return;
     }
-
     selectedGroup.destroy();
     selectGroup(null);
     layer.draw();
     setStatus('Bloque eliminado.', 'success');
+  }
+
+  function buildStage(imageObj) {
+    const mount = document.getElementById('konvaMount');
+    mount.innerHTML = '';
+
+    const wrap = mount.parentElement;
+    const availableWidth = Math.max(280, wrap.clientWidth - 2);
+    const maxHeight = Math.max(360, window.innerHeight - 320);
+
+    const ratio = Math.min(availableWidth / imageObj.width, maxHeight / imageObj.height, 1);
+    displayScale = ratio;
+
+    const stageWidth = Math.max(280, Math.round(imageObj.width * ratio));
+    const stageHeight = Math.max(220, Math.round(imageObj.height * ratio));
+
+    stage = new Konva.Stage({
+      container: 'konvaMount',
+      width: stageWidth,
+      height: stageHeight
+    });
+
+    layer = new Konva.Layer();
+    stage.add(layer);
+
+    backgroundNode = new Konva.Image({
+      image: imageObj,
+      x: 0,
+      y: 0,
+      width: stageWidth,
+      height: stageHeight,
+      listening: false
+    });
+
+    layer.add(backgroundNode);
+
+    transformer = new Konva.Transformer({
+      rotateEnabled: false,
+      ignoreStroke: true,
+      enabledAnchors: ['top-left','top-right','bottom-left','bottom-right'],
+      boundBoxFunc: (oldBox, newBox) => {
+        if (newBox.width < 20 || newBox.height < 12) return oldBox;
+        return newBox;
+      }
+    });
+
+    layer.add(transformer);
+
+    stage.on('click tap', (e) => {
+      if (e.target === stage || e.target === backgroundNode) {
+        selectGroup(null);
+      }
+    });
+
+    layer.draw();
+  }
+
+  function rebuildStageForResize() {
+    if (!originalImageElement || !editorShell.classList.contains('active')) return;
+    const existingBlocks = [];
+
+    if (layer) {
+      layer.getChildren(node => node.className === 'Group').forEach(group => {
+        const textNode = group.findOne('.text-content');
+        const bg = group.findOne('.text-bg');
+        const flags = computeTextStyleFlags(textNode);
+
+        existingBlocks.push({
+          relX: group.x() / stage.width(),
+          relY: group.y() / stage.height(),
+          relSize: textNode.fontSize() / Math.max(stage.width(), stage.height()),
+          text: textNode.text(),
+          fontFamily: textNode.fontFamily(),
+          fill: rgbToHex(textNode.fill()),
+          bgFill: rgbToHex(bg.fill()),
+          bgEnabled: bg.opacity() > 0,
+          bold: flags.bold,
+          italic: flags.italic,
+          underline: flags.underline
+        });
+      });
+    }
+
+    buildStage(originalImageElement);
+
+    existingBlocks.forEach(item => {
+      createEditableBlock({
+        x: item.relX * stage.width(),
+        y: item.relY * stage.height(),
+        text: item.text,
+        fontSize: Math.max(8, item.relSize * Math.max(stage.width(), stage.height())),
+        fontFamily: item.fontFamily,
+        fill: item.fill,
+        bgFill: item.bgFill,
+        bgEnabled: item.bgEnabled,
+        bold: item.bold,
+        italic: item.italic,
+        underline: item.underline
+      });
+    });
+
+    selectGroup(null);
   }
 
   async function loadOriginalFile(file) {
@@ -1650,24 +1616,25 @@
     revokeUrls();
     originalFile = file;
     originalImageUrl = URL.createObjectURL(file);
+    originalImageElement = await createImageFromBlob(file);
 
-    const img = await createImageFromBlob(file);
     originalImageInfo = {
-      width: img.naturalWidth,
-      height: img.naturalHeight
+      width: originalImageElement.naturalWidth,
+      height: originalImageElement.naturalHeight
     };
-
-    buildStage(img);
 
     uploadZone.classList.add('hidden');
     editorShell.classList.add('active');
-    selectGroup(null);
 
-    setStatus('Imagen cargada. Ahora puedes detectar texto o añadir bloques manuales.');
-    renderInfo([
-      `Formato: ${file.type.split('/')[1].toUpperCase()}`,
-      'Editor listo'
-    ]);
+    requestAnimationFrame(() => {
+      buildStage(originalImageElement);
+      selectGroup(null);
+      setStatus('Imagen cargada. Ahora puedes detectar texto o añadir bloques manuales.');
+      renderInfo([
+        `Formato: ${file.type.split('/')[1].toUpperCase()}`,
+        'Editor listo'
+      ]);
+    });
   }
 
   async function runOCR() {
@@ -1702,8 +1669,7 @@
 
       words.forEach(word => {
         const value = (word.text || '').trim();
-        if (!value) return;
-        if (!word.bbox) return;
+        if (!value || !word.bbox) return;
 
         const x = word.bbox.x0 * displayScale;
         const y = word.bbox.y0 * displayScale;
@@ -1765,6 +1731,7 @@
   function resetAll() {
     revokeUrls();
     originalFile = null;
+    originalImageElement = null;
     selectedGroup = null;
     blockCounter = 0;
 
@@ -1862,8 +1829,13 @@
     }
   });
 
+  window.addEventListener('resize', () => {
+    if (editorShell.classList.contains('active')) {
+      rebuildStageForResize();
+    }
+  });
+
   refreshStyleButtons();
 </script>
-
 </body>
 </html>
