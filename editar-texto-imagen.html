@@ -1,1870 +1,227 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Editar Texto en Imagen Online Gratis | Ralyzo</title>
-  <meta name="description" content="Edita texto dentro de una imagen online gratis con Ralyzo. Detecta líneas de texto con OCR, edítalas directamente sobre la imagen y descarga el resultado final." />
-  <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://ralyzo.com/editar-texto-imagen" />
-
-  <meta property="og:title" content="Editar Texto en Imagen Online Gratis | Ralyzo" />
-  <meta property="og:description" content="Sube una imagen, detecta texto por líneas y edítalo directamente sobre la imagen con Ralyzo." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://ralyzo.com/editar-texto-imagen" />
-  <meta property="og:site_name" content="Ralyzo" />
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337166112417872" crossorigin="anonymous"></script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/konva@9/konva.min.js"></script>
-
-  <style>
-    :root{
-      --bg:#020B1F;
-      --panel:#0F172A;
-      --panel-2:#111827;
-      --panel-3:#0B1325;
-      --text:#F8FAFC;
-      --muted:#CBD5E1;
-      --muted-2:#94A3B8;
-      --line:rgba(148,163,184,.14);
-      --primary:#2563EB;
-      --primary-hover:#1D4ED8;
-      --success:#22C55E;
-      --danger:#EF4444;
-      --shadow:0 16px 40px rgba(0,0,0,.28);
-      --container:1200px;
-    }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:'Inter',sans-serif;
-      background:linear-gradient(180deg,#020B1F 0%, #06112A 100%);
-      color:var(--text);
-    }
-
-    a{text-decoration:none;color:inherit}
-    button,input,select,textarea{font:inherit}
-
-    .container{
-      width:min(var(--container), calc(100% - 40px));
-      margin:0 auto;
-    }
-
-    header{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      background:rgba(2,11,31,.9);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid var(--line);
-    }
-
-    .nav{
-      max-width:1200px;
-      margin:0 auto;
-      min-height:78px;
-      position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:flex-end;
-      padding:0 24px;
-    }
-
-    .logo-center{
-      position:absolute;
-      left:50%;
-      transform:translateX(-50%);
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-size:20px;
-      font-weight:800;
-      letter-spacing:.04em;
-      white-space:nowrap;
-      color:#F8FAFC;
-    }
-
-    .logo-mark{
-      width:0;
-      height:0;
-      border-left:16px solid transparent;
-      border-bottom:16px solid #ffffff;
-      opacity:.95;
-      flex-shrink:0;
-    }
-
-    .nav-links{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      color:var(--muted);
-      font-size:16px;
-      font-weight:600;
-    }
-
-    .nav-links > a,
-    .dropdown-toggle{
-      padding:12px 14px;
-      border-radius:12px;
-      transition:.2s ease;
-    }
-
-    .nav-links > a:hover,
-    .dropdown-toggle:hover{
-      color:#ffffff;
-      background:rgba(255,255,255,.04);
-    }
-
-    .dropdown{position:relative}
-    .dropdown::after{
-      content:"";
-      position:absolute;
-      left:0; right:0; top:100%;
-      height:18px;
-    }
-
-    .dropdown-toggle{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      cursor:pointer;
-      color:var(--muted);
-      font-size:16px;
-      font-weight:600;
-      background:none;
-      border:none;
-    }
-
-    .dropdown-arrow{
-      font-size:12px;
-      opacity:.85;
-      transition:transform .2s ease;
-    }
-
-    .dropdown:hover .dropdown-arrow,
-    .dropdown:focus-within .dropdown-arrow{
-      transform:rotate(180deg);
-    }
-
-    .dropdown-menu{
-      position:absolute;
-      top:calc(100% + 16px);
-      right:0;
-      min-width:320px;
-      background:#0F172A;
-      border:1px solid rgba(51,65,85,.95);
-      border-radius:16px;
-      padding:12px;
-      box-shadow:0 16px 40px rgba(0,0,0,.35);
-      opacity:0;
-      visibility:hidden;
-      transform:translateY(8px);
-      transition:opacity .2s ease, visibility .2s ease, transform .2s ease;
-      pointer-events:none;
-    }
-
-    .dropdown:hover .dropdown-menu,
-    .dropdown:focus-within .dropdown-menu{
-      opacity:1;
-      visibility:visible;
-      transform:translateY(0);
-      pointer-events:auto;
-    }
-
-    .dropdown-menu a{
-      display:block;
-      padding:12px 14px;
-      border-radius:12px;
-      color:#E2E8F0;
-      line-height:1.5;
-      transition:.2s ease;
-      font-weight:500;
-    }
-
-    .dropdown-menu a:hover{
-      background:#111827;
-      color:#ffffff;
-    }
-
-    .dropdown-menu .menu-title{
-      font-size:13px;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      color:#94A3B8;
-      padding:6px 14px 10px;
-      font-weight:700;
-    }
-
-    .dropdown-divider{
-      height:1px;
-      background:rgba(148,163,184,.14);
-      margin:8px 0;
-    }
-
-    .all-posts{
-      color:#93C5FD !important;
-      font-weight:700 !important;
-    }
-
-    main{
-      padding:24px 0 28px;
-      min-height:calc(100vh - 78px);
-    }
-
-    .hero{
-      text-align:center;
-      margin-bottom:18px;
-    }
-
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 14px;
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,.18);
-      background:rgba(255,255,255,.03);
-      color:#BFDBFE;
-      font-size:13px;
-      font-weight:800;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      margin-bottom:12px;
-    }
-
-    h1{
-      margin:0 0 10px;
-      font-size:42px;
-      line-height:1.05;
-      letter-spacing:-.03em;
-    }
-
-    .hero p{
-      margin:0 auto;
-      max-width:920px;
-      color:var(--muted-2);
-      font-size:17px;
-      line-height:1.65;
-    }
-
-    .app-grid{
-      display:grid;
-      grid-template-columns:minmax(0,1fr) 320px;
-      gap:18px;
-      align-items:start;
-      margin-top:18px;
-    }
-
-    .panel{
-      background:rgba(15,23,42,.5);
-      border:1px solid rgba(51,65,85,.76);
-      border-radius:24px;
-      box-shadow:var(--shadow);
-    }
-
-    .workspace{padding:16px}
-
-    .upload-zone{
-      width:100%;
-      border:2px dashed rgba(96,165,250,.35);
-      border-radius:20px;
-      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      min-height:170px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:20px;
-      transition:.2s ease;
-      cursor:pointer;
-    }
-
-    .upload-zone:hover,
-    .upload-zone.dragover{
-      border-color:#60A5FA;
-      background:rgba(37,99,235,.08);
-    }
-
-    .upload-zone.hidden{display:none}
-
-    .upload-inner{
-      width:100%;
-      max-width:620px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .upload-icon{
-      width:64px;
-      height:64px;
-      border-radius:18px;
-      background:rgba(37,99,235,.14);
-      border:1px solid rgba(96,165,250,.2);
-      display:grid;
-      place-items:center;
-      font-size:26px;
-      margin-bottom:14px;
-    }
-
-    .upload-inner h2{
-      margin:0 0 8px;
-      font-size:26px;
-      line-height:1.2;
-      color:#F8FAFC;
-    }
-
-    .upload-inner p{
-      margin:0 0 14px;
-      color:var(--muted-2);
-      line-height:1.65;
-      font-size:15px;
-    }
-
-    .upload-actions{
-      display:flex;
-      justify-content:center;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:2px;
-    }
-
-    .hint{
-      margin-top:12px;
-      color:#93C5FD;
-      font-size:13px;
-      font-weight:600;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      min-height:44px;
-      padding:10px 16px;
-      border:none;
-      border-radius:12px;
-      font-weight:700;
-      cursor:pointer;
-      transition:.2s ease;
-    }
-
-    .btn-primary{background:var(--primary);color:#fff}
-    .btn-primary:hover{background:var(--primary-hover);transform:translateY(-1px)}
-    .btn-secondary{
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(148,163,184,.18);
-      color:#E2E8F0;
-    }
-    .btn-secondary:hover{background:rgba(255,255,255,.05);transform:translateY(-1px)}
-    .btn-success{background:#15803D;color:#fff}
-    .btn-success:hover{background:#166534;transform:translateY(-1px)}
-    .btn-danger{
-      background:rgba(239,68,68,.12);
-      color:#FCA5A5;
-      border:1px solid rgba(239,68,68,.18);
-    }
-    .btn-danger:hover{background:rgba(239,68,68,.18);transform:translateY(-1px)}
-
-    .hidden{display:none !important}
-
-    .editor-shell{
-      display:none;
-      gap:14px;
-      flex-direction:column;
-    }
-    .editor-shell.active{display:flex}
-
-    .top-toolbar{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .preview-title{
-      font-size:18px;
-      font-weight:800;
-      color:#F8FAFC;
-    }
-
-    .loader-wrap{
-      display:none;
-      align-items:center;
-      gap:12px;
-      padding:14px 16px;
-      border-radius:14px;
-      background:rgba(37,99,235,.08);
-      border:1px solid rgba(37,99,235,.16);
-      color:#BFDBFE;
-      font-size:14px;
-      font-weight:700;
-    }
-
-    .loader-wrap.active{display:flex}
-
-    .progress-bar{
-      width:100%;
-      height:10px;
-      border-radius:999px;
-      background:rgba(255,255,255,.08);
-      overflow:hidden;
-      margin-top:10px;
-    }
-
-    .progress-fill{
-      width:0%;
-      height:100%;
-      background:linear-gradient(90deg,#2563EB,#60A5FA);
-      transition:width .2s ease;
-    }
-
-    .spinner{
-      width:20px;
-      height:20px;
-      border-radius:50%;
-      border:2px solid rgba(255,255,255,.15);
-      border-top-color:#60A5FA;
-      animation:spin .8s linear infinite;
-      flex-shrink:0;
-    }
-    @keyframes spin{to{transform:rotate(360deg)}}
-
-    .canvas-card{
-      border-radius:20px;
-      background:rgba(255,255,255,.02);
-      border:1px solid rgba(148,163,184,.12);
-      overflow:hidden;
-    }
-
-    .canvas-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:12px 14px;
-      border-bottom:1px solid rgba(148,163,184,.12);
-      background:rgba(255,255,255,.02);
-    }
-
-    .badge{
-      font-size:12px;
-      font-weight:800;
-      padding:6px 10px;
-      border-radius:999px;
-      background:rgba(37,99,235,.14);
-      color:#BFDBFE;
-      border:1px solid rgba(96,165,250,.16);
-    }
-
-    .canvas-wrap{padding:12px}
-
-    .canvas-stage{
-      width:100%;
-      min-height:420px;
-      max-height:calc(100vh - 300px);
-      overflow:auto;
-      background:#091122;
-      border-radius:16px;
-      border:1px solid rgba(51,65,85,.8);
-    }
-
-    #konvaMount{
-      display:flex;
-      align-items:flex-start;
-      justify-content:flex-start;
-      min-width:100%;
-      min-height:100%;
-      position:relative;
-    }
-
-    .editor-note{
-      margin-top:10px;
-      color:#94A3B8;
-      font-size:13px;
-      line-height:1.55;
-    }
-
-    .info-row{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .info-pill{
-      padding:10px 12px;
-      border-radius:12px;
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(148,163,184,.14);
-      color:#CBD5E1;
-      font-size:13px;
-      font-weight:600;
-    }
-
-    .sidebar{
-      padding:14px;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      position:sticky;
-      top:94px;
-    }
-
-    .side-card{
-      background:#111827;
-      border:1px solid #1F2937;
-      border-radius:18px;
-      padding:14px;
-    }
-
-    .side-card h3{
-      margin:0 0 12px;
-      font-size:17px;
-      line-height:1.2;
-    }
-
-    .control-group{margin-bottom:12px}
-    .control-group:last-child{margin-bottom:0}
-
-    .control-top{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      align-items:center;
-      margin-bottom:7px;
-    }
-
-    .control-top label{
-      color:#E2E8F0;
-      font-weight:700;
-      font-size:13px;
-    }
-
-    .value{
-      color:#93C5FD;
-      font-weight:700;
-      font-size:12px;
-    }
-
-    input[type="range"]{
-      width:100%;
-      accent-color:#2563EB;
-      cursor:pointer;
-    }
-
-    select,
-    input[type="text"],
-    input[type="number"],
-    textarea{
-      width:100%;
-      min-height:42px;
-      border-radius:12px;
-      border:1px solid rgba(51,65,85,.95);
-      background:#0B1325;
-      color:#F8FAFC;
-      padding:10px 12px;
-      outline:none;
-    }
-
-    textarea{
-      min-height:92px;
-      resize:vertical;
-      line-height:1.55;
-    }
-
-    select:focus,
-    input[type="text"]:focus,
-    input[type="number"]:focus,
-    textarea:focus{
-      border-color:#2563EB;
-    }
-
-    .mini-grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:8px;
-    }
-
-    .actions-stack{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-
-    .status{
-      min-height:22px;
-      color:#93C5FD;
-      font-size:14px;
-      font-weight:600;
-    }
-    .status.success{color:#86EFAC}
-    .status.warning{color:#FCD34D}
-    .status.error{color:#FCA5A5}
-
-    .tips{
-      margin:0;
-      padding-left:18px;
-      color:#CBD5E1;
-      line-height:1.75;
-      font-size:14px;
-    }
-
-    .tips li{margin-bottom:4px}
-
-    footer{
-      margin-top:18px;
-      padding:0 24px 24px;
-    }
-
-    .footer-card{
-      max-width:1200px;
-      margin:0 auto;
-      background:rgba(15,23,42,.46);
-      border:1px solid rgba(51,65,85,.75);
-      border-radius:24px;
-      padding:18px 22px;
-      box-shadow:var(--shadow);
-    }
-
-    .footer-top{
-      display:flex;
-      justify-content:space-between;
-      gap:20px;
-      flex-wrap:wrap;
-      margin-bottom:14px;
-      align-items:flex-start;
-    }
-
-    .footer-brand{max-width:620px}
-
-    .footer-logo{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-size:20px;
-      font-weight:800;
-      letter-spacing:.04em;
-      margin-bottom:8px;
-      color:#F8FAFC;
-    }
-
-    .footer-logo .logo-mark{
-      border-left:16px solid transparent;
-      border-bottom:16px solid #ffffff;
-    }
-
-    .footer-brand p{
-      margin:0;
-      color:#CBD5E1;
-      line-height:1.7;
-      font-size:15px;
-    }
-
-    .footer-nav{
-      display:flex;
-      gap:16px;
-      flex-wrap:wrap;
-      padding-top:4px;
-    }
-
-    .footer-nav a{
-      color:#E2E8F0;
-      font-weight:700;
-    }
-
-    .footer-nav a:hover{color:#ffffff}
-
-    .footer-bottom{
-      border-top:1px solid rgba(148,163,184,.14);
-      padding-top:14px;
-      display:flex;
-      justify-content:space-between;
-      gap:16px;
-      flex-wrap:wrap;
-      color:#94A3B8;
-      font-size:13px;
-    }
-
-    @media (max-width:1100px){
-      .app-grid{grid-template-columns:1fr}
-      .sidebar{position:static;top:auto}
-    }
-
-    @media (max-width:950px){
-      .nav{
-        justify-content:center;
-        padding-top:70px;
-        padding-bottom:14px;
-      }
-      .logo-center{top:18px}
-      .dropdown-menu{
-        right:auto;
-        left:50%;
-        transform:translateX(-50%) translateY(8px);
-        width:min(92vw,340px);
-      }
-      .dropdown:hover .dropdown-menu,
-      .dropdown:focus-within .dropdown-menu{
-        transform:translateX(-50%) translateY(0);
-      }
-      h1{font-size:34px}
-      .hero p{font-size:16px}
-      .canvas-stage{max-height:none;min-height:360px}
-    }
-
-    @media (max-width:640px){
-      .container{width:min(var(--container), calc(100% - 24px))}
-      .nav-links{
-        gap:8px;
-        font-size:14px;
-        flex-wrap:wrap;
-        justify-content:center;
-      }
-      .nav-links > a,
-      .dropdown-toggle{
-        padding:10px 12px;
-      }
-      main{padding-top:20px}
-      .workspace,.sidebar{padding:12px}
-      .top-toolbar{flex-direction:column;align-items:stretch}
-      .mini-grid{grid-template-columns:1fr}
-      .footer-card{padding:18px}
-      .footer-top,.footer-bottom{flex-direction:column;align-items:flex-start}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Editar texto en imagen online GRATIS | OCR + Editor visual</title>
+<meta name="description" content="Edita texto dentro de imágenes online gratis. Detecta texto automáticamente con OCR y modifícalo directamente sobre la imagen.">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
+
+<style>
+body{
+    margin:0;
+    font-family:Inter,sans-serif;
+    background:#0B1220;
+    color:#fff;
+}
+
+/* HEADER */
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 40px;
+}
+
+.logo{
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo::before{
+    content:"";
+    width:12px;
+    height:12px;
+    background:white;
+    clip-path:polygon(0 0,100% 50%,0 100%);
+}
+
+/* HERO */
+.hero{
+    text-align:center;
+    padding:40px 20px;
+}
+
+.hero h1{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#9CA3AF;
+}
+
+/* BOTONES */
+.actions{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin:20px;
+}
+
+button{
+    padding:10px 18px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.primary{
+    background:#3B82F6;
+    color:white;
+}
+
+.secondary{
+    background:#1F2937;
+    color:white;
+}
+
+/* LIENZO */
+.editor-container{
+    max-width:900px;
+    margin:auto;
+    position:relative;
+}
+
+.canvas{
+    position:relative;
+    border:2px dashed #334155;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+.canvas img{
+    width:100%;
+    display:block;
+}
+
+/* BLOQUES EDITABLES */
+.text-block{
+    position:absolute;
+    border:1px dashed rgba(255,255,255,0.3);
+    padding:2px;
+    cursor:text;
+}
+
+.text-block[contenteditable="true"]:focus{
+    outline:2px solid #3B82F6;
+    background:rgba(0,0,0,0.4);
+}
+
+/* PANEL */
+.panel{
+    max-width:900px;
+    margin:20px auto;
+}
+
+.panel-content{
+    display:none;
+    margin-top:10px;
+}
+
+.panel.open .panel-content{
+    display:block;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+    .hero h1{
+        font-size:24px;
+    }
+}
+</style>
 </head>
-<body>
-<header>
-  <nav class="nav">
-    <a href="/" class="logo-center" aria-label="Ralyzo inicio">
-      <span class="logo-mark"></span>
-      <span>RALYZO</span>
-    </a>
 
-    <div class="nav-links">
-      <a href="/#herramientas">Herramientas</a>
-      <a href="/#precios">Precios</a>
-      <div class="dropdown">
-        <button class="dropdown-toggle" type="button" aria-label="Abrir menú de blog">
-          <span>Blog</span>
-          <span class="dropdown-arrow">▾</span>
-        </button>
-        <div class="dropdown-menu">
-          <div class="menu-title">Artículos</div>
-          <a href="/blog/como-comprimir-imagen.html">Cómo comprimir imágenes sin perder calidad</a>
-          <a href="/blog/jpg-vs-png.html">JPG vs PNG: cuál usar en cada caso</a>
-          <a href="/blog/optimizar-imagenes-web.html">Cómo optimizar imágenes para una web más rápida</a>
-          <a href="/blog/formatos-imagen.html">Formatos de imagen: guía rápida</a>
-          <a href="/blog/reducir-peso-imagen.html">Cómo reducir el peso de una imagen</a>
-          <a href="/blog/convertir-imagen.html">Cómo convertir imágenes sin perder calidad</a>
-          <div class="dropdown-divider"></div>
-          <a class="all-posts" href="/blog/">Ver todos los artículos</a>
-        </div>
-      </div>
-    </div>
-  </nav>
+<body>
+
+<header>
+    <div class="logo">RALYZO</div>
+    <nav>Herramientas · Precios · Blog</nav>
 </header>
 
-<main class="container">
-  <section class="hero">
-    <div>
-      <div class="eyebrow">OCR + edición manual • editor de documentos en imagen</div>
-      <h1>Editar texto en imagen online</h1>
-      <p>
-        Sube una imagen de documento, detecta el texto por líneas y edítalo manualmente con control total:
-        contenido, tamaño, fuente, color, negrita, cursiva, subrayado y fondo de reemplazo.
-      </p>
+<section class="hero">
+    <h1>Editar texto en imagen</h1>
+    <p>Haz clic sobre el texto detectado y edítalo directamente</p>
+</section>
+
+<div class="actions">
+    <input type="file" id="fileInput" hidden>
+    <button class="secondary" onclick="fileInput.click()">Subir imagen</button>
+    <button class="primary" onclick="detectar()">Detectar texto</button>
+    <button class="primary" onclick="descargar()">Descargar</button>
+</div>
+
+<div class="editor-container">
+    <div class="canvas" id="canvas">
+        <img id="img">
     </div>
-  </section>
+</div>
 
-  <section class="app-grid">
-    <div class="panel workspace">
-      <div class="upload-zone" id="uploadZone" role="button" tabindex="0">
-        <div class="upload-inner">
-          <div class="upload-icon">✏️</div>
-          <h2>Sube una imagen para editar su texto</h2>
-          <p>
-            Arrastra tu archivo aquí o selecciónalo desde tu dispositivo. Después detecta el texto
-            y toca cada bloque directamente sobre la imagen para editarlo.
-          </p>
-          <div class="upload-actions">
-            <button type="button" class="btn btn-primary" id="selectImageBtn">Seleccionar imagen</button>
-            <button type="button" class="btn btn-secondary" id="pasteHintBtn">Pegar imagen</button>
-          </div>
-          <div class="hint">Compatible con JPG, PNG y WEBP • OCR por líneas • Edición directa</div>
-        </div>
-      </div>
-
-      <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp" class="hidden" />
-
-      <div id="editorShell" class="editor-shell">
-        <div class="top-toolbar">
-          <div class="preview-title">Editor visual</div>
-          <div class="upload-actions" style="justify-content:flex-end">
-            <button type="button" class="btn btn-secondary" id="replaceBtn">Cambiar imagen</button>
-            <button type="button" class="btn btn-primary" id="detectBtn">Detectar texto</button>
-          </div>
-        </div>
-
-        <div class="loader-wrap" id="loaderWrap">
-          <div class="spinner"></div>
-          <div style="width:100%">
-            <div id="loaderText">Preparando OCR...</div>
-            <div class="progress-bar">
-              <div class="progress-fill" id="progressFill"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="canvas-card">
-          <div class="canvas-head">
-            <strong>Documento editable</strong>
-            <span class="badge" id="canvasBadge">Sin seleccionar</span>
-          </div>
-          <div class="canvas-wrap">
-            <div class="canvas-stage">
-              <div id="konvaMount"></div>
-            </div>
-            <div class="editor-note">
-              Toca un bloque azul sobre la imagen para editarlo. La detección se hace por líneas para evitar demasiados bloques.
-            </div>
-          </div>
-        </div>
-
-        <div class="info-row" id="infoRow"></div>
-      </div>
+<div class="panel" id="panel">
+    <button class="secondary" onclick="togglePanel()">Edición manual</button>
+    <div class="panel-content">
+        <p style="color:#9CA3AF">Opciones avanzadas (en desarrollo)</p>
     </div>
-
-    <aside class="panel sidebar">
-      <div class="side-card">
-        <h3>Ajustes OCR</h3>
-
-        <div class="control-group">
-          <div class="control-top"><label for="languageSelect">Idioma</label></div>
-          <select id="languageSelect">
-            <option value="spa" selected>Español</option>
-            <option value="eng">Inglés</option>
-            <option value="spa+eng">Español + Inglés</option>
-          </select>
-        </div>
-
-        <div class="control-group">
-          <div class="control-top"><label for="scaleRange">Escala OCR</label><span class="value" id="scaleValue">2.0x</span></div>
-          <input id="scaleRange" type="range" min="1" max="4" step="0.5" value="2" />
-        </div>
-
-        <div class="control-group">
-          <div class="control-top"><label for="contrastRange">Contraste</label><span class="value" id="contrastValue">130%</span></div>
-          <input id="contrastRange" type="range" min="80" max="220" step="10" value="130" />
-        </div>
-
-        <div class="control-group">
-          <div class="control-top"><label for="brightnessRange">Brillo</label><span class="value" id="brightnessValue">100%</span></div>
-          <input id="brightnessRange" type="range" min="70" max="160" step="5" value="100" />
-        </div>
-
-        <div class="control-group">
-          <div class="control-top"><label for="thresholdRange">Umbral</label><span class="value" id="thresholdValue">160</span></div>
-          <input id="thresholdRange" type="range" min="0" max="255" step="1" value="160" />
-        </div>
-
-        <div class="control-group">
-          <div class="control-top"><label for="preprocessMode">Preprocesado</label></div>
-          <select id="preprocessMode">
-            <option value="auto" selected>Auto OCR</option>
-            <option value="grayscale">Escala de grises</option>
-            <option value="threshold">Blanco y negro</option>
-            <option value="invert">Invertido</option>
-            <option value="none">Sin filtros</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="side-card">
-        <h3>Edición manual</h3>
-
-        <div class="control-group">
-          <div class="control-top"><label for="textInput">Texto</label></div>
-          <textarea id="textInput" placeholder="Selecciona un bloque en la imagen para editarlo"></textarea>
-        </div>
-
-        <div class="mini-grid">
-          <div class="control-group">
-            <div class="control-top"><label for="fontSizeInput">Tamaño</label></div>
-            <input id="fontSizeInput" type="number" min="8" max="200" value="20" />
-          </div>
-
-          <div class="control-group">
-            <div class="control-top"><label for="fontFamilySelect">Fuente</label></div>
-            <select id="fontFamilySelect">
-              <option value="Arial" selected>Arial</option>
-              <option value="Times New Roman">Times New Roman</option>
-              <option value="Verdana">Verdana</option>
-              <option value="Courier New">Courier New</option>
-              <option value="Georgia">Georgia</option>
-              <option value="Tahoma">Tahoma</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="mini-grid">
-          <div class="control-group">
-            <div class="control-top"><label for="textColorInput">Color texto</label></div>
-            <input id="textColorInput" type="color" value="#000000" style="padding:6px;height:42px;">
-          </div>
-
-          <div class="control-group">
-            <div class="control-top"><label for="bgColorInput">Color fondo</label></div>
-            <input id="bgColorInput" type="color" value="#ffffff" style="padding:6px;height:42px;">
-          </div>
-        </div>
-
-        <div class="mini-grid">
-          <button type="button" class="btn btn-secondary" id="boldBtn">Negrita</button>
-          <button type="button" class="btn btn-secondary" id="italicBtn">Cursiva</button>
-          <button type="button" class="btn btn-secondary" id="underlineBtn">Subrayado</button>
-          <button type="button" class="btn btn-secondary" id="toggleBgBtn">Fondo on/off</button>
-        </div>
-      </div>
-
-      <div class="side-card">
-        <h3>Acciones</h3>
-        <div class="actions-stack">
-          <button type="button" class="btn btn-secondary" id="addTextBtn">Añadir texto nuevo</button>
-          <button type="button" class="btn btn-secondary" id="duplicateBtn">Duplicar bloque</button>
-          <button type="button" class="btn btn-danger" id="deleteBtn">Eliminar bloque</button>
-          <button type="button" class="btn btn-success" id="downloadBtn">Descargar imagen</button>
-          <button type="button" class="btn btn-danger" id="resetBtn">Restablecer</button>
-        </div>
-        <div class="status" id="statusText">Sube una imagen para empezar.</div>
-      </div>
-
-      <div class="side-card">
-        <h3>Qué puedes hacer</h3>
-        <ul class="tips">
-          <li>Detectar texto por líneas, no por palabra.</li>
-          <li>Tocar cada bloque directamente sobre la imagen.</li>
-          <li>Cambiar contenido, tamaño, fuente y color.</li>
-          <li>Tapar el texto original con fondo de reemplazo.</li>
-          <li>Mover, duplicar o borrar bloques.</li>
-        </ul>
-      </div>
-    </aside>
-  </section>
-</main>
-
-<footer>
-  <div class="footer-card">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <div class="footer-logo">
-          <span class="logo-mark"></span>
-          <span>RALYZO</span>
-        </div>
-        <p>
-          Herramientas online gratuitas para comprimir, convertir y optimizar imágenes de forma rápida,
-          segura y directamente desde tu navegador.
-        </p>
-      </div>
-
-      <div class="footer-nav">
-        <a href="/">Inicio</a>
-        <a href="/#herramientas">Herramientas</a>
-        <a href="/blog/">Blog</a>
-        <a href="/#precios">Precios</a>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <div>© 2026 Ralyzo. Todos los derechos reservados.</div>
-      <div>Editor visual de texto en imagen con OCR por líneas.</div>
-    </div>
-  </div>
-</footer>
+</div>
 
 <script>
-  const fileInput = document.getElementById('fileInput');
-  const uploadZone = document.getElementById('uploadZone');
-  const selectImageBtn = document.getElementById('selectImageBtn');
-  const pasteHintBtn = document.getElementById('pasteHintBtn');
-  const editorShell = document.getElementById('editorShell');
-  const detectBtn = document.getElementById('detectBtn');
-  const replaceBtn = document.getElementById('replaceBtn');
-  const loaderWrap = document.getElementById('loaderWrap');
-  const loaderText = document.getElementById('loaderText');
-  const progressFill = document.getElementById('progressFill');
-  const statusText = document.getElementById('statusText');
-  const infoRow = document.getElementById('infoRow');
-  const canvasBadge = document.getElementById('canvasBadge');
-
-  const languageSelect = document.getElementById('languageSelect');
-  const scaleRange = document.getElementById('scaleRange');
-  const contrastRange = document.getElementById('contrastRange');
-  const brightnessRange = document.getElementById('brightnessRange');
-  const thresholdRange = document.getElementById('thresholdRange');
-  const preprocessMode = document.getElementById('preprocessMode');
-
-  const scaleValue = document.getElementById('scaleValue');
-  const contrastValue = document.getElementById('contrastValue');
-  const brightnessValue = document.getElementById('brightnessValue');
-  const thresholdValue = document.getElementById('thresholdValue');
-
-  const textInput = document.getElementById('textInput');
-  const fontSizeInput = document.getElementById('fontSizeInput');
-  const fontFamilySelect = document.getElementById('fontFamilySelect');
-  const textColorInput = document.getElementById('textColorInput');
-  const bgColorInput = document.getElementById('bgColorInput');
-
-  const boldBtn = document.getElementById('boldBtn');
-  const italicBtn = document.getElementById('italicBtn');
-  const underlineBtn = document.getElementById('underlineBtn');
-  const toggleBgBtn = document.getElementById('toggleBgBtn');
-
-  const addTextBtn = document.getElementById('addTextBtn');
-  const duplicateBtn = document.getElementById('duplicateBtn');
-  const deleteBtn = document.getElementById('deleteBtn');
-  const downloadBtn = document.getElementById('downloadBtn');
-  const resetBtn = document.getElementById('resetBtn');
-
-  let originalFile = null;
-  let originalImageUrl = null;
-  let originalImageElement = null;
-  let worker = null;
-  let workerLang = null;
-  let ocrRunning = false;
-
-  let stage = null;
-  let layer = null;
-  let transformer = null;
-  let backgroundNode = null;
-  let selectedGroup = null;
-  let originalImageInfo = { width: 0, height: 0 };
-  let displayScale = 1;
-  let blockCounter = 0;
-
-  function setStatus(text, type = '') {
-    statusText.textContent = text;
-    statusText.className = 'status';
-    if (type) statusText.classList.add(type);
-  }
-
-  function toggleLoader(show) {
-    loaderWrap.classList.toggle('active', show);
-    if (!show) progressFill.style.width = '0%';
-  }
-
-  function updateRangeLabels() {
-    scaleValue.textContent = `${Number(scaleRange.value).toFixed(1)}x`;
-    contrastValue.textContent = `${contrastRange.value}%`;
-    brightnessValue.textContent = `${brightnessRange.value}%`;
-    thresholdValue.textContent = `${thresholdRange.value}`;
-  }
-
-  [scaleRange, contrastRange, brightnessRange, thresholdRange].forEach(input => {
-    input.addEventListener('input', updateRangeLabels);
-  });
-  updateRangeLabels();
-
-  function bytesToSize(bytes) {
-    if (!bytes && bytes !== 0) return '-';
-    const units = ['B', 'KB', 'MB', 'GB'];
-    let i = 0;
-    let value = bytes;
-    while (value >= 1024 && i < units.length - 1) {
-      value /= 1024;
-      i++;
-    }
-    return `${value.toFixed(value >= 10 || i === 0 ? 0 : 1)} ${units[i]}`;
-  }
-
-  function renderInfo(extra = []) {
-    const items = [];
-    if (originalFile) {
-      items.push(`Nombre: ${originalFile.name}`);
-      items.push(`Peso original: ${bytesToSize(originalFile.size)}`);
-      items.push(`Resolución: ${originalImageInfo.width} × ${originalImageInfo.height}`);
-    }
-    extra.forEach(item => items.push(item));
-    infoRow.innerHTML = items.map(item => `<div class="info-pill">${item}</div>`).join('');
-  }
-
-  function revokeUrls() {
-    if (originalImageUrl) {
-      URL.revokeObjectURL(originalImageUrl);
-      originalImageUrl = null;
-    }
-  }
-
-  function createImageFromBlob(blob) {
-    return new Promise((resolve, reject) => {
-      const url = URL.createObjectURL(blob);
-      const img = new Image();
-      img.onload = () => {
-        URL.revokeObjectURL(url);
-        resolve(img);
-      };
-      img.onerror = () => {
-        URL.revokeObjectURL(url);
-        reject(new Error('No se pudo leer la imagen.'));
-      };
-      img.src = url;
-    });
-  }
-
-  async function generateProcessedBlob() {
-    if (!originalFile) throw new Error('No hay imagen cargada.');
-
-    const img = await createImageFromBlob(originalFile);
-    const scale = Number(scaleRange.value);
-    const contrast = Number(contrastRange.value) / 100;
-    const brightness = Number(brightnessRange.value) / 100;
-    const threshold = Number(thresholdRange.value);
-    const mode = preprocessMode.value;
-
-    const canvas = document.createElement('canvas');
-    canvas.width = Math.max(1, Math.round(img.naturalWidth * scale));
-    canvas.height = Math.max(1, Math.round(img.naturalHeight * scale));
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
-
-    ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
-    ctx.filter = `contrast(${contrast}) brightness(${brightness})`;
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-    ctx.filter = 'none';
-
-    if (mode !== 'none') {
-      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      const data = imageData.data;
-
-      for (let i = 0; i < data.length; i += 4) {
-        const r = data[i];
-        const g = data[i + 1];
-        const b = data[i + 2];
-        const gray = 0.299 * r + 0.587 * g + 0.114 * b;
-
-        if (mode === 'grayscale' || mode === 'auto') {
-          data[i] = gray;
-          data[i + 1] = gray;
-          data[i + 2] = gray;
-        }
-
-        if (mode === 'threshold' || mode === 'auto') {
-          const bw = gray > threshold ? 255 : 0;
-          data[i] = bw;
-          data[i + 1] = bw;
-          data[i + 2] = bw;
-        }
-
-        if (mode === 'invert') {
-          data[i] = 255 - r;
-          data[i + 1] = 255 - g;
-          data[i + 2] = 255 - b;
-        }
-      }
-
-      ctx.putImageData(imageData, 0, 0);
-    }
-
-    const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-    if (!blob) throw new Error('No se pudo preparar la imagen.');
-    return blob;
-  }
-
-  async function ensureWorker(lang) {
-    if (!worker) {
-      worker = await Tesseract.createWorker(lang, 1, {
-        logger: message => {
-          if (message.status) loaderText.textContent = `${message.status}...`;
-          if (typeof message.progress === 'number') {
-            progressFill.style.width = `${Math.round(message.progress * 100)}%`;
-          }
-        }
-      });
-      workerLang = lang;
-      return;
-    }
-
-    if (workerLang !== lang) {
-      await worker.terminate();
-      worker = await Tesseract.createWorker(lang, 1, {
-        logger: message => {
-          if (message.status) loaderText.textContent = `${message.status}...`;
-          if (typeof message.progress === 'number') {
-            progressFill.style.width = `${Math.round(message.progress * 100)}%`;
-          }
-        }
-      });
-      workerLang = lang;
-    }
-  }
-
-  function rgbToHex(value) {
-    if (!value) return '#000000';
-    if (value.startsWith('#')) return value;
-    const match = value.match(/\d+/g);
-    if (!match) return '#000000';
-    const [r, g, b] = match.map(Number);
-    return '#' + [r, g, b].map(v => v.toString(16).padStart(2, '0')).join('');
-  }
-
-  function computeTextStyleFlags(textNode) {
-    const style = textNode.fontStyle() || 'normal';
-    return {
-      bold: style.includes('bold'),
-      italic: style.includes('italic'),
-      underline: textNode.textDecoration() === 'underline'
-    };
-  }
-
-  function updateGroupVisual(group) {
-    if (!group) return;
-    const rect = group.findOne('.text-bg');
-    const text = group.findOne('.text-content');
-
-    rect.width(Math.max(8, text.width() + 10));
-    rect.height(Math.max(8, text.height() + 8));
-    text.x(5);
-    text.y(4);
-    group.width(rect.width());
-    group.height(rect.height());
-    layer.batchDraw();
-  }
-
-  function createEditableBlock({
-    x = 40,
-    y = 40,
-    text = 'Nuevo texto',
-    fontSize = 20,
-    fontFamily = 'Arial',
-    fill = '#000000',
-    bgFill = '#ffffff',
-    bgEnabled = true,
-    bold = false,
-    italic = false,
-    underline = false
-  }) {
-    blockCounter += 1;
-
-    let fontStyle = 'normal';
-    if (bold && italic) fontStyle = 'bold italic';
-    else if (bold) fontStyle = 'bold';
-    else if (italic) fontStyle = 'italic';
-
-    const group = new Konva.Group({
-      x,
-      y,
-      draggable: true,
-      id: `block-${blockCounter}`
-    });
-
-    const bg = new Konva.Rect({
-      name: 'text-bg',
-      x: 0,
-      y: 0,
-      width: 10,
-      height: 10,
-      fill: bgFill,
-      opacity: bgEnabled ? 1 : 0,
-      cornerRadius: 2,
-      stroke: 'rgba(37,99,235,.35)',
-      strokeWidth: 1
-    });
-
-    const textNode = new Konva.Text({
-      name: 'text-content',
-      x: 5,
-      y: 4,
-      text,
-      fontSize,
-      fontFamily,
-      fill,
-      fontStyle,
-      textDecoration: underline ? 'underline' : '',
-      padding: 0,
-      listening: false
-    });
-
-    group.add(bg);
-    group.add(textNode);
-    layer.add(group);
-    updateGroupVisual(group);
-
-    group.on('click tap', (e) => {
-      e.cancelBubble = true;
-      selectGroup(group);
-    });
-
-    group.on('transformend', () => {
-      const scaleX = group.scaleX();
-      const scaleY = group.scaleY();
-      textNode.fontSize(Math.max(8, textNode.fontSize() * Math.max(scaleX, scaleY)));
-      group.scaleX(1);
-      group.scaleY(1);
-      updateGroupVisual(group);
-      if (selectedGroup === group) syncControlsFromSelection();
-    });
-
-    return group;
-  }
-
-  function refreshStyleButtons() {
-    [boldBtn, italicBtn, underlineBtn, toggleBgBtn].forEach(btn => {
-      const active = btn.dataset.active === '1';
-      btn.style.background = active ? '#2563EB' : 'rgba(255,255,255,.03)';
-      btn.style.color = '#fff';
-      btn.style.border = active ? 'none' : '1px solid rgba(148,163,184,.18)';
-    });
-  }
-
-  function syncControlsFromSelection() {
-    if (!selectedGroup) return;
-    const textNode = selectedGroup.findOne('.text-content');
-    const bg = selectedGroup.findOne('.text-bg');
-    const flags = computeTextStyleFlags(textNode);
-
-    textInput.value = textNode.text();
-    fontSizeInput.value = Math.round(textNode.fontSize());
-    fontFamilySelect.value = textNode.fontFamily();
-    textColorInput.value = rgbToHex(textNode.fill());
-    bgColorInput.value = rgbToHex(bg.fill());
-
-    boldBtn.dataset.active = flags.bold ? '1' : '0';
-    italicBtn.dataset.active = flags.italic ? '1' : '0';
-    underlineBtn.dataset.active = flags.underline ? '1' : '0';
-    toggleBgBtn.dataset.active = bg.opacity() > 0 ? '1' : '0';
-    refreshStyleButtons();
-  }
-
-  function selectGroup(group) {
-    selectedGroup = group;
-    if (!group) {
-      transformer.nodes([]);
-      canvasBadge.textContent = 'Sin seleccionar';
-      textInput.value = '';
-      layer.batchDraw();
-      return;
-    }
-    transformer.nodes([group]);
-    canvasBadge.textContent = 'Bloque seleccionado';
-    syncControlsFromSelection();
-    layer.batchDraw();
-  }
-
-  function applyTextChange() {
-    if (!selectedGroup) return;
-    const textNode = selectedGroup.findOne('.text-content');
-    textNode.text(textInput.value || ' ');
-    updateGroupVisual(selectedGroup);
-  }
-
-  function applyFontSize() {
-    if (!selectedGroup) return;
-    const textNode = selectedGroup.findOne('.text-content');
-    textNode.fontSize(Math.max(8, Number(fontSizeInput.value) || 20));
-    updateGroupVisual(selectedGroup);
-  }
-
-  function applyFontFamily() {
-    if (!selectedGroup) return;
-    const textNode = selectedGroup.findOne('.text-content');
-    textNode.fontFamily(fontFamilySelect.value);
-    updateGroupVisual(selectedGroup);
-  }
-
-  function applyTextColor() {
-    if (!selectedGroup) return;
-    const textNode = selectedGroup.findOne('.text-content');
-    textNode.fill(textColorInput.value);
-    layer.batchDraw();
-  }
-
-  function applyBgColor() {
-    if (!selectedGroup) return;
-    const bg = selectedGroup.findOne('.text-bg');
-    bg.fill(bgColorInput.value);
-    layer.batchDraw();
-  }
-
-  function toggleFontFlag(flag) {
-    if (!selectedGroup) return;
-    const textNode = selectedGroup.findOne('.text-content');
-    const flags = computeTextStyleFlags(textNode);
-    flags[flag] = !flags[flag];
-
-    let style = 'normal';
-    if (flags.bold && flags.italic) style = 'bold italic';
-    else if (flags.bold) style = 'bold';
-    else if (flags.italic) style = 'italic';
-
-    textNode.fontStyle(style);
-    textNode.textDecoration(flags.underline ? 'underline' : '');
-    syncControlsFromSelection();
-    updateGroupVisual(selectedGroup);
-  }
-
-  function toggleBg() {
-    if (!selectedGroup) return;
-    const bg = selectedGroup.findOne('.text-bg');
-    bg.opacity(bg.opacity() > 0 ? 0 : 1);
-    syncControlsFromSelection();
-    layer.batchDraw();
-  }
-
-  function addNewBlock() {
-    if (!stage) return;
-    const group = createEditableBlock({
-      x: 40,
-      y: 40,
-      text: 'Nuevo texto',
-      fontSize: 22
-    });
-    selectGroup(group);
-    setStatus('Nuevo bloque añadido.', 'success');
-  }
-
-  function duplicateSelected() {
-    if (!selectedGroup) {
-      setStatus('Selecciona un bloque para duplicarlo.', 'warning');
-      return;
-    }
-    const textNode = selectedGroup.findOne('.text-content');
-    const bg = selectedGroup.findOne('.text-bg');
-    const flags = computeTextStyleFlags(textNode);
-
-    const group = createEditableBlock({
-      x: selectedGroup.x() + 20,
-      y: selectedGroup.y() + 20,
-      text: textNode.text(),
-      fontSize: textNode.fontSize(),
-      fontFamily: textNode.fontFamily(),
-      fill: rgbToHex(textNode.fill()),
-      bgFill: rgbToHex(bg.fill()),
-      bgEnabled: bg.opacity() > 0,
-      bold: flags.bold,
-      italic: flags.italic,
-      underline: flags.underline
-    });
-
-    selectGroup(group);
-    setStatus('Bloque duplicado.', 'success');
-  }
-
-  function deleteSelected() {
-    if (!selectedGroup) {
-      setStatus('Selecciona un bloque para eliminarlo.', 'warning');
-      return;
-    }
-    selectedGroup.destroy();
-    selectGroup(null);
-    layer.draw();
-    setStatus('Bloque eliminado.', 'success');
-  }
-
-  function buildStage(imageObj) {
-    const mount = document.getElementById('konvaMount');
-    mount.innerHTML = '';
-
-    const wrap = mount.parentElement;
-    const availableWidth = Math.max(280, wrap.clientWidth - 2);
-    const maxHeight = Math.max(360, window.innerHeight - 320);
-
-    const ratio = Math.min(availableWidth / imageObj.width, maxHeight / imageObj.height, 1);
-    displayScale = ratio;
-
-    const stageWidth = Math.max(280, Math.round(imageObj.width * ratio));
-    const stageHeight = Math.max(220, Math.round(imageObj.height * ratio));
-
-    stage = new Konva.Stage({
-      container: 'konvaMount',
-      width: stageWidth,
-      height: stageHeight
-    });
-
-    layer = new Konva.Layer();
-    stage.add(layer);
-
-    backgroundNode = new Konva.Image({
-      image: imageObj,
-      x: 0,
-      y: 0,
-      width: stageWidth,
-      height: stageHeight,
-      listening: false
-    });
-
-    layer.add(backgroundNode);
-
-    transformer = new Konva.Transformer({
-      rotateEnabled: false,
-      ignoreStroke: true,
-      enabledAnchors: ['top-left','top-right','bottom-left','bottom-right'],
-      boundBoxFunc: (oldBox, newBox) => {
-        if (newBox.width < 20 || newBox.height < 12) return oldBox;
-        return newBox;
-      }
-    });
-
-    layer.add(transformer);
-
-    stage.on('click tap', (e) => {
-      if (e.target === stage || e.target === backgroundNode) {
-        selectGroup(null);
-      }
-    });
-
-    layer.draw();
-  }
-
-  function rebuildStageForResize() {
-    if (!originalImageElement || !editorShell.classList.contains('active')) return;
-    const existingBlocks = [];
-
-    if (layer) {
-      layer.getChildren(node => node.className === 'Group').forEach(group => {
-        const textNode = group.findOne('.text-content');
-        const bg = group.findOne('.text-bg');
-        const flags = computeTextStyleFlags(textNode);
-
-        existingBlocks.push({
-          relX: group.x() / stage.width(),
-          relY: group.y() / stage.height(),
-          relSize: textNode.fontSize() / Math.max(stage.width(), stage.height()),
-          text: textNode.text(),
-          fontFamily: textNode.fontFamily(),
-          fill: rgbToHex(textNode.fill()),
-          bgFill: rgbToHex(bg.fill()),
-          bgEnabled: bg.opacity() > 0,
-          bold: flags.bold,
-          italic: flags.italic,
-          underline: flags.underline
-        });
-      });
-    }
-
-    buildStage(originalImageElement);
-
-    existingBlocks.forEach(item => {
-      createEditableBlock({
-        x: item.relX * stage.width(),
-        y: item.relY * stage.height(),
-        text: item.text,
-        fontSize: Math.max(8, item.relSize * Math.max(stage.width(), stage.height())),
-        fontFamily: item.fontFamily,
-        fill: item.fill,
-        bgFill: item.bgFill,
-        bgEnabled: item.bgEnabled,
-        bold: item.bold,
-        italic: item.italic,
-        underline: item.underline
-      });
-    });
-
-    selectGroup(null);
-  }
-
-  async function loadOriginalFile(file) {
-    if (!file || !file.type.startsWith('image/')) return;
-
-    revokeUrls();
-    originalFile = file;
-    originalImageUrl = URL.createObjectURL(file);
-    originalImageElement = await createImageFromBlob(file);
-
-    originalImageInfo = {
-      width: originalImageElement.naturalWidth,
-      height: originalImageElement.naturalHeight
-    };
-
-    uploadZone.classList.add('hidden');
-    editorShell.classList.add('active');
-
-    requestAnimationFrame(() => {
-      buildStage(originalImageElement);
-      selectGroup(null);
-      setStatus('Imagen cargada. Ahora puedes detectar texto o añadir bloques manuales.');
-      renderInfo([
-        `Formato: ${file.type.split('/')[1].toUpperCase()}`,
-        'Editor listo'
-      ]);
-    });
-  }
-
-  function mergeWordsIntoLines(words) {
-    const filtered = words
-      .filter(word => word && word.bbox && (word.text || '').trim())
-      .map(word => ({
-        text: word.text.trim(),
-        x0: word.bbox.x0,
-        y0: word.bbox.y0,
-        x1: word.bbox.x1,
-        y1: word.bbox.y1
-      }))
-      .sort((a, b) => (a.y0 - b.y0) || (a.x0 - b.x0));
-
-    const lines = [];
-
-    filtered.forEach(word => {
-      const wordHeight = word.y1 - word.y0;
-      const centerY = (word.y0 + word.y1) / 2;
-
-      let target = null;
-
-      for (const line of lines) {
-        const tolerance = Math.max(12, line.avgHeight * 0.6);
-        if (Math.abs(centerY - line.centerY) <= tolerance) {
-          target = line;
-          break;
-        }
-      }
-
-      if (!target) {
-        lines.push({
-          words: [word],
-          x0: word.x0,
-          y0: word.y0,
-          x1: word.x1,
-          y1: word.y1,
-          centerY,
-          avgHeight: wordHeight
-        });
-      } else {
-        target.words.push(word);
-        target.x0 = Math.min(target.x0, word.x0);
-        target.y0 = Math.min(target.y0, word.y0);
-        target.x1 = Math.max(target.x1, word.x1);
-        target.y1 = Math.max(target.y1, word.y1);
-        target.centerY = (target.y0 + target.y1) / 2;
-        target.avgHeight = ((target.avgHeight * (target.words.length - 1)) + wordHeight) / target.words.length;
-      }
-    });
-
-    return lines
-      .map(line => {
-        const ordered = line.words.sort((a, b) => a.x0 - b.x0);
-        return {
-          text: ordered.map(w => w.text).join(' '),
-          bbox: {
-            x0: line.x0,
-            y0: line.y0,
-            x1: line.x1,
-            y1: line.y1
-          }
-        };
-      })
-      .filter(line => line.text.length > 1);
-  }
-
-  async function runOCR() {
-    if (!originalFile || ocrRunning || !stage) {
-      if (!originalFile) setStatus('Primero sube una imagen.', 'warning');
-      return;
-    }
-
-    ocrRunning = true;
-    detectBtn.disabled = true;
-    toggleLoader(true);
-    loaderText.textContent = 'Preparando OCR...';
-    progressFill.style.width = '0%';
-    setStatus('Detectando texto por líneas...', 'warning');
-
-    try {
-      const processedBlob = await generateProcessedBlob();
-
-      await ensureWorker(languageSelect.value);
-      await worker.setParameters({
-        tessedit_pageseg_mode: 6,
-        preserve_interword_spaces: '1'
-      });
-
-      const result = await worker.recognize(processedBlob);
-      const rawWords = Array.isArray(result.data.words) ? result.data.words : [];
-      const lines = mergeWordsIntoLines(rawWords);
-      const confidence = typeof result.data.confidence === 'number'
-        ? Math.round(result.data.confidence)
-        : 0;
-
-      let created = 0;
-
-      lines.forEach(line => {
-        if (!line.bbox) return;
-
-        const x = line.bbox.x0 * displayScale;
-        const y = line.bbox.y0 * displayScale;
-        const boxH = Math.max(14, (line.bbox.y1 - line.bbox.y0) * displayScale);
-        const estimatedFontSize = Math.max(11, Math.round(boxH * 0.78));
-
-        createEditableBlock({
-          x,
-          y,
-          text: line.text,
-          fontSize: estimatedFontSize,
-          fontFamily: 'Arial',
-          fill: '#000000',
-          bgFill: '#ffffff',
-          bgEnabled: true
-        });
-
-        created += 1;
-      });
-
-      layer.draw();
-      renderInfo([
-        `Confianza OCR: ${confidence}%`,
-        `Bloques creados: ${created}`
-      ]);
-
-      setStatus(
-        created
-          ? 'Texto detectado por líneas. Toca un bloque azul sobre la imagen para editarlo.'
-          : 'No se detectó texto claro. Ajusta OCR o añade bloques manuales.',
-        created ? 'success' : 'warning'
-      );
-    } catch (error) {
-      console.error(error);
-      setStatus(`Error: ${error.message}`, 'error');
-    } finally {
-      toggleLoader(false);
-      detectBtn.disabled = false;
-      ocrRunning = false;
-    }
-  }
-
-  function downloadEditedImage() {
-    if (!stage) {
-      setStatus('Primero sube una imagen.', 'warning');
-      return;
-    }
-
-    const dataUrl = stage.toDataURL({ pixelRatio: 2 });
-    const a = document.createElement('a');
-    a.href = dataUrl;
-    a.download = `${(originalFile?.name || 'documento').replace(/\.[^.]+$/, '')}-editado.png`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setStatus('Imagen descargada correctamente.', 'success');
-  }
-
-  function resetAll() {
-    revokeUrls();
-    originalFile = null;
-    originalImageElement = null;
-    selectedGroup = null;
-    blockCounter = 0;
-
-    if (stage) {
-      stage.destroy();
-      stage = null;
-      layer = null;
-      transformer = null;
-      backgroundNode = null;
-      document.getElementById('konvaMount').innerHTML = '';
-    }
-
-    editorShell.classList.remove('active');
-    uploadZone.classList.remove('hidden');
-
-    textInput.value = '';
-    fontSizeInput.value = '20';
-    fontFamilySelect.value = 'Arial';
-    textColorInput.value = '#000000';
-    bgColorInput.value = '#ffffff';
-    canvasBadge.textContent = 'Sin seleccionar';
-    infoRow.innerHTML = '';
-    toggleLoader(false);
-    refreshStyleButtons();
-    setStatus('Sube una imagen para empezar.');
-  }
-
-  selectImageBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    fileInput.click();
-  });
-
-  pasteHintBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    setStatus('Ahora pega la imagen con Ctrl + V.', 'warning');
-  });
-
-  uploadZone.addEventListener('click', () => fileInput.click());
-  uploadZone.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      fileInput.click();
-    }
-  });
-
-  uploadZone.addEventListener('dragover', e => {
-    e.preventDefault();
-    uploadZone.classList.add('dragover');
-  });
-
-  uploadZone.addEventListener('dragleave', () => {
-    uploadZone.classList.remove('dragover');
-  });
-
-  uploadZone.addEventListener('drop', e => {
-    e.preventDefault();
-    uploadZone.classList.remove('dragover');
-    const file = e.dataTransfer.files[0];
-    loadOriginalFile(file);
-  });
-
-  fileInput.addEventListener('change', e => {
+const fileInput = document.getElementById("fileInput");
+const img = document.getElementById("img");
+const canvas = document.getElementById("canvas");
+
+fileInput.addEventListener("change", e=>{
     const file = e.target.files[0];
-    loadOriginalFile(file);
-  });
+    img.src = URL.createObjectURL(file);
+});
 
-  replaceBtn.addEventListener('click', () => fileInput.click());
-  detectBtn.addEventListener('click', runOCR);
+/* OCR LIMPIO */
+async function detectar(){
+    const result = await Tesseract.recognize(img.src,'spa');
 
-  textInput.addEventListener('input', applyTextChange);
-  fontSizeInput.addEventListener('input', applyFontSize);
-  fontFamilySelect.addEventListener('change', applyFontFamily);
-  textColorInput.addEventListener('input', applyTextColor);
-  bgColorInput.addEventListener('input', applyBgColor);
+    document.querySelectorAll(".text-block").forEach(e=>e.remove());
 
-  boldBtn.addEventListener('click', () => toggleFontFlag('bold'));
-  italicBtn.addEventListener('click', () => toggleFontFlag('italic'));
-  underlineBtn.addEventListener('click', () => toggleFontFlag('underline'));
-  toggleBgBtn.addEventListener('click', toggleBg);
+    result.data.words.forEach(w=>{
+        if(w.text.trim().length < 3) return;
+        if(w.confidence < 70) return;
 
-  addTextBtn.addEventListener('click', addNewBlock);
-  duplicateBtn.addEventListener('click', duplicateSelected);
-  deleteBtn.addEventListener('click', deleteSelected);
-  downloadBtn.addEventListener('click', downloadEditedImage);
-  resetBtn.addEventListener('click', resetAll);
+        const block = document.createElement("div");
+        block.className = "text-block";
+        block.contentEditable = true;
 
-  document.addEventListener('paste', e => {
-    const items = Array.from(e.clipboardData?.items || []);
-    const imageItem = items.find(item => item.type.startsWith('image/'));
-    if (!imageItem) return;
-    const file = imageItem.getAsFile();
-    if (file) {
-      loadOriginalFile(file);
-      setStatus('Imagen pegada desde el portapapeles.', 'success');
-    }
-  });
+        block.innerText = w.text;
 
-  window.addEventListener('resize', () => {
-    if (editorShell.classList.contains('active')) {
-      rebuildStageForResize();
-    }
-  });
+        block.style.left = w.bbox.x0 + "px";
+        block.style.top = w.bbox.y0 + "px";
+        block.style.width = (w.bbox.x1 - w.bbox.x0) + "px";
+        block.style.height = (w.bbox.y1 - w.bbox.y0) + "px";
 
-  refreshStyleButtons();
+        canvas.appendChild(block);
+    });
+}
+
+/* DESCARGAR */
+function descargar(){
+    html2canvas(canvas).then(canvas=>{
+        const link = document.createElement("a");
+        link.download = "resultado.png";
+        link.href = canvas.toDataURL();
+        link.click();
+    });
+}
+
+/* PANEL */
+function togglePanel(){
+    document.getElementById("panel").classList.toggle("open");
+}
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 </body>
 </html>
