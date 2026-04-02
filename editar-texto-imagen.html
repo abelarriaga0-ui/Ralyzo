@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Editar Texto en Imagen Online Gratis | Ralyzo</title>
-  <meta name="description" content="Edita texto dentro de una imagen online gratis con Ralyzo. Detecta texto con OCR, cambia palabras, ajusta fuente, tamaño, color, negrita, cursiva, subrayado y descarga el resultado." />
+  <meta name="description" content="Edita texto dentro de una imagen online gratis con Ralyzo. Detecta líneas de texto con OCR, edítalas directamente sobre la imagen y descarga el resultado final." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://ralyzo.com/editar-texto-imagen" />
 
   <meta property="og:title" content="Editar Texto en Imagen Online Gratis | Ralyzo" />
-  <meta property="og:description" content="Sube una imagen, detecta el texto y edítalo visualmente en línea con Ralyzo." />
+  <meta property="og:description" content="Sube una imagen, detecta texto por líneas y edítalo directamente sobre la imagen con Ralyzo." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ralyzo.com/editar-texto-imagen" />
   <meta property="og:site_name" content="Ralyzo" />
@@ -487,6 +487,14 @@
       justify-content:flex-start;
       min-width:100%;
       min-height:100%;
+      position:relative;
+    }
+
+    .editor-note{
+      margin-top:10px;
+      color:#94A3B8;
+      font-size:13px;
+      line-height:1.55;
     }
 
     .info-row{
@@ -614,32 +622,6 @@
     }
 
     .tips li{margin-bottom:4px}
-
-    .tool-links{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-
-    .tool-links a{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:12px 14px;
-      border-radius:14px;
-      background:rgba(255,255,255,.035);
-      border:1px solid transparent;
-      color:var(--muted);
-      font-weight:600;
-      transition:.2s ease;
-    }
-
-    .tool-links a:hover{
-      color:var(--text);
-      border-color:rgba(148,163,184,.14);
-      background:rgba(255,255,255,.05);
-    }
 
     footer{
       margin-top:18px;
@@ -801,8 +783,8 @@
       <div class="eyebrow">OCR + edición manual • editor de documentos en imagen</div>
       <h1>Editar texto en imagen online</h1>
       <p>
-        Sube una imagen de documento, detecta el texto automáticamente y edítalo manualmente con control total:
-        contenido, tamaño, fuente, color, negrita, cursiva, subrayado, posición y fondo de reemplazo.
+        Sube una imagen de documento, detecta el texto por líneas y edítalo manualmente con control total:
+        contenido, tamaño, fuente, color, negrita, cursiva, subrayado y fondo de reemplazo.
       </p>
     </div>
   </section>
@@ -814,14 +796,14 @@
           <div class="upload-icon">✏️</div>
           <h2>Sube una imagen para editar su texto</h2>
           <p>
-            Arrastra tu archivo aquí o selecciónalo desde tu dispositivo. Después detecta el texto con OCR
-            y usa la edición manual para ajustarlo con precisión.
+            Arrastra tu archivo aquí o selecciónalo desde tu dispositivo. Después detecta el texto
+            y toca cada bloque directamente sobre la imagen para editarlo.
           </p>
           <div class="upload-actions">
             <button type="button" class="btn btn-primary" id="selectImageBtn">Seleccionar imagen</button>
             <button type="button" class="btn btn-secondary" id="pasteHintBtn">Pegar imagen</button>
           </div>
-          <div class="hint">Compatible con JPG, PNG y WEBP • OCR en navegador • Edición manual incluida</div>
+          <div class="hint">Compatible con JPG, PNG y WEBP • OCR por líneas • Edición directa</div>
         </div>
       </div>
 
@@ -829,7 +811,7 @@
 
       <div id="editorShell" class="editor-shell">
         <div class="top-toolbar">
-          <div class="preview-title">Lienzo de edición</div>
+          <div class="preview-title">Editor visual</div>
           <div class="upload-actions" style="justify-content:flex-end">
             <button type="button" class="btn btn-secondary" id="replaceBtn">Cambiar imagen</button>
             <button type="button" class="btn btn-primary" id="detectBtn">Detectar texto</button>
@@ -855,6 +837,9 @@
             <div class="canvas-stage">
               <div id="konvaMount"></div>
             </div>
+            <div class="editor-note">
+              Toca un bloque azul sobre la imagen para editarlo. La detección se hace por líneas para evitar demasiados bloques.
+            </div>
           </div>
         </div>
 
@@ -876,45 +861,22 @@
         </div>
 
         <div class="control-group">
-          <div class="control-top"><label for="psmSelect">Modo de lectura</label></div>
-          <select id="psmSelect">
-            <option value="6" selected>Bloque uniforme</option>
-            <option value="3">Página automática</option>
-            <option value="4">Una columna</option>
-            <option value="7">Una línea</option>
-            <option value="11">Texto disperso</option>
-          </select>
-        </div>
-
-        <div class="control-group">
-          <div class="control-top">
-            <label for="scaleRange">Escala OCR</label>
-            <span class="value" id="scaleValue">2.0x</span>
-          </div>
+          <div class="control-top"><label for="scaleRange">Escala OCR</label><span class="value" id="scaleValue">2.0x</span></div>
           <input id="scaleRange" type="range" min="1" max="4" step="0.5" value="2" />
         </div>
 
         <div class="control-group">
-          <div class="control-top">
-            <label for="contrastRange">Contraste</label>
-            <span class="value" id="contrastValue">130%</span>
-          </div>
+          <div class="control-top"><label for="contrastRange">Contraste</label><span class="value" id="contrastValue">130%</span></div>
           <input id="contrastRange" type="range" min="80" max="220" step="10" value="130" />
         </div>
 
         <div class="control-group">
-          <div class="control-top">
-            <label for="brightnessRange">Brillo</label>
-            <span class="value" id="brightnessValue">100%</span>
-          </div>
+          <div class="control-top"><label for="brightnessRange">Brillo</label><span class="value" id="brightnessValue">100%</span></div>
           <input id="brightnessRange" type="range" min="70" max="160" step="5" value="100" />
         </div>
 
         <div class="control-group">
-          <div class="control-top">
-            <label for="thresholdRange">Umbral</label>
-            <span class="value" id="thresholdValue">160</span>
-          </div>
+          <div class="control-top"><label for="thresholdRange">Umbral</label><span class="value" id="thresholdValue">160</span></div>
           <input id="thresholdRange" type="range" min="0" max="255" step="1" value="160" />
         </div>
 
@@ -935,7 +897,7 @@
 
         <div class="control-group">
           <div class="control-top"><label for="textInput">Texto</label></div>
-          <textarea id="textInput" placeholder="Selecciona un bloque para editarlo"></textarea>
+          <textarea id="textInput" placeholder="Selecciona un bloque en la imagen para editarlo"></textarea>
         </div>
 
         <div class="mini-grid">
@@ -992,11 +954,11 @@
       <div class="side-card">
         <h3>Qué puedes hacer</h3>
         <ul class="tips">
-          <li>Detectar texto automáticamente con OCR.</li>
-          <li>Editar el contenido de cada bloque.</li>
-          <li>Mover, redimensionar y reorganizar texto.</li>
-          <li>Cambiar fuente, tamaño, color y estilo.</li>
+          <li>Detectar texto por líneas, no por palabra.</li>
+          <li>Tocar cada bloque directamente sobre la imagen.</li>
+          <li>Cambiar contenido, tamaño, fuente y color.</li>
           <li>Tapar el texto original con fondo de reemplazo.</li>
+          <li>Mover, duplicar o borrar bloques.</li>
         </ul>
       </div>
     </aside>
@@ -1027,7 +989,7 @@
 
     <div class="footer-bottom">
       <div>© 2026 Ralyzo. Todos los derechos reservados.</div>
-      <div>Editor visual de texto en imagen con OCR y ajuste manual.</div>
+      <div>Editor visual de texto en imagen con OCR por líneas.</div>
     </div>
   </div>
 </footer>
@@ -1048,7 +1010,6 @@
   const canvasBadge = document.getElementById('canvasBadge');
 
   const languageSelect = document.getElementById('languageSelect');
-  const psmSelect = document.getElementById('psmSelect');
   const scaleRange = document.getElementById('scaleRange');
   const contrastRange = document.getElementById('contrastRange');
   const brightnessRange = document.getElementById('brightnessRange');
@@ -1316,7 +1277,9 @@
       height: 10,
       fill: bgFill,
       opacity: bgEnabled ? 1 : 0,
-      cornerRadius: 2
+      cornerRadius: 2,
+      stroke: 'rgba(37,99,235,.35)',
+      strokeWidth: 1
     });
 
     const textNode = new Konva.Text({
@@ -1329,7 +1292,8 @@
       fill,
       fontStyle,
       textDecoration: underline ? 'underline' : '',
-      padding: 0
+      padding: 0,
+      listening: false
     });
 
     group.add(bg);
@@ -1637,6 +1601,71 @@
     });
   }
 
+  function mergeWordsIntoLines(words) {
+    const filtered = words
+      .filter(word => word && word.bbox && (word.text || '').trim())
+      .map(word => ({
+        text: word.text.trim(),
+        x0: word.bbox.x0,
+        y0: word.bbox.y0,
+        x1: word.bbox.x1,
+        y1: word.bbox.y1
+      }))
+      .sort((a, b) => (a.y0 - b.y0) || (a.x0 - b.x0));
+
+    const lines = [];
+
+    filtered.forEach(word => {
+      const wordHeight = word.y1 - word.y0;
+      const centerY = (word.y0 + word.y1) / 2;
+
+      let target = null;
+
+      for (const line of lines) {
+        const tolerance = Math.max(12, line.avgHeight * 0.6);
+        if (Math.abs(centerY - line.centerY) <= tolerance) {
+          target = line;
+          break;
+        }
+      }
+
+      if (!target) {
+        lines.push({
+          words: [word],
+          x0: word.x0,
+          y0: word.y0,
+          x1: word.x1,
+          y1: word.y1,
+          centerY,
+          avgHeight: wordHeight
+        });
+      } else {
+        target.words.push(word);
+        target.x0 = Math.min(target.x0, word.x0);
+        target.y0 = Math.min(target.y0, word.y0);
+        target.x1 = Math.max(target.x1, word.x1);
+        target.y1 = Math.max(target.y1, word.y1);
+        target.centerY = (target.y0 + target.y1) / 2;
+        target.avgHeight = ((target.avgHeight * (target.words.length - 1)) + wordHeight) / target.words.length;
+      }
+    });
+
+    return lines
+      .map(line => {
+        const ordered = line.words.sort((a, b) => a.x0 - b.x0);
+        return {
+          text: ordered.map(w => w.text).join(' '),
+          bbox: {
+            x0: line.x0,
+            y0: line.y0,
+            x1: line.x1,
+            y1: line.y1
+          }
+        };
+      })
+      .filter(line => line.text.length > 1);
+  }
+
   async function runOCR() {
     if (!originalFile || ocrRunning || !stage) {
       if (!originalFile) setStatus('Primero sube una imagen.', 'warning');
@@ -1648,38 +1677,38 @@
     toggleLoader(true);
     loaderText.textContent = 'Preparando OCR...';
     progressFill.style.width = '0%';
-    setStatus('Detectando texto...', 'warning');
+    setStatus('Detectando texto por líneas...', 'warning');
 
     try {
       const processedBlob = await generateProcessedBlob();
 
       await ensureWorker(languageSelect.value);
       await worker.setParameters({
-        tessedit_pageseg_mode: Number(psmSelect.value),
+        tessedit_pageseg_mode: 6,
         preserve_interword_spaces: '1'
       });
 
       const result = await worker.recognize(processedBlob);
-      const words = Array.isArray(result.data.words) ? result.data.words : [];
+      const rawWords = Array.isArray(result.data.words) ? result.data.words : [];
+      const lines = mergeWordsIntoLines(rawWords);
       const confidence = typeof result.data.confidence === 'number'
         ? Math.round(result.data.confidence)
         : 0;
 
       let created = 0;
 
-      words.forEach(word => {
-        const value = (word.text || '').trim();
-        if (!value || !word.bbox) return;
+      lines.forEach(line => {
+        if (!line.bbox) return;
 
-        const x = word.bbox.x0 * displayScale;
-        const y = word.bbox.y0 * displayScale;
-        const boxH = Math.max(12, (word.bbox.y1 - word.bbox.y0) * displayScale);
-        const estimatedFontSize = Math.max(10, Math.round(boxH * 0.8));
+        const x = line.bbox.x0 * displayScale;
+        const y = line.bbox.y0 * displayScale;
+        const boxH = Math.max(14, (line.bbox.y1 - line.bbox.y0) * displayScale);
+        const estimatedFontSize = Math.max(11, Math.round(boxH * 0.78));
 
         createEditableBlock({
           x,
           y,
-          text: value,
+          text: line.text,
           fontSize: estimatedFontSize,
           fontFamily: 'Arial',
           fill: '#000000',
@@ -1698,7 +1727,7 @@
 
       setStatus(
         created
-          ? 'Texto detectado. Ya puedes editarlo manualmente.'
+          ? 'Texto detectado por líneas. Toca un bloque azul sobre la imagen para editarlo.'
           : 'No se detectó texto claro. Ajusta OCR o añade bloques manuales.',
         created ? 'success' : 'warning'
       );
