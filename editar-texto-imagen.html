@@ -4,15 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Editar Texto en Imagen Online Gratis | Ralyzo</title>
-  <meta name="description" content="Edita texto dentro de una imagen online gratis con Ralyzo. Detecta líneas de texto con OCR, edítalas directamente sobre la imagen y descarga el resultado final." />
+  <title>Redimensionar Imagen para Redes Sociales Online Gratis | Ralyzo</title>
+  <meta name="description" content="Redimensiona imágenes para Instagram, Facebook, TikTok, YouTube, LinkedIn y más. Ajusta tamaño, fondo y encuadre online gratis con Ralyzo." />
   <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://ralyzo.com/editar-texto-imagen" />
+  <link rel="canonical" href="https://ralyzo.com/redimensionar-redes-sociales" />
 
-  <meta property="og:title" content="Editar Texto en Imagen Online Gratis | Ralyzo" />
-  <meta property="og:description" content="Sube una imagen, detecta texto por líneas y edítalo directamente sobre la imagen con Ralyzo." />
+  <meta property="og:title" content="Redimensionar Imagen para Redes Sociales Online Gratis | Ralyzo" />
+  <meta property="og:description" content="Convierte una imagen al tamaño exacto para Instagram, Facebook, TikTok, YouTube y otras redes sociales." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://ralyzo.com/editar-texto-imagen" />
+  <meta property="og:url" content="https://ralyzo.com/redimensionar-redes-sociales" />
   <meta property="og:site_name" content="Ralyzo" />
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337166112417872" crossorigin="anonymous"></script>
@@ -20,9 +20,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/konva@9/konva.min.js"></script>
 
   <style>
     :root{
@@ -45,7 +42,7 @@
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family:'Inter',sans-serif;
@@ -54,8 +51,7 @@
     }
 
     a{text-decoration:none;color:inherit}
-    button,input,select,textarea{font:inherit}
-    .hidden{display:none !important}
+    button,input,select{font:inherit}
 
     .container{
       width:min(var(--container), calc(100% - 40px));
@@ -128,6 +124,7 @@
     }
 
     .dropdown{position:relative}
+
     .dropdown::after{
       content:"";
       position:absolute;
@@ -147,6 +144,7 @@
       font-weight:600;
       background:none;
       border:none;
+      font-family:inherit;
     }
 
     .dropdown-arrow{
@@ -221,13 +219,13 @@
     }
 
     main{
-      padding:24px 0 30px;
+      padding:28px 0 32px;
       min-height:calc(100vh - 78px);
     }
 
     .hero{
       text-align:center;
-      margin-bottom:18px;
+      margin-bottom:20px;
     }
 
     .eyebrow{
@@ -243,30 +241,30 @@
       font-weight:800;
       letter-spacing:.06em;
       text-transform:uppercase;
-      margin-bottom:14px;
+      margin-bottom:16px;
     }
 
     h1{
-      margin:0 0 10px;
-      font-size:42px;
+      margin:0 0 14px;
+      font-size:48px;
       line-height:1.05;
       letter-spacing:-.03em;
     }
 
     .hero p{
       margin:0 auto;
-      max-width:920px;
+      max-width:900px;
       color:var(--muted-2);
-      font-size:17px;
-      line-height:1.65;
+      font-size:19px;
+      line-height:1.7;
     }
 
     .app-grid{
       display:grid;
-      grid-template-columns:minmax(0,1fr) 320px;
+      grid-template-columns:minmax(0,1fr) 340px;
       gap:18px;
       align-items:start;
-      margin-top:18px;
+      margin-top:24px;
     }
 
     .panel{
@@ -276,22 +274,29 @@
       box-shadow:var(--shadow);
     }
 
-    .workspace{padding:16px}
+    .workspace{padding:18px}
+    .sidebar{
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      position:sticky;
+      top:94px;
+    }
 
     .upload-zone{
       width:100%;
       border:2px dashed rgba(96,165,250,.35);
-      border-radius:20px;
+      border-radius:22px;
       background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      min-height:180px;
+      min-height:220px;
       display:flex;
       align-items:center;
       justify-content:center;
       text-align:center;
-      padding:26px;
+      padding:28px;
       transition:.2s ease;
       cursor:pointer;
-      margin-bottom:0;
     }
 
     .upload-zone:hover,
@@ -302,7 +307,7 @@
 
     .upload-inner{
       width:100%;
-      max-width:620px;
+      max-width:640px;
       display:flex;
       flex-direction:column;
       align-items:center;
@@ -310,20 +315,20 @@
     }
 
     .upload-icon{
-      width:70px;
-      height:70px;
+      width:72px;
+      height:72px;
       border-radius:18px;
       background:rgba(37,99,235,.14);
       border:1px solid rgba(96,165,250,.2);
       display:grid;
       place-items:center;
-      font-size:28px;
-      margin-bottom:16px;
+      font-size:30px;
+      margin-bottom:18px;
     }
 
     .upload-inner h2{
       margin:0 0 10px;
-      font-size:28px;
+      font-size:30px;
       line-height:1.2;
       color:#F8FAFC;
     }
@@ -338,7 +343,7 @@
     .upload-actions{
       display:flex;
       justify-content:center;
-      gap:10px;
+      gap:12px;
       flex-wrap:wrap;
       margin-top:4px;
     }
@@ -355,7 +360,7 @@
       align-items:center;
       justify-content:center;
       gap:10px;
-      min-height:46px;
+      min-height:48px;
       padding:12px 18px;
       border:none;
       border-radius:14px;
@@ -381,9 +386,11 @@
     }
     .btn-danger:hover{background:rgba(239,68,68,.18);transform:translateY(-1px)}
 
+    .hidden{display:none !important}
+
     .editor-shell{
       display:none;
-      gap:14px;
+      gap:16px;
       flex-direction:column;
     }
 
@@ -403,57 +410,20 @@
       color:#F8FAFC;
     }
 
-    .loader-wrap{
-      display:none;
-      align-items:center;
-      gap:12px;
-      padding:14px 16px;
-      border-radius:14px;
-      background:rgba(37,99,235,.08);
-      border:1px solid rgba(37,99,235,.16);
-      color:#BFDBFE;
+    .status-inline{
+      color:#93C5FD;
       font-size:14px;
       font-weight:700;
     }
 
-    .loader-wrap.active{display:flex}
-
-    .progress-bar{
-      width:100%;
-      height:10px;
-      border-radius:999px;
-      background:rgba(255,255,255,.08);
-      overflow:hidden;
-      margin-top:10px;
-    }
-
-    .progress-fill{
-      width:0%;
-      height:100%;
-      background:linear-gradient(90deg,#2563EB,#60A5FA);
-      transition:width .2s ease;
-    }
-
-    .spinner{
-      width:20px;
-      height:20px;
-      border-radius:50%;
-      border:2px solid rgba(255,255,255,.15);
-      border-top-color:#60A5FA;
-      animation:spin .8s linear infinite;
-      flex-shrink:0;
-    }
-
-    @keyframes spin{to{transform:rotate(360deg)}}
-
-    .canvas-card{
+    .preview-card{
       border-radius:20px;
       background:rgba(255,255,255,.02);
       border:1px solid rgba(148,163,184,.12);
       overflow:hidden;
     }
 
-    .canvas-head{
+    .preview-head{
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -473,55 +443,52 @@
       border:1px solid rgba(96,165,250,.16);
     }
 
-    .canvas-wrap{
-      padding:12px;
-      position:relative;
+    .stage-wrap{
+      padding:14px;
     }
 
-    .canvas-stage{
+    .stage{
       width:100%;
-      min-height:560px;
-      max-height:calc(100vh - 270px);
+      min-height:540px;
+      max-height:calc(100vh - 290px);
       overflow:auto;
       background:#091122;
       border-radius:16px;
       border:1px solid rgba(51,65,85,.8);
       display:flex;
-      align-items:flex-start;
+      align-items:center;
       justify-content:center;
-      padding:14px;
+      padding:18px;
     }
 
-    #konvaMount{
+    .canvas-holder{
       position:relative;
       display:inline-block;
     }
 
-    #inlineTextEditor{
-      position:absolute;
-      z-index:20;
-      border:2px solid #2563EB;
-      outline:none;
-      resize:none;
-      border-radius:8px;
-      padding:4px 6px;
-      background:rgba(255,255,255,.98);
-      color:#000;
-      box-shadow:0 10px 25px rgba(0,0,0,.22);
-      overflow:hidden;
-      display:none;
+    #mainCanvas{
+      display:block;
+      max-width:none;
+      image-rendering:auto;
+      cursor:grab;
+      border-radius:12px;
+      box-shadow:0 10px 30px rgba(0,0,0,.3);
+      background:#fff;
     }
 
-    .editor-note{
-      margin-top:10px;
-      color:#94A3B8;
-      font-size:13px;
-      line-height:1.55;
+    #mainCanvas.dragging{cursor:grabbing}
+
+    .crop-box{
+      position:absolute;
+      border:2px solid #60A5FA;
+      background:rgba(37,99,235,.12);
+      display:none;
+      pointer-events:none;
     }
 
     .info-row{
       display:flex;
-      gap:12px;
+      gap:10px;
       flex-wrap:wrap;
     }
 
@@ -535,15 +502,6 @@
       font-weight:600;
     }
 
-    .sidebar{
-      padding:14px;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      position:sticky;
-      top:94px;
-    }
-
     .side-card{
       background:#111827;
       border:1px solid #1F2937;
@@ -555,33 +513,6 @@
       margin:0 0 12px;
       font-size:17px;
       line-height:1.2;
-    }
-
-    details.side-card summary{
-      list-style:none;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      font-weight:800;
-      font-size:17px;
-    }
-
-    details.side-card summary::-webkit-details-marker{display:none}
-    details.side-card summary::after{
-      content:"▾";
-      font-size:14px;
-      opacity:.9;
-      transition:transform .2s ease;
-    }
-
-    details.side-card[open] summary::after{
-      transform:rotate(180deg);
-    }
-
-    .details-body{
-      margin-top:12px;
     }
 
     .control-group{margin-bottom:12px}
@@ -607,16 +538,10 @@
       font-size:12px;
     }
 
-    input[type="range"]{
-      width:100%;
-      accent-color:#2563EB;
-      cursor:pointer;
-    }
-
     select,
     input[type="text"],
     input[type="number"],
-    textarea{
+    input[type="color"]{
       width:100%;
       min-height:42px;
       border-radius:12px;
@@ -627,16 +552,16 @@
       outline:none;
     }
 
-    textarea{
-      min-height:92px;
-      resize:vertical;
-      line-height:1.55;
+    input[type="range"]{
+      width:100%;
+      accent-color:#2563EB;
+      cursor:pointer;
     }
 
     select:focus,
     input[type="text"]:focus,
     input[type="number"]:focus,
-    textarea:focus{
+    input[type="color"]:focus{
       border-color:#2563EB;
     }
 
@@ -644,6 +569,52 @@
       display:grid;
       grid-template-columns:repeat(2,minmax(0,1fr));
       gap:8px;
+    }
+
+    .presets{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:8px;
+    }
+
+    .preset-btn{
+      width:100%;
+      min-height:56px;
+      border-radius:14px;
+      border:1px solid rgba(148,163,184,.18);
+      background:rgba(255,255,255,.03);
+      color:#E2E8F0;
+      cursor:pointer;
+      transition:.2s ease;
+      padding:10px 12px;
+      text-align:left;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:4px;
+    }
+
+    .preset-btn:hover{
+      background:rgba(255,255,255,.06);
+      border-color:rgba(96,165,250,.4);
+    }
+
+    .preset-btn.active{
+      background:rgba(37,99,235,.14);
+      border-color:rgba(96,165,250,.5);
+      color:#fff;
+    }
+
+    .preset-name{
+      font-size:13px;
+      font-weight:800;
+      line-height:1.2;
+    }
+
+    .preset-size{
+      font-size:12px;
+      color:#94A3B8;
+      line-height:1.2;
     }
 
     .actions-stack{
@@ -658,6 +629,7 @@
       font-size:14px;
       font-weight:600;
     }
+
     .status.success{color:#86EFAC}
     .status.warning{color:#FCD34D}
     .status.error{color:#FCA5A5}
@@ -671,6 +643,32 @@
     }
 
     .tips li{margin-bottom:4px}
+
+    .tool-links{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .tool-links a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:rgba(255,255,255,.035);
+      border:1px solid transparent;
+      color:var(--muted);
+      font-weight:600;
+      transition:.2s ease;
+    }
+
+    .tool-links a:hover{
+      color:var(--text);
+      border-color:rgba(148,163,184,.14);
+      background:rgba(255,255,255,.05);
+    }
 
     footer{
       margin-top:18px;
@@ -757,23 +755,27 @@
         padding-top:70px;
         padding-bottom:14px;
       }
+
       .logo-center{top:18px}
+
       .dropdown-menu{
         right:auto;
         left:50%;
         transform:translateX(-50%) translateY(8px);
         width:min(92vw,340px);
       }
+
       .dropdown:hover .dropdown-menu,
       .dropdown:focus-within .dropdown-menu{
         transform:translateX(-50%) translateY(0);
       }
-      h1{font-size:34px}
-      .hero p{font-size:16px}
-      .canvas-stage{
+
+      h1{font-size:38px}
+      .hero p{font-size:17px}
+      .stage{
         max-height:none;
-        min-height:380px;
-        padding:10px;
+        min-height:420px;
+        padding:12px;
       }
     }
 
@@ -785,21 +787,24 @@
         flex-wrap:wrap;
         justify-content:center;
       }
+
       .nav-links > a,
       .dropdown-toggle{
         padding:10px 12px;
       }
+
       main{padding-top:18px}
       .workspace,.sidebar{padding:10px}
       .top-toolbar{flex-direction:column;align-items:stretch}
-      .mini-grid{grid-template-columns:1fr}
-      .canvas-stage{min-height:320px}
+      .mini-grid,.presets{grid-template-columns:1fr}
+      .stage{min-height:320px}
       .footer-card{padding:18px}
       .footer-top,.footer-bottom{flex-direction:column;align-items:flex-start}
     }
   </style>
 </head>
 <body>
+
 <header>
   <nav class="nav">
     <a href="/" class="logo-center" aria-label="Ralyzo inicio">
@@ -810,11 +815,13 @@
     <div class="nav-links">
       <a href="/#herramientas">Herramientas</a>
       <a href="/#precios">Precios</a>
+
       <div class="dropdown">
         <button class="dropdown-toggle" type="button" aria-label="Abrir menú de blog">
           <span>Blog</span>
           <span class="dropdown-arrow">▾</span>
         </button>
+
         <div class="dropdown-menu">
           <div class="menu-title">Artículos</div>
           <a href="/blog/como-comprimir-imagen.html">Cómo comprimir imágenes sin perder calidad</a>
@@ -834,11 +841,11 @@
 <main class="container">
   <section class="hero">
     <div>
-      <div class="eyebrow">OCR + edición directa • editor visual</div>
-      <h1>Editar texto en imagen online</h1>
+      <div class="eyebrow">Redes sociales • formato exacto • sin perder tiempo</div>
+      <h1>Redimensionar imagen para redes sociales</h1>
       <p>
-        Sube una captura o imagen de documento, detecta líneas limpias y edítalas directamente sobre la imagen.
-        La edición manual queda disponible solo cuando realmente la necesitas.
+        Convierte una sola imagen al tamaño exacto para Instagram, Facebook, TikTok, YouTube, LinkedIn, Pinterest y X.
+        Ajusta encuadre, zoom, posición y fondo online gratis.
       </p>
     </div>
   </section>
@@ -847,17 +854,17 @@
     <div class="panel workspace">
       <div class="upload-zone" id="uploadZone" role="button" tabindex="0">
         <div class="upload-inner">
-          <div class="upload-icon">✏️</div>
-          <h2>Sube una imagen para editar su texto</h2>
+          <div class="upload-icon">📱</div>
+          <h2>Sube una imagen para adaptarla a cualquier red</h2>
           <p>
-            Arrastra tu archivo aquí o selecciónalo desde tu dispositivo. Después detecta el texto
-            y edítalo tocando directamente cada bloque sobre la imagen.
+            Arrastra tu archivo aquí o selecciónalo desde tu dispositivo. Después elige el formato exacto,
+            mueve la imagen, ajusta el zoom y descarga el resultado listo para publicar.
           </p>
           <div class="upload-actions">
             <button type="button" class="btn btn-primary" id="selectImageBtn">Seleccionar imagen</button>
             <button type="button" class="btn btn-secondary" id="pasteHintBtn">Pegar imagen</button>
           </div>
-          <div class="hint">Compatible con JPG, PNG y WEBP • OCR por líneas • Edición directa</div>
+          <div class="hint">Instagram • Facebook • TikTok • YouTube • LinkedIn • Pinterest • X</div>
         </div>
       </div>
 
@@ -865,35 +872,24 @@
 
       <div id="editorShell" class="editor-shell">
         <div class="top-toolbar">
-          <div class="preview-title">Editor visual</div>
+          <div class="preview-title">Vista previa del formato seleccionado</div>
           <div class="upload-actions" style="justify-content:flex-end">
+            <span class="status-inline" id="formatLabel">Sin formato seleccionado</span>
             <button type="button" class="btn btn-secondary" id="replaceBtn">Cambiar imagen</button>
-            <button type="button" class="btn btn-primary" id="detectBtn">Detectar texto</button>
           </div>
         </div>
 
-        <div class="loader-wrap" id="loaderWrap">
-          <div class="spinner"></div>
-          <div style="width:100%">
-            <div id="loaderText">Preparando OCR...</div>
-            <div class="progress-bar">
-              <div class="progress-fill" id="progressFill"></div>
-            </div>
+        <div class="preview-card">
+          <div class="preview-head">
+            <strong>Editor visual</strong>
+            <span class="badge" id="sizeBadge">0 × 0 px</span>
           </div>
-        </div>
-
-        <div class="canvas-card">
-          <div class="canvas-head">
-            <strong>Documento editable</strong>
-            <span class="badge" id="canvasBadge">Sin seleccionar</span>
-          </div>
-          <div class="canvas-wrap">
-            <div class="canvas-stage">
-              <div id="konvaMount"></div>
-            </div>
-            <textarea id="inlineTextEditor"></textarea>
-            <div class="editor-note">
-              Un toque selecciona el bloque. Otro toque sobre el mismo bloque abre la edición directa encima de la imagen.
+          <div class="stage-wrap">
+            <div class="stage" id="stageArea">
+              <div class="canvas-holder" id="canvasHolder">
+                <canvas id="mainCanvas"></canvas>
+                <div class="crop-box" id="cropBox"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -903,107 +899,59 @@
     </div>
 
     <aside class="panel sidebar">
-      <details class="side-card">
-        <summary>Ajustes OCR</summary>
-        <div class="details-body">
-          <div class="control-group">
-            <div class="control-top"><label for="languageSelect">Idioma</label></div>
-            <select id="languageSelect">
-              <option value="spa" selected>Español</option>
-              <option value="eng">Inglés</option>
-              <option value="spa+eng">Español + Inglés</option>
-            </select>
-          </div>
+      <div class="side-card">
+        <h3>Formatos rápidos</h3>
+        <div class="presets" id="presetGrid"></div>
+      </div>
 
-          <div class="control-group">
-            <div class="control-top"><label for="scaleRange">Escala OCR</label><span class="value" id="scaleValue">2.0x</span></div>
-            <input id="scaleRange" type="range" min="1" max="4" step="0.5" value="2" />
-          </div>
+      <div class="side-card">
+        <h3>Ajustes</h3>
 
-          <div class="control-group">
-            <div class="control-top"><label for="contrastRange">Contraste</label><span class="value" id="contrastValue">130%</span></div>
-            <input id="contrastRange" type="range" min="80" max="220" step="10" value="130" />
+        <div class="control-group">
+          <div class="control-top">
+            <label for="fitModeSelect">Modo de ajuste</label>
           </div>
-
-          <div class="control-group">
-            <div class="control-top"><label for="brightnessRange">Brillo</label><span class="value" id="brightnessValue">100%</span></div>
-            <input id="brightnessRange" type="range" min="70" max="160" step="5" value="100" />
-          </div>
-
-          <div class="control-group">
-            <div class="control-top"><label for="thresholdRange">Umbral</label><span class="value" id="thresholdValue">160</span></div>
-            <input id="thresholdRange" type="range" min="0" max="255" step="1" value="160" />
-          </div>
-
-          <div class="control-group">
-            <div class="control-top"><label for="preprocessMode">Preprocesado</label></div>
-            <select id="preprocessMode">
-              <option value="auto" selected>Auto OCR</option>
-              <option value="grayscale">Escala de grises</option>
-              <option value="threshold">Blanco y negro</option>
-              <option value="invert">Invertido</option>
-              <option value="none">Sin filtros</option>
-            </select>
-          </div>
+          <select id="fitModeSelect">
+            <option value="cover" selected>Rellenar formato</option>
+            <option value="contain">Encajar completo</option>
+          </select>
         </div>
-      </details>
 
-      <details class="side-card" id="manualPanel">
-        <summary>Edición manual</summary>
-        <div class="details-body">
-          <div class="control-group">
-            <div class="control-top"><label for="textInput">Texto</label></div>
-            <textarea id="textInput" placeholder="Selecciona un bloque para editarlo"></textarea>
+        <div class="control-group">
+          <div class="control-top">
+            <label for="zoomRange">Zoom</label>
+            <span class="value" id="zoomValue">100%</span>
           </div>
-
-          <div class="mini-grid">
-            <div class="control-group">
-              <div class="control-top"><label for="fontSizeInput">Tamaño</label></div>
-              <input id="fontSizeInput" type="number" min="8" max="200" value="20" />
-            </div>
-
-            <div class="control-group">
-              <div class="control-top"><label for="fontFamilySelect">Fuente</label></div>
-              <select id="fontFamilySelect">
-                <option value="Arial" selected>Arial</option>
-                <option value="Times New Roman">Times New Roman</option>
-                <option value="Verdana">Verdana</option>
-                <option value="Courier New">Courier New</option>
-                <option value="Georgia">Georgia</option>
-                <option value="Tahoma">Tahoma</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="mini-grid">
-            <div class="control-group">
-              <div class="control-top"><label for="textColorInput">Color texto</label></div>
-              <input id="textColorInput" type="color" value="#000000" style="padding:6px;height:42px;" />
-            </div>
-
-            <div class="control-group">
-              <div class="control-top"><label for="bgColorInput">Color fondo</label></div>
-              <input id="bgColorInput" type="color" value="#ffffff" style="padding:6px;height:42px;" />
-            </div>
-          </div>
-
-          <div class="mini-grid">
-            <button type="button" class="btn btn-secondary" id="boldBtn">Negrita</button>
-            <button type="button" class="btn btn-secondary" id="italicBtn">Cursiva</button>
-            <button type="button" class="btn btn-secondary" id="underlineBtn">Subrayado</button>
-            <button type="button" class="btn btn-secondary" id="toggleBgBtn">Fondo on/off</button>
-          </div>
+          <input id="zoomRange" type="range" min="50" max="300" step="1" value="100" />
         </div>
-      </details>
+
+        <div class="control-group">
+          <div class="control-top">
+            <label for="bgModeSelect">Fondo</label>
+          </div>
+          <select id="bgModeSelect">
+            <option value="blur" selected>Desenfoque automático</option>
+            <option value="color">Color sólido</option>
+            <option value="transparent">Transparente PNG</option>
+          </select>
+        </div>
+
+        <div class="control-group" id="bgColorGroup">
+          <div class="control-top">
+            <label for="bgColorInput">Color de fondo</label>
+          </div>
+          <input id="bgColorInput" type="color" value="#0b1325" />
+        </div>
+      </div>
 
       <div class="side-card">
         <h3>Acciones</h3>
         <div class="actions-stack">
-          <button type="button" class="btn btn-secondary" id="addTextBtn">Añadir texto nuevo</button>
-          <button type="button" class="btn btn-secondary" id="duplicateBtn">Duplicar bloque</button>
-          <button type="button" class="btn btn-danger" id="deleteBtn">Eliminar bloque</button>
-          <button type="button" class="btn btn-success" id="downloadBtn">Descargar imagen</button>
-          <button type="button" class="btn btn-danger" id="resetBtn">Restablecer</button>
+          <button type="button" class="btn btn-secondary" id="centerBtn">Centrar imagen</button>
+          <button type="button" class="btn btn-secondary" id="resetViewBtn">Restablecer encuadre</button>
+          <button type="button" class="btn btn-success" id="downloadPngBtn">Descargar PNG</button>
+          <button type="button" class="btn btn-success" id="downloadJpgBtn">Descargar JPG</button>
+          <button type="button" class="btn btn-danger" id="resetAllBtn">Restablecer todo</button>
         </div>
         <div class="status" id="statusText">Sube una imagen para empezar.</div>
       </div>
@@ -1011,12 +959,22 @@
       <div class="side-card">
         <h3>Qué puedes hacer</h3>
         <ul class="tips">
-          <li>Detectar texto por líneas limpias.</li>
-          <li>Tocar un bloque y escribir ahí mismo.</li>
-          <li>Mover, duplicar o eliminar bloques.</li>
-          <li>Ajustar fuente, tamaño, color y fondo si hace falta.</li>
-          <li>Descargar el resultado final en imagen.</li>
+          <li>Adaptar una imagen al tamaño exacto de cada red social.</li>
+          <li>Mover la imagen con arrastrar y soltar.</li>
+          <li>Usar zoom para encuadrar mejor el contenido.</li>
+          <li>Rellenar con desenfoque o color sólido.</li>
+          <li>Descargar lista para publicar.</li>
         </ul>
+      </div>
+
+      <div class="side-card">
+        <h3>Herramientas relacionadas</h3>
+        <div class="tool-links">
+          <a href="/redimensionar-imagen"><span>Redimensionar imagen</span><span>→</span></a>
+          <a href="/comprimir-imagen"><span>Comprimir imagen</span><span>→</span></a>
+          <a href="/jpg-a-png"><span>JPG a PNG</span><span>→</span></a>
+          <a href="/png-a-jpg"><span>PNG a JPG</span><span>→</span></a>
+        </div>
       </div>
     </aside>
   </section>
@@ -1046,96 +1004,72 @@
 
     <div class="footer-bottom">
       <div>© 2026 Ralyzo. Todos los derechos reservados.</div>
-      <div>Editor visual de texto en imagen con OCR por líneas.</div>
+      <div>Formatos exactos para redes sociales y contenido visual listo para publicar.</div>
     </div>
   </div>
 </footer>
 
 <script>
-  const fileInput = document.getElementById('fileInput');
+  const PRESETS = [
+    { id:'instagram-post', name:'Instagram Post', size:'1080 × 1080', width:1080, height:1080 },
+    { id:'instagram-story', name:'Instagram Story', size:'1080 × 1920', width:1080, height:1920 },
+    { id:'facebook-post', name:'Facebook Post', size:'1200 × 630', width:1200, height:630 },
+    { id:'facebook-story', name:'Facebook Story', size:'1080 × 1920', width:1080, height:1920 },
+    { id:'tiktok', name:'TikTok Vertical', size:'1080 × 1920', width:1080, height:1920 },
+    { id:'youtube-thumb', name:'YouTube Miniatura', size:'1280 × 720', width:1280, height:720 },
+    { id:'linkedin-post', name:'LinkedIn Post', size:'1200 × 627', width:1200, height:627 },
+    { id:'x-post', name:'X Post', size:'1600 × 900', width:1600, height:900 },
+    { id:'pinterest-pin', name:'Pinterest Pin', size:'1000 × 1500', width:1000, height:1500 },
+    { id:'whatsapp-status', name:'WhatsApp Status', size:'1080 × 1920', width:1080, height:1920 }
+  ];
+
   const uploadZone = document.getElementById('uploadZone');
+  const fileInput = document.getElementById('fileInput');
   const selectImageBtn = document.getElementById('selectImageBtn');
   const pasteHintBtn = document.getElementById('pasteHintBtn');
-  const editorShell = document.getElementById('editorShell');
-  const detectBtn = document.getElementById('detectBtn');
   const replaceBtn = document.getElementById('replaceBtn');
-  const loaderWrap = document.getElementById('loaderWrap');
-  const loaderText = document.getElementById('loaderText');
-  const progressFill = document.getElementById('progressFill');
-  const statusText = document.getElementById('statusText');
-  const infoRow = document.getElementById('infoRow');
-  const canvasBadge = document.getElementById('canvasBadge');
-  const inlineTextEditor = document.getElementById('inlineTextEditor');
-  const manualPanel = document.getElementById('manualPanel');
-
-  const languageSelect = document.getElementById('languageSelect');
-  const scaleRange = document.getElementById('scaleRange');
-  const contrastRange = document.getElementById('contrastRange');
-  const brightnessRange = document.getElementById('brightnessRange');
-  const thresholdRange = document.getElementById('thresholdRange');
-  const preprocessMode = document.getElementById('preprocessMode');
-
-  const scaleValue = document.getElementById('scaleValue');
-  const contrastValue = document.getElementById('contrastValue');
-  const brightnessValue = document.getElementById('brightnessValue');
-  const thresholdValue = document.getElementById('thresholdValue');
-
-  const textInput = document.getElementById('textInput');
-  const fontSizeInput = document.getElementById('fontSizeInput');
-  const fontFamilySelect = document.getElementById('fontFamilySelect');
-  const textColorInput = document.getElementById('textColorInput');
+  const editorShell = document.getElementById('editorShell');
+  const presetGrid = document.getElementById('presetGrid');
+  const fitModeSelect = document.getElementById('fitModeSelect');
+  const zoomRange = document.getElementById('zoomRange');
+  const zoomValue = document.getElementById('zoomValue');
+  const bgModeSelect = document.getElementById('bgModeSelect');
   const bgColorInput = document.getElementById('bgColorInput');
+  const bgColorGroup = document.getElementById('bgColorGroup');
+  const centerBtn = document.getElementById('centerBtn');
+  const resetViewBtn = document.getElementById('resetViewBtn');
+  const downloadPngBtn = document.getElementById('downloadPngBtn');
+  const downloadJpgBtn = document.getElementById('downloadJpgBtn');
+  const resetAllBtn = document.getElementById('resetAllBtn');
+  const statusText = document.getElementById('statusText');
+  const formatLabel = document.getElementById('formatLabel');
+  const sizeBadge = document.getElementById('sizeBadge');
+  const infoRow = document.getElementById('infoRow');
+  const mainCanvas = document.getElementById('mainCanvas');
+  const stageArea = document.getElementById('stageArea');
 
-  const boldBtn = document.getElementById('boldBtn');
-  const italicBtn = document.getElementById('italicBtn');
-  const underlineBtn = document.getElementById('underlineBtn');
-  const toggleBgBtn = document.getElementById('toggleBgBtn');
+  const ctx = mainCanvas.getContext('2d');
 
-  const addTextBtn = document.getElementById('addTextBtn');
-  const duplicateBtn = document.getElementById('duplicateBtn');
-  const deleteBtn = document.getElementById('deleteBtn');
-  const downloadBtn = document.getElementById('downloadBtn');
-  const resetBtn = document.getElementById('resetBtn');
-
-  let originalFile = null;
-  let originalImageUrl = null;
-  let originalImageElement = null;
-  let worker = null;
-  let workerLang = null;
-  let ocrRunning = false;
-
-  let stage = null;
-  let layer = null;
-  let transformer = null;
-  let backgroundNode = null;
-  let selectedGroup = null;
-  let originalImageInfo = { width: 0, height: 0 };
-  let displayScale = 1;
-  let blockCounter = 0;
-  let editingGroup = null;
+  let imageFile = null;
+  let imageObj = null;
+  let selectedPreset = PRESETS[0];
+  let fitMode = 'cover';
+  let bgMode = 'blur';
+  let zoom = 1;
+  let baseScale = 1;
+  let offsetX = 0;
+  let offsetY = 0;
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragStartY = 0;
+  let startOffsetX = 0;
+  let startOffsetY = 0;
 
   function setStatus(text, type = '') {
     statusText.textContent = text;
     statusText.className = 'status';
     if (type) statusText.classList.add(type);
   }
-
-  function toggleLoader(show) {
-    loaderWrap.classList.toggle('active', show);
-    if (!show) progressFill.style.width = '0%';
-  }
-
-  function updateRangeLabels() {
-    scaleValue.textContent = `${Number(scaleRange.value).toFixed(1)}x`;
-    contrastValue.textContent = `${contrastRange.value}%`;
-    brightnessValue.textContent = `${brightnessRange.value}%`;
-    thresholdValue.textContent = `${thresholdRange.value}`;
-  }
-
-  [scaleRange, contrastRange, brightnessRange, thresholdRange].forEach(input => {
-    input.addEventListener('input', updateRangeLabels);
-  });
-  updateRangeLabels();
 
   function bytesToSize(bytes) {
     if (!bytes && bytes !== 0) return '-';
@@ -1149,802 +1083,285 @@
     return `${value.toFixed(value >= 10 || i === 0 ? 0 : 1)} ${units[i]}`;
   }
 
-  function renderInfo(extra = []) {
-    const items = [];
-    if (originalFile) {
-      items.push(`Nombre: ${originalFile.name}`);
-      items.push(`Peso original: ${bytesToSize(originalFile.size)}`);
-      items.push(`Resolución: ${originalImageInfo.width} × ${originalImageInfo.height}`);
+  function renderInfo() {
+    if (!imageFile || !imageObj) {
+      infoRow.innerHTML = '';
+      return;
     }
-    extra.forEach(item => items.push(item));
+
+    const items = [
+      `Nombre: ${imageFile.name}`,
+      `Peso original: ${bytesToSize(imageFile.size)}`,
+      `Resolución original: ${imageObj.naturalWidth} × ${imageObj.naturalHeight}`,
+      `Formato actual: ${selectedPreset.width} × ${selectedPreset.height}`
+    ];
+
     infoRow.innerHTML = items.map(item => `<div class="info-pill">${item}</div>`).join('');
   }
 
-  function revokeUrls() {
-    if (originalImageUrl) {
-      URL.revokeObjectURL(originalImageUrl);
-      originalImageUrl = null;
-    }
-  }
+  function renderPresetButtons() {
+    presetGrid.innerHTML = PRESETS.map(preset => `
+      <button type="button" class="preset-btn ${preset.id === selectedPreset.id ? 'active' : ''}" data-id="${preset.id}">
+        <span class="preset-name">${preset.name}</span>
+        <span class="preset-size">${preset.size}</span>
+      </button>
+    `).join('');
 
-  function createImageFromBlob(blob) {
-    return new Promise((resolve, reject) => {
-      const url = URL.createObjectURL(blob);
-      const img = new Image();
-      img.onload = () => {
-        URL.revokeObjectURL(url);
-        resolve(img);
-      };
-      img.onerror = () => {
-        URL.revokeObjectURL(url);
-        reject(new Error('No se pudo leer la imagen.'));
-      };
-      img.src = url;
-    });
-  }
-
-  async function generateProcessedBlob() {
-    if (!originalFile) throw new Error('No hay imagen cargada.');
-
-    const img = await createImageFromBlob(originalFile);
-    const scale = Number(scaleRange.value);
-    const contrast = Number(contrastRange.value) / 100;
-    const brightness = Number(brightnessRange.value) / 100;
-    const threshold = Number(thresholdRange.value);
-    const mode = preprocessMode.value;
-
-    const canvas = document.createElement('canvas');
-    canvas.width = Math.max(1, Math.round(img.naturalWidth * scale));
-    canvas.height = Math.max(1, Math.round(img.naturalHeight * scale));
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
-
-    ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
-    ctx.filter = `contrast(${contrast}) brightness(${brightness})`;
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-    ctx.filter = 'none';
-
-    if (mode !== 'none') {
-      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      const data = imageData.data;
-
-      for (let i = 0; i < data.length; i += 4) {
-        const r = data[i];
-        const g = data[i + 1];
-        const b = data[i + 2];
-        const gray = 0.299 * r + 0.587 * g + 0.114 * b;
-
-        if (mode === 'grayscale' || mode === 'auto') {
-          data[i] = gray;
-          data[i + 1] = gray;
-          data[i + 2] = gray;
-        }
-
-        if (mode === 'threshold' || mode === 'auto') {
-          const bw = gray > threshold ? 255 : 0;
-          data[i] = bw;
-          data[i + 1] = bw;
-          data[i + 2] = bw;
-        }
-
-        if (mode === 'invert') {
-          data[i] = 255 - r;
-          data[i + 1] = 255 - g;
-          data[i + 2] = 255 - b;
-        }
-      }
-
-      ctx.putImageData(imageData, 0, 0);
-    }
-
-    const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-    if (!blob) throw new Error('No se pudo preparar la imagen.');
-    return blob;
-  }
-
-  async function ensureWorker(lang) {
-    if (!worker) {
-      worker = await Tesseract.createWorker(lang, 1, {
-        logger: message => {
-          if (message.status) loaderText.textContent = `${message.status}...`;
-          if (typeof message.progress === 'number') {
-            progressFill.style.width = `${Math.round(message.progress * 100)}%`;
-          }
+    presetGrid.querySelectorAll('.preset-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const preset = PRESETS.find(p => p.id === btn.dataset.id);
+        if (!preset) return;
+        selectedPreset = preset;
+        renderPresetButtons();
+        updateLabels();
+        if (imageObj) {
+          resetView(true);
+          drawCanvas();
+          setStatus(`Formato cambiado a ${preset.name}.`, 'success');
         }
       });
-      workerLang = lang;
-      return;
+    });
+  }
+
+  function updateLabels() {
+    formatLabel.textContent = selectedPreset.name;
+    sizeBadge.textContent = `${selectedPreset.width} × ${selectedPreset.height} px`;
+    zoomValue.textContent = `${Math.round(zoom * 100)}%`;
+    bgColorGroup.style.display = bgModeSelect.value === 'color' ? 'block' : 'none';
+  }
+
+  function calculateContainScale() {
+    return Math.min(
+      selectedPreset.width / imageObj.naturalWidth,
+      selectedPreset.height / imageObj.naturalHeight
+    );
+  }
+
+  function calculateCoverScale() {
+    return Math.max(
+      selectedPreset.width / imageObj.naturalWidth,
+      selectedPreset.height / imageObj.naturalHeight
+    );
+  }
+
+  function resetView(keepZoom = false) {
+    if (!imageObj) return;
+
+    if (!keepZoom) zoom = Number(zoomRange.value) / 100;
+
+    baseScale = fitMode === 'cover' ? calculateCoverScale() : calculateContainScale();
+    const drawScale = baseScale * zoom;
+    const drawWidth = imageObj.naturalWidth * drawScale;
+    const drawHeight = imageObj.naturalHeight * drawScale;
+
+    offsetX = (selectedPreset.width - drawWidth) / 2;
+    offsetY = (selectedPreset.height - drawHeight) / 2;
+  }
+
+  function drawBlurBackground() {
+    const bgScale = calculateCoverScale();
+    const bgWidth = imageObj.naturalWidth * bgScale;
+    const bgHeight = imageObj.naturalHeight * bgScale;
+    const bgX = (selectedPreset.width - bgWidth) / 2;
+    const bgY = (selectedPreset.height - bgHeight) / 2;
+
+    ctx.save();
+    ctx.filter = 'blur(28px) brightness(0.9)';
+    ctx.drawImage(imageObj, bgX, bgY, bgWidth, bgHeight);
+    ctx.restore();
+
+    ctx.fillStyle = 'rgba(0,0,0,0.16)';
+    ctx.fillRect(0, 0, selectedPreset.width, selectedPreset.height);
+  }
+
+  function drawCanvas() {
+    if (!imageObj) return;
+
+    mainCanvas.width = selectedPreset.width;
+    mainCanvas.height = selectedPreset.height;
+
+    ctx.clearRect(0, 0, selectedPreset.width, selectedPreset.height);
+
+    if (bgModeSelect.value === 'blur') {
+      drawBlurBackground();
+    } else if (bgModeSelect.value === 'color') {
+      ctx.fillStyle = bgColorInput.value;
+      ctx.fillRect(0, 0, selectedPreset.width, selectedPreset.height);
     }
 
-    if (workerLang !== lang) {
-      await worker.terminate();
-      worker = await Tesseract.createWorker(lang, 1, {
-        logger: message => {
-          if (message.status) loaderText.textContent = `${message.status}...`;
-          if (typeof message.progress === 'number') {
-            progressFill.style.width = `${Math.round(message.progress * 100)}%`;
-          }
-        }
-      });
-      workerLang = lang;
+    const drawScale = baseScale * zoom;
+    const drawWidth = imageObj.naturalWidth * drawScale;
+    const drawHeight = imageObj.naturalHeight * drawScale;
+
+    if (bgModeSelect.value === 'transparent') {
+      ctx.clearRect(0, 0, selectedPreset.width, selectedPreset.height);
+    }
+
+    ctx.drawImage(imageObj, offsetX, offsetY, drawWidth, drawHeight);
+
+    updateCanvasDisplaySize();
+    renderInfo();
+  }
+
+  function updateCanvasDisplaySize() {
+    const stagePadding = 36;
+    const maxW = Math.max(260, stageArea.clientWidth - stagePadding);
+    const maxH = Math.max(280, window.innerHeight - 320);
+
+    const ratio = Math.min(
+      maxW / selectedPreset.width,
+      maxH / selectedPreset.height,
+      1
+    );
+
+    const displayWidth = Math.round(selectedPreset.width * ratio);
+    const displayHeight = Math.round(selectedPreset.height * ratio);
+
+    mainCanvas.style.width = `${displayWidth}px`;
+    mainCanvas.style.height = `${displayHeight}px`;
+  }
+
+  function clampOffsets() {
+    if (!imageObj) return;
+
+    const drawScale = baseScale * zoom;
+    const drawWidth = imageObj.naturalWidth * drawScale;
+    const drawHeight = imageObj.naturalHeight * drawScale;
+
+    if (fitMode === 'cover') {
+      const minX = Math.min(0, selectedPreset.width - drawWidth);
+      const maxX = Math.max(0, selectedPreset.width - drawWidth);
+      const minY = Math.min(0, selectedPreset.height - drawHeight);
+      const maxY = Math.max(0, selectedPreset.height - drawHeight);
+
+      offsetX = Math.min(Math.max(offsetX, minX), maxX);
+      offsetY = Math.min(Math.max(offsetY, minY), maxY);
+    } else {
+      const centeredX = (selectedPreset.width - drawWidth) / 2;
+      const centeredY = (selectedPreset.height - drawHeight) / 2;
+      offsetX = centeredX;
+      offsetY = centeredY;
     }
   }
 
-  function rgbToHex(value) {
-    if (!value) return '#000000';
-    if (value.startsWith('#')) return value;
-    const match = value.match(/\d+/g);
-    if (!match) return '#000000';
-    const [r, g, b] = match.map(Number);
-    return '#' + [r, g, b].map(v => v.toString(16).padStart(2, '0')).join('');
-  }
-
-  function computeTextStyleFlags(textNode) {
-    const style = textNode.fontStyle() || 'normal';
-    return {
-      bold: style.includes('bold'),
-      italic: style.includes('italic'),
-      underline: textNode.textDecoration() === 'underline'
-    };
-  }
-
-  function updateGroupVisual(group) {
-    if (!group) return;
-    const rect = group.findOne('.text-bg');
-    const text = group.findOne('.text-content');
-
-    rect.width(Math.max(8, text.width() + 10));
-    rect.height(Math.max(8, text.height() + 8));
-    text.x(5);
-    text.y(4);
-    group.width(rect.width());
-    group.height(rect.height());
-    layer.batchDraw();
-  }
-
-  function createEditableBlock({
-    x = 40,
-    y = 40,
-    text = 'Nuevo texto',
-    fontSize = 20,
-    fontFamily = 'Arial',
-    fill = '#000000',
-    bgFill = '#ffffff',
-    bgEnabled = true,
-    bold = false,
-    italic = false,
-    underline = false
-  }) {
-    blockCounter += 1;
-
-    let fontStyle = 'normal';
-    if (bold && italic) fontStyle = 'bold italic';
-    else if (bold) fontStyle = 'bold';
-    else if (italic) fontStyle = 'italic';
-
-    const group = new Konva.Group({
-      x,
-      y,
-      draggable: true,
-      id: `block-${blockCounter}`
-    });
-
-    const bg = new Konva.Rect({
-      name: 'text-bg',
-      x: 0,
-      y: 0,
-      width: 10,
-      height: 10,
-      fill: bgFill,
-      opacity: bgEnabled ? 1 : 0,
-      cornerRadius: 2,
-      stroke: 'rgba(37,99,235,.35)',
-      strokeWidth: 1
-    });
-
-    const textNode = new Konva.Text({
-      name: 'text-content',
-      x: 5,
-      y: 4,
-      text,
-      fontSize,
-      fontFamily,
-      fill,
-      fontStyle,
-      textDecoration: underline ? 'underline' : '',
-      padding: 0,
-      listening: false
-    });
-
-    group.add(bg);
-    group.add(textNode);
-    layer.add(group);
-    updateGroupVisual(group);
-
-    group.on('click tap', (e) => {
-      e.cancelBubble = true;
-      if (selectedGroup === group) {
-        openInlineEditor(group);
-      } else {
-        selectGroup(group);
-      }
-    });
-
-    group.on('dragstart', () => {
-      closeInlineEditor(true);
-    });
-
-    group.on('dragend', () => {
-      if (selectedGroup === group) syncControlsFromSelection();
-    });
-
-    group.on('transformend', () => {
-      closeInlineEditor(true);
-      const scaleX = group.scaleX();
-      const scaleY = group.scaleY();
-      textNode.fontSize(Math.max(8, textNode.fontSize() * Math.max(scaleX, scaleY)));
-      group.scaleX(1);
-      group.scaleY(1);
-      updateGroupVisual(group);
-      if (selectedGroup === group) syncControlsFromSelection();
-    });
-
-    return group;
-  }
-
-  function refreshStyleButtons() {
-    [boldBtn, italicBtn, underlineBtn, toggleBgBtn].forEach(btn => {
-      const active = btn.dataset.active === '1';
-      btn.style.background = active ? '#2563EB' : 'rgba(255,255,255,.03)';
-      btn.style.color = '#fff';
-      btn.style.border = active ? 'none' : '1px solid rgba(148,163,184,.18)';
-    });
-  }
-
-  function syncControlsFromSelection() {
-    if (!selectedGroup) return;
-    const textNode = selectedGroup.findOne('.text-content');
-    const bg = selectedGroup.findOne('.text-bg');
-    const flags = computeTextStyleFlags(textNode);
-
-    textInput.value = textNode.text();
-    fontSizeInput.value = Math.round(textNode.fontSize());
-    fontFamilySelect.value = textNode.fontFamily();
-    textColorInput.value = rgbToHex(textNode.fill());
-    bgColorInput.value = rgbToHex(bg.fill());
-
-    boldBtn.dataset.active = flags.bold ? '1' : '0';
-    italicBtn.dataset.active = flags.italic ? '1' : '0';
-    underlineBtn.dataset.active = flags.underline ? '1' : '0';
-    toggleBgBtn.dataset.active = bg.opacity() > 0 ? '1' : '0';
-    refreshStyleButtons();
-  }
-
-  function selectGroup(group) {
-    selectedGroup = group;
-    if (!group) {
-      transformer.nodes([]);
-      canvasBadge.textContent = 'Sin seleccionar';
-      textInput.value = '';
-      closeInlineEditor(true);
-      layer.batchDraw();
-      return;
-    }
-    transformer.nodes([group]);
-    canvasBadge.textContent = 'Bloque seleccionado';
-    syncControlsFromSelection();
-    manualPanel.open = true;
-    layer.batchDraw();
-  }
-
-  function applyTextChange() {
-    if (!selectedGroup) return;
-    const textNode = selectedGroup.findOne('.text-content');
-    textNode.text(textInput.value || ' ');
-    updateGroupVisual(selectedGroup);
-    if (editingGroup === selectedGroup) openInlineEditor(selectedGroup, true);
-  }
-
-  function applyFontSize() {
-    if (!selectedGroup) return;
-    const textNode = selectedGroup.findOne('.text-content');
-    textNode.fontSize(Math.max(8, Number(fontSizeInput.value) || 20));
-    updateGroupVisual(selectedGroup);
-    if (editingGroup === selectedGroup) openInlineEditor(selectedGroup, true);
-  }
-
-  function applyFontFamily() {
-    if (!selectedGroup) return;
-    const textNode = selectedGroup.findOne('.text-content');
-    textNode.fontFamily(fontFamilySelect.value);
-    updateGroupVisual(selectedGroup);
-    if (editingGroup === selectedGroup) openInlineEditor(selectedGroup, true);
-  }
-
-  function applyTextColor() {
-    if (!selectedGroup) return;
-    const textNode = selectedGroup.findOne('.text-content');
-    textNode.fill(textColorInput.value);
-    layer.batchDraw();
-  }
-
-  function applyBgColor() {
-    if (!selectedGroup) return;
-    const bg = selectedGroup.findOne('.text-bg');
-    bg.fill(bgColorInput.value);
-    layer.batchDraw();
-  }
-
-  function toggleFontFlag(flag) {
-    if (!selectedGroup) return;
-    const textNode = selectedGroup.findOne('.text-content');
-    const flags = computeTextStyleFlags(textNode);
-    flags[flag] = !flags[flag];
-
-    let style = 'normal';
-    if (flags.bold && flags.italic) style = 'bold italic';
-    else if (flags.bold) style = 'bold';
-    else if (flags.italic) style = 'italic';
-
-    textNode.fontStyle(style);
-    textNode.textDecoration(flags.underline ? 'underline' : '');
-    syncControlsFromSelection();
-    updateGroupVisual(selectedGroup);
-    if (editingGroup === selectedGroup) openInlineEditor(selectedGroup, true);
-  }
-
-  function toggleBg() {
-    if (!selectedGroup) return;
-    const bg = selectedGroup.findOne('.text-bg');
-    bg.opacity(bg.opacity() > 0 ? 0 : 1);
-    syncControlsFromSelection();
-    layer.batchDraw();
-  }
-
-  function addNewBlock() {
-    if (!stage) return;
-    const group = createEditableBlock({
-      x: 40,
-      y: 40,
-      text: 'Nuevo texto',
-      fontSize: 22
-    });
-    selectGroup(group);
-    openInlineEditor(group);
-    setStatus('Nuevo bloque añadido.', 'success');
-  }
-
-  function duplicateSelected() {
-    if (!selectedGroup) {
-      setStatus('Selecciona un bloque para duplicarlo.', 'warning');
-      return;
-    }
-    const textNode = selectedGroup.findOne('.text-content');
-    const bg = selectedGroup.findOne('.text-bg');
-    const flags = computeTextStyleFlags(textNode);
-
-    const group = createEditableBlock({
-      x: selectedGroup.x() + 20,
-      y: selectedGroup.y() + 20,
-      text: textNode.text(),
-      fontSize: textNode.fontSize(),
-      fontFamily: textNode.fontFamily(),
-      fill: rgbToHex(textNode.fill()),
-      bgFill: rgbToHex(bg.fill()),
-      bgEnabled: bg.opacity() > 0,
-      bold: flags.bold,
-      italic: flags.italic,
-      underline: flags.underline
-    });
-
-    selectGroup(group);
-    setStatus('Bloque duplicado.', 'success');
-  }
-
-  function deleteSelected() {
-    if (!selectedGroup) {
-      setStatus('Selecciona un bloque para eliminarlo.', 'warning');
-      return;
-    }
-    closeInlineEditor(true);
-    selectedGroup.destroy();
-    selectGroup(null);
-    layer.draw();
-    setStatus('Bloque eliminado.', 'success');
-  }
-
-  function buildStage(imageObj) {
-    const mount = document.getElementById('konvaMount');
-    mount.innerHTML = '';
-
-    const wrap = mount.parentElement;
-    const availableWidth = Math.max(280, wrap.clientWidth - 2);
-    const maxHeight = Math.max(420, window.innerHeight - 270);
-
-    const ratio = Math.min(availableWidth / imageObj.width, maxHeight / imageObj.height, 1);
-    displayScale = ratio;
-
-    const stageWidth = Math.max(280, Math.round(imageObj.width * ratio));
-    const stageHeight = Math.max(220, Math.round(imageObj.height * ratio));
-
-    stage = new Konva.Stage({
-      container: 'konvaMount',
-      width: stageWidth,
-      height: stageHeight
-    });
-
-    layer = new Konva.Layer();
-    stage.add(layer);
-
-    backgroundNode = new Konva.Image({
-      image: imageObj,
-      x: 0,
-      y: 0,
-      width: stageWidth,
-      height: stageHeight,
-      listening: false
-    });
-
-    layer.add(backgroundNode);
-
-    transformer = new Konva.Transformer({
-      rotateEnabled: false,
-      ignoreStroke: true,
-      enabledAnchors: ['top-left','top-right','bottom-left','bottom-right'],
-      boundBoxFunc: (oldBox, newBox) => {
-        if (newBox.width < 20 || newBox.height < 12) return oldBox;
-        return newBox;
-      }
-    });
-
-    layer.add(transformer);
-
-    stage.on('click tap', (e) => {
-      if (e.target === stage || e.target === backgroundNode) {
-        selectGroup(null);
-      }
-    });
-
-    layer.draw();
-  }
-
-  function rebuildStageForResize() {
-    if (!originalImageElement || !editorShell.classList.contains('active')) return;
-    closeInlineEditor(true);
-
-    const existingBlocks = [];
-    if (layer) {
-      layer.getChildren(node => node.className === 'Group').forEach(group => {
-        const textNode = group.findOne('.text-content');
-        const bg = group.findOne('.text-bg');
-        const flags = computeTextStyleFlags(textNode);
-
-        existingBlocks.push({
-          relX: group.x() / stage.width(),
-          relY: group.y() / stage.height(),
-          relSize: textNode.fontSize() / Math.max(stage.width(), stage.height()),
-          text: textNode.text(),
-          fontFamily: textNode.fontFamily(),
-          fill: rgbToHex(textNode.fill()),
-          bgFill: rgbToHex(bg.fill()),
-          bgEnabled: bg.opacity() > 0,
-          bold: flags.bold,
-          italic: flags.italic,
-          underline: flags.underline
-        });
-      });
-    }
-
-    buildStage(originalImageElement);
-
-    existingBlocks.forEach(item => {
-      createEditableBlock({
-        x: item.relX * stage.width(),
-        y: item.relY * stage.height(),
-        text: item.text,
-        fontSize: Math.max(8, item.relSize * Math.max(stage.width(), stage.height())),
-        fontFamily: item.fontFamily,
-        fill: item.fill,
-        bgFill: item.bgFill,
-        bgEnabled: item.bgEnabled,
-        bold: item.bold,
-        italic: item.italic,
-        underline: item.underline
-      });
-    });
-
-    selectGroup(null);
-  }
-
-  function lineLooksUseful(text) {
-    const trimmed = (text || '').replace(/\s+/g, ' ').trim();
-    if (trimmed.length < 3) return false;
-
-    const letterCount = (trimmed.match(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9]/g) || []).length;
-    const symbolCount = trimmed.length - letterCount;
-
-    if (letterCount < 2) return false;
-    if (symbolCount > letterCount) return false;
-    if (/([|_/\\\-=:;])\1{2,}/.test(trimmed)) return false;
-
-    return true;
-  }
-
-  function mergeWordsIntoLines(words) {
-    const filtered = words
-      .filter(word => word && word.bbox && (word.text || '').trim())
-      .map(word => ({
-        text: word.text.trim(),
-        x0: word.bbox.x0,
-        y0: word.bbox.y0,
-        x1: word.bbox.x1,
-        y1: word.bbox.y1,
-        conf: typeof word.confidence === 'number' ? word.confidence : 0
-      }))
-      .sort((a, b) => (a.y0 - b.y0) || (a.x0 - b.x0));
-
-    const lines = [];
-
-    filtered.forEach(word => {
-      const wordHeight = Math.max(1, word.y1 - word.y0);
-      const centerY = (word.y0 + word.y1) / 2;
-
-      let target = null;
-      for (const line of lines) {
-        const tolerance = Math.max(10, line.avgHeight * 0.65);
-        if (Math.abs(centerY - line.centerY) <= tolerance) {
-          target = line;
-          break;
-        }
-      }
-
-      if (!target) {
-        lines.push({
-          words: [word],
-          x0: word.x0,
-          y0: word.y0,
-          x1: word.x1,
-          y1: word.y1,
-          centerY,
-          avgHeight: wordHeight,
-          avgConf: word.conf
-        });
-      } else {
-        target.words.push(word);
-        target.x0 = Math.min(target.x0, word.x0);
-        target.y0 = Math.min(target.y0, word.y0);
-        target.x1 = Math.max(target.x1, word.x1);
-        target.y1 = Math.max(target.y1, word.y1);
-        target.centerY = (target.y0 + target.y1) / 2;
-        target.avgHeight = ((target.avgHeight * (target.words.length - 1)) + wordHeight) / target.words.length;
-        target.avgConf = ((target.avgConf * (target.words.length - 1)) + word.conf) / target.words.length;
-      }
-    });
-
-    return lines
-      .map(line => {
-        const ordered = line.words.sort((a, b) => a.x0 - b.x0);
-        const text = ordered.map(w => w.text).join(' ').replace(/\s+/g, ' ').trim();
-        const width = line.x1 - line.x0;
-        const height = line.y1 - line.y0;
-        return {
-          text,
-          conf: line.avgConf,
-          bbox: {
-            x0: line.x0,
-            y0: line.y0,
-            x1: line.x1,
-            y1: line.y1,
-            width,
-            height
-          }
-        };
-      })
-      .filter(line => {
-        if (!lineLooksUseful(line.text)) return false;
-        if (line.conf < 45) return false;
-        if (line.bbox.width < 60 || line.bbox.height < 10) return false;
-        if (line.bbox.height > 90) return false;
-        return true;
-      });
-  }
-
-  function openInlineEditor(group, keepValue = false) {
-    if (!group || !stage) return;
-    selectGroup(group);
-    editingGroup = group;
-
-    const textNode = group.findOne('.text-content');
-    const rect = group.findOne('.text-bg');
-    const stageBox = stage.container().getBoundingClientRect();
-    const mountBox = document.getElementById('konvaMount').getBoundingClientRect();
-
-    inlineTextEditor.style.display = 'block';
-    inlineTextEditor.style.left = `${mountBox.left - stageBox.left + group.x()}px`;
-    inlineTextEditor.style.top = `${mountBox.top - stageBox.top + group.y()}px`;
-    inlineTextEditor.style.width = `${Math.max(90, rect.width())}px`;
-    inlineTextEditor.style.height = `${Math.max(34, rect.height() + 2)}px`;
-    inlineTextEditor.style.fontSize = `${textNode.fontSize()}px`;
-    inlineTextEditor.style.fontFamily = textNode.fontFamily();
-    inlineTextEditor.style.fontWeight = textNode.fontStyle().includes('bold') ? '700' : '400';
-    inlineTextEditor.style.fontStyle = textNode.fontStyle().includes('italic') ? 'italic' : 'normal';
-    inlineTextEditor.style.textDecoration = textNode.textDecoration() === 'underline' ? 'underline' : 'none';
-    inlineTextEditor.style.color = rgbToHex(textNode.fill());
-    inlineTextEditor.style.background = rect.opacity() > 0 ? rgbToHex(rect.fill()) : 'rgba(255,255,255,.98)';
-    inlineTextEditor.style.lineHeight = '1.2';
-
-    if (!keepValue) inlineTextEditor.value = textNode.text();
-    inlineTextEditor.focus();
-    inlineTextEditor.select();
-  }
-
-  function closeInlineEditor(save = true) {
-    if (!editingGroup) {
-      inlineTextEditor.style.display = 'none';
-      return;
-    }
-
-    const currentGroup = editingGroup;
-    editingGroup = null;
-
-    if (save) {
-      const textNode = currentGroup.findOne('.text-content');
-      textNode.text(inlineTextEditor.value || ' ');
-      updateGroupVisual(currentGroup);
-      if (selectedGroup === currentGroup) syncControlsFromSelection();
-    }
-
-    inlineTextEditor.style.display = 'none';
-  }
-
-  async function loadOriginalFile(file) {
+  function loadImageFile(file) {
     if (!file || !file.type.startsWith('image/')) return;
 
-    revokeUrls();
-    originalFile = file;
-    originalImageUrl = URL.createObjectURL(file);
-    originalImageElement = await createImageFromBlob(file);
+    imageFile = file;
+    const url = URL.createObjectURL(file);
+    const img = new Image();
 
-    originalImageInfo = {
-      width: originalImageElement.naturalWidth,
-      height: originalImageElement.naturalHeight
+    img.onload = () => {
+      imageObj = img;
+      editorShell.classList.add('active');
+      uploadZone.classList.add('hidden');
+      resetView();
+      clampOffsets();
+      drawCanvas();
+      setStatus('Imagen cargada. Elige un formato y ajusta el encuadre.', 'success');
+      URL.revokeObjectURL(url);
     };
 
-    uploadZone.classList.add('hidden');
-    editorShell.classList.add('active');
+    img.onerror = () => {
+      setStatus('No se pudo cargar la imagen.', 'error');
+      URL.revokeObjectURL(url);
+    };
 
-    requestAnimationFrame(() => {
-      buildStage(originalImageElement);
-      selectGroup(null);
-      setStatus('Imagen cargada. Ahora puedes detectar texto o añadir bloques manuales.');
-      renderInfo([
-        `Formato: ${file.type.split('/')[1].toUpperCase()}`,
-        'Editor listo'
-      ]);
-    });
+    img.src = url;
   }
 
-  async function runOCR() {
-    if (!originalFile || ocrRunning || !stage) {
-      if (!originalFile) setStatus('Primero sube una imagen.', 'warning');
-      return;
-    }
-
-    ocrRunning = true;
-    detectBtn.disabled = true;
-    toggleLoader(true);
-    loaderText.textContent = 'Preparando OCR...';
-    progressFill.style.width = '0%';
-    setStatus('Detectando texto por líneas limpias...', 'warning');
-
-    try {
-      const processedBlob = await generateProcessedBlob();
-
-      await ensureWorker(languageSelect.value);
-      await worker.setParameters({
-        tessedit_pageseg_mode: 6,
-        preserve_interword_spaces: '1'
-      });
-
-      const result = await worker.recognize(processedBlob);
-      const rawWords = Array.isArray(result.data.words) ? result.data.words : [];
-      const lines = mergeWordsIntoLines(rawWords);
-      const confidence = typeof result.data.confidence === 'number'
-        ? Math.round(result.data.confidence)
-        : 0;
-
-      let created = 0;
-
-      lines.forEach(line => {
-        const { bbox, text } = line;
-        const x = bbox.x0 * displayScale;
-        const y = bbox.y0 * displayScale;
-        const boxH = Math.max(14, bbox.height * displayScale);
-        const estimatedFontSize = Math.max(11, Math.round(boxH * 0.78));
-
-        createEditableBlock({
-          x,
-          y,
-          text,
-          fontSize: estimatedFontSize,
-          fontFamily: 'Arial',
-          fill: '#000000',
-          bgFill: '#ffffff',
-          bgEnabled: true
-        });
-
-        created += 1;
-      });
-
-      layer.draw();
-      renderInfo([
-        `Confianza OCR: ${confidence}%`,
-        `Bloques creados: ${created}`
-      ]);
-
-      setStatus(
-        created
-          ? 'Texto detectado. Toca un bloque y vuelve a tocarlo para escribir ahí mismo.'
-          : 'No se detectó texto útil. Ajusta OCR o añade bloques manuales.',
-        created ? 'success' : 'warning'
-      );
-    } catch (error) {
-      console.error(error);
-      setStatus(`Error: ${error.message}`, 'error');
-    } finally {
-      toggleLoader(false);
-      detectBtn.disabled = false;
-      ocrRunning = false;
-    }
+  function getCanvasPoint(clientX, clientY) {
+    const rect = mainCanvas.getBoundingClientRect();
+    const scaleX = mainCanvas.width / rect.width;
+    const scaleY = mainCanvas.height / rect.height;
+    return {
+      x: (clientX - rect.left) * scaleX,
+      y: (clientY - rect.top) * scaleY
+    };
   }
 
-  function downloadEditedImage() {
-    if (!stage) {
+  function startDrag(clientX, clientY) {
+    if (!imageObj) return;
+    if (fitMode !== 'cover') return;
+
+    isDragging = true;
+    mainCanvas.classList.add('dragging');
+    dragStartX = clientX;
+    dragStartY = clientY;
+    startOffsetX = offsetX;
+    startOffsetY = offsetY;
+  }
+
+  function moveDrag(clientX, clientY) {
+    if (!isDragging) return;
+
+    const rect = mainCanvas.getBoundingClientRect();
+    const scaleX = mainCanvas.width / rect.width;
+    const scaleY = mainCanvas.height / rect.height;
+
+    offsetX = startOffsetX + (clientX - dragStartX) * scaleX;
+    offsetY = startOffsetY + (clientY - dragStartY) * scaleY;
+
+    clampOffsets();
+    drawCanvas();
+  }
+
+  function endDrag() {
+    isDragging = false;
+    mainCanvas.classList.remove('dragging');
+  }
+
+  function downloadImage(type) {
+    if (!imageObj) {
       setStatus('Primero sube una imagen.', 'warning');
       return;
     }
 
-    closeInlineEditor(true);
+    drawCanvas();
 
-    const dataUrl = stage.toDataURL({ pixelRatio: 2 });
-    const a = document.createElement('a');
-    a.href = dataUrl;
-    a.download = `${(originalFile?.name || 'documento').replace(/\.[^.]+$/, '')}-editado.png`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setStatus('Imagen descargada correctamente.', 'success');
+    const filenameBase = (imageFile?.name || 'red-social').replace(/\.[^.]+$/, '');
+    const link = document.createElement('a');
+
+    if (type === 'png') {
+      link.download = `${filenameBase}-${selectedPreset.id}.png`;
+      link.href = mainCanvas.toDataURL('image/png');
+    } else {
+      const jpgCanvas = document.createElement('canvas');
+      jpgCanvas.width = mainCanvas.width;
+      jpgCanvas.height = mainCanvas.height;
+      const jpgCtx = jpgCanvas.getContext('2d');
+      jpgCtx.fillStyle = bgModeSelect.value === 'transparent' ? '#ffffff' : (bgModeSelect.value === 'color' ? bgColorInput.value : '#0b1325');
+      jpgCtx.fillRect(0, 0, jpgCanvas.width, jpgCanvas.height);
+      jpgCtx.drawImage(mainCanvas, 0, 0);
+      link.download = `${filenameBase}-${selectedPreset.id}.jpg`;
+      link.href = jpgCanvas.toDataURL('image/jpeg', 0.95);
+    }
+
+    link.click();
+    setStatus(`Imagen ${type.toUpperCase()} descargada correctamente.`, 'success');
   }
 
   function resetAll() {
-    revokeUrls();
-    originalFile = null;
-    originalImageElement = null;
-    selectedGroup = null;
-    blockCounter = 0;
-    closeInlineEditor(false);
-
-    if (stage) {
-      stage.destroy();
-      stage = null;
-      layer = null;
-      transformer = null;
-      backgroundNode = null;
-      document.getElementById('konvaMount').innerHTML = '';
-    }
-
+    imageFile = null;
+    imageObj = null;
+    zoom = 1;
+    baseScale = 1;
+    offsetX = 0;
+    offsetY = 0;
+    fileInput.value = '';
+    zoomRange.value = '100';
+    fitModeSelect.value = 'cover';
+    bgModeSelect.value = 'blur';
+    bgColorInput.value = '#0b1325';
     editorShell.classList.remove('active');
     uploadZone.classList.remove('hidden');
-
-    textInput.value = '';
-    fontSizeInput.value = '20';
-    fontFamilySelect.value = 'Arial';
-    textColorInput.value = '#000000';
-    bgColorInput.value = '#ffffff';
-    canvasBadge.textContent = 'Sin seleccionar';
+    formatLabel.textContent = 'Sin formato seleccionado';
+    sizeBadge.textContent = '0 × 0 px';
+    ctx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+    mainCanvas.width = 0;
+    mainCanvas.height = 0;
     infoRow.innerHTML = '';
-    toggleLoader(false);
-    refreshStyleButtons();
+    updateLabels();
     setStatus('Sube una imagen para empezar.');
   }
 
@@ -1966,7 +1383,7 @@
     }
   });
 
-  uploadZone.addEventListener('dragover', e => {
+  uploadZone.addEventListener('dragover', (e) => {
     e.preventDefault();
     uploadZone.classList.add('dragover');
   });
@@ -1975,71 +1392,130 @@
     uploadZone.classList.remove('dragover');
   });
 
-  uploadZone.addEventListener('drop', e => {
+  uploadZone.addEventListener('drop', (e) => {
     e.preventDefault();
     uploadZone.classList.remove('dragover');
     const file = e.dataTransfer.files[0];
-    loadOriginalFile(file);
+    loadImageFile(file);
   });
 
-  fileInput.addEventListener('change', e => {
+  fileInput.addEventListener('change', (e) => {
     const file = e.target.files[0];
-    loadOriginalFile(file);
+    loadImageFile(file);
   });
 
   replaceBtn.addEventListener('click', () => fileInput.click());
-  detectBtn.addEventListener('click', runOCR);
 
-  textInput.addEventListener('input', applyTextChange);
-  fontSizeInput.addEventListener('input', applyFontSize);
-  fontFamilySelect.addEventListener('change', applyFontFamily);
-  textColorInput.addEventListener('input', applyTextColor);
-  bgColorInput.addEventListener('input', applyBgColor);
-
-  boldBtn.addEventListener('click', () => toggleFontFlag('bold'));
-  italicBtn.addEventListener('click', () => toggleFontFlag('italic'));
-  underlineBtn.addEventListener('click', () => toggleFontFlag('underline'));
-  toggleBgBtn.addEventListener('click', toggleBg);
-
-  addTextBtn.addEventListener('click', addNewBlock);
-  duplicateBtn.addEventListener('click', duplicateSelected);
-  deleteBtn.addEventListener('click', deleteSelected);
-  downloadBtn.addEventListener('click', downloadEditedImage);
-  resetBtn.addEventListener('click', resetAll);
-
-  inlineTextEditor.addEventListener('input', () => {
-    if (!editingGroup) return;
-    const textNode = editingGroup.findOne('.text-content');
-    textNode.text(inlineTextEditor.value || ' ');
-    updateGroupVisual(editingGroup);
-    if (selectedGroup === editingGroup) syncControlsFromSelection();
-    openInlineEditor(editingGroup, true);
+  fitModeSelect.addEventListener('change', () => {
+    fitMode = fitModeSelect.value;
+    resetView(true);
+    clampOffsets();
+    drawCanvas();
+    setStatus(`Modo de ajuste: ${fitMode === 'cover' ? 'rellenar formato' : 'encajar completo'}.`, 'success');
   });
 
-  inlineTextEditor.addEventListener('blur', () => {
-    closeInlineEditor(true);
+  zoomRange.addEventListener('input', () => {
+    if (!imageObj) return;
+    zoom = Number(zoomRange.value) / 100;
+    zoomValue.textContent = `${Math.round(zoom * 100)}%`;
+
+    const prevCenterX = selectedPreset.width / 2;
+    const prevCenterY = selectedPreset.height / 2;
+    const oldScale = baseScale;
+    const oldDrawScale = oldScale * (zoomRange.dataset.prev ? Number(zoomRange.dataset.prev) / 100 : 1);
+    const newDrawScale = baseScale * zoom;
+
+    const imageCenterX = (prevCenterX - offsetX) / oldDrawScale;
+    const imageCenterY = (prevCenterY - offsetY) / oldDrawScale;
+
+    offsetX = prevCenterX - imageCenterX * newDrawScale;
+    offsetY = prevCenterY - imageCenterY * newDrawScale;
+
+    zoomRange.dataset.prev = zoomRange.value;
+
+    clampOffsets();
+    drawCanvas();
   });
 
-  inlineTextEditor.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeInlineEditor(true);
+  bgModeSelect.addEventListener('change', () => {
+    updateLabels();
+    drawCanvas();
   });
 
-  document.addEventListener('paste', e => {
+  bgColorInput.addEventListener('input', () => {
+    if (bgModeSelect.value === 'color') drawCanvas();
+  });
+
+  centerBtn.addEventListener('click', () => {
+    if (!imageObj) return;
+    const drawScale = baseScale * zoom;
+    const drawWidth = imageObj.naturalWidth * drawScale;
+    const drawHeight = imageObj.naturalHeight * drawScale;
+    offsetX = (selectedPreset.width - drawWidth) / 2;
+    offsetY = (selectedPreset.height - drawHeight) / 2;
+    clampOffsets();
+    drawCanvas();
+    setStatus('Imagen centrada.', 'success');
+  });
+
+  resetViewBtn.addEventListener('click', () => {
+    if (!imageObj) return;
+    zoom = 1;
+    zoomRange.value = '100';
+    zoomRange.dataset.prev = '100';
+    resetView();
+    clampOffsets();
+    drawCanvas();
+    updateLabels();
+    setStatus('Encuadre restablecido.', 'success');
+  });
+
+  downloadPngBtn.addEventListener('click', () => downloadImage('png'));
+  downloadJpgBtn.addEventListener('click', () => downloadImage('jpg'));
+  resetAllBtn.addEventListener('click', resetAll);
+
+  mainCanvas.addEventListener('mousedown', (e) => {
+    startDrag(e.clientX, e.clientY);
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    moveDrag(e.clientX, e.clientY);
+  });
+
+  window.addEventListener('mouseup', endDrag);
+
+  mainCanvas.addEventListener('touchstart', (e) => {
+    if (e.touches.length !== 1) return;
+    const touch = e.touches[0];
+    startDrag(touch.clientX, touch.clientY);
+  }, { passive:true });
+
+  window.addEventListener('touchmove', (e) => {
+    if (!isDragging || e.touches.length !== 1) return;
+    const touch = e.touches[0];
+    moveDrag(touch.clientX, touch.clientY);
+  }, { passive:true });
+
+  window.addEventListener('touchend', endDrag);
+
+  document.addEventListener('paste', (e) => {
     const items = Array.from(e.clipboardData?.items || []);
     const imageItem = items.find(item => item.type.startsWith('image/'));
     if (!imageItem) return;
     const file = imageItem.getAsFile();
     if (file) {
-      loadOriginalFile(file);
+      loadImageFile(file);
       setStatus('Imagen pegada desde el portapapeles.', 'success');
     }
   });
 
   window.addEventListener('resize', () => {
-    if (editorShell.classList.contains('active')) rebuildStageForResize();
+    if (imageObj) drawCanvas();
   });
 
-  refreshStyleButtons();
+  renderPresetButtons();
+  updateLabels();
 </script>
+
 </body>
 </html>
