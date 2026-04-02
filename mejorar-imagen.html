@@ -472,10 +472,13 @@
       justify-content:center;
     }
 
-    .image-stage canvas{
+    .stage-image{
       max-width:100%;
       max-height:72vh;
       display:block;
+      object-fit:contain;
+      user-select:none;
+      -webkit-user-drag:none;
     }
 
     .compare-wrap{
@@ -485,6 +488,7 @@
       min-height:420px;
       display:none;
       overflow:hidden;
+      background:#091122;
     }
 
     .compare-wrap.active{
@@ -502,16 +506,19 @@
       background:#091122;
     }
 
-    .compare-base canvas,
-    .compare-overlay canvas{
-      max-width:100%;
-      max-height:72vh;
-      display:block;
-    }
-
     .compare-overlay{
       width:50%;
       border-right:2px solid rgba(255,255,255,.9);
+    }
+
+    .compare-base img,
+    .compare-overlay img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+      user-select:none;
+      -webkit-user-drag:none;
     }
 
     .compare-handle{
@@ -523,6 +530,7 @@
       left:50%;
       transform:translateX(-1px);
       pointer-events:none;
+      z-index:4;
     }
 
     .compare-knob{
@@ -541,6 +549,7 @@
       font-size:14px;
       box-shadow:0 10px 20px rgba(0,0,0,.28);
       pointer-events:none;
+      z-index:5;
     }
 
     .compare-range{
@@ -550,13 +559,14 @@
       height:100%;
       opacity:0;
       cursor:ew-resize;
+      z-index:6;
     }
 
     .image-label{
       position:absolute;
       top:14px;
       left:14px;
-      z-index:5;
+      z-index:7;
       background:rgba(2,11,31,.72);
       border:1px solid rgba(148,163,184,.16);
       color:#fff;
@@ -571,6 +581,17 @@
     .image-label.right{
       left:auto;
       right:14px;
+    }
+
+    .single-view{
+      width:100%;
+      height:100%;
+      min-height:420px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      background:#091122;
     }
 
     .hidden{
@@ -1018,12 +1039,12 @@
           <div class="compare-wrap active" id="compareWrap">
             <div class="compare-base">
               <span class="image-label">Original</span>
-              <canvas id="compareOriginalCanvas"></canvas>
+              <img id="compareOriginalImg" class="stage-image" alt="Original" />
             </div>
 
             <div class="compare-overlay" id="compareOverlay">
               <span class="image-label right">Mejorada</span>
-              <canvas id="compareEnhancedCanvas"></canvas>
+              <img id="compareEnhancedImg" class="stage-image" alt="Mejorada" />
             </div>
 
             <div class="compare-handle" id="compareHandle"></div>
@@ -1031,14 +1052,14 @@
             <input id="compareRange" class="compare-range" type="range" min="0" max="100" value="50" />
           </div>
 
-          <div id="singleOriginalWrap" class="hidden" style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; position:relative;">
+          <div id="singleOriginalWrap" class="single-view hidden">
             <span class="image-label">Original</span>
-            <canvas id="originalCanvas"></canvas>
+            <img id="originalImg" class="stage-image" alt="Original" />
           </div>
 
-          <div id="singleResultWrap" class="hidden" style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; position:relative;">
+          <div id="singleResultWrap" class="single-view hidden">
             <span class="image-label right" style="left:14px; right:auto;">Resultado</span>
-            <canvas id="enhancedCanvas"></canvas>
+            <img id="enhancedImg" class="stage-image" alt="Resultado" />
           </div>
         </div>
 
@@ -1149,26 +1170,24 @@
   const infoRow = document.getElementById('infoRow');
   const loaderWrap = document.getElementById('loaderWrap');
 
-  const originalCanvas = document.getElementById('originalCanvas');
-  const enhancedCanvas = document.getElementById('enhancedCanvas');
-  const compareOriginalCanvas = document.getElementById('compareOriginalCanvas');
-  const compareEnhancedCanvas = document.getElementById('compareEnhancedCanvas');
-
-  const singleOriginalWrap = document.getElementById('singleOriginalWrap');
-  const singleResultWrap = document.getElementById('singleResultWrap');
-
   const outputFormat = document.getElementById('outputFormat');
   const qualityRange = document.getElementById('qualityRange');
   const qualityValue = document.getElementById('qualityValue');
 
+  const compareOriginalImg = document.getElementById('compareOriginalImg');
+  const compareEnhancedImg = document.getElementById('compareEnhancedImg');
+  const originalImg = document.getElementById('originalImg');
+  const enhancedImg = document.getElementById('enhancedImg');
+
+  const singleOriginalWrap = document.getElementById('singleOriginalWrap');
+  const singleResultWrap = document.getElementById('singleResultWrap');
+
   const viewButtons = document.querySelectorAll('.view-btn');
 
-  let originalImage = null;
-  let enhancedImage = null;
+  let originalImageUrl = null;
+  let enhancedImageUrl = null;
   let originalName = 'imagen';
   let originalFile = null;
-  let enhancedImageUrl = null;
-  let originalCanvasSource = document.createElement('canvas');
 
   function setStatus(text, type = '') {
     statusText.textContent = text;
@@ -1220,68 +1239,29 @@
     btn.addEventListener('click', () => switchView(btn.dataset.view));
   });
 
-  function fitCanvasToImage(canvas, img, maxW = 1800, maxH = 1800) {
-    let { width, height } = img;
-    const ratio = Math.min(maxW / width, maxH / height, 1);
-    canvas.width = Math.round(width * ratio);
-    canvas.height = Math.round(height * ratio);
-
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-  }
-
-  function mirrorCanvas(source, target) {
-    target.width = source.width;
-    target.height = source.height;
-    const ctx = target.getContext('2d');
-    ctx.clearRect(0, 0, target.width, target.height);
-    ctx.drawImage(source, 0, 0);
-  }
-
   function renderOriginal() {
-    if (!originalImage) return;
-    fitCanvasToImage(originalCanvasSource, originalImage, 1800, 1800);
-    mirrorCanvas(originalCanvasSource, originalCanvas);
-    mirrorCanvas(originalCanvasSource, compareOriginalCanvas);
+    if (!originalImageUrl) return;
+    compareOriginalImg.src = originalImageUrl;
+    originalImg.src = originalImageUrl;
   }
 
   function renderEnhanced() {
-    if (!enhancedImage) return;
-    const tempCanvas = document.createElement('canvas');
-    fitCanvasToImage(tempCanvas, enhancedImage, 1800, 1800);
-    mirrorCanvas(tempCanvas, enhancedCanvas);
-    mirrorCanvas(tempCanvas, compareEnhancedCanvas);
+    if (!enhancedImageUrl) return;
+    compareEnhancedImg.src = enhancedImageUrl;
+    enhancedImg.src = enhancedImageUrl;
   }
 
   function renderInfo(extra = null) {
     const items = [];
 
-    if (originalImage) {
+    if (originalFile) {
       items.push(`Nombre: ${originalName}`);
-      items.push(`Tamaño original: ${originalImage.naturalWidth} × ${originalImage.naturalHeight}`);
-      if (originalFile) items.push(`Peso original: ${bytesToSize(originalFile.size)}`);
-    }
-
-    if (enhancedImage) {
-      items.push(`Tamaño mejorado: ${enhancedImage.naturalWidth} × ${enhancedImage.naturalHeight}`);
+      items.push(`Peso original: ${bytesToSize(originalFile.size)}`);
     }
 
     if (extra) items.push(extra);
 
     infoRow.innerHTML = items.map(item => `<div class="info-pill">${item}</div>`).join('');
-  }
-
-  function loadImageElement(src) {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.crossOrigin = 'anonymous';
-      img.onload = () => resolve(img);
-      img.onerror = reject;
-      img.src = src;
-    });
   }
 
   async function loadOriginalFile(file) {
@@ -1290,35 +1270,23 @@
     originalFile = file;
     originalName = file.name || 'imagen';
 
-    const reader = new FileReader();
-    reader.onload = async e => {
-      try {
-        originalImage = await loadImageElement(e.target.result);
-        enhancedImage = null;
-        enhancedImageUrl = null;
+    if (originalImageUrl) URL.revokeObjectURL(originalImageUrl);
+    originalImageUrl = URL.createObjectURL(file);
+    enhancedImageUrl = null;
 
-        renderOriginal();
+    renderOriginal();
 
-        uploadZone.classList.add('hidden');
-        previewShell.classList.add('active');
-        switchView('compare');
+    compareEnhancedImg.removeAttribute('src');
+    enhancedImg.removeAttribute('src');
 
-        const emptyCanvas = document.createElement('canvas');
-        emptyCanvas.width = originalCanvas.width || 1;
-        emptyCanvas.height = originalCanvas.height || 1;
-        mirrorCanvas(emptyCanvas, enhancedCanvas);
-        mirrorCanvas(emptyCanvas, compareEnhancedCanvas);
+    uploadZone.classList.add('hidden');
+    previewShell.classList.add('active');
+    switchView('compare');
 
-        downloadBtn.disabled = true;
-        resetBtn.disabled = false;
-        setStatus('Imagen cargada. Pulsa "Mejorar con IA".');
-        renderInfo();
-      } catch (error) {
-        console.error(error);
-        setStatus('No se pudo cargar la imagen.', 'error');
-      }
-    };
-    reader.readAsDataURL(file);
+    downloadBtn.disabled = true;
+    resetBtn.disabled = false;
+    setStatus('Imagen cargada. Pulsa "Mejorar con IA".');
+    renderInfo();
   }
 
   async function processImage() {
@@ -1355,8 +1323,6 @@
       }
 
       enhancedImageUrl = resultUrl;
-      enhancedImage = await loadImageElement(resultUrl);
-
       renderEnhanced();
       renderInfo('Procesada con IA real');
       downloadBtn.disabled = false;
@@ -1379,17 +1345,13 @@
     try {
       setStatus('Preparando descarga...', 'warning');
 
-      const response = await fetch(enhancedImageUrl);
+      const response = await fetch(enhancedImageUrl, { mode: 'cors' });
       const blob = await response.blob();
 
-      const mime = outputFormat.value;
-      const extension = mime === 'image/png' ? 'png' : mime === 'image/webp' ? 'webp' : 'jpg';
-      let finalBlob = blob;
+      const blobUrl = URL.createObjectURL(blob);
+      const img = new Image();
 
-      if (mime !== blob.type || mime !== 'image/png') {
-        const blobUrl = URL.createObjectURL(blob);
-        const img = await loadImageElement(blobUrl);
-
+      img.onload = async () => {
         const tempCanvas = document.createElement('canvas');
         tempCanvas.width = img.naturalWidth;
         tempCanvas.height = img.naturalHeight;
@@ -1397,40 +1359,70 @@
         const ctx = tempCanvas.getContext('2d');
         ctx.drawImage(img, 0, 0);
 
-        finalBlob = await new Promise(resolve => {
-          tempCanvas.toBlob(resolve, mime, Number(qualityRange.value) / 100);
-        });
+        const mime = outputFormat.value;
+        const extension = mime === 'image/png' ? 'png' : mime === 'image/webp' ? 'webp' : 'jpg';
 
+        tempCanvas.toBlob((finalBlob) => {
+          if (!finalBlob) {
+            setStatus('No se pudo generar la descarga.', 'error');
+            return;
+          }
+
+          const finalUrl = URL.createObjectURL(finalBlob);
+          const a = document.createElement('a');
+          a.href = finalUrl;
+          a.download = `${originalName.replace(/\.[^.]+$/, '')}-mejorada.${extension}`;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+
+          setTimeout(() => {
+            URL.revokeObjectURL(finalUrl);
+            URL.revokeObjectURL(blobUrl);
+          }, 1000);
+
+          setStatus('Descarga lista.', 'success');
+        }, mime, Number(qualityRange.value) / 100);
+      };
+
+      img.onerror = () => {
         URL.revokeObjectURL(blobUrl);
-      }
+        setStatus('No se pudo preparar la descarga.', 'error');
+      };
 
-      const url = URL.createObjectURL(finalBlob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `${originalName.replace(/\.[^.]+$/, '')}-mejorada.${extension}`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
-      setStatus('Descarga lista.', 'success');
+      img.src = blobUrl;
     } catch (error) {
       console.error(error);
-      setStatus('No se pudo descargar la imagen.', 'error');
+
+      try {
+        const a = document.createElement('a');
+        a.href = enhancedImageUrl;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setStatus('No se pudo forzar la descarga; se abrió la imagen mejorada.', 'warning');
+      } catch (fallbackError) {
+        console.error(fallbackError);
+        setStatus('No se pudo descargar la imagen.', 'error');
+      }
     }
   }
 
   function resetAll() {
-    originalImage = null;
-    enhancedImage = null;
-    originalFile = null;
+    if (originalImageUrl) URL.revokeObjectURL(originalImageUrl);
+
+    originalImageUrl = null;
     enhancedImageUrl = null;
+    originalFile = null;
+    originalName = 'imagen';
     fileInput.value = '';
 
-    originalCanvas.getContext('2d').clearRect(0, 0, originalCanvas.width, originalCanvas.height);
-    enhancedCanvas.getContext('2d').clearRect(0, 0, enhancedCanvas.width, enhancedCanvas.height);
-    compareOriginalCanvas.getContext('2d').clearRect(0, 0, compareOriginalCanvas.width, compareOriginalCanvas.height);
-    compareEnhancedCanvas.getContext('2d').clearRect(0, 0, compareEnhancedCanvas.width, compareEnhancedCanvas.height);
+    compareOriginalImg.removeAttribute('src');
+    compareEnhancedImg.removeAttribute('src');
+    originalImg.removeAttribute('src');
+    enhancedImg.removeAttribute('src');
 
     previewShell.classList.remove('active');
     uploadZone.classList.remove('hidden');
