@@ -1,22 +1,22 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Mejorar Imagen Online Gratis | Ralyzo</title>
-  <meta name="description" content="Mejora imágenes online gratis con Ralyzo. Aumenta nitidez, mejora color, ajusta contraste y exporta en JPG, PNG o WEBP desde tu navegador." />
+  <title>Mejorar Imagen con IA Online Gratis | Ralyzo</title>
+  <meta name="description" content="Mejora imágenes con IA online gratis en Ralyzo. Sube tu foto, procesa con inteligencia artificial y compara el antes y después directamente desde tu navegador." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://ralyzo.com/mejorar-imagen" />
 
-  <meta property="og:title" content="Mejorar Imagen Online Gratis | Ralyzo" />
-  <meta property="og:description" content="Mejora la calidad visual de tus imágenes online con ajustes automáticos de nitidez, contraste y color." />
+  <meta property="og:title" content="Mejorar Imagen con IA Online Gratis | Ralyzo" />
+  <meta property="og:description" content="Sube una imagen y mejora su calidad con IA. Compara el antes y después y descarga el resultado final." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ralyzo.com/mejorar-imagen" />
   <meta property="og:site_name" content="Ralyzo" />
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337166112417872"
-    crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337166112417872" crossorigin="anonymous"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -38,6 +38,7 @@
       --primary-hover:#1D4ED8;
       --success:#22C55E;
       --warning:#F59E0B;
+      --danger:#EF4444;
       --soft:#0D1A35;
       --shadow:0 16px 40px rgba(0,0,0,.28);
       --radius-xl:24px;
@@ -274,7 +275,7 @@
 
     .app-grid{
       display:grid;
-      grid-template-columns:minmax(0, 1.15fr) 360px;
+      grid-template-columns:minmax(0, 1.2fr) 360px;
       gap:22px;
       align-items:start;
       margin-top:28px;
@@ -295,7 +296,7 @@
       border:1.5px dashed rgba(148,163,184,.28);
       border-radius:22px;
       background:rgba(255,255,255,.02);
-      min-height:220px;
+      min-height:240px;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -318,7 +319,7 @@
 
     .upload-inner h2{
       margin:0 0 10px;
-      font-size:26px;
+      font-size:28px;
       line-height:1.2;
     }
 
@@ -380,6 +381,17 @@
       transform:translateY(-1px);
     }
 
+    .btn-danger{
+      background:rgba(239,68,68,.12);
+      color:#FCA5A5;
+      border:1px solid rgba(239,68,68,.18);
+    }
+
+    .btn-danger:hover{
+      background:rgba(239,68,68,.18);
+      transform:translateY(-1px);
+    }
+
     .preview-shell{
       display:none;
       gap:16px;
@@ -428,15 +440,14 @@
       border:1px solid rgba(51,65,85,.8);
       background:#091122;
       overflow:hidden;
-      min-height:380px;
+      min-height:420px;
       position:relative;
       display:flex;
       align-items:center;
       justify-content:center;
     }
 
-    .image-stage canvas,
-    .image-stage img{
+    .image-stage canvas{
       max-width:100%;
       max-height:72vh;
       display:block;
@@ -446,7 +457,7 @@
       position:relative;
       width:100%;
       height:100%;
-      min-height:380px;
+      min-height:420px;
       display:none;
       overflow:hidden;
     }
@@ -494,8 +505,8 @@
       top:50%;
       left:50%;
       transform:translate(-50%,-50%);
-      width:42px;
-      height:42px;
+      width:44px;
+      height:44px;
       border-radius:50%;
       background:#fff;
       color:#111827;
@@ -611,8 +622,7 @@
       cursor:pointer;
     }
 
-    select,
-    input[type="text"]{
+    select{
       width:100%;
       min-height:46px;
       border-radius:12px;
@@ -623,8 +633,7 @@
       outline:none;
     }
 
-    select:focus,
-    input[type="text"]:focus{
+    select:focus{
       border-color:#2563EB;
     }
 
@@ -644,6 +653,37 @@
     .status.success{color:#86EFAC}
     .status.warning{color:#FCD34D}
     .status.error{color:#FCA5A5}
+
+    .loader-wrap{
+      display:none;
+      align-items:center;
+      gap:12px;
+      padding:14px 16px;
+      border-radius:14px;
+      background:rgba(37,99,235,.08);
+      border:1px solid rgba(37,99,235,.16);
+      color:#BFDBFE;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .loader-wrap.active{
+      display:flex;
+    }
+
+    .spinner{
+      width:20px;
+      height:20px;
+      border-radius:50%;
+      border:2px solid rgba(255,255,255,.15);
+      border-top-color:#60A5FA;
+      animation:spin .8s linear infinite;
+      flex-shrink:0;
+    }
+
+    @keyframes spin{
+      to{ transform:rotate(360deg); }
+    }
 
     .tips{
       margin:0;
@@ -901,11 +941,11 @@
 <main class="container">
   <section class="hero">
     <div>
-      <div class="eyebrow">Nueva herramienta principal • mejora automática</div>
-      <h1>Mejorar imagen automáticamente</h1>
+      <div class="eyebrow">Nueva herramienta principal • mejora con IA</div>
+      <h1>Mejorar imagen con IA</h1>
       <p>
-        Sube una imagen y mejora su aspecto visual con ajustes automáticos de nitidez, contraste,
-        color y escala. Todo funciona desde tu navegador, sin instalar programas.
+        Sube una imagen y mejora su calidad con inteligencia artificial real. Compara el antes y después,
+        revisa el resultado y descarga tu imagen mejorada directamente desde Ralyzo.
       </p>
     </div>
   </section>
@@ -914,737 +954,3 @@
     <div class="panel workspace">
       <label class="upload-zone" id="uploadZone" for="fileInput">
         <div class="upload-inner">
-          <h2>Arrastra tu imagen aquí</h2>
-          <p>
-            O selecciónala desde tu dispositivo para mejorarla automáticamente.
-            Compatible con JPG, PNG y WEBP.
-          </p>
-          <div class="upload-actions">
-            <span class="btn btn-primary">Seleccionar imagen</span>
-            <span class="btn btn-secondary">Pegar desde portapapeles</span>
-          </div>
-        </div>
-      </label>
-
-      <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp" class="hidden" />
-
-      <div id="previewShell" class="preview-shell">
-        <div class="top-toolbar">
-          <div class="view-switch">
-            <button type="button" class="view-btn active" data-view="compare">Comparar</button>
-            <button type="button" class="view-btn" data-view="original">Original</button>
-            <button type="button" class="view-btn" data-view="result">Resultado</button>
-          </div>
-
-          <div class="actions-stack" style="flex-direction:row; flex-wrap:wrap;">
-            <button type="button" class="btn btn-secondary" id="replaceBtn">Cambiar imagen</button>
-            <button type="button" class="btn btn-primary" id="processBtn">Mejorar imagen</button>
-          </div>
-        </div>
-
-        <div class="image-stage">
-          <div class="compare-wrap active" id="compareWrap">
-            <div class="compare-base">
-              <span class="image-label">Original</span>
-              <canvas id="compareOriginalCanvas"></canvas>
-            </div>
-
-            <div class="compare-overlay" id="compareOverlay">
-              <span class="image-label right">Mejorada</span>
-              <canvas id="compareEnhancedCanvas"></canvas>
-            </div>
-
-            <div class="compare-handle" id="compareHandle"></div>
-            <div class="compare-knob" id="compareKnob">↔</div>
-            <input id="compareRange" class="compare-range" type="range" min="0" max="100" value="50" />
-          </div>
-
-          <div id="singleOriginalWrap" class="hidden" style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; position:relative;">
-            <span class="image-label">Original</span>
-            <canvas id="originalCanvas"></canvas>
-          </div>
-
-          <div id="singleResultWrap" class="hidden" style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; position:relative;">
-            <span class="image-label right" style="left:14px; right:auto;">Resultado</span>
-            <canvas id="enhancedCanvas"></canvas>
-          </div>
-        </div>
-
-        <div class="info-row" id="infoRow"></div>
-      </div>
-    </div>
-
-    <aside class="panel sidebar">
-      <div class="side-card">
-        <h3>Ajustes automáticos</h3>
-
-        <div class="control-group">
-          <div class="control-top">
-            <label for="enhanceMode">Modo</label>
-          </div>
-          <select id="enhanceMode">
-            <option value="soft">Suave</option>
-            <option value="normal" selected>Normal</option>
-            <option value="strong">Fuerte</option>
-          </select>
-        </div>
-
-        <div class="control-group">
-          <div class="control-top">
-            <label for="enhanceStrength">Intensidad general</label>
-            <span class="value" id="enhanceStrengthValue">78%</span>
-          </div>
-          <input id="enhanceStrength" type="range" min="0" max="100" value="78" />
-        </div>
-
-        <div class="control-group">
-          <div class="control-top">
-            <label for="sharpness">Nitidez</label>
-            <span class="value" id="sharpnessValue">72%</span>
-          </div>
-          <input id="sharpness" type="range" min="0" max="100" value="72" />
-        </div>
-
-        <div class="control-group">
-          <div class="control-top">
-            <label for="clarity">Claridad</label>
-            <span class="value" id="clarityValue">58%</span>
-          </div>
-          <input id="clarity" type="range" min="0" max="100" value="58" />
-        </div>
-
-        <div class="control-group">
-          <div class="control-top">
-            <label for="denoise">Suavizado</label>
-            <span class="value" id="denoiseValue">12%</span>
-          </div>
-          <input id="denoise" type="range" min="0" max="60" value="12" />
-        </div>
-
-        <div class="control-group">
-          <div class="control-top">
-            <label for="upscale">Escala</label>
-            <span class="value" id="upscaleValue">x1</span>
-          </div>
-          <input id="upscale" type="range" min="1" max="2" step="1" value="1" />
-        </div>
-      </div>
-
-      <div class="side-card">
-        <h3>Descarga</h3>
-
-        <div class="control-group">
-          <div class="control-top">
-            <label for="outputFormat">Formato final</label>
-          </div>
-          <select id="outputFormat">
-            <option value="image/jpeg">JPG</option>
-            <option value="image/png">PNG</option>
-            <option value="image/webp">WEBP</option>
-          </select>
-        </div>
-
-        <div class="control-group">
-          <div class="control-top">
-            <label for="qualityRange">Calidad</label>
-            <span class="value" id="qualityValue">92%</span>
-          </div>
-          <input id="qualityRange" type="range" min="50" max="100" value="92" />
-        </div>
-
-        <div class="actions-stack">
-          <button type="button" class="btn btn-success" id="downloadBtn" disabled>Descargar imagen</button>
-          <button type="button" class="btn btn-secondary" id="resetBtn" disabled>Restablecer ajustes</button>
-        </div>
-
-        <div class="status" id="statusText">Sube una imagen para empezar.</div>
-      </div>
-
-      <div class="side-card">
-        <h3>Qué mejora esta versión</h3>
-        <ul class="tips">
-          <li>Mejora más agresiva de nitidez.</li>
-          <li>Contraste y color más visibles.</li>
-          <li>Claridad adicional en bordes y detalle.</li>
-          <li>Escala x2 con realce posterior.</li>
-          <li>Comparación antes/después más evidente.</li>
-        </ul>
-      </div>
-
-      <div class="side-card">
-        <h3>Herramientas relacionadas</h3>
-        <div class="tool-links">
-          <a href="/comprimir-imagen"><span>Comprimir imagen</span><span>→</span></a>
-          <a href="/redimensionar-imagen"><span>Redimensionar imagen</span><span>→</span></a>
-          <a href="/jpg-a-png"><span>JPG a PNG</span><span>→</span></a>
-          <a href="/png-a-jpg"><span>PNG a JPG</span><span>→</span></a>
-        </div>
-      </div>
-    </aside>
-  </section>
-</main>
-
-<footer>
-  <div class="footer-card">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <div class="footer-logo">
-          <span class="logo-mark"></span>
-          <span>RALYZO</span>
-        </div>
-        <p>
-          Herramientas online gratuitas para comprimir, convertir y optimizar imágenes de forma rápida,
-          segura y directamente desde tu navegador.
-        </p>
-      </div>
-
-      <div class="footer-nav">
-        <a href="/">Inicio</a>
-        <a href="/#herramientas">Herramientas</a>
-        <a href="/blog/">Blog</a>
-        <a href="/#precios">Precios</a>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <div>© 2026 Ralyzo. Todos los derechos reservados.</div>
-      <div>Contenido útil para SEO, UX y optimización web.</div>
-    </div>
-  </div>
-</footer>
-
-<script>
-  const fileInput = document.getElementById('fileInput');
-  const uploadZone = document.getElementById('uploadZone');
-  const previewShell = document.getElementById('previewShell');
-  const processBtn = document.getElementById('processBtn');
-  const replaceBtn = document.getElementById('replaceBtn');
-  const downloadBtn = document.getElementById('downloadBtn');
-  const resetBtn = document.getElementById('resetBtn');
-  const statusText = document.getElementById('statusText');
-  const compareRange = document.getElementById('compareRange');
-  const compareOverlay = document.getElementById('compareOverlay');
-  const compareHandle = document.getElementById('compareHandle');
-  const compareKnob = document.getElementById('compareKnob');
-  const compareWrap = document.getElementById('compareWrap');
-  const infoRow = document.getElementById('infoRow');
-
-  const enhanceMode = document.getElementById('enhanceMode');
-  const enhanceStrength = document.getElementById('enhanceStrength');
-  const sharpness = document.getElementById('sharpness');
-  const clarity = document.getElementById('clarity');
-  const denoise = document.getElementById('denoise');
-  const upscale = document.getElementById('upscale');
-  const outputFormat = document.getElementById('outputFormat');
-  const qualityRange = document.getElementById('qualityRange');
-
-  const enhanceStrengthValue = document.getElementById('enhanceStrengthValue');
-  const sharpnessValue = document.getElementById('sharpnessValue');
-  const clarityValue = document.getElementById('clarityValue');
-  const denoiseValue = document.getElementById('denoiseValue');
-  const upscaleValue = document.getElementById('upscaleValue');
-  const qualityValue = document.getElementById('qualityValue');
-
-  const originalCanvas = document.getElementById('originalCanvas');
-  const enhancedCanvas = document.getElementById('enhancedCanvas');
-  const compareOriginalCanvas = document.getElementById('compareOriginalCanvas');
-  const compareEnhancedCanvas = document.getElementById('compareEnhancedCanvas');
-
-  const singleOriginalWrap = document.getElementById('singleOriginalWrap');
-  const singleResultWrap = document.getElementById('singleResultWrap');
-
-  const viewButtons = document.querySelectorAll('.view-btn');
-
-  let originalImage = null;
-  let originalName = 'imagen';
-  let sourceCanvas = document.createElement('canvas');
-  let resultCanvas = document.createElement('canvas');
-
-  function setStatus(text, type = '') {
-    statusText.textContent = text;
-    statusText.className = 'status';
-    if (type) statusText.classList.add(type);
-  }
-
-  function updateValueLabels() {
-    enhanceStrengthValue.textContent = `${enhanceStrength.value}%`;
-    sharpnessValue.textContent = `${sharpness.value}%`;
-    clarityValue.textContent = `${clarity.value}%`;
-    denoiseValue.textContent = `${denoise.value}%`;
-    upscaleValue.textContent = `x${upscale.value}`;
-    qualityValue.textContent = `${qualityRange.value}%`;
-  }
-
-  updateValueLabels();
-
-  [enhanceStrength, sharpness, clarity, denoise, upscale, qualityRange].forEach(input => {
-    input.addEventListener('input', updateValueLabels);
-  });
-
-  function bytesToSize(bytes) {
-    if (!bytes && bytes !== 0) return '-';
-    const units = ['B', 'KB', 'MB', 'GB'];
-    let i = 0;
-    let value = bytes;
-    while (value >= 1024 && i < units.length - 1) {
-      value /= 1024;
-      i++;
-    }
-    return `${value.toFixed(value >= 10 || i === 0 ? 0 : 1)} ${units[i]}`;
-  }
-
-  function updateCompareUI() {
-    const value = Number(compareRange.value);
-    compareOverlay.style.width = `${value}%`;
-    compareHandle.style.left = `${value}%`;
-    compareKnob.style.left = `${value}%`;
-  }
-
-  compareRange.addEventListener('input', updateCompareUI);
-  updateCompareUI();
-
-  function switchView(view) {
-    viewButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.view === view));
-    compareWrap.classList.toggle('active', view === 'compare');
-    singleOriginalWrap.classList.toggle('hidden', view !== 'original');
-    singleResultWrap.classList.toggle('hidden', view !== 'result');
-  }
-
-  viewButtons.forEach(btn => {
-    btn.addEventListener('click', () => switchView(btn.dataset.view));
-  });
-
-  function fitCanvasToImage(canvas, img, maxW = 1800, maxH = 1800) {
-    let { width, height } = img;
-    const ratio = Math.min(maxW / width, maxH / height, 1);
-    canvas.width = Math.round(width * ratio);
-    canvas.height = Math.round(height * ratio);
-
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-  }
-
-  function mirrorCanvas(source, target) {
-    target.width = source.width;
-    target.height = source.height;
-    const ctx = target.getContext('2d');
-    ctx.clearRect(0, 0, target.width, target.height);
-    ctx.drawImage(source, 0, 0);
-  }
-
-  function clamp(v) {
-    return Math.max(0, Math.min(255, v));
-  }
-
-  function getCleanBaseName(name) {
-    return (name || 'imagen').replace(/\.[^.]+$/, '');
-  }
-
-  function getExtensionFromMime(mime) {
-    if (mime === 'image/png') return 'png';
-    if (mime === 'image/webp') return 'webp';
-    return 'jpg';
-  }
-
-  function getModeConfig(mode) {
-    if (mode === 'soft') {
-      return {
-        contrast: 14,
-        saturation: 1.08,
-        brightness: 3,
-        sharpen: 0.8,
-        localContrast: 0.55,
-        denoiseMix: 0.35,
-        upscaleSharpen: 0.55
-      };
-    }
-
-    if (mode === 'strong') {
-      return {
-        contrast: 36,
-        saturation: 1.22,
-        brightness: 8,
-        sharpen: 2.25,
-        localContrast: 1.55,
-        denoiseMix: 0.5,
-        upscaleSharpen: 1.15
-      };
-    }
-
-    return {
-      contrast: 24,
-      saturation: 1.14,
-      brightness: 5,
-      sharpen: 1.35,
-      localContrast: 0.95,
-      denoiseMix: 0.42,
-      upscaleSharpen: 0.8
-    };
-  }
-
-  function resizeCanvas(source, scale) {
-    const temp = document.createElement('canvas');
-    temp.width = Math.max(1, Math.round(source.width * scale));
-    temp.height = Math.max(1, Math.round(source.height * scale));
-    const ctx = temp.getContext('2d');
-    ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
-    ctx.drawImage(source, 0, 0, temp.width, temp.height);
-    return temp;
-  }
-
-  function autoLevels(imageData, strength = 1) {
-    const d = imageData.data;
-    let minLum = 255;
-    let maxLum = 0;
-
-    for (let i = 0; i < d.length; i += 4) {
-      const lum = 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
-      if (lum < minLum) minLum = lum;
-      if (lum > maxLum) maxLum = lum;
-    }
-
-    if (maxLum - minLum < 8) return imageData;
-
-    const blackPoint = minLum * (0.55 - strength * 0.15);
-    const whitePoint = 255 - ((255 - maxLum) * (0.55 - strength * 0.15));
-    const scale = 255 / Math.max(1, whitePoint - blackPoint);
-
-    for (let i = 0; i < d.length; i += 4) {
-      d[i] = clamp((d[i] - blackPoint) * scale);
-      d[i + 1] = clamp((d[i + 1] - blackPoint) * scale);
-      d[i + 2] = clamp((d[i + 2] - blackPoint) * scale);
-    }
-
-    return imageData;
-  }
-
-  function applyTone(imageData, contrastBoost, saturationBoost, brightnessBoost) {
-    const d = imageData.data;
-    const cFactor = (259 * (contrastBoost + 255)) / (255 * (259 - contrastBoost));
-
-    for (let i = 0; i < d.length; i += 4) {
-      let r = d[i];
-      let g = d[i + 1];
-      let b = d[i + 2];
-
-      r = clamp(cFactor * (r - 128) + 128 + brightnessBoost);
-      g = clamp(cFactor * (g - 128) + 128 + brightnessBoost);
-      b = clamp(cFactor * (b - 128) + 128 + brightnessBoost);
-
-      const gray = 0.299 * r + 0.587 * g + 0.114 * b;
-      d[i] = clamp(gray + (r - gray) * saturationBoost);
-      d[i + 1] = clamp(gray + (g - gray) * saturationBoost);
-      d[i + 2] = clamp(gray + (b - gray) * saturationBoost);
-    }
-
-    return imageData;
-  }
-
-  function boxBlurRGBA(srcData, width, height, radius) {
-    const src = srcData.data;
-    const out = new Uint8ClampedArray(src.length);
-    const rs = Math.max(1, radius);
-
-    for (let y = 0; y < height; y++) {
-      for (let x = 0; x < width; x++) {
-        let r = 0, g = 0, b = 0, a = 0, count = 0;
-
-        for (let dy = -rs; dy <= rs; dy++) {
-          const yy = y + dy;
-          if (yy < 0 || yy >= height) continue;
-
-          for (let dx = -rs; dx <= rs; dx++) {
-            const xx = x + dx;
-            if (xx < 0 || xx >= width) continue;
-
-            const idx = (yy * width + xx) * 4;
-            r += src[idx];
-            g += src[idx + 1];
-            b += src[idx + 2];
-            a += src[idx + 3];
-            count++;
-          }
-        }
-
-        const o = (y * width + x) * 4;
-        out[o] = r / count;
-        out[o + 1] = g / count;
-        out[o + 2] = b / count;
-        out[o + 3] = a / count;
-      }
-    }
-
-    return new ImageData(out, width, height);
-  }
-
-  function blendDenoise(original, blurred, amount) {
-    const o = original.data;
-    const b = blurred.data;
-    const mix = amount / 100;
-
-    for (let i = 0; i < o.length; i += 4) {
-      o[i] = clamp(o[i] * (1 - mix) + b[i] * mix);
-      o[i + 1] = clamp(o[i + 1] * (1 - mix) + b[i + 1] * mix);
-      o[i + 2] = clamp(o[i + 2] * (1 - mix) + b[i + 2] * mix);
-    }
-
-    return original;
-  }
-
-  function unsharpMask(original, blurred, amount) {
-    const o = original.data;
-    const b = blurred.data;
-
-    for (let i = 0; i < o.length; i += 4) {
-      o[i] = clamp(o[i] + amount * (o[i] - b[i]));
-      o[i + 1] = clamp(o[i + 1] + amount * (o[i + 1] - b[i + 1]));
-      o[i + 2] = clamp(o[i + 2] + amount * (o[i + 2] - b[i + 2]));
-    }
-
-    return original;
-  }
-
-  function localContrastPass(original, blurredLarge, amount) {
-    const o = original.data;
-    const b = blurredLarge.data;
-
-    for (let i = 0; i < o.length; i += 4) {
-      o[i] = clamp(o[i] + amount * (o[i] - b[i]));
-      o[i + 1] = clamp(o[i + 1] + amount * (o[i + 1] - b[i + 1]));
-      o[i + 2] = clamp(o[i + 2] + amount * (o[i + 2] - b[i + 2]));
-    }
-
-    return original;
-  }
-
-  function loadImageFromFile(file) {
-    if (!file || !file.type.startsWith('image/')) return;
-
-    originalName = file.name || 'imagen';
-
-    const reader = new FileReader();
-    reader.onload = e => {
-      const img = new Image();
-      img.onload = () => {
-        originalImage = img;
-        fitCanvasToImage(sourceCanvas, img, 1800, 1800);
-
-        mirrorCanvas(sourceCanvas, originalCanvas);
-        mirrorCanvas(sourceCanvas, compareOriginalCanvas);
-        mirrorCanvas(sourceCanvas, enhancedCanvas);
-        mirrorCanvas(sourceCanvas, compareEnhancedCanvas);
-
-        resultCanvas.width = sourceCanvas.width;
-        resultCanvas.height = sourceCanvas.height;
-        resultCanvas.getContext('2d').drawImage(sourceCanvas, 0, 0);
-
-        uploadZone.classList.add('hidden');
-        previewShell.classList.add('active');
-        downloadBtn.disabled = true;
-        resetBtn.disabled = false;
-        switchView('compare');
-        setStatus('Imagen cargada. Ahora puedes mejorarla automáticamente.', '');
-        renderInfo();
-      };
-      img.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
-
-  function renderInfo(extra = null) {
-    if (!originalImage) {
-      infoRow.innerHTML = '';
-      return;
-    }
-
-    const originalEstimate = sourceCanvas.toDataURL('image/jpeg', 0.92).length * 0.75;
-    const enhancedEstimate = resultCanvas.toDataURL(outputFormat.value, qualityRange.value / 100).length * 0.75;
-
-    const items = [
-      `Tamaño base: ${sourceCanvas.width} × ${sourceCanvas.height}`,
-      `Nombre: ${originalName}`,
-      `Peso aprox. original: ${bytesToSize(originalEstimate)}`,
-      `Peso aprox. mejorada: ${bytesToSize(enhancedEstimate)}`
-    ];
-
-    if (extra) items.push(extra);
-
-    infoRow.innerHTML = items.map(item => `<div class="info-pill">${item}</div>`).join('');
-  }
-
-  function processImage() {
-    if (!originalImage) return;
-
-    setStatus('Procesando imagen...', 'warning');
-
-    requestAnimationFrame(() => {
-      const mode = getModeConfig(enhanceMode.value);
-      const strength = Number(enhanceStrength.value) / 100;
-      const sharp = Number(sharpness.value) / 100;
-      const clarityAmount = Number(clarity.value) / 100;
-      const smooth = Number(denoise.value);
-      const scale = Number(upscale.value);
-
-      const baseCanvas = scale === 2 ? resizeCanvas(sourceCanvas, 2) : resizeCanvas(sourceCanvas, 1);
-      const ctx = baseCanvas.getContext('2d', { willReadFrequently: true });
-      let imageData = ctx.getImageData(0, 0, baseCanvas.width, baseCanvas.height);
-
-      imageData = autoLevels(imageData, 0.75 + strength * 0.6);
-
-      imageData = applyTone(
-        imageData,
-        mode.contrast * (0.65 + strength * 0.75),
-        1 + ((mode.saturation - 1) * (0.65 + strength * 0.75)),
-        mode.brightness * (0.6 + strength * 0.7)
-      );
-
-      const blurSmall = boxBlurRGBA(imageData, baseCanvas.width, baseCanvas.height, 1);
-
-      if (smooth > 0) {
-        imageData = blendDenoise(imageData, blurSmall, smooth * mode.denoiseMix);
-      }
-
-      const blurForSharp = boxBlurRGBA(imageData, baseCanvas.width, baseCanvas.height, 1);
-      imageData = unsharpMask(
-        imageData,
-        blurForSharp,
-        mode.sharpen * (0.45 + sharp * 1.8) * (0.75 + strength * 0.45)
-      );
-
-      const blurLarge = boxBlurRGBA(imageData, baseCanvas.width, baseCanvas.height, 2);
-      imageData = localContrastPass(
-        imageData,
-        blurLarge,
-        mode.localContrast * clarityAmount * (0.8 + strength * 0.5)
-      );
-
-      if (scale === 2) {
-        const blurAfterUpscale = boxBlurRGBA(imageData, baseCanvas.width, baseCanvas.height, 1);
-        imageData = unsharpMask(
-          imageData,
-          blurAfterUpscale,
-          mode.upscaleSharpen * (0.85 + sharp * 0.7)
-        );
-      }
-
-      ctx.putImageData(imageData, 0, 0);
-
-      resultCanvas = baseCanvas;
-      mirrorCanvas(resultCanvas, enhancedCanvas);
-      mirrorCanvas(resultCanvas, compareEnhancedCanvas);
-
-      downloadBtn.disabled = false;
-
-      const modeLabel = enhanceMode.value === 'soft' ? 'Suave' : enhanceMode.value === 'strong' ? 'Fuerte' : 'Normal';
-      renderInfo(`Modo aplicado: ${modeLabel} • Escala: x${scale}`);
-      setStatus('Imagen mejorada correctamente.', 'success');
-    });
-  }
-
-  function resetAll() {
-    if (!originalImage) return;
-
-    enhanceMode.value = 'normal';
-    enhanceStrength.value = 78;
-    sharpness.value = 72;
-    clarity.value = 58;
-    denoise.value = 12;
-    upscale.value = 1;
-    outputFormat.value = 'image/jpeg';
-    qualityRange.value = 92;
-    updateValueLabels();
-
-    resultCanvas = resizeCanvas(sourceCanvas, 1);
-    mirrorCanvas(sourceCanvas, enhancedCanvas);
-    mirrorCanvas(sourceCanvas, compareEnhancedCanvas);
-    downloadBtn.disabled = true;
-    setStatus('Ajustes restablecidos. Vuelve a mejorar la imagen.', '');
-    renderInfo();
-  }
-
-  function downloadResult() {
-    if (!originalImage || downloadBtn.disabled) return;
-
-    const mime = outputFormat.value;
-    const quality = qualityRange.value / 100;
-    const ext = getExtensionFromMime(mime);
-    const baseName = getCleanBaseName(originalName);
-
-    const done = blob => {
-      if (!blob) {
-        setStatus('No se pudo generar la descarga.', 'error');
-        return;
-      }
-
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `${baseName}-mejorada.${ext}`;
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
-      setStatus('Descarga lista.', 'success');
-    };
-
-    if (mime === 'image/png') {
-      resultCanvas.toBlob(done, mime);
-    } else {
-      resultCanvas.toBlob(done, mime, quality);
-    }
-  }
-
-  uploadZone.addEventListener('dragover', e => {
-    e.preventDefault();
-    uploadZone.classList.add('dragover');
-  });
-
-  uploadZone.addEventListener('dragleave', () => {
-    uploadZone.classList.remove('dragover');
-  });
-
-  uploadZone.addEventListener('drop', e => {
-    e.preventDefault();
-    uploadZone.classList.remove('dragover');
-    const file = e.dataTransfer.files[0];
-    loadImageFromFile(file);
-  });
-
-  fileInput.addEventListener('change', e => {
-    const file = e.target.files[0];
-    loadImageFromFile(file);
-  });
-
-  replaceBtn.addEventListener('click', () => fileInput.click());
-  processBtn.addEventListener('click', processImage);
-  downloadBtn.addEventListener('click', downloadResult);
-  resetBtn.addEventListener('click', resetAll);
-
-  document.addEventListener('paste', e => {
-    const items = Array.from(e.clipboardData?.items || []);
-    const imageItem = items.find(item => item.type.startsWith('image/'));
-    if (!imageItem) return;
-    const file = imageItem.getAsFile();
-    if (file) {
-      loadImageFromFile(file);
-      setStatus('Imagen pegada desde el portapapeles.', 'success');
-    }
-  });
-
-  [enhanceMode, enhanceStrength, sharpness, clarity, denoise, upscale, qualityRange, outputFormat].forEach(el => {
-    el.addEventListener('change', () => {
-      if (originalImage) {
-        setStatus('Ajustes actualizados. Pulsa "Mejorar imagen".', '');
-        renderInfo();
-      }
-    });
-  });
-</script>
-
-</body>
-</html>
