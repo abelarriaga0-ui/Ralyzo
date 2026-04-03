@@ -450,16 +450,16 @@
 
     .stage{
       width:100%;
-      min-height:540px;
-      max-height:calc(100vh - 290px);
-      overflow:auto;
+      min-height:420px;
+      max-height:70vh;
+      overflow:hidden;
       background:#091122;
       border-radius:16px;
       border:1px solid rgba(51,65,85,.8);
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:18px;
+      padding:10px;
     }
 
     .canvas-holder{
@@ -469,7 +469,9 @@
 
     #mainCanvas{
       display:block;
-      max-width:none;
+      max-width:100%;
+      height:auto;
+      touch-action:none:
       image-rendering:auto;
       cursor:grab;
       border-radius:12px;
@@ -1205,22 +1207,21 @@
   }
 
   function updateCanvasDisplaySize() {
-    const stagePadding = 36;
-    const maxW = Math.max(260, stageArea.clientWidth - stagePadding);
-    const maxH = Math.max(280, window.innerHeight - 320);
+  const maxW = stageArea.clientWidth - 20;
+  const maxH = window.innerHeight * 0.6;
 
-    const ratio = Math.min(
-      maxW / selectedPreset.width,
-      maxH / selectedPreset.height,
-      1
-    );
+  const ratio = Math.min(
+    maxW / selectedPreset.width,
+    maxH / selectedPreset.height,
+    1
+  );
 
-    const displayWidth = Math.round(selectedPreset.width * ratio);
-    const displayHeight = Math.round(selectedPreset.height * ratio);
+  const displayWidth = selectedPreset.width * ratio;
+  const displayHeight = selectedPreset.height * ratio;
 
-    mainCanvas.style.width = `${displayWidth}px`;
-    mainCanvas.style.height = `${displayHeight}px`;
-  }
+  mainCanvas.style.width = displayWidth + 'px';
+  mainCanvas.style.height = displayHeight + 'px';
+}
 
   function clampOffsets() {
     if (!imageObj) return;
