@@ -464,8 +464,10 @@
 
     .canvas-holder{
       position:relative;
-      display:inline-block;
-      max-width:100%;
+      width:100%
+      display:flex;
+      justify-content:center;
+      align-items:center;
       overflow:hidden;
     }
 
@@ -1211,10 +1213,8 @@
   function updateCanvasDisplaySize() {
   const isMobile = window.innerWidth < 768;
 
-  const maxW = stageArea.clientWidth - 10;
-  const maxH = isMobile
-    ? window.innerHeight * 0.5
-    : window.innerHeight * 0.7;
+  const maxW = stageArea.clientWidth - 24;
+  const maxH = isMobile ? window.innerHeight * 0.52 : window.innerHeight * 0.7;
 
   const ratio = Math.min(
     maxW / selectedPreset.width,
@@ -1222,11 +1222,15 @@
     1
   );
 
-  const displayWidth = selectedPreset.width * ratio;
-  const displayHeight = selectedPreset.height * ratio;
+  const displayWidth = Math.round(selectedPreset.width * ratio);
+  const displayHeight = Math.round(selectedPreset.height * ratio);
 
   mainCanvas.style.width = displayWidth + 'px';
   mainCanvas.style.height = displayHeight + 'px';
+
+  const canvasHolder = document.getElementById('canvasHolder');
+  canvasHolder.style.width = displayWidth + 'px';
+  canvasHolder.style.height = displayHeight + 'px';
 }
 
   function clampOffsets() {
