@@ -419,6 +419,13 @@
     }
     .btn-danger:hover{background:rgba(239,68,68,.18);transform:translateY(-1px)}
 
+    .btn-large{
+      min-height:52px;
+      padding:14px 22px;
+      font-size:16px;
+      box-shadow:0 10px 24px rgba(37,99,235,.22);
+    }
+
     .hidden{display:none !important}
 
     .editor-shell{
@@ -533,6 +540,7 @@
       outline:none;
       line-height:1.7;
       font-size:15px;
+      white-space:pre-wrap;
     }
 
     .text-output:focus{
@@ -962,7 +970,7 @@
             desde el portapapeles y extraer el texto detectado con OCR.
           </p>
           <div class="upload-actions">
-            <button type="button" class="btn btn-primary" id="selectImageBtn">Seleccionar imagen</button>
+            <button type="button" class="btn btn-primary btn-large" id="selectImageBtn">Seleccionar imagen</button>
             <button type="button" class="btn btn-secondary" id="pasteHintBtn">Pegar imagen</button>
           </div>
           <div class="hint">Compatible con JPG, PNG y WEBP • OCR en español e inglés</div>
@@ -975,7 +983,7 @@
         <div class="top-toolbar">
           <div class="preview-title">Extraer texto de imagen</div>
           <div class="upload-actions" style="justify-content:flex-end">
-            <span class="status-inline" id="langLabel">OCR listo</span>
+            <button type="button" class="btn btn-primary btn-large" id="extractBtn">Extraer texto</button>
             <button type="button" class="btn btn-secondary" id="replaceBtn">Cambiar imagen</button>
           </div>
         </div>
@@ -1034,7 +1042,6 @@
       <div class="side-card">
         <h3>Acciones</h3>
         <div class="actions-stack">
-          <button type="button" class="btn btn-primary" id="extractBtn">Extraer texto</button>
           <button type="button" class="btn btn-secondary" id="copyBtn">Copiar texto</button>
           <button type="button" class="btn btn-success" id="downloadBtn">Descargar TXT</button>
           <button type="button" class="btn btn-danger" id="clearBtn">Limpiar todo</button>
@@ -1046,6 +1053,7 @@
         <h3>Qué puedes hacer</h3>
         <ul class="tips">
           <li>Extraer texto de capturas, documentos e imágenes.</li>
+          <li>Limpiar automáticamente espacios raros del OCR.</li>
           <li>Copiar el contenido detectado al portapapeles.</li>
           <li>Editar el texto manualmente antes de descargar.</li>
           <li>Guardar el resultado como archivo TXT.</li>
@@ -1115,7 +1123,6 @@
   const imageBadge = document.getElementById('imageBadge');
   const resultBadge = document.getElementById('resultBadge');
   const infoRow = document.getElementById('infoRow');
-  const langLabel = document.getElementById('langLabel');
 
   let currentFile = null;
   let currentImageUrl = null;
@@ -1144,7 +1151,6 @@
   function updateBadges() {
     imageBadge.textContent = currentFile ? currentFile.name : 'Sin imagen';
     resultBadge.textContent = `${textOutput.value.length} caracteres`;
-    langLabel.textContent = languageSelect.options[languageSelect.selectedIndex].text;
   }
 
   function renderInfo() {
@@ -1206,6 +1212,22 @@
     }
   }
 
+  function cleanOCRText(text) {
+    return (text || '')
+      .replace(/\r/g, '')
+      .replace(/[ \t]+\n/g, '\n')
+      .replace(/\n[ \t]+/g, '\n')
+      .split('\n')
+      .map(line => line.replace(/[ \t]{2,}/g, ' ').trim())
+      .filter((line, index, arr) => {
+        if (line !== '') return true;
+        return index > 0 && arr[index - 1] !== '';
+      })
+      .join('\n')
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
+  }
+
   function loadImageFile(file) {
     if (!file || !file.type.startsWith('image/')) return;
 
@@ -1218,7 +1240,7 @@
     uploadZone.classList.add('hidden');
     textOutput.value = '';
     updateBadges();
-    setStatus('Imagen cargada. Ya puedes extraer el texto.', 'success');
+    setStatus('Imagen cargada. Pulsa “Extraer texto” para iniciar el OCR.', 'success');
 
     previewImage.onload = () => {
       renderInfo();
@@ -1241,17 +1263,16 @@
       await ensureWorker(lang);
 
       await worker.setParameters({
-        tessedit_pageseg_mode: 6,
-        preserve_interword_spaces: '1'
+        tessedit_pageseg_mode: 6
       });
 
       const result = await worker.recognize(currentImageUrl);
-      const text = (result.data.text || '').trim();
+      const cleanText = cleanOCRText(result.data.text);
 
-      textOutput.value = text;
+      textOutput.value = cleanText;
       updateBadges();
 
-      if (text) {
+      if (cleanText) {
         setStatus('Texto extraído correctamente.', 'success');
       } else {
         setStatus('No se detectó texto claro en la imagen.', 'warning');
@@ -1361,11 +1382,6 @@
   copyBtn.addEventListener('click', copyText);
   downloadBtn.addEventListener('click', downloadText);
   clearBtn.addEventListener('click', clearAll);
-
-  languageSelect.addEventListener('change', () => {
-    updateBadges();
-    renderInfo();
-  });
 
   textOutput.addEventListener('input', updateBadges);
 
