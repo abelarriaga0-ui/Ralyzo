@@ -465,6 +465,8 @@
     .canvas-holder{
       position:relative;
       display:inline-block;
+      max-width:100%;
+      overflow:hidden;
     }
 
     #mainCanvas{
@@ -1207,8 +1209,12 @@
   }
 
   function updateCanvasDisplaySize() {
-  const maxW = stageArea.clientWidth - 20;
-  const maxH = window.innerHeight * 0.6;
+  const isMobile = window.innerWidth < 768;
+
+  const maxW = stageArea.clientWidth - 10;
+  const maxH = isMobile
+    ? window.innerHeight * 0.5
+    : window.innerHeight * 0.7;
 
   const ratio = Math.min(
     maxW / selectedPreset.width,
