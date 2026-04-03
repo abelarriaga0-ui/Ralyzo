@@ -450,12 +450,6 @@
       color:#F8FAFC;
     }
 
-    .status-inline{
-      color:#93C5FD;
-      font-size:14px;
-      font-weight:700;
-    }
-
     .content-grid{
       display:grid;
       grid-template-columns:minmax(0, 420px) minmax(0, 1fr);
@@ -526,6 +520,51 @@
 
     .result-body{
       padding:14px;
+    }
+
+    .search-row{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto auto auto;
+      gap:8px;
+      margin-bottom:12px;
+      align-items:center;
+    }
+
+    .search-input{
+      width:100%;
+      min-height:42px;
+      border-radius:12px;
+      border:1px solid rgba(51,65,85,.95);
+      background:#0B1325;
+      color:#F8FAFC;
+      padding:10px 12px;
+      outline:none;
+    }
+
+    .search-input:focus{
+      border-color:#2563EB;
+    }
+
+    .search-count{
+      color:#93C5FD;
+      font-size:12px;
+      font-weight:700;
+      white-space:nowrap;
+    }
+
+    .mini-btn{
+      min-height:42px;
+      padding:10px 12px;
+      border-radius:12px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(148,163,184,.18);
+      color:#E2E8F0;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .mini-btn:hover{
+      background:rgba(255,255,255,.05);
     }
 
     .text-output{
@@ -892,6 +931,14 @@
         width:100%;
       }
 
+      .search-row{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .search-count{
+        grid-column:1 / -1;
+      }
+
       .image-wrap{
         min-height:260px;
         padding:10px;
@@ -1007,6 +1054,13 @@
               <span class="badge" id="resultBadge">0 caracteres</span>
             </div>
             <div class="result-body">
+              <div class="search-row">
+                <input id="searchInput" class="search-input" type="text" placeholder="Buscar dentro del texto detectado..." />
+                <button type="button" class="mini-btn" id="prevBtn">Anterior</button>
+                <button type="button" class="mini-btn" id="nextBtn">Siguiente</button>
+                <div class="search-count" id="searchCount">0 coincidencias</div>
+              </div>
+
               <textarea id="textOutput" class="text-output" placeholder="Aquí aparecerá el texto extraído de la imagen..."></textarea>
             </div>
           </div>
@@ -1028,6 +1082,17 @@
             <option value="spa" selected>Español</option>
             <option value="eng">Inglés</option>
             <option value="spa+eng">Español + Inglés</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <div class="control-top">
+            <label for="ocrModeSelect">Modo OCR</label>
+          </div>
+          <select id="ocrModeSelect">
+            <option value="document" selected>Documento</option>
+            <option value="auto">Auto</option>
+            <option value="photo">Foto</option>
           </select>
         </div>
 
@@ -1054,8 +1119,8 @@
         <ul class="tips">
           <li>Extraer texto de capturas, documentos e imágenes.</li>
           <li>Limpiar automáticamente espacios raros del OCR.</li>
+          <li>Buscar palabras dentro del texto detectado.</li>
           <li>Copiar el contenido detectado al portapapeles.</li>
-          <li>Editar el texto manualmente antes de descargar.</li>
           <li>Guardar el resultado como archivo TXT.</li>
         </ul>
       </div>
@@ -1111,6 +1176,7 @@
   const editorShell = document.getElementById('editorShell');
   const previewImage = document.getElementById('previewImage');
   const languageSelect = document.getElementById('languageSelect');
+  const ocrModeSelect = document.getElementById('ocrModeSelect');
   const extractBtn = document.getElementById('extractBtn');
   const copyBtn = document.getElementById('copyBtn');
   const downloadBtn = document.getElementById('downloadBtn');
@@ -1123,12 +1189,18 @@
   const imageBadge = document.getElementById('imageBadge');
   const resultBadge = document.getElementById('resultBadge');
   const infoRow = document.getElementById('infoRow');
+  const searchInput = document.getElementById('searchInput');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const searchCount = document.getElementById('searchCount');
 
   let currentFile = null;
   let currentImageUrl = null;
   let worker = null;
   let workerLang = null;
   let isProcessing = false;
+  let searchMatches = [];
+  let currentMatchIndex = -1;
 
   function setStatus(text, type = '') {
     statusText.textContent = text;
@@ -1163,7 +1235,8 @@
       `Nombre: ${currentFile.name}`,
       `Peso: ${bytesToSize(currentFile.size)}`,
       `Resolución: ${previewImage.naturalWidth} × ${previewImage.naturalHeight}`,
-      `Idioma OCR: ${languageSelect.options[languageSelect.selectedIndex].text}`
+      `Idioma OCR: ${languageSelect.options[languageSelect.selectedIndex].text}`,
+      `Modo OCR: ${ocrModeSelect.options[ocrModeSelect.selectedIndex].text}`
     ];
 
     infoRow.innerHTML = items.map(item => `<div class="info-pill">${item}</div>`).join('');
@@ -1228,6 +1301,109 @@
       .trim();
   }
 
+  function createProcessedImage(file, mode = 'document') {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      const tempUrl = URL.createObjectURL(file);
+
+      img.onload = () => {
+        const scale = mode === 'document' ? 2.2 : mode === 'photo' ? 1.8 : 2;
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(img.naturalWidth * scale);
+        canvas.height = Math.round(img.naturalHeight * scale);
+
+        const ctx = canvas.getContext('2d', { willReadFrequently: true });
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+
+        for (let i = 0; i < data.length; i += 4) {
+          const r = data[i];
+          const g = data[i + 1];
+          const b = data[i + 2];
+
+          let gray = 0.299 * r + 0.587 * g + 0.114 * b;
+
+          if (mode === 'document') {
+            gray = gray > 165 ? 255 : gray < 95 ? 0 : gray;
+          } else if (mode === 'photo') {
+            gray = gray * 1.05;
+          }
+
+          data[i] = gray;
+          data[i + 1] = gray;
+          data[i + 2] = gray;
+        }
+
+        ctx.putImageData(imageData, 0, 0);
+
+        canvas.toBlob((blob) => {
+          URL.revokeObjectURL(tempUrl);
+          if (!blob) {
+            reject(new Error('No se pudo preparar la imagen.'));
+            return;
+          }
+          resolve(blob);
+        }, 'image/png');
+      };
+
+      img.onerror = () => {
+        URL.revokeObjectURL(tempUrl);
+        reject(new Error('No se pudo cargar la imagen.'));
+      };
+
+      img.src = tempUrl;
+    });
+  }
+
+  function resetSearch() {
+    searchMatches = [];
+    currentMatchIndex = -1;
+    searchCount.textContent = '0 coincidencias';
+  }
+
+  function updateSearchMatches() {
+    const term = searchInput.value.trim();
+    const text = textOutput.value;
+
+    resetSearch();
+
+    if (!term || !text) return;
+
+    const textLower = text.toLowerCase();
+    const termLower = term.toLowerCase();
+    let start = 0;
+
+    while (true) {
+      const index = textLower.indexOf(termLower, start);
+      if (index === -1) break;
+      searchMatches.push({ start: index, end: index + term.length });
+      start = index + term.length;
+    }
+
+    searchCount.textContent = `${searchMatches.length} coincidencia${searchMatches.length === 1 ? '' : 's'}`;
+  }
+
+  function focusMatch(index) {
+    if (!searchMatches.length) return;
+
+    currentMatchIndex = (index + searchMatches.length) % searchMatches.length;
+    const match = searchMatches[currentMatchIndex];
+
+    textOutput.focus();
+    textOutput.setSelectionRange(match.start, match.end);
+
+    const textBefore = textOutput.value.substring(0, match.start);
+    const lineHeight = 26;
+    const lines = textBefore.split('\n').length - 1;
+    textOutput.scrollTop = Math.max(0, lines * lineHeight - 60);
+
+    searchCount.textContent = `${currentMatchIndex + 1} de ${searchMatches.length}`;
+  }
+
   function loadImageFile(file) {
     if (!file || !file.type.startsWith('image/')) return;
 
@@ -1240,6 +1416,7 @@
     uploadZone.classList.add('hidden');
     textOutput.value = '';
     updateBadges();
+    resetSearch();
     setStatus('Imagen cargada. Pulsa “Extraer texto” para iniciar el OCR.', 'success');
 
     previewImage.onload = () => {
@@ -1260,17 +1437,25 @@
 
     try {
       const lang = languageSelect.value;
+      const mode = ocrModeSelect.value;
+
       await ensureWorker(lang);
 
+      const processedBlob = await createProcessedImage(currentFile, mode);
+      const processedUrl = URL.createObjectURL(processedBlob);
+
       await worker.setParameters({
-        tessedit_pageseg_mode: 6
+        tessedit_pageseg_mode: mode === 'document' ? 6 : 11
       });
 
-      const result = await worker.recognize(currentImageUrl);
+      const result = await worker.recognize(processedUrl);
+      URL.revokeObjectURL(processedUrl);
+
       const cleanText = cleanOCRText(result.data.text);
 
       textOutput.value = cleanText;
       updateBadges();
+      updateSearchMatches();
 
       if (cleanText) {
         setStatus('Texto extraído correctamente.', 'success');
@@ -1333,6 +1518,7 @@
     fileInput.value = '';
     infoRow.innerHTML = '';
     updateBadges();
+    resetSearch();
     showProgress(false);
     setStatus('Sube una imagen para empezar.');
   }
@@ -1383,7 +1569,14 @@
   downloadBtn.addEventListener('click', downloadText);
   clearBtn.addEventListener('click', clearAll);
 
-  textOutput.addEventListener('input', updateBadges);
+  textOutput.addEventListener('input', () => {
+    updateBadges();
+    updateSearchMatches();
+  });
+
+  searchInput.addEventListener('input', updateSearchMatches);
+  nextBtn.addEventListener('click', () => focusMatch(currentMatchIndex + 1));
+  prevBtn.addEventListener('click', () => focusMatch(currentMatchIndex - 1));
 
   document.addEventListener('paste', (e) => {
     const items = Array.from(e.clipboardData?.items || []);
