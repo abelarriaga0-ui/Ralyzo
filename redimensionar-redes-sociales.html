@@ -48,7 +48,7 @@
       font-family:'Inter',sans-serif;
       background:linear-gradient(180deg,#020B1F 0%, #06112A 100%);
       color:var(--text);
-      overflow-x: hidden;
+      overflow-x:hidden;
     }
 
     a{text-decoration:none;color:inherit}
@@ -464,7 +464,7 @@
 
     .canvas-holder{
       position:relative;
-      width:100%
+      width:100%;
       display:flex;
       justify-content:center;
       align-items:center;
@@ -475,7 +475,7 @@
       display:block;
       max-width:100%;
       height:auto;
-      touch-action:none:
+      touch-action:none;
       image-rendering:auto;
       cursor:grab;
       border-radius:12px;
@@ -783,6 +783,65 @@
         max-height:none;
         min-height:420px;
         padding:12px;
+      }
+    }
+
+    @media (max-width:768px){
+      html, body{
+        width:100%;
+        max-width:100%;
+        overflow-x:hidden !important;
+      }
+
+      .container,
+      .workspace,
+      .sidebar,
+      .preview-card,
+      .stage-wrap,
+      .stage{
+        width:100% !important;
+        max-width:100% !important;
+        overflow:hidden !important;
+      }
+
+      .app-grid{
+        grid-template-columns:1fr !important;
+      }
+
+      .stage{
+        min-height:auto !important;
+        max-height:none !important;
+        padding:8px !important;
+        display:flex !important;
+        justify-content:center !important;
+        align-items:center !important;
+      }
+
+      .canvas-holder{
+        width:100% !important;
+        max-width:100% !important;
+        display:flex !important;
+        justify-content:center !important;
+        align-items:center !important;
+        overflow:hidden !important;
+      }
+
+      #mainCanvas{
+        display:block !important;
+        width:auto !important;
+        max-width:78vw !important;
+        height:auto !important;
+        margin:0 auto !important;
+      }
+
+      h1{
+        font-size:34px !important;
+        line-height:1.08 !important;
+        word-break:break-word;
+      }
+
+      .hero p{
+        font-size:16px !important;
       }
     }
 
@@ -1211,27 +1270,35 @@
   }
 
   function updateCanvasDisplaySize() {
-  const isMobile = window.innerWidth < 768;
+    const isMobile = window.innerWidth <= 768;
 
-  const maxW = stageArea.clientWidth - 24;
-  const maxH = isMobile ? window.innerHeight * 0.52 : window.innerHeight * 0.7;
+    let maxW;
+    let maxH;
 
-  const ratio = Math.min(
-    maxW / selectedPreset.width,
-    maxH / selectedPreset.height,
-    1
-  );
+    if (isMobile) {
+      maxW = window.innerWidth * 0.78;
+      maxH = window.innerHeight * 0.52;
+    } else {
+      maxW = stageArea.clientWidth - 24;
+      maxH = window.innerHeight * 0.7;
+    }
 
-  const displayWidth = Math.round(selectedPreset.width * ratio);
-  const displayHeight = Math.round(selectedPreset.height * ratio);
+    const ratio = Math.min(
+      maxW / selectedPreset.width,
+      maxH / selectedPreset.height,
+      1
+    );
 
-  mainCanvas.style.width = displayWidth + 'px';
-  mainCanvas.style.height = displayHeight + 'px';
+    const displayWidth = Math.round(selectedPreset.width * ratio);
+    const displayHeight = Math.round(selectedPreset.height * ratio);
 
-  const canvasHolder = document.getElementById('canvasHolder');
-  canvasHolder.style.width = displayWidth + 'px';
-  canvasHolder.style.height = displayHeight + 'px';
-}
+    mainCanvas.style.width = displayWidth + 'px';
+    mainCanvas.style.height = displayHeight + 'px';
+
+    const canvasHolder = document.getElementById('canvasHolder');
+    canvasHolder.style.width = displayWidth + 'px';
+    canvasHolder.style.height = displayHeight + 'px';
+  }
 
   function clampOffsets() {
     if (!imageObj) return;
