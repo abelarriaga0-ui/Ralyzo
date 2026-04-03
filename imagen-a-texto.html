@@ -523,49 +523,69 @@
     }
 
     .search-row{
-      display:grid;
-      grid-template-columns:minmax(0,1fr) auto auto auto;
-      gap:8px;
-      margin-bottom:12px;
-      align-items:center;
-    }
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-bottom:12px;
+  align-items:stretch;
+}
 
-    .search-input{
-      width:100%;
-      min-height:42px;
-      border-radius:12px;
-      border:1px solid rgba(51,65,85,.95);
-      background:#0B1325;
-      color:#F8FAFC;
-      padding:10px 12px;
-      outline:none;
-    }
+.search-box{
+  position:relative;
+  width:100%;
+}
 
-    .search-input:focus{
-      border-color:#2563EB;
-    }
+.search-input{
+  width:100%;
+  min-height:46px;
+  border-radius:14px;
+  border:1px solid rgba(51,65,85,.95);
+  background:#0B1325;
+  color:#F8FAFC;
+  padding:10px 88px 10px 12px;
+  outline:none;
+}
 
-    .search-count{
-      color:#93C5FD;
-      font-size:12px;
-      font-weight:700;
-      white-space:nowrap;
-    }
+.search-input:focus{
+  border-color:#2563EB;
+}
 
-    .mini-btn{
-      min-height:42px;
-      padding:10px 12px;
-      border-radius:12px;
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(148,163,184,.18);
-      color:#E2E8F0;
-      font-weight:700;
-      cursor:pointer;
-    }
+.search-nav{
+  position:absolute;
+  top:50%;
+  right:8px;
+  transform:translateY(-50%);
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
 
-    .mini-btn:hover{
-      background:rgba(255,255,255,.05);
-    }
+.search-arrow{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  border:1px solid rgba(148,163,184,.18);
+  background:rgba(255,255,255,.03);
+  color:#E2E8F0;
+  font-size:16px;
+  font-weight:800;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+}
+
+.search-arrow:hover{
+  background:rgba(255,255,255,.06);
+}
+
+.search-count{
+  color:#93C5FD;
+  font-size:12px;
+  font-weight:700;
+  white-space:nowrap;
+}
 
     .text-output{
       width:100%;
@@ -932,11 +952,12 @@
       }
 
       .search-row{
-        grid-template-columns:1fr 1fr;
+        display:flex;
+        flex-direction:column;
       }
 
       .search-count{
-        grid-column:1 / -1;
+        grid-column:auto;
       }
 
       .image-wrap{
@@ -1055,9 +1076,13 @@
             </div>
             <div class="result-body">
               <div class="search-row">
-                <input id="searchInput" class="search-input" type="text" placeholder="Buscar dentro del texto detectado..." />
-                <button type="button" class="mini-btn" id="prevBtn">Anterior</button>
-                <button type="button" class="mini-btn" id="nextBtn">Siguiente</button>
+                <div class="search-box">
+                  <input id="searchInput" class="search-input" type="text" placeholder="Buscar dentro del texto detectado..." />
+                  <div class="search-nav">
+                    <button type="button" class="search-arrow" id="prevBtn" aria-label="Coincidencia anterior">↑</button>
+                    <button type="button" class="search-arrow" id="nextBtn" aria-label="Siguiente coincidencia">↓</button>
+                  </div>
+                </div>
                 <div class="search-count" id="searchCount">0 coincidencias</div>
               </div>
 
