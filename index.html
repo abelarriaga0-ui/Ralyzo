@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Ralyzo | Herramientas online para imágenes</title>
-  <meta name="description" content="Ralyzo ofrece herramientas online rápidas para comprimir, convertir, redimensionar, recortar y girar imágenes directamente desde tu navegador." />
+  <meta name="description" content="Ralyzo ofrece herramientas online rápidas para comprimir, convertir, redimensionar, recortar, girar imágenes, extraer texto con OCR y adaptar imágenes para redes sociales directamente desde tu navegador." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://ralyzo.com/" />
 
   <meta property="og:title" content="Ralyzo | Herramientas online para imágenes" />
-  <meta property="og:description" content="Comprime, convierte y optimiza imágenes online en segundos con Ralyzo." />
+  <meta property="og:description" content="Comprime, convierte, extrae texto y optimiza imágenes online en segundos con Ralyzo." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ralyzo.com/" />
   <meta property="og:site_name" content="Ralyzo" />
@@ -85,7 +85,7 @@
       border-bottom:1px solid var(--line);
       width:100%;
       max-width:100%;
-      overflow:hidden;
+      overflow:visible;
     }
 
     .nav{
@@ -98,6 +98,7 @@
       align-items:center;
       justify-content:flex-end;
       padding:0 24px;
+      overflow:visible;
     }
 
     .logo-center{
@@ -113,6 +114,7 @@
       white-space:nowrap;
       color:#F8FAFC;
       max-width:calc(100% - 48px);
+      z-index:2;
     }
 
     .logo-mark{
@@ -133,6 +135,8 @@
       font-weight:600;
       flex-wrap:wrap;
       max-width:100%;
+      position:relative;
+      z-index:3;
     }
 
     .nav-links > a,
@@ -201,7 +205,7 @@
       transform:translateY(8px);
       transition:opacity .2s ease, visibility .2s ease, transform .2s ease;
       pointer-events:none;
-      z-index:1100;
+      z-index:1200;
     }
 
     .dropdown:hover .dropdown-menu,
@@ -722,7 +726,11 @@
       .footer-card{
         width:100% !important;
         max-width:100% !important;
-        overflow:hidden !important;
+      }
+
+      header,
+      .nav{
+        overflow:visible !important;
       }
     }
 
@@ -841,8 +849,8 @@
       <div class="hero-badge">Herramientas online para imágenes</div>
       <h1>Comprime, convierte y optimiza imágenes en segundos</h1>
       <p>
-        Usa herramientas online rápidas para comprimir, convertir, redimensionar, recortar y girar imágenes
-        directamente desde tu navegador, sin instalar programas.
+        Usa herramientas online rápidas para comprimir, convertir, redimensionar, recortar, girar imágenes,
+        extraer texto y adaptar imágenes para redes sociales directamente desde tu navegador.
       </p>
       <div class="hero-actions">
         <a class="hero-cta" href="#herramientas">Ver herramientas</a>
@@ -855,8 +863,8 @@
     <div class="section-panel">
       <h2 class="section-title">Herramientas disponibles</h2>
       <p class="section-subtitle">
-        Usa nuestras herramientas para comprimir, convertir, redimensionar, recortar y girar imágenes online
-        de forma rápida, sencilla y sin complicaciones.
+        Usa nuestras herramientas para comprimir, convertir, redimensionar, recortar, girar imágenes,
+        extraer texto con OCR y adaptar contenido al tamaño exacto para redes sociales.
       </p>
 
       <div class="tools-grid">
@@ -888,6 +896,16 @@
         <a class="tool-card" href="/girar-imagen">
           <h3>Girar imagen</h3>
           <p>Rota imágenes rápidamente desde tu navegador sin instalar nada.</p>
+        </a>
+
+        <a class="tool-card" href="/redimensionar-redes-sociales">
+          <h3>Redimensionar para redes</h3>
+          <p>Adapta una imagen al tamaño exacto para Instagram, TikTok, YouTube y más.</p>
+        </a>
+
+        <a class="tool-card" href="/imagen-a-texto">
+          <h3>Imagen a texto</h3>
+          <p>Extrae texto de imágenes y documentos con OCR online gratis.</p>
         </a>
       </div>
     </div>
