@@ -1,21 +1,34 @@
-<!DOCTYPE html>  <html lang="es">  
+<!DOCTYPE html>
+<html lang="es">  
 <head>  
   <meta charset="UTF-8" />  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />    <title>Blog de Ralyzo | Guías sobre Imágenes, Optimización y Formatos</title>  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+
+  <title>Blog de Ralyzo | Guías sobre Imágenes, Optimización y Formatos</title>  
   <meta name="description" content="Explora el blog de Ralyzo con guías prácticas sobre compresión de imágenes, formatos como JPG y PNG, optimización web y herramientas online gratuitas." />  
   <meta name="keywords" content="blog de imágenes, comprimir imagen, jpg vs png, formatos de imagen, optimizar imágenes web, ralyzo blog" />  
   <meta name="author" content="Ralyzo" />  
-  <link rel="canonical" href="https://ralyzo.com/blog/index.html" />    <meta property="og:type" content="website" />  
+  <link rel="canonical" href="https://ralyzo.com/blog/index.html" />  
+
+  <meta property="og:type" content="website" />  
   <meta property="og:title" content="Blog de Ralyzo | Guías sobre Imágenes, Optimización y Formatos" />  
   <meta property="og:description" content="Aprende sobre formatos de imagen, compresión, optimización web y herramientas online gratuitas en el blog de Ralyzo." />  
   <meta property="og:url" content="https://ralyzo.com/blog/index.html" />  
   <meta property="og:site_name" content="Ralyzo" />  
-  <meta property="og:image" content="https://ralyzo.com/assets/og-blog-index.jpg" />    <meta name="twitter:card" content="summary_large_image" />  
+  <meta property="og:image" content="https://ralyzo.com/assets/og-blog-index.jpg" />  
+
+  <meta name="twitter:card" content="summary_large_image" />  
   <meta name="twitter:title" content="Blog de Ralyzo | Guías sobre Imágenes, Optimización y Formatos" />  
   <meta name="twitter:description" content="Guías útiles sobre imágenes, formatos, optimización y SEO visual." />  
-  <meta name="twitter:image" content="https://ralyzo.com/assets/og-blog-index.jpg" />    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337166112417872" crossorigin="anonymous"></script>    <link rel="preconnect" href="https://fonts.googleapis.com" />  
+  <meta name="twitter:image" content="https://ralyzo.com/assets/og-blog-index.jpg" />  
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337166112417872" crossorigin="anonymous"></script>  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />  
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />  
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />    <style>  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />  
+
+  <style>  
     :root{  
       --bg:#0B1220;  
       --bg-soft:#101A2E;  
@@ -30,9 +43,16 @@
       --shadow:0 18px 50px rgba(0,0,0,.28);  
       --container:1200px;  
     }  
-  
+
     *{box-sizing:border-box}  
     html{scroll-behavior:smooth}  
+
+    html, body{
+      width:100%;
+      max-width:100%;
+      overflow-x:hidden;
+    }
+
     body{  
       margin:0;  
       font-family:'Inter',sans-serif;  
@@ -43,10 +63,10 @@
       color:var(--text);  
       line-height:1.7;  
     }  
-  
+
     a{text-decoration:none;color:inherit}  
     .container{width:min(var(--container), calc(100% - 32px));margin:0 auto}  
-  
+
     .site-header{  
       position:sticky;  
       top:0;  
@@ -55,7 +75,7 @@
       background:rgba(11,18,32,.78);  
       border-bottom:1px solid var(--line);  
     }  
-  
+
     .header-inner{  
       display:flex;  
       align-items:center;  
@@ -63,7 +83,7 @@
       gap:24px;  
       min-height:76px;  
     }  
-  
+
     .brand{  
       display:flex;  
       align-items:center;  
@@ -72,7 +92,7 @@
       letter-spacing:.2px;  
       font-size:1rem;  
     }  
-  
+
     .brand-mark{  
       width:0;  
       height:0;  
@@ -83,21 +103,21 @@
       filter:drop-shadow(0 4px 10px rgba(255,255,255,.12));  
       flex-shrink:0;  
     }  
-  
+
     .brand-text{  
       font-size:1rem;  
       font-weight:900;  
       letter-spacing:.06em;  
       color:#F8FAFC;  
     }  
-  
+
     .main-nav{  
       display:flex;  
       align-items:center;  
       gap:10px;  
       flex-wrap:wrap;  
     }  
-  
+
     .nav-link,  
     .dropdown-toggle{  
       color:var(--muted);  
@@ -114,17 +134,17 @@
       cursor:pointer;  
       font-family:inherit;  
     }  
-  
+
     .nav-link:hover,  
     .dropdown-toggle:hover{  
       color:var(--text);  
       background:rgba(255,255,255,.04);  
     }  
-  
+
     .dropdown{  
       position:relative;  
     }  
-  
+
     .dropdown::after{  
       content:"";  
       position:absolute;  
@@ -133,7 +153,7 @@
       top:100%;  
       height:18px;  
     }  
-  
+
     .dropdown-menu{  
       position:absolute;  
       top:calc(100% + 16px);  
@@ -150,13 +170,13 @@
       transition:all .2s ease;  
       z-index:30;  
     }  
-  
+
     .dropdown:hover .dropdown-menu{  
       opacity:1;  
       visibility:visible;  
       transform:translateY(0);  
     }  
-  
+
     .dropdown-menu a{  
       display:block;  
       padding:12px 14px;  
@@ -166,18 +186,18 @@
       font-weight:600;  
       transition:.2s ease;  
     }  
-  
+
     .dropdown-menu a:hover{  
       background:rgba(255,255,255,.05);  
       color:var(--text);  
     }  
-  
+
     .header-actions{  
       display:flex;  
       align-items:center;  
       gap:12px;  
     }  
-  
+
     .btn{  
       display:inline-flex;  
       align-items:center;  
@@ -191,19 +211,19 @@
       cursor:pointer;  
       transition:transform .2s ease, box-shadow .2s ease;  
     }  
-  
+
     .btn:hover{transform:translateY(-1px)}  
-  
+
     .btn-primary{  
       color:#fff;  
       background:linear-gradient(135deg,var(--primary),var(--primary-2));  
       box-shadow:0 16px 35px rgba(79,70,229,.32);  
     }  
-  
+
     .hero{  
       padding:72px 0 28px;  
     }  
-  
+
     .hero-card{  
       background:  
         linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)),  
@@ -215,7 +235,7 @@
       position:relative;  
       overflow:hidden;  
     }  
-  
+
     .hero-card::before{  
       content:"";  
       position:absolute;  
@@ -227,7 +247,7 @@
       background:radial-gradient(circle, rgba(124,58,237,.26), transparent 70%);  
       pointer-events:none;  
     }  
-  
+
     .eyebrow{  
       display:inline-flex;  
       align-items:center;  
@@ -243,7 +263,7 @@
       text-transform:uppercase;  
       margin-bottom:18px;  
     }  
-  
+
     .hero h1{  
       font-size:clamp(1.85rem, 3.2vw, 2.95rem);  
       line-height:1.12;  
@@ -251,14 +271,14 @@
       max-width:900px;  
       letter-spacing:-.03em;  
     }  
-  
+
     .hero p{  
       margin:0;  
       color:var(--muted);  
       font-size:1.05rem;  
       max-width:820px;  
     }  
-  
+
     .hero-meta{  
       display:flex;  
       flex-wrap:wrap;  
@@ -268,7 +288,7 @@
       font-size:.95rem;  
       font-weight:600;  
     }  
-  
+
     .hero-meta span{  
       display:inline-flex;  
       align-items:center;  
@@ -278,32 +298,32 @@
       border:1px solid var(--line);  
       border-radius:12px;  
     }  
-  
+
     .articles{  
       padding:20px 0 80px;  
     }  
-  
+
     .section-title{  
       margin-bottom:22px;  
     }  
-  
+
     .section-title h2{  
       margin:0 0 8px;  
       font-size:1.8rem;  
       letter-spacing:-.03em;  
     }  
-  
+
     .section-title p{  
       margin:0;  
       color:var(--muted);  
     }  
-  
+
     .articles-grid{  
       display:grid;  
       grid-template-columns:repeat(3, minmax(0,1fr));  
       gap:20px;  
     }  
-  
+
     .article-card{  
       background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));  
       border:1px solid var(--line);  
@@ -312,12 +332,12 @@
       padding:22px;  
       transition:transform .2s ease, border-color .2s ease;  
     }  
-  
+
     .article-card:hover{  
       transform:translateY(-4px);  
       border-color:rgba(255,255,255,.14);  
     }  
-  
+
     .badge{  
       display:inline-flex;  
       padding:7px 10px;  
@@ -331,28 +351,28 @@
       letter-spacing:.04em;  
       margin-bottom:14px;  
     }  
-  
+
     .article-card h3{  
       margin:0 0 10px;  
       font-size:1.15rem;  
       line-height:1.35;  
     }  
-  
+
     .article-card p{  
       margin:0 0 14px;  
       color:var(--muted);  
       font-size:.96rem;  
     }  
-  
+
     .read-more{  
       font-weight:700;  
       color:#C4B5FD;  
     }  
-  
+
     .site-footer{  
       padding:0 0 40px;  
     }  
-  
+
     .footer-card{  
       background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));  
       border:1px solid var(--line);  
@@ -360,7 +380,7 @@
       box-shadow:var(--shadow);  
       padding:28px;  
     }  
-  
+
     .footer-top{  
       display:flex;  
       justify-content:space-between;  
@@ -368,28 +388,28 @@
       flex-wrap:wrap;  
       margin-bottom:22px;  
     }  
-  
+
     .footer-brand p{  
       color:var(--muted);  
       margin:12px 0 0;  
       max-width:540px;  
     }  
-  
+
     .footer-links{  
       display:flex;  
       gap:16px;  
       flex-wrap:wrap;  
     }  
-  
+
     .footer-links a{  
       color:var(--muted);  
       font-weight:600;  
     }  
-  
+
     .footer-links a:hover{  
       color:var(--text);  
     }  
-  
+
     .footer-bottom{  
       border-top:1px solid var(--line);  
       padding-top:18px;  
@@ -400,11 +420,11 @@
       gap:16px;  
       flex-wrap:wrap;  
     }  
-  
+
     @media (max-width: 1080px){  
       .articles-grid{grid-template-columns:1fr 1fr}  
     }  
-  
+
     @media (max-width: 820px){  
       .header-inner{  
         min-height:auto;  
@@ -412,19 +432,21 @@
         align-items:flex-start;  
         flex-direction:column;  
       }  
-  
+
       .main-nav{width:100%}  
       .hero-card{padding:28px 22px}  
       .articles-grid{grid-template-columns:1fr}  
     }  
-  
+
     @media (max-width: 560px){  
       .container{width:min(var(--container), calc(100% - 20px))}  
       .header-actions{width:100%}  
       .btn{width:100%}  
       .hero-meta{flex-direction:column;align-items:flex-start}  
     }  
-  </style>    <script type="application/ld+json">  
+  </style>  
+
+  <script type="application/ld+json">  
   {  
     "@context":"https://schema.org",  
     "@type":"Blog",  
@@ -436,41 +458,45 @@
       "name":"Ralyzo"  
     }  
   }  
-  </script>  </head>  
+  </script>  
+</head>  
 <body>  
   <header class="site-header">  
     <div class="container header-inner">  
       <a href="/" class="brand" aria-label="Ralyzo Inicio">  
         <span class="brand-mark"></span>  
         <span class="brand-text">RALYZO</span>  
-      </a>  <nav class="main-nav" aria-label="Navegación principal">  
-    <a href="/" class="nav-link">Herramientas</a>  
-    <a href="/precios.html" class="nav-link">Precios</a>  
+      </a>  
 
-    <div class="dropdown">  
-      <button class="dropdown-toggle" aria-label="Abrir menú del blog">  
-        Blog  
-        <span>▾</span>  
-      </button>  
+      <nav class="main-nav" aria-label="Navegación principal">  
+        <a href="/" class="nav-link">Herramientas</a>  
+        <a href="/precios.html" class="nav-link">Precios</a>  
 
-      <div class="dropdown-menu" role="menu">  
-        <a href="/blog/index.html">Ver todos los artículos</a>  
-        <a href="/blog/como-comprimir-imagen.html">Cómo comprimir una imagen</a>  
-        <a href="/blog/jpg-vs-png.html">JPG vs PNG</a>  
-        <a href="/blog/optimizar-imagenes-web.html">Optimizar imágenes para web</a>  
-        <a href="/blog/formatos-imagen.html">Formatos de imagen</a>  
-        <a href="/blog/reducir-peso-imagen.html">Reducir peso de una imagen</a>  
-        <a href="/blog/convertir-imagen.html">Convertir imágenes</a>  
+        <div class="dropdown">  
+          <button class="dropdown-toggle" aria-label="Abrir menú del blog">  
+            Blog  
+            <span>▾</span>  
+          </button>  
+
+          <div class="dropdown-menu" role="menu">  
+            <a href="/blog/index.html">Ver todos los artículos</a>  
+            <a href="/blog/como-comprimir-imagen.html">Cómo comprimir una imagen</a>  
+            <a href="/blog/jpg-vs-png.html">JPG vs PNG</a>  
+            <a href="/blog/optimizar-imagenes-web.html">Optimizar imágenes para web</a>  
+            <a href="/blog/formatos-imagen.html">Formatos de imagen</a>  
+            <a href="/blog/reducir-peso-imagen.html">Reducir peso de una imagen</a>  
+            <a href="/blog/convertir-imagen.html">Convertir imágenes</a>  
+          </div>  
+        </div>  
+      </nav>  
+
+      <div class="header-actions">  
+        <a href="/#herramientas" class="btn btn-primary">Probar herramientas</a>  
       </div>  
-    </div>  
-  </nav>  
+    </div>
+  </header>  
 
-  <div class="header-actions">  
-    <a href="/#herramientas" class="btn btn-primary">Probar herramientas</a>  
-  </div>  
-</div>
-
-  </header>    <main>  
+  <main>  
     <section class="hero">  
       <div class="container">  
         <div class="hero-card">  
@@ -480,69 +506,79 @@
             Explora artículos útiles sobre formatos como JPG, PNG y WEBP, aprende a reducir el peso  
             de tus imágenes, mejorar la velocidad de carga de tu web y elegir la mejor herramienta  
             según cada necesidad.  
-          </p>  <div class="hero-meta">  
-        <span>Contenido SEO</span>  
-        <span>Optimización web</span>  
-        <span>Herramientas gratuitas</span>  
+          </p>  
+
+          <div class="hero-meta">  
+            <span>Contenido SEO</span>  
+            <span>Optimización web</span>  
+            <span>Herramientas gratuitas</span>  
+          </div>  
+        </div>  
       </div>  
-    </div>  
-  </div>  
-</section>  
+    </section>  
 
-<section class="articles">  
-  <div class="container">  
-    <div class="section-title">  
-      <h2>Todos los artículos</h2>  
-      <p>Contenido pensado para mejorar rendimiento, UX y posicionamiento orgánico.</p>  
-    </div>  
+    <section class="articles">  
+      <div class="container">  
+        <div class="section-title">  
+          <h2>Todos los artículos</h2>  
+          <p>Contenido pensado para mejorar rendimiento, UX y posicionamiento orgánico.</p>  
+        </div>  
 
-    <div class="articles-grid">  
-      <a href="/blog/como-comprimir-imagen.html" class="article-card">  
-        <span class="badge">Tutorial</span>  
-        <h3>Cómo comprimir una imagen sin perder calidad</h3>  
-        <p>Guía práctica para reducir el tamaño de una imagen manteniendo buena calidad visual.</p>  
-        <span class="read-more">Leer artículo →</span>  
-      </a>  
+        <div class="articles-grid">  
+          <a href="/blog/como-comprimir-imagen.html" class="article-card">  
+            <span class="badge">Tutorial</span>  
+            <h3>Cómo comprimir una imagen sin perder calidad</h3>  
+            <p>Guía práctica para reducir el tamaño de una imagen manteniendo buena calidad visual.</p>  
+            <span class="read-more">Leer artículo →</span>  
+          </a>  
 
-      <a href="/blog/jpg-vs-png.html" class="article-card">  
-        <span class="badge">Comparativa</span>  
-        <h3>JPG vs PNG: diferencias, ventajas y cuál conviene usar</h3>  
-        <p>Descubre qué formato elegir según transparencia, calidad, fotografía o diseño.</p>  
-        <span class="read-more">Leer artículo →</span>  
-      </a>  
+          <a href="/blog/jpg-vs-png.html" class="article-card">  
+            <span class="badge">Comparativa</span>  
+            <h3>JPG vs PNG: diferencias, ventajas y cuál conviene usar</h3>  
+            <p>Descubre qué formato elegir según transparencia, calidad, fotografía o diseño.</p>  
+            <span class="read-more">Leer artículo →</span>  
+          </a>  
 
-      <a href="/blog/optimizar-imagenes-web.html" class="article-card">  
-        <span class="badge">SEO</span>  
-        <h3>Cómo optimizar imágenes para web y mejorar velocidad de carga</h3>  
-        <p>Aprende a usar tamaños correctos, compresión y formatos adecuados para una web más rápida.</p>  
-        <span class="read-more">Leer artículo →</span>  
-      </a>  
+          <a href="/blog/optimizar-imagenes-web.html" class="article-card">  
+            <span class="badge">SEO</span>  
+            <h3>Cómo optimizar imágenes para web y mejorar velocidad de carga</h3>  
+            <p>Aprende a usar tamaños correctos, compresión y formatos adecuados para una web más rápida.</p>  
+            <span class="read-more">Leer artículo →</span>  
+          </a>  
 
-      <a href="/blog/formatos-imagen.html" class="article-card">  
-        <span class="badge">Guía</span>  
-        <h3>Formatos de imagen: qué son y cuándo usar cada uno</h3>  
-        <p>Conoce las diferencias entre JPG, PNG, WEBP y SVG de forma simple y práctica.</p>  
-        <span class="read-more">Leer artículo →</span>  
-      </a>  
+          <a href="/blog/formatos-imagen.html" class="article-card">  
+            <span class="badge">Guía</span>  
+            <h3>Formatos de imagen: qué son y cuándo usar cada uno</h3>  
+            <p>Conoce las diferencias entre JPG, PNG, WEBP y SVG de forma simple y práctica.</p>  
+            <span class="read-more">Leer artículo →</span>  
+          </a>  
 
-      <a href="/blog/reducir-peso-imagen.html" class="article-card">  
-        <span class="badge">Optimización</span>  
-        <h3>Cómo reducir el peso de una imagen sin perder calidad</h3>  
-        <p>Aprende a bajar el tamaño del archivo de una imagen para web, correo y documentos.</p>  
-        <span class="read-more">Leer artículo →</span>  
-      </a>  
+          <a href="/blog/reducir-peso-imagen.html" class="article-card">  
+            <span class="badge">Optimización</span>  
+            <h3>Cómo reducir el peso de una imagen sin perder calidad</h3>  
+            <p>Aprende a bajar el tamaño del archivo de una imagen para web, correo y documentos.</p>  
+            <span class="read-more">Leer artículo →</span>  
+          </a>  
 
-      <a href="/blog/convertir-imagen.html" class="article-card">  
-        <span class="badge">Conversión</span>  
-        <h3>Cómo convertir imágenes sin perder calidad</h3>  
-        <p>Guía para cambiar entre formatos como JPG, PNG y WEBP correctamente.</p>  
-        <span class="read-more">Leer artículo →</span>  
-      </a>  
-    </div>  
-  </div>  
-</section>
+          <a href="/blog/convertir-imagen.html" class="article-card">  
+            <span class="badge">Conversión</span>  
+            <h3>Cómo convertir imágenes sin perder calidad</h3>  
+            <p>Guía para cambiar entre formatos como JPG, PNG y WEBP correctamente.</p>  
+            <span class="read-more">Leer artículo →</span>  
+          </a>  
 
-  </main>    <footer class="site-footer">  
+          <a href="/blog/redimensionar-imagen-sin-perder-calidad.html" class="article-card">  
+            <span class="badge">Edición</span>  
+            <h3>Cómo redimensionar imágenes sin perder calidad</h3>  
+            <p>Aprende a cambiar el tamaño de una imagen correctamente sin afectar su calidad visual.</p>  
+            <span class="read-more">Leer artículo →</span>  
+          </a>  
+        </div>  
+      </div>  
+    </section>
+  </main>  
+
+  <footer class="site-footer">  
     <div class="container">  
       <div class="footer-card">  
         <div class="footer-top">  
@@ -554,21 +590,22 @@
             <p>  
               Herramientas online gratuitas para comprimir, convertir y optimizar imágenes desde tu navegador.  
             </p>  
-          </div>  <div class="footer-links">  
-        <a href="/">Inicio</a>  
-        <a href="/#herramientas">Herramientas</a>  
-        <a href="/blog/index.html">Blog</a>  
-        <a href="/precios.html">Precios</a>  
+          </div>  
+
+          <div class="footer-links">  
+            <a href="/">Inicio</a>  
+            <a href="/#herramientas">Herramientas</a>  
+            <a href="/blog/index.html">Blog</a>  
+            <a href="/precios.html">Precios</a>  
+          </div>  
+        </div>  
+
+        <div class="footer-bottom">  
+          <span>© 2026 Ralyzo. Todos los derechos reservados.</span>  
+          <span>Contenido útil para SEO, UX y optimización web.</span>  
+        </div>  
       </div>  
-    </div>  
-
-    <div class="footer-bottom">  
-      <span>© 2026 Ralyzo. Todos los derechos reservados.</span>  
-      <span>Contenido útil para SEO, UX y optimización web.</span>  
-    </div>  
-  </div>  
-</div>
-
+    </div>
   </footer>  
 </body>  
 </html>
