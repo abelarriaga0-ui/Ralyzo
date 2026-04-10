@@ -157,8 +157,11 @@
     .dropdown-menu{  
       position:absolute;  
       top:calc(100% + 16px);  
-      left:0;  
-      min-width:270px;  
+      left:50%;  
+      transform: translateX(-50%) translateY(8px)
+      width:min(92vw, 340px);
+      min-width:unset;  
+      max-width:92vw;
       padding:12px;  
       background:rgba(12,18,32,.98);  
       border:1px solid var(--line);  
@@ -166,7 +169,6 @@
       box-shadow:var(--shadow);  
       opacity:0;  
       visibility:hidden;  
-      transform:translateY(8px);  
       transition:all .2s ease;  
       z-index:30;  
     }  
@@ -174,7 +176,7 @@
     .dropdown:hover .dropdown-menu{  
       opacity:1;  
       visibility:visible;  
-      transform:translateY(0);  
+      transform:translateX(-50%) translateY(0);  
     }  
 
     .dropdown-menu a{  
