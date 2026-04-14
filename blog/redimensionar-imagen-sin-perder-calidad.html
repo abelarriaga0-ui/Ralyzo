@@ -4,12 +4,56 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Cómo Optimizar Imágenes para Web y Mejorar la Velocidad | Ralyzo</title>
+  <title>Cómo Redimensionar una Imagen sin Perder Calidad | Ralyzo</title>
+  <meta name="description" content="Aprende cómo redimensionar una imagen sin perder calidad. Descubre cuándo cambiar tamaño, qué formato usar y cómo optimizar imágenes para web, redes sociales y documentos." />
+  <meta name="keywords" content="redimensionar imagen sin perder calidad, cambiar tamaño imagen, ajustar tamaño foto, redimensionar imagen online, reducir dimensiones imagen, optimizar imagen web" />
+  <meta name="author" content="Ralyzo" />
+  <link rel="canonical" href="https://ralyzo.com/blog/redimensionar-imagen-sin-perder-calidad.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Cómo Redimensionar una Imagen sin Perder Calidad | Ralyzo" />
+  <meta property="og:description" content="Guía práctica para redimensionar imágenes sin perder calidad visual y mejorar rendimiento web, SEO y experiencia de usuario." />
+  <meta property="og:url" content="https://ralyzo.com/blog/redimensionar-imagen-sin-perder-calidad.html" />
+  <meta property="og:site_name" content="Ralyzo" />
+  <meta property="og:image" content="https://ralyzo.com/assets/og-blog-redimensionar-imagen.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Cómo Redimensionar una Imagen sin Perder Calidad | Ralyzo" />
+  <meta name="twitter:description" content="Descubre cómo cambiar el tamaño de una imagen sin perder calidad para web, redes sociales y documentos." />
+  <meta name="twitter:image" content="https://ralyzo.com/assets/og-blog-redimensionar-imagen.jpg" />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337166112417872" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <style>
+    :root{
+      --bg:#0B1220;
+      --bg-soft:#101A2E;
+      --card:#111C31;
+      --card-2:#0F172A;
+      --text:#F8FAFC;
+      --muted:#CBD5E1;
+      --muted-2:#94A3B8;
+      --line:rgba(255,255,255,.08);
+      --primary:#4F46E5;
+      --primary-2:#7C3AED;
+      --accent:#22C55E;
+      --warning:#F59E0B;
+      --shadow:0 18px 50px rgba(0,0,0,.28);
+      --radius:18px;
+      --radius-sm:14px;
+      --container:1200px;
+    }
 
-    /* ===== FIX GLOBAL (NUEVO) ===== */
-    html, body{
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
       width:100%;
       max-width:100%;
       overflow-x:hidden;
@@ -18,20 +62,41 @@
     body{
       margin:0;
       font-family:'Inter',sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(79,70,229,.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(124,58,237,.18), transparent 28%),
+        linear-gradient(180deg,#0B1220 0%,#0A1120 100%);
+      color:var(--text);
+      line-height:1.7;
+      width:100%;
+      max-width:100%;
       overflow-x:hidden;
     }
 
-    *{
-      box-sizing:border-box;
+    a{
+      color:inherit;
+      text-decoration:none;
     }
 
-    /* ===== HEADER ===== */
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    .container{
+      width:min(var(--container), calc(100% - 32px));
+      max-width:100%;
+      margin:0 auto;
+    }
+
     .site-header{
       position:sticky;
       top:0;
       z-index:1000;
-      background:#0B1220;
-      overflow:hidden; /* FIX */
+      backdrop-filter:blur(14px);
+      background:rgba(11,18,32,.78);
+      border-bottom:1px solid var(--line);
+      max-width:100%;
     }
 
     .header-inner{
@@ -40,150 +105,631 @@
       justify-content:space-between;
       gap:24px;
       min-height:76px;
-      width:100%; /* FIX */
-      max-width:100%; /* FIX */
-      padding:0 16px;
+      max-width:100%;
     }
 
     .logo{
       display:flex;
       align-items:center;
-      gap:12px;
-      font-weight:800;
+      gap:14px;
+      font-weight:900;
+      letter-spacing:.04em;
+      font-size:1rem;
+      color:#F8FAFC;
+      min-width:0;
+    }
+
+    .logo-mark{
+      width:0;
+      height:0;
+      border-top:14px solid transparent;
+      border-bottom:14px solid transparent;
+      border-right:22px solid #F8FAFC;
+      transform:skewX(-12deg);
+      filter:drop-shadow(0 4px 10px rgba(255,255,255,.12));
+      flex-shrink:0;
+    }
+
+    .logo-text{
+      font-size:1rem;
+      font-weight:900;
+      letter-spacing:.06em;
+      color:#F8FAFC;
     }
 
     .main-nav{
       display:flex;
+      align-items:center;
       gap:10px;
       flex-wrap:wrap;
-      min-width:0; /* FIX */
-      max-width:100%; /* FIX */
+      min-width:0;
+      max-width:100%;
     }
 
-    .nav-link{
-      padding:10px 12px;
-      color:#CBD5E1;
+    .nav-link,
+    .dropdown-toggle{
+      color:var(--muted);
+      padding:12px 14px;
+      border-radius:12px;
+      font-size:.96rem;
+      font-weight:600;
+      transition:.2s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:transparent;
+      border:none;
+      cursor:pointer;
+      font-family:inherit;
+    }
+
+    .nav-link:hover,
+    .dropdown-toggle:hover{
+      color:var(--text);
+      background:rgba(255,255,255,.04);
     }
 
     .header-actions{
       display:flex;
-      gap:10px;
-      min-width:0; /* FIX */
-      max-width:100%; /* FIX */
+      align-items:center;
+      gap:12px;
+      min-width:0;
     }
 
     .btn{
-      padding:12px 16px;
-      border-radius:12px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 18px;
       border:none;
+      border-radius:14px;
+      font-weight:700;
+      font-size:.95rem;
       cursor:pointer;
+      transition:transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+      max-width:100%;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
     }
 
     .btn-primary{
-      background:#4F46E5;
       color:#fff;
+      background:linear-gradient(135deg,var(--primary),var(--primary-2));
+      box-shadow:0 16px 35px rgba(79,70,229,.32);
     }
 
-    /* ===== HERO ===== */
+    .btn-secondary{
+      color:var(--text);
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--line);
+    }
+
+    .dropdown{
+      position:relative;
+    }
+
+    .dropdown::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      top:100%;
+      height:18px;
+    }
+
+    .dropdown-menu{
+      position:absolute;
+      top:calc(100% + 16px);
+      left:50%;
+      width:min(92vw, 360px);
+      min-width:280px;
+      max-width:92vw;
+      max-height:min(62vh, 420px);
+      overflow-y:auto;
+      -webkit-overflow-scrolling:touch;
+      padding:12px;
+      background:rgba(12,18,32,.98);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      opacity:0;
+      visibility:hidden;
+      transform:translateX(-50%) translateY(8px);
+      transition:all .2s ease;
+      z-index:30;
+    }
+
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu{
+      opacity:1;
+      visibility:visible;
+      transform:translateX(-50%) translateY(0);
+    }
+
+    .dropdown-menu a{
+      display:block;
+      padding:12px 14px;
+      border-radius:12px;
+      color:var(--muted);
+      font-size:.95rem;
+      font-weight:600;
+      transition:.2s ease;
+      line-height:1.45;
+      white-space:normal;
+      overflow-wrap:break-word;
+      word-break:normal;
+    }
+
+    .dropdown-menu a:hover{
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+    }
+
     .hero{
-      padding:40px 16px;
+      padding:72px 0 28px;
+      max-width:100%;
+    }
+
+    .breadcrumb{
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom:22px;
+      color:var(--muted-2);
+      font-size:.92rem;
+      max-width:100%;
+    }
+
+    .breadcrumb a:hover{
+      color:var(--text);
     }
 
     .hero-card{
-      padding:24px;
-      background:#111C31;
-      border-radius:20px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)),
+        linear-gradient(135deg, rgba(79,70,229,.16), rgba(124,58,237,.08));
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:40px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+      max-width:100%;
     }
 
-    /* ===== CONTENT ===== */
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      width:240px;
+      height:240px;
+      border-radius:50%;
+      right:-60px;
+      top:-60px;
+      background:radial-gradient(circle, rgba(124,58,237,.26), transparent 70%);
+      pointer-events:none;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      color:#C4B5FD;
+      font-size:.82rem;
+      font-weight:800;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      margin-bottom:18px;
+      max-width:100%;
+    }
+
+    .hero h1{
+      font-size:clamp(1.9rem, 3.3vw, 3rem);
+      line-height:1.08;
+      margin:0 0 18px;
+      max-width:900px;
+      letter-spacing:-.03em;
+    }
+
+    .hero p{
+      margin:0;
+      color:var(--muted);
+      font-size:1.08rem;
+      max-width:820px;
+    }
+
+    .hero-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:26px;
+      color:var(--muted-2);
+      font-size:.95rem;
+      font-weight:600;
+      max-width:100%;
+    }
+
+    .hero-meta span{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:12px;
+      max-width:100%;
+    }
+
     .content-wrap{
-      padding:20px 16px;
+      padding:20px 0 80px;
+      max-width:100%;
     }
 
     .content-grid{
       display:grid;
-      grid-template-columns:1fr 300px;
-      gap:20px;
+      grid-template-columns:minmax(0, 1fr) 320px;
+      gap:28px;
+      align-items:start;
+      max-width:100%;
+    }
+
+    .article-card,
+    .sidebar-card,
+    .related-card,
+    .footer-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      min-width:0;
     }
 
     .article-card{
-      background:#111C31;
-      padding:24px;
+      padding:34px;
+    }
+
+    .article-intro{
+      font-size:1.05rem;
+      color:var(--muted);
+      margin-bottom:30px;
+    }
+
+    .article-card h2{
+      font-size:1.6rem;
+      line-height:1.2;
+      margin:38px 0 16px;
+      letter-spacing:-.02em;
+    }
+
+    .article-card h3{
+      font-size:1.12rem;
+      margin:24px 0 10px;
+      color:#E2E8F0;
+    }
+
+    .article-card p{
+      margin:0 0 16px;
+      color:var(--muted);
+    }
+
+    .article-card ul,
+    .article-card ol{
+      margin:0 0 18px 0;
+      padding-left:20px;
+      color:var(--muted);
+    }
+
+    .article-card li{
+      margin-bottom:10px;
+    }
+
+    .article-card strong{
+      color:var(--text);
+    }
+
+    .highlight-box{
+      margin:26px 0;
+      padding:22px 22px 22px 20px;
       border-radius:20px;
+      background:linear-gradient(135deg, rgba(34,197,94,.12), rgba(79,70,229,.10));
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .highlight-box h3{
+      margin-top:0;
+      font-size:1.05rem;
+    }
+
+    .compare-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:16px;
+      margin:24px 0;
+    }
+
+    .mini-card{
+      background:rgba(255,255,255,.035);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px;
+      min-width:0;
+    }
+
+    .mini-card h3{
+      margin:0 0 10px;
+      font-size:1rem;
+    }
+
+    .cta-box{
+      margin-top:34px;
+      padding:26px;
+      border-radius:22px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.03)),
+        linear-gradient(135deg, rgba(79,70,229,.16), rgba(124,58,237,.12));
+      border:1px solid var(--line);
+      max-width:100%;
+    }
+
+    .cta-box h3{
+      margin:0 0 10px;
+      font-size:1.28rem;
+    }
+
+    .cta-box p{
+      margin:0 0 18px;
+    }
+
+    .cta-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
     }
 
     .sidebar{
       display:flex;
       flex-direction:column;
-      gap:16px;
+      gap:18px;
+      position:sticky;
+      top:98px;
+      min-width:0;
+      max-width:100%;
     }
 
     .sidebar-card{
-      background:#111C31;
-      padding:20px;
-      border-radius:16px;
+      padding:22px;
     }
 
-    /* ===== RELATED ===== */
+    .sidebar-card h3{
+      margin:0 0 14px;
+      font-size:1.05rem;
+    }
+
+    .sidebar-card p{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:.96rem;
+    }
+
+    .sidebar-links{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-width:0;
+    }
+
+    .sidebar-links a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:rgba(255,255,255,.035);
+      border:1px solid transparent;
+      color:var(--muted);
+      font-weight:600;
+      transition:.2s ease;
+      min-width:0;
+    }
+
+    .sidebar-links a:hover{
+      color:var(--text);
+      border-color:var(--line);
+      background:rgba(255,255,255,.05);
+    }
+
+    .tag-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      max-width:100%;
+    }
+
+    .tag{
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:.84rem;
+      font-weight:700;
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--line);
+      color:var(--muted);
+      max-width:100%;
+    }
+
+    .related-section{
+      padding:0 0 80px;
+      max-width:100%;
+    }
+
+    .section-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:22px;
+      max-width:100%;
+    }
+
+    .section-title h2{
+      margin:0;
+      font-size:1.8rem;
+      letter-spacing:-.03em;
+    }
+
+    .section-title p{
+      margin:0;
+      color:var(--muted);
+    }
+
     .related-grid{
       display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:16px;
-      padding:20px 16px;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:20px;
+      max-width:100%;
     }
 
     .related-card{
-      background:#111C31;
-      padding:20px;
-      border-radius:16px;
+      padding:22px;
+      transition:transform .2s ease, border-color .2s ease;
+      min-width:0;
     }
 
-    /* ===== FOOTER ===== */
+    .related-card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(255,255,255,.14);
+    }
+
+    .related-card .badge{
+      display:inline-flex;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(79,70,229,.14);
+      border:1px solid rgba(255,255,255,.08);
+      color:#C4B5FD;
+      font-size:.78rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      margin-bottom:14px;
+    }
+
+    .related-card h3{
+      margin:0 0 10px;
+      font-size:1.12rem;
+      line-height:1.35;
+    }
+
+    .related-card p{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:.96rem;
+    }
+
+    .related-card .read-more{
+      font-weight:700;
+      color:#C4B5FD;
+    }
+
+    .site-footer{
+      padding:0 0 40px;
+      max-width:100%;
+    }
+
     .footer-card{
-      background:#111C31;
-      padding:24px;
-      margin:20px;
-      border-radius:20px;
+      padding:28px;
+      max-width:100%;
     }
 
-    /* ===== RESPONSIVE FIX (CLAVE) ===== */
-    @media (max-width:900px){
+    .footer-top{
+      display:flex;
+      justify-content:space-between;
+      gap:24px;
+      flex-wrap:wrap;
+      margin-bottom:22px;
+      max-width:100%;
+    }
 
+    .footer-brand{
+      max-width:540px;
+      min-width:0;
+    }
+
+    .footer-brand p{
+      color:var(--muted);
+      margin:12px 0 0;
+    }
+
+    .footer-links{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      max-width:100%;
+    }
+
+    .footer-links a{
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .footer-links a:hover{
+      color:var(--text);
+    }
+
+    .footer-bottom{
+      border-top:1px solid var(--line);
+      padding-top:18px;
+      color:var(--muted-2);
+      font-size:.92rem;
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      max-width:100%;
+    }
+
+    @media (max-width:1080px){
       .content-grid{
         grid-template-columns:1fr;
+      }
+
+      .sidebar{
+        position:static;
       }
 
       .related-grid{
         grid-template-columns:1fr 1fr;
       }
-
     }
 
-    @media (max-width:560px){
-
+    @media (max-width:820px){
       .header-inner{
-        flex-direction:column;
+        min-height:auto;
+        padding:14px 0;
         align-items:flex-start;
-        width:100%;
-        max-width:100%;
+        flex-direction:column;
       }
 
       .main-nav{
         width:100%;
-        max-width:100%;
       }
 
-      .header-actions{
-        width:100%;
-        max-width:100%;
+      .hero-card{
+        padding:28px 22px;
       }
 
-      .header-actions .btn{
-        width:100%; /* FIX PRINCIPAL */
-        max-width:100%;
+      .article-card{
+        padding:24px 20px;
       }
 
-      .content-grid{
+      .compare-grid{
         grid-template-columns:1fr;
       }
 
@@ -191,64 +737,486 @@
         grid-template-columns:1fr;
       }
 
+      .section-title{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .dropdown-menu{
+        width:min(90vw, 340px);
+        min-width:unset;
+        max-width:90vw;
+        max-height:56vh;
+        left:50%;
+        transform:translateX(-50%) translateY(8px);
+      }
+
+      .dropdown:hover .dropdown-menu,
+      .dropdown:focus-within .dropdown-menu{
+        transform:translateX(-50%) translateY(0);
+      }
     }
 
+    @media (max-width:560px){
+      .container{
+        width:min(var(--container), calc(100% - 20px));
+      }
+
+      .nav-link,
+      .dropdown-toggle{
+        padding:10px 12px;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .header-actions{
+        width:100%;
+      }
+
+      .cta-actions{
+        flex-direction:column;
+      }
+
+      .hero-meta{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .dropdown-menu a{
+        padding:11px 12px;
+        font-size:.92rem;
+      }
+    }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BlogPosting",
+    "headline":"Cómo Redimensionar una Imagen sin Perder Calidad",
+    "description":"Aprende cómo redimensionar una imagen sin perder calidad. Descubre cuándo cambiar tamaño, qué formato usar y cómo optimizar imágenes para web, redes sociales y documentos.",
+    "author":{
+      "@type":"Organization",
+      "name":"Ralyzo"
+    },
+    "publisher":{
+      "@type":"Organization",
+      "name":"Ralyzo",
+      "logo":{
+        "@type":"ImageObject",
+        "url":"https://ralyzo.com/assets/logo.png"
+      }
+    },
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://ralyzo.com/blog/redimensionar-imagen-sin-perder-calidad.html"
+    },
+    "datePublished":"2026-03-31",
+    "dateModified":"2026-03-31",
+    "articleSection":"Blog",
+    "keywords":["redimensionar imagen sin perder calidad","cambiar tamaño imagen","ajustar tamaño foto","optimizar imagen web","redimensionar imagen online"]
+  }
+  </script>
 </head>
-
 <body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo" aria-label="Ralyzo Inicio">
+        <span class="logo-mark"></span>
+        <span class="logo-text">RALYZO</span>
+      </a>
 
-<header class="site-header">
-  <div class="header-inner">
-    <div class="logo">RALYZO</div>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="/" class="nav-link">Herramientas</a>
+        <a href="/precios.html" class="nav-link">Precios</a>
 
-    <nav class="main-nav">
-      <a href="/" class="nav-link">Herramientas</a>
-      <a href="/precios.html" class="nav-link">Precios</a>
-      <a href="/blog/index.html" class="nav-link">Blog</a>
-    </nav>
+        <div class="dropdown">
+          <button class="dropdown-toggle" aria-label="Abrir menú del blog">
+            Blog
+            <span>▾</span>
+          </button>
 
-    <div class="header-actions">
-      <button class="btn btn-primary">Probar herramientas</button>
-    </div>
-  </div>
-</header>
+          <div class="dropdown-menu" role="menu">
+            <a href="/blog/index.html">Ver todos los artículos</a>
+            <a href="/blog/como-comprimir-imagen.html">Cómo comprimir una imagen</a>
+            <a href="/blog/jpg-vs-png.html">JPG vs PNG</a>
+            <a href="/blog/optimizar-imagenes-web.html">Optimizar imágenes para web</a>
+            <a href="/blog/formatos-imagen.html">Formatos de imagen</a>
+            <a href="/blog/reducir-peso-imagen.html">Reducir peso de una imagen</a>
+            <a href="/blog/convertir-imagen.html">Convertir imágenes</a>
+            <a href="/blog/redimensionar-imagen-sin-perder-calidad.html">Redimensionar imagen sin perder calidad</a>
+          </div>
+        </div>
+      </nav>
 
-<section class="hero">
-  <div class="hero-card">
-    <h1>Cómo optimizar imágenes para web</h1>
-    <p>Mejora velocidad, SEO y rendimiento con imágenes optimizadas.</p>
-  </div>
-</section>
-
-<section class="content-wrap">
-  <div class="content-grid">
-
-    <article class="article-card">
-      <h2>Optimización de imágenes</h2>
-      <p>Contenido del artículo...</p>
-    </article>
-
-    <aside class="sidebar">
-      <div class="sidebar-card">
-        <h3>Herramientas</h3>
+      <div class="header-actions">
+        <a href="/#herramientas" class="btn btn-primary">Probar herramientas</a>
       </div>
-    </aside>
+    </div>
+  </header>
 
-  </div>
-</section>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Inicio</a>
+          <span>•</span>
+          <a href="/blog/index.html">Blog</a>
+          <span>•</span>
+          <span>Redimensionar imagen sin perder calidad</span>
+        </div>
 
-<section class="related-grid">
-  <div class="related-card">Artículo 1</div>
-  <div class="related-card">Artículo 2</div>
-  <div class="related-card">Artículo 3</div>
-</section>
+        <div class="hero-card">
+          <div class="eyebrow">Guía práctica • Redimensionado</div>
+          <h1>Cómo redimensionar una imagen sin perder calidad</h1>
+          <p>
+            Cambiar el tamaño de una imagen correctamente te ayuda a mejorar la velocidad de carga,
+            adaptar archivos para redes sociales, documentos o páginas web y mantener un buen resultado visual.
+            En esta guía te explicamos cómo redimensionar imágenes sin perder calidad más de lo necesario.
+          </p>
 
-<footer>
-  <div class="footer-card">
-    © 2026 Ralyzo
-  </div>
-</footer>
+          <div class="hero-meta">
+            <span>Lectura: 7 min</span>
+            <span>SEO + calidad + rendimiento</span>
+            <span>Actualizado: 31 de marzo de 2026</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <section class="content-wrap">
+      <div class="container">
+        <div class="content-grid">
+          <article class="article-card">
+            <p class="article-intro">
+              Redimensionar una imagen no consiste solo en hacerla más grande o más pequeña. Si se hace mal,
+              puedes terminar con una foto borrosa, deformada o innecesariamente pesada. Si se hace bien,
+              logras un archivo más útil, más ligero y visualmente correcto. Por eso conviene aprender a
+              <strong>cambiar dimensiones sin perder calidad visible</strong> más de lo necesario.
+            </p>
+
+            <h2>¿Qué significa redimensionar una imagen?</h2>
+            <p>
+              Redimensionar una imagen significa modificar sus dimensiones, normalmente su ancho y su alto,
+              medidos en píxeles. Esto cambia el tamaño visual del archivo y puede afectar también su peso final.
+            </p>
+
+            <p>
+              No es exactamente lo mismo que comprimir. Al comprimir reduces el tamaño del archivo.
+              Al redimensionar, cambias las dimensiones de la imagen. Muchas veces ambas técnicas se combinan.
+            </p>
+
+            <div class="highlight-box">
+              <h3>Idea clave</h3>
+              <p>
+                Redimensionar bien una imagen significa ajustar sus dimensiones al uso real que tendrá,
+                manteniendo la mejor relación posible entre <strong>nitidez</strong>, <strong>peso</strong> y <strong>calidad visual</strong>.
+              </p>
+            </div>
+
+            <h2>¿Por qué conviene cambiar el tamaño de una imagen?</h2>
+            <p>
+              Muchas imágenes tienen dimensiones mucho mayores de las que realmente necesitas. Eso genera archivos más pesados,
+              tiempos de carga más lentos y un uso innecesario de recursos.
+            </p>
+
+            <ul>
+              <li><strong>Mejora la velocidad de carga</strong> en páginas web.</li>
+              <li><strong>Reduce el peso del archivo</strong> en muchos casos.</li>
+              <li><strong>Facilita subir imágenes</strong> a formularios, plataformas o redes.</li>
+              <li><strong>Adapta el contenido</strong> a tamaños específicos de uso.</li>
+              <li><strong>Mejora la experiencia del usuario</strong> en móvil y desktop.</li>
+            </ul>
+
+            <h2>¿Se puede redimensionar sin perder calidad?</h2>
+            <p>
+              La respuesta real es: <strong>depende del cambio que hagas</strong>. Si reduces dimensiones de forma razonable,
+              normalmente puedes mantener muy buena calidad. Si intentas ampliar demasiado una imagen pequeña,
+              sí es mucho más probable que pierda nitidez.
+            </p>
+
+            <p>
+              En general:
+            </p>
+
+            <ul>
+              <li><strong>Reducir tamaño</strong> suele dar buenos resultados si se hace correctamente.</li>
+              <li><strong>Aumentar tamaño</strong> suele ser más delicado y puede generar pérdida visible.</li>
+            </ul>
+
+            <h2>Cuándo conviene redimensionar una imagen</h2>
+            <p>
+              Cambiar el tamaño es especialmente útil en situaciones como estas:
+            </p>
+
+            <div class="compare-grid">
+              <div class="mini-card">
+                <h3>Web y blogs</h3>
+                <p>Para no subir imágenes enormes cuando solo se mostrarán en bloques más pequeños.</p>
+              </div>
+              <div class="mini-card">
+                <h3>Redes sociales</h3>
+                <p>Para adaptar imágenes a medidas concretas de publicaciones, historias o miniaturas.</p>
+              </div>
+              <div class="mini-card">
+                <h3>Documentos y correo</h3>
+                <p>Para compartir archivos más ligeros y evitar límites de peso.</p>
+              </div>
+              <div class="mini-card">
+                <h3>Ecommerce</h3>
+                <p>Para mostrar productos con buena calidad, pero sin ralentizar la carga.</p>
+              </div>
+            </div>
+
+            <h2>Cómo redimensionar una imagen correctamente</h2>
+            <p>
+              Para obtener un buen resultado, conviene seguir algunos principios básicos:
+            </p>
+
+            <ol>
+              <li><strong>Define el uso real</strong> de la imagen antes de cambiar dimensiones.</li>
+              <li><strong>Mantén la proporción</strong> entre ancho y alto para evitar deformaciones.</li>
+              <li><strong>No amplíes demasiado</strong> archivos pequeños si quieres conservar nitidez.</li>
+              <li><strong>Elige un formato adecuado</strong> después del redimensionado.</li>
+              <li><strong>Comprueba el resultado final</strong> antes de publicarlo o enviarlo.</li>
+            </ol>
+
+            <h2>La proporción importa</h2>
+            <p>
+              Uno de los errores más comunes al redimensionar es cambiar ancho y alto sin respetar la proporción original.
+              Cuando eso ocurre, la imagen se ve estirada o aplastada.
+            </p>
+
+            <p>
+              Para evitarlo, conviene mantener la relación de aspecto original, salvo que realmente quieras recortar o adaptar
+              la imagen a un formato distinto.
+            </p>
+
+            <div class="highlight-box">
+              <h3>Consejo práctico</h3>
+              <p>
+                Si solo quieres que una imagen sea más pequeña o más grande sin deformarla,
+                mantén siempre bloqueada la proporción entre <strong>ancho y alto</strong>.
+              </p>
+            </div>
+
+            <h2>Reducir tamaño vs aumentar tamaño</h2>
+            <p>
+              No todos los cambios producen el mismo efecto.
+            </p>
+
+            <h3>Reducir dimensiones</h3>
+            <p>
+              Generalmente ayuda a bajar el peso del archivo y suele conservar buen aspecto si la reducción no es extrema.
+              Es ideal para preparar imágenes para web, redes o documentos.
+            </p>
+
+            <h3>Aumentar dimensiones</h3>
+            <p>
+              Es más delicado. Si una imagen original tiene pocos píxeles y la haces mucho más grande,
+              puede perder definición, verse borrosa o pixelada.
+            </p>
+
+            <h2>Formato recomendado después de redimensionar</h2>
+            <p>
+              Después de cambiar el tamaño, conviene revisar el formato del archivo. El formato correcto puede mejorar todavía más el resultado.
+            </p>
+
+            <ul>
+              <li><strong>JPG</strong> suele ir bien para fotografías.</li>
+              <li><strong>PNG</strong> puede ser mejor para gráficos, capturas o transparencias.</li>
+              <li><strong>WEBP</strong> es excelente para web por su equilibrio entre calidad y peso.</li>
+            </ul>
+
+            <p>
+              Redimensionar sin pensar en el formato es dejar parte de la optimización a medias.
+            </p>
+
+            <h2>Errores comunes al redimensionar imágenes</h2>
+            <p>
+              Estos son algunos de los fallos más frecuentes:
+            </p>
+
+            <ul>
+              <li><strong>Deformar la imagen</strong> al no mantener proporción.</li>
+              <li><strong>Agrandar demasiado</strong> un archivo pequeño esperando que se vea nítido.</li>
+              <li><strong>No ajustar el formato</strong> después del cambio de tamaño.</li>
+              <li><strong>Seguir usando resoluciones enormes</strong> cuando no son necesarias.</li>
+              <li><strong>No revisar el resultado</strong> en móvil y escritorio.</li>
+            </ul>
+
+            <h2>Redimensionar imágenes para web</h2>
+            <p>
+              Si una imagen va a usarse en una página web, redimensionarla es una de las decisiones más importantes.
+              Muchas webs lentas tienen imágenes mucho más grandes de lo que el diseño necesita realmente.
+            </p>
+
+            <ul>
+              <li>Menos peso.</li>
+              <li>Mejor velocidad de carga.</li>
+              <li>Menor consumo de datos.</li>
+              <li>Mejor experiencia para el visitante.</li>
+              <li>Apoyo indirecto al SEO.</li>
+            </ul>
+
+            <p>
+              En este contexto, una imagen bien dimensionada suele ser mucho más valiosa que una imagen enorme con calidad innecesaria.
+            </p>
+
+            <h2>Redimensionar imágenes para redes sociales</h2>
+            <p>
+              También conviene ajustar imágenes cuando se publicarán en Instagram, Facebook, YouTube, TikTok u otras plataformas.
+              Cada red tiene tamaños recomendados, y adaptar el archivo ayuda a evitar recortes raros o pérdida de calidad visible.
+            </p>
+
+            <p>
+              En estos casos, redimensionar correctamente mejora la presentación final y hace que el contenido se vea más profesional.
+            </p>
+
+            <h2>Cuándo conviene usar una herramienta online</h2>
+            <p>
+              Las herramientas online son ideales cuando quieres cambiar el tamaño de una imagen de forma rápida,
+              sin instalar programas y directamente desde tu navegador.
+            </p>
+
+            <ul>
+              <li>Sirven para tareas rápidas del día a día.</li>
+              <li>Son útiles para blogs, ecommerce y redes sociales.</li>
+              <li>Permiten ajustar medidas antes de compartir o publicar.</li>
+              <li>Pueden combinar redimensionado con compresión o conversión.</li>
+            </ul>
+
+            <h2>Conclusión</h2>
+            <p>
+              Redimensionar una imagen sin perder calidad visible es totalmente posible cuando entiendes qué tamaño necesitas,
+              mantienes la proporción correcta y eliges un formato adecuado al final. No se trata de cambiar dimensiones al azar,
+              sino de adaptar cada archivo a su uso real.
+            </p>
+
+            <p>
+              Si aplicas estas buenas prácticas de forma constante, obtendrás imágenes más ligeras, mejor preparadas para web o redes,
+              y con una presentación mucho más limpia y profesional.
+            </p>
+
+            <div class="cta-box">
+              <h3>Redimensiona tus imágenes online con Ralyzo</h3>
+              <p>
+                Usa nuestras herramientas gratuitas para cambiar tamaño, comprimir y convertir imágenes
+                directamente desde tu navegador de forma rápida y sencilla.
+              </p>
+              <div class="cta-actions">
+                <a href="/#herramientas" class="btn btn-primary">Ir a las herramientas</a>
+                <a href="/blog/reducir-peso-imagen.html" class="btn btn-secondary">Leer sobre reducir peso</a>
+              </div>
+            </div>
+          </article>
+
+          <aside class="sidebar">
+            <div class="sidebar-card">
+              <h3>Herramientas recomendadas</h3>
+              <p>Accede rápido a las herramientas más útiles para redimensionar y optimizar imágenes.</p>
+              <div class="sidebar-links">
+                <a href="/redimensionar-imagen.html"><span>Redimensionar imagen</span><span>→</span></a>
+                <a href="/comprimir-imagen.html"><span>Comprimir imagen</span><span>→</span></a>
+                <a href="/jpg-a-png.html"><span>Convertir JPG a PNG</span><span>→</span></a>
+                <a href="/png-a-jpg.html"><span>Convertir PNG a JPG</span><span>→</span></a>
+                <a href="/redimensionar-redes-sociales"><span>Redimensionar para redes</span><span>→</span></a>
+              </div>
+            </div>
+
+            <div class="sidebar-card">
+              <h3>Navegación del blog</h3>
+              <div class="sidebar-links">
+                <a href="/blog/index.html"><span>Índice del blog</span><span>→</span></a>
+                <a href="/blog/como-comprimir-imagen.html"><span>Cómo comprimir una imagen</span><span>→</span></a>
+                <a href="/blog/jpg-vs-png.html"><span>JPG vs PNG</span><span>→</span></a>
+                <a href="/blog/optimizar-imagenes-web.html"><span>Optimizar imágenes web</span><span>→</span></a>
+                <a href="/blog/formatos-imagen.html"><span>Formatos de imagen</span><span>→</span></a>
+              </div>
+            </div>
+
+            <div class="sidebar-card">
+              <h3>Temas relacionados</h3>
+              <div class="tag-list">
+                <span class="tag">Redimensionado</span>
+                <span class="tag">SEO</span>
+                <span class="tag">UX</span>
+                <span class="tag">Imágenes</span>
+                <span class="tag">WEBP</span>
+                <span class="tag">Rendimiento</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="related-section">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h2>Artículos relacionados</h2>
+            <p>Sigue aprendiendo cómo mejorar imágenes para web, SEO y rendimiento.</p>
+          </div>
+        </div>
+
+        <div class="related-grid">
+          <a href="/blog/reducir-peso-imagen.html" class="related-card">
+            <span class="badge">Optimización</span>
+            <h3>Cómo reducir el peso de una imagen sin perder calidad</h3>
+            <p>Aprende a bajar el tamaño del archivo de una imagen para web, correo y documentos.</p>
+            <span class="read-more">Leer artículo →</span>
+          </a>
+
+          <a href="/blog/optimizar-imagenes-web.html" class="related-card">
+            <span class="badge">SEO</span>
+            <h3>Cómo optimizar imágenes para web y mejorar velocidad de carga</h3>
+            <p>Descubre cómo preparar imágenes para páginas más rápidas y mejor posicionadas.</p>
+            <span class="read-more">Leer artículo →</span>
+          </a>
+
+          <a href="/blog/formatos-imagen.html" class="related-card">
+            <span class="badge">Guía</span>
+            <h3>Formatos de imagen: JPG, PNG, WEBP y SVG explicados</h3>
+            <p>Conoce qué formato conviene usar según el tipo de imagen y el resultado que buscas.</p>
+            <span class="read-more">Leer artículo →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-card">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="logo">
+              <span class="logo-mark"></span>
+              <span class="logo-text">RALYZO</span>
+            </div>
+            <p>
+              Herramientas online gratuitas para comprimir, convertir y optimizar imágenes de forma
+              rápida, segura y directamente desde tu navegador.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <a href="/">Inicio</a>
+            <a href="/#herramientas">Herramientas</a>
+            <a href="/blog/index.html">Blog</a>
+            <a href="/precios.html">Precios</a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>© 2026 Ralyzo. Todos los derechos reservados.</span>
+          <span>Contenido útil para SEO, UX y optimización web.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
