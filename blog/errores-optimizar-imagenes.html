@@ -2,157 +2,233 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Errores comunes al optimizar imágenes (y cómo evitarlos) | Ralyzo</title>
-  <meta name="description" content="Descubre los errores más comunes al optimizar imágenes para web y cómo evitarlos para mejorar velocidad, SEO y calidad visual."/>
-  <link rel="canonical" href="https://ralyzo.com/blog/errores-optimizar-imagenes.html"/>
+  <meta name="description" content="Descubre los errores más comunes al optimizar imágenes y cómo evitarlos para mejorar la velocidad, el SEO y la calidad visual de tu web." />
+  <link rel="canonical" href="https://ralyzo.com/blog/errores-optimizar-imagenes.html" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Errores al optimizar imágenes | Ralyzo" />
+  <meta property="og:description" content="Evita errores al optimizar imágenes y mejora rendimiento, SEO y velocidad web." />
+  <meta property="og:url" content="https://ralyzo.com/blog/errores-optimizar-imagenes.html" />
+
+  <!-- Adsense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js?client=ca-pub-8337166112417872" crossorigin="anonymous"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- 🔥 IMPORTANTE: USA TU MISMO CSS GLOBAL -->
+  <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
 
+<!-- ===== HEADER (DINÁMICO) ===== -->
 <header>
-  <!-- TU HEADER NORMAL -->
+  <nav class="nav">
+    <a href="/" class="logo-center">
+      <span class="logo-mark"></span>
+      <span>RALYZO</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="/#herramientas">Herramientas</a>
+      <a href="/#precios">Precios</a>
+
+      <!-- 🔥 AQUÍ SE GENERA SOLO -->
+      <div class="js-blog-dropdown"></div>
+    </div>
+  </nav>
 </header>
 
 <main>
 
+<!-- ===== HERO ===== -->
 <section class="hero">
-  <div class="hero-card">
+  <div class="hero-inner">
+    <div class="hero-badge">Guía • SEO • Rendimiento</div>
+
     <h1>Errores comunes al optimizar imágenes (y cómo evitarlos)</h1>
+
     <p>
-      Optimizar imágenes es clave para mejorar la velocidad de carga y el SEO,
-      pero hacerlo mal puede arruinar la calidad o incluso empeorar el rendimiento.
-      En esta guía te mostramos los errores más comunes y cómo evitarlos.
+      Optimizar imágenes es clave para mejorar velocidad y SEO,
+      pero hacerlo mal puede afectar la calidad o incluso empeorar el rendimiento.
+      Aquí te mostramos los errores más comunes y cómo solucionarlos.
     </p>
   </div>
 </section>
 
+<!-- ===== CONTENIDO ===== -->
 <section class="content-wrap">
 <div class="content-grid">
 
 <article class="article-card">
 
 <p class="article-intro">
-Muchas personas intentan reducir el peso de sus imágenes sin saber exactamente cómo hacerlo.
-Esto provoca resultados como imágenes borrosas, archivos innecesariamente pesados
-o sitios web lentos. Evitar estos errores es clave para lograr un equilibrio entre
-calidad visual y rendimiento.
+Muchas imágenes en internet pesan más de lo necesario o se ven mal debido a malas prácticas.
+Evitar estos errores te permitirá mejorar la velocidad de carga, la experiencia del usuario
+y el posicionamiento en buscadores.
 </p>
 
 <h2>1. Comprimir demasiado la imagen</h2>
 <p>
-Uno de los errores más frecuentes es aplicar una compresión excesiva.
-Esto puede hacer que la imagen pierda calidad, se vea pixelada o borrosa.
+Uno de los errores más comunes es aplicar una compresión excesiva.
+Esto reduce el peso, pero también destruye la calidad visual.
 </p>
-
-<ul>
-<li>Pérdida visible de detalles</li>
-<li>Colores distorsionados</li>
-<li>Aspecto poco profesional</li>
-</ul>
 
 <div class="highlight-box">
-<h3>Cómo evitarlo</h3>
-<p>
-Aplica una compresión moderada. La clave es reducir el peso sin que el usuario
-note una diferencia significativa en la calidad.
-</p>
+<h3>Problema</h3>
+<p>La imagen se vuelve borrosa, pixelada y poco profesional.</p>
+</div>
+
+<div class="highlight-box">
+<h3>Solución</h3>
+<p>Usa compresión moderada y revisa siempre el resultado visual.</p>
 </div>
 
 <h2>2. Usar el formato incorrecto</h2>
 <p>
-Elegir mal el formato puede hacer que una imagen pese mucho más de lo necesario.
-Por ejemplo, usar PNG para una fotografía puede generar archivos muy pesados.
+Elegir mal el formato puede aumentar innecesariamente el peso del archivo.
 </p>
 
-<ul>
-<li>JPG → ideal para fotos</li>
-<li>PNG → gráficos con transparencia</li>
-<li>WEBP → mejor optimización para web</li>
-</ul>
+<div class="compare-grid">
+  <div class="mini-card">
+    <h3>JPG</h3>
+    <p>Ideal para fotografías.</p>
+  </div>
+
+  <div class="mini-card">
+    <h3>PNG</h3>
+    <p>Mejor para gráficos y transparencias.</p>
+  </div>
+
+  <div class="mini-card">
+    <h3>WEBP</h3>
+    <p>Mejor opción para web moderna.</p>
+  </div>
+</div>
 
 <h2>3. No redimensionar la imagen</h2>
 <p>
-Subir imágenes mucho más grandes de lo necesario es un error muy común.
-Si tu web muestra una imagen a 800px, no necesitas una de 4000px.
+Subir imágenes más grandes de lo necesario es un error muy frecuente.
 </p>
 
-<div class="highlight-box">
-<h3>Por qué es un problema</h3>
-<p>
-Aumenta el peso del archivo, ralentiza la carga y consume recursos innecesarios.
-</p>
-</div>
+<ul>
+<li>Aumenta el peso</li>
+<li>Reduce velocidad</li>
+<li>Desperdicia recursos</li>
+</ul>
 
 <h2>4. Guardar varias veces en JPG</h2>
 <p>
-Cada vez que guardas una imagen en JPG, pierde calidad.
-Repetir este proceso varias veces degrada la imagen progresivamente.
+Cada guardado en JPG reduce la calidad progresivamente.
 </p>
 
 <h2>5. No optimizar para el uso real</h2>
 <p>
-No es lo mismo una imagen para impresión que una para web.
-Muchos usuarios usan configuraciones innecesarias para el contexto.
+No es lo mismo optimizar para impresión que para web.
+Muchos usan calidad excesiva sin necesidad.
 </p>
 
-<ul>
-<li>Demasiada calidad para web</li>
-<li>Resolución innecesaria</li>
-<li>Archivos más pesados de lo necesario</li>
-</ul>
-
-<h2>6. Ignorar el rendimiento web</h2>
+<h2>6. Ignorar el SEO de imágenes</h2>
 <p>
-Las imágenes pesadas afectan directamente la velocidad del sitio,
-lo que impacta en la experiencia de usuario y el SEO.
+No usar nombres adecuados, peso optimizado o formatos correctos
+afecta directamente el posicionamiento.
 </p>
 
-<h2>¿Cómo optimizar correctamente?</h2>
-<p>
-Para evitar estos errores, lo ideal es combinar:
-</p>
+<div class="highlight-box">
+<h3>Tip SEO</h3>
+<p>Usa imágenes ligeras, bien nombradas y en formatos modernos.</p>
+</div>
+
+<h2>Cómo optimizar correctamente</h2>
 
 <ol>
-<li>Formato adecuado</li>
-<li>Compresión equilibrada</li>
-<li>Dimensiones correctas</li>
+<li>Usa el formato correcto</li>
+<li>Aplica compresión moderada</li>
+<li>Ajusta dimensiones reales</li>
 </ol>
 
 <p>
-Siguiendo estos principios, puedes reducir significativamente el peso de tus imágenes
-sin afectar la calidad visual.
+Siguiendo estos pasos evitarás la mayoría de errores y mejorarás el rendimiento general.
 </p>
 
+<!-- CTA -->
 <div class="cta-box">
-<h3>Optimiza tus imágenes fácilmente</h3>
-<p>
-Puedes usar nuestras herramientas online para comprimir, convertir y redimensionar imágenes
-directamente desde tu navegador.
-</p>
-<a href="/#herramientas">Ir a herramientas</a>
+  <h3>Optimiza tus imágenes ahora</h3>
+  <p>Usa nuestras herramientas online para mejorar peso, tamaño y formato fácilmente.</p>
+
+  <div class="cta-actions">
+    <a href="/#herramientas" class="btn btn-primary">Ir a herramientas</a>
+    <a href="/blog/como-comprimir-imagen.html" class="btn btn-secondary">Leer guía de compresión</a>
+  </div>
 </div>
 
 </article>
 
+<!-- ===== SIDEBAR ===== -->
 <aside class="sidebar">
-  <div class="sidebar-card">
-    <h3>Herramientas</h3>
-    <p>Accede a nuestras herramientas para optimizar imágenes.</p>
+
+<div class="sidebar-card">
+  <h3>Herramientas</h3>
+  <div class="sidebar-links">
+    <a href="/comprimir-imagen.html">Comprimir imagen →</a>
+    <a href="/redimensionar-imagen.html">Redimensionar →</a>
+    <a href="/jpg-a-png.html">JPG a PNG →</a>
+    <a href="/png-a-jpg.html">PNG a JPG →</a>
   </div>
+</div>
+
+<div class="sidebar-card">
+  <h3>Temas relacionados</h3>
+  <div class="tag-list">
+    <span class="tag">SEO</span>
+    <span class="tag">Compresión</span>
+    <span class="tag">Web</span>
+  </div>
+</div>
+
 </aside>
+
+</div>
+</section>
+
+<!-- ===== RELACIONADOS ===== -->
+<section class="related-section">
+<div class="related-grid">
+
+<a href="/blog/reducir-peso-imagen.html" class="related-card">
+<h3>Reducir peso de imagen</h3>
+<p>Aprende a optimizar imágenes sin perder calidad.</p>
+</a>
+
+<a href="/blog/optimizar-imagenes-web.html" class="related-card">
+<h3>Optimizar imágenes web</h3>
+<p>Mejora velocidad y rendimiento.</p>
+</a>
+
+<a href="/blog/jpg-vs-png.html" class="related-card">
+<h3>JPG vs PNG</h3>
+<p>Elige el formato correcto.</p>
+</a>
 
 </div>
 </section>
 
 </main>
 
+<!-- ===== FOOTER ===== -->
 <footer>
-  <!-- TU FOOTER NORMAL -->
+  <div class="footer-card">
+    © 2026 Ralyzo
+  </div>
 </footer>
+
+<!-- 🔥 SCRIPT DINÁMICO -->
+<script src="/blog-menu.js"></script>
 
 </body>
 </html>
