@@ -348,6 +348,24 @@
       margin-bottom:8px;
     }
 
+    .contact-box{
+      background:rgba(37,99,235,.08);
+      border:1px solid rgba(59,130,246,.18);
+      border-radius:18px;
+      padding:20px;
+      margin-top:10px;
+    }
+
+    .contact-box p{
+      color:#E2E8F0;
+    }
+
+    .contact-email{
+      color:#93C5FD;
+      font-weight:700;
+      word-break:break-word;
+    }
+
     footer{
       margin-top:28px;
       padding:0 24px 30px;
@@ -534,25 +552,7 @@
     <div class="nav-links">
       <a href="/#herramientas">Herramientas</a>
       <a href="/#precios">Precios</a>
-
-      <div class="dropdown">
-        <button class="dropdown-toggle" type="button" aria-label="Abrir menú de blog">
-          <span>Blog</span>
-          <span class="dropdown-arrow">▾</span>
-        </button>
-
-        <div class="dropdown-menu">
-          <div class="menu-title">Artículos</div>
-          <a href="/blog/como-comprimir-imagen.html">Cómo comprimir imágenes sin perder calidad</a>
-          <a href="/blog/jpg-vs-png.html">JPG vs PNG: cuál usar en cada caso</a>
-          <a href="/blog/optimizar-imagenes-web.html">Cómo optimizar imágenes para una web más rápida</a>
-          <a href="/blog/formatos-imagen.html">Formatos de imagen: guía rápida</a>
-          <a href="/blog/reducir-peso-imagen.html">Cómo reducir el peso de una imagen</a>
-          <a href="/blog/convertir-imagen.html">Cómo convertir imágenes sin perder calidad</a>
-          <div class="dropdown-divider"></div>
-          <a class="all-posts" href="/blog/">Ver todos los artículos</a>
-        </div>
-      </div>
+      <div class="js-blog-dropdown"></div>
     </div>
   </nav>
 </header>
@@ -574,9 +574,10 @@
       <div class="content-block">
         <h2>Qué es Ralyzo</h2>
         <p>
-          Ralyzo es un proyecto enfocado en ofrecer herramientas web simples, útiles y accesibles para trabajar
-          con imágenes directamente desde el navegador. La idea es facilitar tareas que muchas personas necesitan
-          a diario, como convertir formatos, reducir peso, adaptar tamaños o extraer texto de imágenes.
+          Ralyzo es un proyecto independiente enfocado en ofrecer herramientas web simples, útiles y accesibles para trabajar
+          con imágenes directamente desde el navegador. La plataforma está pensada para resolver necesidades comunes de usuarios,
+          estudiantes, creadores de contenido, negocios y profesionales que requieren optimizar archivos visuales de forma rápida
+          y sin complicaciones técnicas.
         </p>
       </div>
 
@@ -584,38 +585,67 @@
         <h2>Qué puedes hacer en la plataforma</h2>
         <ul>
           <li>Comprimir imágenes sin perder demasiada calidad visual</li>
-          <li>Convertir imágenes entre formatos como JPG y PNG</li>
+          <li>Convertir imágenes entre formatos como JPG, PNG y WEBP</li>
           <li>Redimensionar imágenes para web, documentos y redes sociales</li>
           <li>Recortar y girar imágenes online</li>
           <li>Extraer texto de imágenes con herramientas OCR</li>
+          <li>Preparar imágenes para publicaciones, sitios web y contenido digital</li>
         </ul>
       </div>
 
       <div class="content-block">
         <h2>Nuestra misión</h2>
         <p>
-          La misión de Ralyzo es ofrecer herramientas online gratuitas para imágenes con una experiencia rápida,
-          clara y útil, ayudando a usuarios, estudiantes, creadores de contenido, negocios y profesionales
-          que necesitan resolver tareas visuales sin complicaciones técnicas.
+          La misión de Ralyzo es ofrecer herramientas online gratuitas para imágenes con una experiencia rápida, clara y útil,
+          permitiendo a cualquier persona trabajar con archivos visuales sin depender de software complejo. Buscamos que el sitio
+          sea práctico, accesible y valioso para tareas reales del día a día.
         </p>
       </div>
 
       <div class="content-block">
         <h2>Privacidad y funcionamiento</h2>
         <p>
-          Muchas de las funciones de Ralyzo trabajan directamente en el navegador del usuario, lo que ayuda
-          a mejorar la privacidad y a reducir procesos innecesarios. Nuestro enfoque es construir una plataforma
-          funcional, ligera y fácil de usar.
+          Muchas de las funciones de Ralyzo trabajan directamente en el navegador del usuario, lo que ayuda a mejorar la privacidad,
+          reducir tiempos de espera y evitar procesos innecesarios. Nuestro enfoque es construir una plataforma funcional, ligera
+          y fácil de usar, manteniendo una experiencia segura y eficiente.
+        </p>
+      </div>
+
+      <div class="content-block">
+        <h2>Compromiso con la calidad</h2>
+        <p>
+          Ralyzo se encuentra en constante evolución. Trabajamos en nuevas funciones, mejoras visuales, optimización del rendimiento
+          y contenido informativo relacionado con el uso de imágenes. El objetivo es que la plataforma siga creciendo con utilidad real,
+          claridad y una experiencia cada vez mejor para el usuario.
+        </p>
+      </div>
+
+      <div class="content-block">
+        <h2>Transparencia</h2>
+        <p>
+          Ralyzo es un proyecto independiente enfocado en aportar valor mediante herramientas útiles y contenido original.
+          Parte del sitio puede incluir publicidad para sostener el desarrollo, mantenimiento y mejora continua de la plataforma,
+          procurando siempre no afectar negativamente la experiencia del usuario.
         </p>
       </div>
 
       <div class="content-block">
         <h2>Autor e identidad del proyecto</h2>
         <p>
-          Ralyzo es un proyecto independiente desarrollado con el objetivo de crear herramientas digitales útiles,
-          optimizadas para experiencia de usuario, rendimiento web y contenido de valor. El sitio sigue evolucionando
-          con nuevas funciones, mejoras visuales y artículos informativos relacionados con el uso y optimización de imágenes.
+          Ralyzo es un proyecto digital independiente creado con el propósito de ofrecer soluciones prácticas para el trabajo con imágenes.
+          El sitio combina herramientas online, optimización web y contenido informativo con enfoque en utilidad, rendimiento y experiencia
+          de usuario. Su desarrollo continúa con la intención de consolidarse como una plataforma confiable y accesible.
         </p>
+      </div>
+
+      <div class="content-block">
+        <h2>Contacto</h2>
+        <div class="contact-box">
+          <p>
+            Si tienes dudas, sugerencias o necesitas ayuda, puedes escribirnos a:
+          </p>
+          <p class="contact-email">adag30301@gmail.com</p>
+        </div>
       </div>
     </div>
   </section>
@@ -650,5 +680,6 @@
   </div>
 </footer>
 
+<script src="/blog-menu.js"></script>
 </body>
 </html>
