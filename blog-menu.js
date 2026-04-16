@@ -34,7 +34,7 @@ const BLOG_POSTS = [
   {
     href: "/blog/errores-optimizar-imagenes.html",
     title: "Errores al optimizar imágenes"
-  }
+  },
   {
   href: "/blog/errores-al-subir-imagenes-web.html",
   title: "Errores al subir imágenes a una web"
