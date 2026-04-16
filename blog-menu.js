@@ -35,6 +35,10 @@ const BLOG_POSTS = [
   href: "/blog/errores-comunes-al-trabajar-con-imagenes.html",
   title: "Errores comunes al trabajar con imágenes"
 }
+{
+  href: "/blog/errores-optimizar-imagenes.html",
+  title: "Errores al optimizar imágenes"
+}
 ];
 
 function createBlogDropdownHTML() {
