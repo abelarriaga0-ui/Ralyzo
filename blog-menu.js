@@ -31,6 +31,10 @@ const BLOG_POSTS = [
   href: "/blog/que-formato-imagen-usar.html",
   title: "Qué formato de imagen usar"
 }
+{
+  href: "/blog/errores-comunes-al-trabajar-con-imagenes.html",
+  title: "Errores comunes al trabajar con imágenes"
+}
 ];
 
 function createBlogDropdownHTML() {
