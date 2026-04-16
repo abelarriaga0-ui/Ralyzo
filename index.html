@@ -617,6 +617,44 @@
       font-size:14px;
     }
 
+    .blog-card-more{
+      position:relative;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.015)),
+        linear-gradient(135deg, rgba(37,99,235,.08), rgba(96,165,250,.05));
+      border:1px dashed rgba(147,197,253,.22);
+      overflow:hidden;
+    }
+
+    .blog-card-more::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(135deg, rgba(255,255,255,.03), transparent 55%);
+      pointer-events:none;
+    }
+
+    .blog-card-more .blog-tag{
+      background:rgba(147,197,253,.10);
+      border:1px solid rgba(147,197,253,.16);
+      color:#BFDBFE;
+    }
+
+    .blog-card-more h3{
+      color:#F8FAFC;
+    }
+
+    .blog-card-more p{
+      color:#AFC0D6;
+    }
+
+    .blog-card-more:hover{
+      border-color:#60A5FA;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02)),
+        linear-gradient(135deg, rgba(37,99,235,.12), rgba(96,165,250,.08));
+    }
+
     footer{
       margin-top:28px;
       padding:0 24px 30px;
@@ -999,6 +1037,16 @@
           <h3>Cómo optimizar imágenes para una web más rápida</h3>
           <p>Mejora la velocidad de carga de tus páginas usando imágenes correctamente optimizadas.</p>
           <span class="blog-read">Leer artículo →</span>
+        </a>
+
+        <a class="blog-card blog-card-more" href="/blog/index.html">
+          <span class="blog-tag">Más contenido</span>
+          <h3>Explora más artículos del blog</h3>
+          <p>
+            Descubre más guías sobre formatos de imagen, compresión, optimización web,
+            conversión y otros temas útiles para mejorar tus archivos.
+          </p>
+          <span class="blog-read">Ir al blog completo →</span>
         </a>
       </div>
     </div>
