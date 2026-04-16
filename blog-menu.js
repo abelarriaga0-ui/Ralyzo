@@ -26,19 +26,15 @@ const BLOG_POSTS = [
   {
     href: "/blog/redimensionar-imagen-sin-perder-calidad.html",
     title: "Redimensionar imagen sin perder calidad"
+  },
+  {
+    href: "/blog/que-formato-imagen-usar.html",
+    title: "Qué formato de imagen usar"
+  },
+  {
+    href: "/blog/errores-optimizar-imagenes.html",
+    title: "Errores al optimizar imágenes"
   }
-{
-  href: "/blog/que-formato-imagen-usar.html",
-  title: "Qué formato de imagen usar"
-}
-{
-  href: "/blog/errores-comunes-al-trabajar-con-imagenes.html",
-  title: "Errores comunes al trabajar con imágenes"
-}
-{
-  href: "/blog/errores-optimizar-imagenes.html",
-  title: "Errores al optimizar imágenes"
-}
 ];
 
 function createBlogDropdownHTML() {
