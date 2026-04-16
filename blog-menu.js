@@ -38,7 +38,7 @@ const BLOG_POSTS = [
   {
   href: "/blog/errores-al-subir-imagenes-web.html",
   title: "Errores al subir imágenes a una web"
-}
+  }
 ];
 
 function createBlogDropdownHTML() {
