@@ -1,168 +1,218 @@
 <!DOCTYPE html><html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  <title>Qué formato de imagen usar: JPG, PNG, WEBP o SVG | Ralyzo</title>
-  <meta name="description" content="Descubre qué formato de imagen usar según cada caso. Aprende cuándo usar JPG, PNG, WEBP o SVG para optimizar calidad, peso y rendimiento web." />
-  <meta name="keywords" content="qué formato de imagen usar, jpg png webp svg, formatos de imagen web, optimizar imágenes formato, mejor formato imagen seo" />
-  <meta name="author" content="Ralyzo" />
-  <link rel="canonical" href="https://ralyzo.com/blog/que-formato-imagen-usar.html" />  <meta property="og:type" content="article" />
-  <meta property="og:title" content="Qué formato de imagen usar: JPG, PNG, WEBP o SVG | Ralyzo" />
-  <meta property="og:description" content="Aprende qué formato de imagen usar según el tipo de contenido para mejorar calidad, peso y SEO." />
-  <meta property="og:url" content="https://ralyzo.com/blog/que-formato-imagen-usar.html" />
-  <meta property="og:site_name" content="Ralyzo" />
-  <meta property="og:image" content="https://ralyzo.com/assets/og-blog-formato-imagen.jpg" />  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Qué formato de imagen usar: JPG, PNG, WEBP o SVG" />
-  <meta name="twitter:description" content="Guía completa para elegir el mejor formato de imagen para web y SEO." />
-  <meta name="twitter:image" content="https://ralyzo.com/assets/og-blog-formato-imagen.jpg" />  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337166112417872" crossorigin="anonymous"></script>  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />  <!-- ⚠️ TODO EL CSS ES EXACTAMENTE EL MISMO QUE TU TEMPLATE -->  <!-- NO SE MODIFICA NADA -->  <style>
-    /* 👇 PEGA AQUÍ EXACTAMENTE TODO EL CSS DE TU BLOG ORIGINAL */
-  </style>  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"BlogPosting",
-    "headline":"Qué formato de imagen usar",
-    "description":"Guía completa sobre qué formato de imagen usar según el caso.",
-    "author":{"@type":"Organization","name":"Ralyzo"},
-    "publisher":{
-      "@type":"Organization",
-      "name":"Ralyzo",
-      "logo":{"@type":"ImageObject","url":"https://ralyzo.com/assets/logo.png"}
-    },
-    "mainEntityOfPage":{
-      "@type":"WebPage",
-      "@id":"https://ralyzo.com/blog/que-formato-imagen-usar.html"
-    }
-  }
-  </script></head><body><header class="site-header">
-  <div class="container header-inner">
-    <a href="/" class="logo">
-      <span class="logo-mark"></span>
-      <span class="logo-text">RALYZO</span>
-    </a><nav class="main-nav">
-  <a href="/" class="nav-link">Herramientas</a>
-  <a href="/precios.html" class="nav-link">Precios</a>
-  <div class="js-blog-dropdown"></div>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  <title>Qué formato de imagen usar según cada caso | Ralyzo</title>
+  <meta name="description" content="Guía completa para elegir el formato de imagen correcto: JPG, PNG, WEBP o SVG. Mejora velocidad, SEO y calidad visual."/>
+  <meta name="keywords" content="qué formato imagen usar, jpg png webp svg, optimizar imágenes web, formatos imagen seo"/>
+  <meta name="author" content="Ralyzo"/>
+  <link rel="canonical" href="https://ralyzo.com/blog/que-formato-imagen-usar.html"/>  <meta property="og:type" content="article"/>
+  <meta property="og:title" content="Qué formato de imagen usar según cada caso"/>
+  <meta property="og:description" content="Aprende cuándo usar JPG, PNG, WEBP o SVG correctamente."/>
+  <meta property="og:image" content="https://ralyzo.com/assets/og-blog-formato.jpg"/>  <meta name="twitter:card" content="summary_large_image"/>  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337166112417872" crossorigin="anonymous"></script>  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/><style>
+:root{
+--bg:#0B1220;
+--bg-soft:#101A2E;
+--card:#111C31;
+--card-2:#0F172A;
+--text:#F8FAFC;
+--muted:#CBD5E1;
+--muted-2:#94A3B8;
+--line:rgba(255,255,255,.08);
+--primary:#4F46E5;
+--primary-2:#7C3AED;
+--shadow:0 18px 50px rgba(0,0,0,.28);
+--container:1200px;
+}
+
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:'Inter',sans-serif;
+background:linear-gradient(180deg,#0B1220,#0A1120);
+color:var(--text);
+line-height:1.7;
+}
+
+.container{
+width:min(var(--container), calc(100% - 32px));
+margin:auto;
+}
+
+.site-header{
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(11,18,32,.9);
+border-bottom:1px solid var(--line);
+}
+
+.header-inner{
+display:flex;
+justify-content:space-between;
+align-items:center;
+min-height:76px;
+}
+
+.logo{
+font-weight:900;
+letter-spacing:.06em;
+}
+
+.main-nav{
+display:flex;
+gap:12px;
+}
+
+.nav-link{
+color:var(--muted);
+padding:12px;
+border-radius:10px;
+}
+
+.hero{
+padding:70px 0 30px;
+}
+
+.breadcrumb{
+color:var(--muted-2);
+margin-bottom:20px;
+font-size:.9rem;
+}
+
+.hero-card{
+background:linear-gradient(135deg,#4F46E520,#7C3AED20);
+border-radius:28px;
+padding:40px;
+border:1px solid var(--line);
+box-shadow:var(--shadow);
+}
+
+.content-grid{
+display:grid;
+grid-template-columns:1fr 320px;
+gap:28px;
+}
+
+.article-card{
+background:rgba(255,255,255,.03);
+padding:34px;
+border-radius:24px;
+border:1px solid var(--line);
+}
+
+.sidebar-card{
+background:rgba(255,255,255,.03);
+padding:22px;
+border-radius:24px;
+border:1px solid var(--line);
+margin-bottom:20px;
+}
+
+h1{font-size:2.6rem}
+h2{margin-top:40px;font-size:1.6rem}
+h3{margin-top:25px}
+
+p{color:var(--muted)}
+
+ul,ol{padding-left:20px}
+
+.highlight{
+background:linear-gradient(135deg,#22C55E20,#4F46E520);
+padding:20px;
+border-radius:20px;
+margin:25px 0;
+}
+
+.related-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.related-card{
+padding:20px;
+background:rgba(255,255,255,.03);
+border-radius:20px;
+border:1px solid var(--line);
+}
+
+footer{
+padding:40px;
+text-align:center;
+color:var(--muted-2);
+}
+</style></head><body><header class="site-header">
+<div class="container header-inner">
+<div class="logo">RALYZO</div><nav class="main-nav">
+<a href="/" class="nav-link">Herramientas</a>
+<a href="/precios.html" class="nav-link">Precios</a>
+<div class="js-blog-dropdown"></div>
 </nav>
-
-<div class="header-actions">
-  <a href="/#herramientas" class="btn btn-primary">Probar herramientas</a>
 </div>
-
-  </div>
 </header><main><section class="hero">
-  <div class="container">
-    <div class="breadcrumb">
-      <a href="/">Inicio</a> •
-      <a href="/blog/index.html">Blog</a> •
-      <span>Formato de imagen</span>
-    </div><div class="hero-card">
-  <div class="eyebrow">Guía • Formatos</div>
-  <h1>Qué formato de imagen usar: JPG, PNG, WEBP o SVG</h1>
-  <p>
-    Elegir el formato de imagen correcto puede marcar la diferencia entre una web rápida y una lenta.
-    En esta guía aprenderás cuándo usar JPG, PNG, WEBP o SVG según cada caso.
-  </p>
-
-  <div class="hero-meta">
-    <span>Lectura: 8 min</span>
-    <span>SEO + rendimiento</span>
-    <span>Actualizado 2026</span>
-  </div>
-</div>
-
-  </div>
-</section><section class="content-wrap">
-<div class="container">
-<div class="content-grid"><article class="article-card"><p class="article-intro">
-Elegir correctamente el formato de imagen es uno de los factores más importantes para mejorar
-la velocidad de carga, la calidad visual y el posicionamiento SEO de una página web.
-</p><h2>¿Por qué es importante elegir bien el formato?</h2>
-<p>
-Cada formato de imagen tiene un propósito diferente. Usar el incorrecto puede hacer que
-tu web cargue más lento o que la imagen pierda calidad.
-</p><ul>
-<li>Mejor rendimiento web</li>
-<li>Menor peso de archivos</li>
-<li>Mejor experiencia de usuario</li>
-<li>Mayor posicionamiento SEO</li>
-</ul><h2>JPG: ideal para fotografías</h2>
-<p>
-El formato JPG es uno de los más utilizados. Está diseñado para fotografías y permite reducir
-mucho el peso manteniendo una calidad aceptable.
-</p><div class="highlight-box">
-<h3>Usa JPG cuando:</h3>
-<ul>
-<li>Sea una fotografía</li>
-<li>No necesites transparencia</li>
-<li>Busques menor peso</li>
-</ul>
-</div><h2>PNG: calidad y transparencia</h2>
-<p>
-PNG es perfecto para imágenes con fondo transparente o gráficos con bordes definidos.
-Sin embargo, suele pesar más que JPG.
-</p><h2>WEBP: el mejor equilibrio</h2>
-<p>
-WEBP combina lo mejor de JPG y PNG: buena calidad y menor peso. Es ideal para webs modernas.
-</p><div class="highlight-box">
-<h3>Ventaja clave</h3>
-<p>WEBP puede reducir hasta un 30% el peso comparado con JPG.</p>
-</div><h2>SVG: para gráficos y logos</h2>
-<p>
-SVG es un formato vectorial. No pierde calidad al escalar y es ideal para logos e iconos.
-</p><h2>Comparación rápida</h2><div class="compare-grid">
-<div class="mini-card">
-<h3>JPG</h3>
-<p>Ligero, ideal para fotos</p>
-</div><div class="mini-card">
-<h3>PNG</h3>
-<p>Alta calidad, soporta transparencia</p>
-</div><div class="mini-card">
-<h3>WEBP</h3>
-<p>Mejor rendimiento web</p>
-</div><div class="mini-card">
-<h3>SVG</h3>
-<p>Escalable, ideal para logos</p>
-</div>
-</div><h2>Errores comunes</h2>
-<ul>
+<div class="container"><div class="breadcrumb">
+Inicio • Blog • Qué formato de imagen usar
+</div><div class="hero-card">
+<h1>Qué formato de imagen usar según cada caso</h1>
+<p>Aprende a elegir correctamente entre JPG, PNG, WEBP y SVG para mejorar velocidad, SEO y calidad visual.</p>
+</div></div>
+</section><section class="container">
+<div class="content-grid"><article class="article-card"><p>
+Elegir el formato correcto de imagen es una de las decisiones más importantes en cualquier sitio web moderno.
+</p><h2>Por qué es importante</h2><ul>
+<li>Mejora velocidad</li>
+<li>Reduce peso</li>
+<li>Optimiza SEO</li>
+</ul><div class="highlight">
+El formato correcto puede reducir hasta un 70% el peso de una imagen.
+</div><h2>JPG</h2>
+<p>Ideal para fotografías.</p><h2>PNG</h2>
+<p>Perfecto para transparencias.</p><h2>WEBP</h2>
+<p>El mejor formato para web.</p><h2>SVG</h2>
+<p>Ideal para gráficos.</p><h2>Errores comunes</h2><ul>
 <li>Usar PNG para fotos</li>
-<li>No optimizar imágenes</li>
 <li>No usar WEBP</li>
-</ul><h2>Conclusión</h2>
-<p>
-No existe un formato perfecto para todo. La clave está en elegir el formato correcto
-según el uso de la imagen.
-</p><div class="cta-box">
-<h3>Optimiza tus imágenes con Ralyzo</h3>
-<p>Usa nuestras herramientas gratuitas para convertir y optimizar imágenes.</p>
-<div class="cta-actions">
-<a href="/#herramientas" class="btn btn-primary">Ir a herramientas</a>
-<a href="/blog/optimizar-imagenes-web.html" class="btn btn-secondary">Leer más</a>
-</div>
-</div></article><!-- SIDEBAR EXACTO --><aside class="sidebar">
-<div class="sidebar-card">
+<li>No optimizar tamaño</li>
+</ul><h2>Cómo elegir correctamente</h2><ol>
+<li>Tipo de imagen</li>
+<li>Uso final</li>
+<li>Optimización</li>
+</ol><div class="highlight">
+Siempre prioriza rendimiento sobre calidad excesiva.
+</div><h2>Conclusión</h2><p>
+Elegir el formato correcto mejora rendimiento, SEO y experiencia.
+</p></article><aside><div class="sidebar-card">
 <h3>Herramientas</h3>
-<div class="sidebar-links">
-<a href="/comprimir-imagen.html">Comprimir imagen →</a>
-<a href="/png-a-jpg.html">PNG a JPG →</a>
-<a href="/jpg-a-png.html">JPG a PNG →</a>
-</div>
-</div>
-</aside></div>
-</div>
-</section></main><footer class="site-footer">
-<div class="container">
-<div class="footer-card">
-<div class="footer-top">
-<div class="footer-brand">
-<span class="logo-text">RALYZO</span>
-<p>Herramientas online para imágenes.</p>
-</div>
-</div><div class="footer-bottom">
-<span>© 2026 Ralyzo</span>
-</div>
-</div>
-</div>
+<ul>
+<li>Comprimir imagen</li>
+<li>Convertir JPG</li>
+<li>Redimensionar</li>
+</ul>
+</div><div class="sidebar-card">
+<h3>Blog</h3>
+<ul>
+<li>Optimizar imágenes</li>
+<li>Reducir peso</li>
+<li>Formatos</li>
+</ul>
+</div><div class="sidebar-card">
+<h3>Temas</h3>
+<ul>
+<li>SEO</li>
+<li>Optimización</li>
+<li>UX</li>
+</ul>
+</div></aside></div>
+</section><section class="container"><h2>Artículos relacionados</h2><div class="related-grid"><div class="related-card">
+<h3>Optimizar imágenes web</h3>
+<p>Mejora velocidad y SEO.</p>
+</div><div class="related-card">
+<h3>Reducir peso de imagen</h3>
+<p>Aprende a comprimir sin perder calidad.</p>
+</div><div class="related-card">
+<h3>JPG vs PNG</h3>
+<p>Comparativa completa.</p>
+</div></div></section></main><footer>
+© 2026 Ralyzo
 </footer><script src="/blog-menu.js"></script></body>
 </html>
