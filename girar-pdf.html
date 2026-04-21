@@ -1089,35 +1089,39 @@ pdfJsDoc = await pdfjsLib.getDocument({ data: pdfBytes }).promise;
   }
 
   async function downloadRotatedPdf() {
-  if (!pdfBytes) {
+  if (!pdfBytes || !pdfJsDoc) {
     setStatus("Primero sube un PDF.", "warning");
     return;
   }
 
   try {
-    const workingBytes = new Uint8Array(pdfBytes);
-
-    const pdfDoc = await PDFDocument.load(workingBytes, {
+    const sourcePdf = await PDFDocument.load(pdfBytes, {
       ignoreEncryption: true
     });
 
-    const pages = pdfDoc.getPages();
+    const outputPdf = await PDFDocument.create();
+    const pageCount = sourcePdf.getPageCount();
+    const copiedPages = await outputPdf.copyPages(
+      sourcePdf,
+      Array.from({ length: pageCount }, (_, i) => i)
+    );
 
-    pages.forEach((page, index) => {
+    copiedPages.forEach((page, index) => {
       const extraRotation = normalizeRotation(pageRotations[index] || 0);
 
-      let currentRotation = 0;
+      let originalRotation = 0;
       try {
-        currentRotation = page.getRotation()?.angle || 0;
+        originalRotation = page.getRotation().angle || 0;
       } catch (e) {
-        currentRotation = 0;
+        originalRotation = 0;
       }
 
-      const finalRotation = normalizeRotation(currentRotation + extraRotation);
+      const finalRotation = normalizeRotation(originalRotation + extraRotation);
       page.setRotation(degrees(finalRotation));
+      outputPdf.addPage(page);
     });
 
-    const savedBytes = await pdfDoc.save({
+    const savedBytes = await outputPdf.save({
       useObjectStreams: false
     });
 
@@ -1131,7 +1135,7 @@ pdfJsDoc = await pdfjsLib.getDocument({ data: pdfBytes }).promise;
     a.click();
     a.remove();
 
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    setTimeout(() => URL.revokeObjectURL(url), 1500);
 
     setStatus("PDF girado descargado correctamente.", "success");
   } catch (error) {
