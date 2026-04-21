@@ -1095,23 +1095,29 @@ pdfJsDoc = await pdfjsLib.getDocument({ data: pdfBytes }).promise;
   }
 
   try {
-    const sourcePdf = await PDFDocument.load(pdfBytes, {
-      ignoreEncryption: true
+    const sourceBytes = pdfBytes instanceof Uint8Array ? pdfBytes : new Uint8Array(pdfBytes);
+
+    const sourcePdf = await PDFDocument.load(sourceBytes, {
+      ignoreEncryption: true,
+      updateMetadata: false
     });
 
     const outputPdf = await PDFDocument.create();
     const pageCount = sourcePdf.getPageCount();
+
     const copiedPages = await outputPdf.copyPages(
       sourcePdf,
       Array.from({ length: pageCount }, (_, i) => i)
     );
 
-    copiedPages.forEach((page, index) => {
-      const extraRotation = normalizeRotation(pageRotations[index] || 0);
+    for (let i = 0; i < copiedPages.length; i++) {
+      const page = copiedPages[i];
+      const extraRotation = normalizeRotation(pageRotations[i] || 0);
 
       let originalRotation = 0;
       try {
-        originalRotation = page.getRotation().angle || 0;
+        const rot = page.getRotation();
+        originalRotation = rot && typeof rot.angle === "number" ? rot.angle : 0;
       } catch (e) {
         originalRotation = 0;
       }
@@ -1119,10 +1125,12 @@ pdfJsDoc = await pdfjsLib.getDocument({ data: pdfBytes }).promise;
       const finalRotation = normalizeRotation(originalRotation + extraRotation);
       page.setRotation(degrees(finalRotation));
       outputPdf.addPage(page);
-    });
+    }
 
     const savedBytes = await outputPdf.save({
-      useObjectStreams: false
+      useObjectStreams: false,
+      addDefaultPage: false,
+      updateFieldAppearances: false
     });
 
     const blob = new Blob([savedBytes], { type: "application/pdf" });
@@ -1130,20 +1138,18 @@ pdfJsDoc = await pdfjsLib.getDocument({ data: pdfBytes }).promise;
 
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${pdfName}-girado.pdf`;
+    a.download = `${pdfName || "documento"}-girado.pdf`;
     document.body.appendChild(a);
     a.click();
     a.remove();
 
     setTimeout(() => URL.revokeObjectURL(url), 1500);
-
     setStatus("PDF girado descargado correctamente.", "success");
   } catch (error) {
-    console.error("ERROR AL GENERAR PDF:", error);
-    setStatus("No se pudo generar el PDF final.", "error");
+    console.error("ERROR PDF FINAL:", error);
+    setStatus(`Error: ${error?.message || "No se pudo generar el PDF final."}`, "error");
   }
 }
-
   function rotateAll(direction) {
     if (!pdfJsDoc) {
       setStatus("Primero sube un PDF.", "warning");
