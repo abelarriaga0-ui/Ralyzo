@@ -1089,36 +1089,56 @@ pdfJsDoc = await pdfjsLib.getDocument({ data: pdfBytes }).promise;
   }
 
   async function downloadRotatedPdf() {
-    if (!pdfBytes) {
-      setStatus("Primero sube un PDF.", "warning");
-      return;
-    }
-
-    try {
-      const pdfDoc = await PDFDocument.load(pdfBytes);
-      const pages = pdfDoc.getPages();
-
-      pages.forEach((page, index) => {
-        const rotation = normalizeRotation(pageRotations[index] || 0);
-        page.setRotation(degrees(rotation));
-      });
-
-      const savedBytes = await pdfDoc.save();
-      const blob = new Blob([savedBytes], { type: "application/pdf" });
-      const url = URL.createObjectURL(blob);
-
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${pdfName}-girado.pdf`;
-      a.click();
-
-      URL.revokeObjectURL(url);
-      setStatus("PDF girado descargado correctamente.", "success");
-    } catch (error) {
-      console.error(error);
-      setStatus("No se pudo generar el PDF final.", "error");
-    }
+  if (!pdfBytes) {
+    setStatus("Primero sube un PDF.", "warning");
+    return;
   }
+
+  try {
+    const workingBytes = new Uint8Array(pdfBytes);
+
+    const pdfDoc = await PDFDocument.load(workingBytes, {
+      ignoreEncryption: true
+    });
+
+    const pages = pdfDoc.getPages();
+
+    pages.forEach((page, index) => {
+      const extraRotation = normalizeRotation(pageRotations[index] || 0);
+
+      let currentRotation = 0;
+      try {
+        currentRotation = page.getRotation()?.angle || 0;
+      } catch (e) {
+        currentRotation = 0;
+      }
+
+      const finalRotation = normalizeRotation(currentRotation + extraRotation);
+      page.setRotation(degrees(finalRotation));
+    });
+
+    const savedBytes = await pdfDoc.save({
+      useObjectStreams: false
+    });
+
+    const blob = new Blob([savedBytes], { type: "application/pdf" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${pdfName}-girado.pdf`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+    setStatus("PDF girado descargado correctamente.", "success");
+  } catch (error) {
+    console.error("ERROR AL GENERAR PDF:", error);
+    setStatus("No se pudo generar el PDF final.", "error");
+  }
+}
 
   function rotateAll(direction) {
     if (!pdfJsDoc) {
