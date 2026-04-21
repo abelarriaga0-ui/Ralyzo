@@ -1070,9 +1070,10 @@
     }
 
     try {
-      pdfBytes = await file.arrayBuffer();
-      pdfName = file.name.replace(/\.pdf$/i, "") || "documento";
-      pdfJsDoc = await pdfjsLib.getDocument({ data: pdfBytes }).promise;
+      const rawBuffer = await file.arrayBuffer();
+pdfBytes = new Uint8Array(rawBuffer);
+pdfName = file.name.replace(/\.pdf$/i, "") || "documento";
+pdfJsDoc = await pdfjsLib.getDocument({ data: pdfBytes }).promise;
       pageRotations = new Array(pdfJsDoc.numPages).fill(0);
 
       await renderAllPages();
