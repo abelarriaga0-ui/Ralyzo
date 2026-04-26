@@ -1428,6 +1428,8 @@
       const dataTransfer = new DataTransfer();
       dataTransfer.items.add(file);
       imageInput.files = dataTransfer.files;
+      
+      uploadZone.classList.add("hidden");
 
       setStatus("Imagen cargada. Selecciona el área que deseas recortar.");
       drawCanvas();
@@ -1568,6 +1570,8 @@
     resultSection.classList.add("hidden");
     cropBtn.disabled = true;
     selectionBadge.textContent = "Sin selección";
+
+    uploadZone.classList.remove("hidden");
 
     if (resultUrl) {
       URL.revokeObjectURL(resultUrl);
