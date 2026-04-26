@@ -5,17 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Política de Privacidad | Ralyzo</title>
-  <meta name="description" content="Consulta la política de privacidad de Ralyzo. Conoce cómo tratamos cookies, publicidad y el uso de herramientas online para imágenes." />
+  <meta name="description" content="Consulta la política de privacidad de Ralyzo. Información sobre uso de herramientas online, privacidad de archivos, cookies, publicidad, Google AdSense y tratamiento de datos." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://ralyzo.com/privacidad.html" />
 
   <meta property="og:title" content="Política de Privacidad | Ralyzo" />
-  <meta property="og:description" content="Información sobre privacidad, cookies y publicidad en Ralyzo." />
+  <meta property="og:description" content="Información sobre privacidad, cookies, publicidad y uso de herramientas online en Ralyzo." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ralyzo.com/privacidad.html" />
   <meta property="og:site_name" content="Ralyzo" />
 
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Política de Privacidad | Ralyzo" />
+  <meta name="twitter:description" content="Conoce cómo Ralyzo trata la privacidad, cookies, publicidad y herramientas online." />
+
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337166112417872" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Política de Privacidad",
+    "url":"https://ralyzo.com/privacidad.html",
+    "description":"Política de privacidad de Ralyzo sobre herramientas online, cookies, publicidad y tratamiento de datos."
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -41,8 +55,9 @@
     }
 
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    html, body{
+
+    html{
+      scroll-behavior:smooth;
       width:100%;
       max-width:100%;
       overflow-x:hidden;
@@ -53,9 +68,15 @@
       font-family:'Inter',sans-serif;
       background:linear-gradient(180deg,#020B1F 0%, #06112A 100%);
       color:var(--text);
+      width:100%;
+      max-width:100%;
+      overflow-x:hidden;
     }
 
-    a{text-decoration:none;color:inherit}
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
 
     header{
       position:sticky;
@@ -133,7 +154,9 @@
       background:rgba(255,255,255,.04);
     }
 
-    .dropdown{position:relative}
+    .dropdown{
+      position:relative;
+    }
 
     .dropdown::after{
       content:"";
@@ -173,7 +196,7 @@
       top:calc(100% + 16px);
       right:0;
       min-width:320px;
-      max-width:min(92vw, 340px);
+      max-width:min(92vw,340px);
       background:#0F172A;
       border:1px solid rgba(51,65,85,.95);
       border-radius:16px;
@@ -257,6 +280,8 @@
       letter-spacing:.06em;
       text-transform:uppercase;
       margin-bottom:16px;
+      max-width:100%;
+      text-align:center;
     }
 
     h1{
@@ -264,14 +289,22 @@
       font-size:46px;
       line-height:1.08;
       letter-spacing:-.03em;
+      word-break:break-word;
     }
 
     .hero p{
       margin:0 auto;
-      max-width:820px;
+      max-width:850px;
       color:var(--muted-2);
       font-size:18px;
-      line-height:1.7;
+      line-height:1.75;
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 320px;
+      gap:18px;
+      align-items:start;
     }
 
     .content-panel{
@@ -280,32 +313,108 @@
       border-radius:24px;
       padding:28px;
       box-shadow:var(--shadow);
-    }
-
-    .content-panel h2{
-      margin:0 0 12px;
-      font-size:24px;
-      color:#fff;
+      min-width:0;
     }
 
     .content-panel section{
-      margin-bottom:26px;
+      margin-bottom:28px;
     }
 
     .content-panel section:last-child{
       margin-bottom:0;
     }
 
+    .content-panel h2{
+      margin:0 0 12px;
+      font-size:24px;
+      line-height:1.25;
+      color:#fff;
+      letter-spacing:-.01em;
+    }
+
+    .content-panel h3{
+      margin:18px 0 10px;
+      font-size:18px;
+      color:#F8FAFC;
+    }
+
     .content-panel p,
     .content-panel li{
       color:#CBD5E1;
-      line-height:1.8;
+      line-height:1.85;
       font-size:16px;
+    }
+
+    .content-panel p{
+      margin:0 0 14px;
+    }
+
+    .content-panel p:last-child{
+      margin-bottom:0;
     }
 
     .content-panel ul{
       margin:0;
       padding-left:20px;
+    }
+
+    .notice{
+      padding:16px 18px;
+      border-radius:18px;
+      background:rgba(37,99,235,.12);
+      border:1px solid rgba(96,165,250,.22);
+      color:#DBEAFE;
+      line-height:1.75;
+      margin-bottom:26px;
+    }
+
+    .side-card{
+      background:#111827;
+      border:1px solid #1F2937;
+      border-radius:18px;
+      padding:16px;
+      box-shadow:var(--shadow);
+      margin-bottom:14px;
+      min-width:0;
+    }
+
+    .side-card h3{
+      margin:0 0 12px;
+      font-size:17px;
+      line-height:1.3;
+    }
+
+    .side-card p{
+      margin:0;
+      color:#CBD5E1;
+      line-height:1.7;
+      font-size:14px;
+    }
+
+    .side-links{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .side-links a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:rgba(255,255,255,.035);
+      border:1px solid transparent;
+      color:#CBD5E1;
+      font-weight:650;
+      transition:.2s ease;
+    }
+
+    .side-links a:hover{
+      color:#fff;
+      background:rgba(255,255,255,.06);
+      border-color:rgba(148,163,184,.16);
     }
 
     footer{
@@ -394,6 +503,12 @@
       color:#94A3B8;
       font-size:14px;
       width:100%;
+    }
+
+    @media (max-width:1050px){
+      .layout{
+        grid-template-columns:1fr;
+      }
     }
 
     @media (max-width:950px){
@@ -509,74 +624,221 @@
     <div class="hero-badge">Privacidad • cookies • transparencia</div>
     <h1>Política de privacidad</h1>
     <p>
-      En esta página te explicamos cómo Ralyzo trata la información relacionada con el uso del sitio,
-      las cookies y los servicios de terceros como Google AdSense.
+      En esta página explicamos cómo Ralyzo trata la información relacionada con el uso del sitio,
+      las herramientas online, las cookies, la publicidad y los servicios de terceros.
     </p>
   </section>
 
-  <div class="content-panel">
-    <section>
-      <h2>Información general</h2>
-      <p>
-        En Ralyzo valoramos la privacidad de los usuarios. Esta política describe cómo se recopila,
-        utiliza y protege la información relacionada con la navegación en este sitio web.
-      </p>
-    </section>
+  <section class="layout">
+    <article class="content-panel">
+      <div class="notice">
+        Última actualización: abril de 2026. Esta política aplica al sitio web Ralyzo y a las herramientas disponibles en el dominio ralyzo.com.
+      </div>
 
-    <section>
-      <h2>Información que recopilamos</h2>
-      <p>
-        Ralyzo no solicita información personal identificable para usar sus herramientas. En la mayoría
-        de los casos, los archivos se procesan directamente en el navegador del usuario.
-      </p>
-    </section>
+      <section>
+        <h2>1. Información general</h2>
+        <p>
+          Ralyzo es un sitio web que ofrece herramientas online para comprimir, convertir, redimensionar,
+          recortar, girar y optimizar imágenes, además de otras funciones relacionadas con archivos digitales.
+        </p>
+        <p>
+          La privacidad de los usuarios es importante para nosotros. Por eso esta política explica de forma clara
+          qué información puede recopilarse, con qué finalidad se utiliza y qué opciones tiene el usuario.
+        </p>
+      </section>
 
-    <section>
-      <h2>Uso de cookies</h2>
-      <p>
-        Este sitio puede utilizar cookies para mejorar la experiencia de navegación, analizar tráfico
-        y personalizar contenido o publicidad. Las cookies son pequeños archivos que se almacenan en el
-        dispositivo del usuario al visitar determinadas páginas web.
-      </p>
-    </section>
+      <section>
+        <h2>2. Uso de las herramientas de Ralyzo</h2>
+        <p>
+          Muchas herramientas de Ralyzo funcionan directamente en el navegador del usuario mediante tecnologías web
+          como JavaScript y Canvas. Esto significa que, en varias funciones, los archivos se procesan localmente
+          en el dispositivo sin necesidad de enviarlos a un servidor externo.
+        </p>
+        <p>
+          Aun así, algunas funciones del sitio pueden requerir recursos externos, scripts de terceros, servicios
+          de publicidad, fuentes, medición de tráfico o elementos necesarios para el funcionamiento general de la web.
+        </p>
+      </section>
 
-    <section>
-      <h2>Publicidad de terceros</h2>
-      <p>
-        Ralyzo puede utilizar Google AdSense u otros servicios de publicidad de terceros para mostrar anuncios.
-        Estos proveedores pueden usar cookies para mostrar anuncios relevantes basados en visitas previas
-        del usuario a este y otros sitios web.
-      </p>
-      <p>
-        Los usuarios pueden gestionar o desactivar la personalización de anuncios desde la configuración
-        de anuncios de Google.
-      </p>
-    </section>
+      <section>
+        <h2>3. Información que podemos recopilar</h2>
+        <p>
+          Ralyzo no solicita registro obligatorio para usar sus herramientas básicas. Sin embargo, durante la navegación
+          se puede recopilar información técnica no sensible, como:
+        </p>
+        <ul>
+          <li>Tipo de navegador y dispositivo utilizado.</li>
+          <li>Páginas visitadas dentro del sitio.</li>
+          <li>Dirección IP aproximada o datos técnicos de conexión.</li>
+          <li>Interacciones generales con el sitio, como uso de herramientas o navegación interna.</li>
+          <li>Preferencias relacionadas con cookies, anuncios o configuración del navegador.</li>
+        </ul>
+      </section>
 
-    <section>
-      <h2>Enlaces externos</h2>
-      <p>
-        Este sitio puede contener enlaces a páginas externas. Ralyzo no se responsabiliza por las prácticas
-        de privacidad ni por el contenido de esos sitios web de terceros.
-      </p>
-    </section>
+      <section>
+        <h2>4. Archivos e imágenes del usuario</h2>
+        <p>
+          Las herramientas de Ralyzo están pensadas para ser rápidas y prácticas. En muchas de ellas, las imágenes
+          se procesan directamente en el navegador del usuario.
+        </p>
+        <p>
+          Recomendamos no utilizar archivos que contengan información altamente sensible, confidencial, privada
+          o documentos personales importantes, especialmente si no tienes claro cómo funciona una herramienta online.
+        </p>
+      </section>
 
-    <section>
-      <h2>Consentimiento</h2>
-      <p>
-        Al utilizar este sitio web, aceptas esta política de privacidad y el uso de cookies conforme
-        a lo descrito en este documento.
-      </p>
-    </section>
+      <section>
+        <h2>5. Finalidad del uso de la información</h2>
+        <p>
+          La información técnica o de navegación puede utilizarse para:
+        </p>
+        <ul>
+          <li>Permitir el funcionamiento correcto del sitio.</li>
+          <li>Mejorar la experiencia del usuario.</li>
+          <li>Detectar errores técnicos o problemas de rendimiento.</li>
+          <li>Entender qué herramientas son más útiles para los usuarios.</li>
+          <li>Mostrar contenido, enlaces o anuncios relevantes.</li>
+          <li>Cumplir obligaciones legales o requisitos de plataformas de terceros.</li>
+        </ul>
+      </section>
 
-    <section>
-      <h2>Actualizaciones</h2>
-      <p>
-        Ralyzo podrá actualizar esta política de privacidad en cualquier momento para reflejar cambios
-        legales, técnicos o de funcionamiento del sitio. Se recomienda revisar esta página periódicamente.
-      </p>
-    </section>
-  </div>
+      <section>
+        <h2>6. Uso de cookies</h2>
+        <p>
+          Ralyzo puede utilizar cookies propias o de terceros. Las cookies son pequeños archivos que se almacenan
+          en el navegador del usuario y permiten recordar información técnica o preferencias de navegación.
+        </p>
+        <p>
+          Las cookies pueden utilizarse para funciones esenciales del sitio, análisis de tráfico, mejora de experiencia
+          y personalización o medición de anuncios.
+        </p>
+        <p>
+          Puedes obtener más información en nuestra página de <a href="/cookies.html" style="color:#93C5FD;font-weight:700;">Política de Cookies</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2>7. Publicidad y Google AdSense</h2>
+        <p>
+          Ralyzo puede mostrar anuncios mediante Google AdSense u otros proveedores publicitarios. Estos servicios
+          pueden utilizar cookies, identificadores o tecnologías similares para mostrar anuncios, medir su rendimiento
+          y evitar mostrar publicidad repetitiva.
+        </p>
+        <p>
+          Google y otros proveedores pueden utilizar información de navegación para mostrar anuncios personalizados
+          o no personalizados, según la configuración del usuario, el consentimiento otorgado y la normativa aplicable.
+        </p>
+        <p>
+          El usuario puede gestionar sus preferencias de anuncios desde la configuración de su cuenta, navegador
+          o herramientas disponibles por los proveedores publicitarios.
+        </p>
+      </section>
+
+      <section>
+        <h2>8. Servicios de terceros</h2>
+        <p>
+          Ralyzo puede utilizar servicios de terceros para publicidad, fuentes, alojamiento, análisis de rendimiento,
+          seguridad, medición o funcionalidades técnicas. Estos terceros pueden tratar información conforme a sus
+          propias políticas de privacidad.
+        </p>
+        <p>
+          Ralyzo no controla directamente el uso que esos terceros hacen de la información recopilada mediante sus
+          propias herramientas o tecnologías.
+        </p>
+      </section>
+
+      <section>
+        <h2>9. Enlaces externos</h2>
+        <p>
+          El sitio puede contener enlaces hacia páginas externas, artículos, herramientas o servicios de terceros.
+          Ralyzo no se responsabiliza por las prácticas de privacidad, contenido, seguridad o funcionamiento de sitios
+          externos que no sean administrados por nosotros.
+        </p>
+      </section>
+
+      <section>
+        <h2>10. Seguridad</h2>
+        <p>
+          Ralyzo procura mantener una experiencia segura y confiable para los usuarios. Sin embargo, ningún sistema
+          conectado a internet puede garantizar seguridad absoluta.
+        </p>
+        <p>
+          El usuario también debe tomar precauciones, como no subir archivos sensibles, mantener actualizado su navegador
+          y revisar los permisos o configuraciones de privacidad de su dispositivo.
+        </p>
+      </section>
+
+      <section>
+        <h2>11. Derechos del usuario</h2>
+        <p>
+          Dependiendo de la legislación aplicable en tu país, puedes tener derechos relacionados con el acceso,
+          rectificación, eliminación u oposición al tratamiento de tus datos personales.
+        </p>
+        <p>
+          Si necesitas realizar una consulta relacionada con privacidad, puedes contactarnos mediante los canales
+          disponibles en la página de contacto o sobre nosotros.
+        </p>
+      </section>
+
+      <section>
+        <h2>12. Menores de edad</h2>
+        <p>
+          Ralyzo no está dirigido específicamente a menores de edad. Si un menor utiliza el sitio, debe hacerlo con
+          supervisión de sus padres, representantes o tutores legales.
+        </p>
+      </section>
+
+      <section>
+        <h2>13. Cambios en esta política</h2>
+        <p>
+          Ralyzo puede actualizar esta política de privacidad para reflejar cambios legales, técnicos, publicitarios
+          o de funcionamiento del sitio. La versión vigente será la publicada en esta página.
+        </p>
+      </section>
+
+      <section>
+        <h2>14. Contacto</h2>
+        <p>
+          Para dudas relacionadas con privacidad, cookies, términos de uso o funcionamiento del sitio, puedes revisar
+          nuestras páginas legales o comunicarte mediante los canales publicados en Ralyzo.
+        </p>
+      </section>
+    </article>
+
+    <aside>
+      <div class="side-card">
+        <h3>Páginas legales</h3>
+        <div class="side-links">
+          <a href="/privacidad.html"><span>Política de privacidad</span><span>→</span></a>
+          <a href="/terminos.html"><span>Términos de uso</span><span>→</span></a>
+          <a href="/cookies.html"><span>Política de cookies</span><span>→</span></a>
+          <a href="/sobre.html"><span>Sobre Ralyzo</span><span>→</span></a>
+        </div>
+      </div>
+
+      <div class="side-card">
+        <h3>Herramientas principales</h3>
+        <div class="side-links">
+          <a href="/comprimir-imagen"><span>Comprimir imagen</span><span>→</span></a>
+          <a href="/png-a-jpg"><span>PNG a JPG</span><span>→</span></a>
+          <a href="/jpg-a-png"><span>JPG a PNG</span><span>→</span></a>
+          <a href="/redimensionar-imagen"><span>Redimensionar imagen</span><span>→</span></a>
+          <a href="/recortar-imagen"><span>Recortar imagen</span><span>→</span></a>
+          <a href="/girar-imagen"><span>Girar imagen</span><span>→</span></a>
+          <a href="/redimensionar-redes-sociales"><span>Redimensionar para redes</span><span>→</span></a>
+          <a href="/girar-pdf"><span>Girar PDF</span><span>→</span></a>
+        </div>
+      </div>
+
+      <div class="side-card">
+        <h3>Transparencia</h3>
+        <p>
+          Esta página ayuda a explicar cómo funciona Ralyzo y qué relación puede existir entre privacidad,
+          cookies, publicidad y herramientas online.
+        </p>
+      </div>
+    </aside>
+  </section>
 </main>
 
 <footer>
@@ -588,8 +850,8 @@
           <span>RALYZO</span>
         </div>
         <p>
-          Herramientas online gratuitas para comprimir, convertir y optimizar imágenes de forma rápida,
-          segura y directamente desde tu navegador.
+          Herramientas online gratuitas para comprimir, convertir, redimensionar, recortar, girar y optimizar imágenes
+          de forma rápida, segura y directamente desde tu navegador.
         </p>
       </div>
 
@@ -598,12 +860,16 @@
         <a href="/#herramientas">Herramientas</a>
         <a href="/blog/">Blog</a>
         <a href="/#precios">Precios</a>
+        <a href="/sobre.html">Sobre nosotros</a>
+        <a href="/privacidad.html">Privacidad</a>
+        <a href="/terminos.html">Términos</a>
+        <a href="/cookies.html">Cookies</a>
       </div>
     </div>
 
     <div class="footer-bottom">
       <div>© 2026 Ralyzo. Todos los derechos reservados.</div>
-      <div>Privacidad, transparencia y uso responsable del sitio.</div>
+      <div>Privacidad, transparencia, cookies y uso responsable de herramientas online.</div>
     </div>
   </div>
 </footer>
