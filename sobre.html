@@ -5,18 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Sobre Nosotros | Ralyzo</title>
-  <meta name="description" content="Conoce Ralyzo, una plataforma de herramientas online gratuitas para imágenes. Descubre nuestra misión, enfoque y el proyecto detrás del sitio." />
+  <meta name="description" content="Conoce Ralyzo, una plataforma de herramientas online gratuitas para comprimir, convertir, redimensionar, recortar, girar y optimizar imágenes desde el navegador." />
   <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://ralyzo.com/sobre-nosotros.html" />
+  <link rel="canonical" href="https://ralyzo.com/sobre.html" />
 
   <meta property="og:title" content="Sobre Nosotros | Ralyzo" />
   <meta property="og:description" content="Descubre qué es Ralyzo, cómo funciona y cuál es la misión de esta plataforma de herramientas online para imágenes." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://ralyzo.com/sobre-nosotros.html" />
+  <meta property="og:url" content="https://ralyzo.com/sobre.html" />
   <meta property="og:site_name" content="Ralyzo" />
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337166112417872"
-    crossorigin="anonymous"></script>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Sobre Nosotros | Ralyzo" />
+  <meta name="twitter:description" content="Conoce el proyecto Ralyzo y sus herramientas online gratuitas para imágenes." />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337166112417872" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"AboutPage",
+    "name":"Sobre Nosotros | Ralyzo",
+    "url":"https://ralyzo.com/sobre.html",
+    "description":"Página sobre Ralyzo, plataforma de herramientas online gratuitas para imágenes y archivos.",
+    "publisher":{
+      "@type":"Organization",
+      "name":"Ralyzo",
+      "url":"https://ralyzo.com/"
+    }
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -42,8 +60,9 @@
     }
 
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    html, body{
+
+    html{
+      scroll-behavior:smooth;
       width:100%;
       max-width:100%;
       overflow-x:hidden;
@@ -54,6 +73,9 @@
       font-family:'Inter',sans-serif;
       background:linear-gradient(180deg,#020B1F 0%, #06112A 100%);
       color:var(--text);
+      width:100%;
+      max-width:100%;
+      overflow-x:hidden;
     }
 
     a{
@@ -179,7 +201,7 @@
       top:calc(100% + 16px);
       right:0;
       min-width:320px;
-      max-width:min(92vw, 340px);
+      max-width:min(92vw,340px);
       background:#0F172A;
       border:1px solid rgba(51,65,85,.95);
       border-radius:16px;
@@ -241,25 +263,12 @@
       max-width:1200px;
       width:100%;
       margin:0 auto;
-      padding:0 24px;
-      overflow:hidden;
+      padding:28px 24px 32px;
     }
 
     .hero{
-      min-height:300px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
       text-align:center;
-      padding:52px 0 18px;
-      width:100%;
-      max-width:100%;
-      overflow:hidden;
-    }
-
-    .hero-inner{
-      max-width:980px;
-      width:100%;
+      margin-bottom:24px;
     }
 
     .hero-badge{
@@ -275,84 +284,131 @@
       font-weight:800;
       letter-spacing:.06em;
       text-transform:uppercase;
-      margin-bottom:18px;
+      margin-bottom:16px;
       max-width:100%;
       text-align:center;
     }
 
-    .hero h1{
-      margin:0 0 18px;
-      font-size:54px;
-      line-height:1.06;
-      font-weight:800;
+    h1{
+      margin:0 0 14px;
+      font-size:46px;
+      line-height:1.08;
       letter-spacing:-.03em;
       word-break:break-word;
     }
 
     .hero p{
       margin:0 auto;
-      max-width:800px;
-      font-size:20px;
+      max-width:850px;
       color:var(--muted-2);
-      line-height:1.7;
-      word-break:break-word;
+      font-size:18px;
+      line-height:1.75;
     }
 
-    .section{
-      padding:0 0 36px;
-      width:100%;
-      max-width:100%;
+    .layout{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 320px;
+      gap:18px;
+      align-items:start;
     }
 
-    .section-panel{
+    .content-panel{
       background:rgba(15,23,42,.46);
       border:1px solid rgba(51,65,85,.75);
       border-radius:24px;
       padding:28px;
-      width:100%;
-      max-width:100%;
-      overflow:hidden;
       box-shadow:var(--shadow);
+      min-width:0;
     }
 
-    .content-block{
+    .content-panel section{
       margin-bottom:28px;
     }
 
-    .content-block:last-child{
+    .content-panel section:last-child{
       margin-bottom:0;
     }
 
-    .content-block h2{
+    .content-panel h2{
       margin:0 0 12px;
-      font-size:28px;
-      letter-spacing:-.02em;
+      font-size:26px;
+      line-height:1.25;
       color:#fff;
+      letter-spacing:-.01em;
     }
 
-    .content-block p,
-    .content-block li{
-      margin:0;
+    .content-panel h3{
+      margin:18px 0 10px;
+      font-size:18px;
+      color:#F8FAFC;
+    }
+
+    .content-panel p,
+    .content-panel li{
       color:#CBD5E1;
-      line-height:1.8;
-      font-size:17px;
-      word-break:break-word;
+      line-height:1.85;
+      font-size:16px;
     }
 
-    .content-block ul{
+    .content-panel p{
+      margin:0 0 14px;
+    }
+
+    .content-panel p:last-child{
+      margin-bottom:0;
+    }
+
+    .content-panel ul{
       margin:0;
       padding-left:20px;
     }
 
-    .content-block li{
+    .content-panel li{
       margin-bottom:8px;
+    }
+
+    .notice{
+      padding:16px 18px;
+      border-radius:18px;
+      background:rgba(37,99,235,.12);
+      border:1px solid rgba(96,165,250,.22);
+      color:#DBEAFE;
+      line-height:1.75;
+      margin-bottom:26px;
+    }
+
+    .cards-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+      margin-top:14px;
+    }
+
+    .mini-card{
+      background:#111827;
+      border:1px solid #1F2937;
+      border-radius:18px;
+      padding:16px;
+      min-width:0;
+    }
+
+    .mini-card h3{
+      margin:0 0 8px;
+      font-size:17px;
+    }
+
+    .mini-card p{
+      margin:0;
+      font-size:15px;
+      color:#CBD5E1;
+      line-height:1.7;
     }
 
     .contact-box{
       background:rgba(37,99,235,.08);
       border:1px solid rgba(59,130,246,.18);
       border-radius:18px;
-      padding:20px;
+      padding:18px;
       margin-top:10px;
     }
 
@@ -362,8 +418,57 @@
 
     .contact-email{
       color:#93C5FD;
-      font-weight:700;
+      font-weight:800;
       word-break:break-word;
+    }
+
+    .side-card{
+      background:#111827;
+      border:1px solid #1F2937;
+      border-radius:18px;
+      padding:16px;
+      box-shadow:var(--shadow);
+      margin-bottom:14px;
+      min-width:0;
+    }
+
+    .side-card h3{
+      margin:0 0 12px;
+      font-size:17px;
+      line-height:1.3;
+    }
+
+    .side-card p{
+      margin:0;
+      color:#CBD5E1;
+      line-height:1.7;
+      font-size:14px;
+    }
+
+    .side-links{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .side-links a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:rgba(255,255,255,.035);
+      border:1px solid transparent;
+      color:#CBD5E1;
+      font-weight:650;
+      transition:.2s ease;
+    }
+
+    .side-links a:hover{
+      color:#fff;
+      background:rgba(255,255,255,.06);
+      border-color:rgba(148,163,184,.16);
     }
 
     footer{
@@ -454,6 +559,12 @@
       width:100%;
     }
 
+    @media (max-width:1050px){
+      .layout{
+        grid-template-columns:1fr;
+      }
+    }
+
     @media (max-width:950px){
       .nav{
         justify-content:center;
@@ -477,18 +588,24 @@
         transform:translateX(-50%) translateY(0);
       }
 
-      .hero h1{
-        font-size:42px;
+      h1{
+        font-size:38px;
       }
 
       .hero p{
-        font-size:18px;
+        font-size:17px;
+      }
+    }
+
+    @media (max-width:700px){
+      .cards-grid{
+        grid-template-columns:1fr;
       }
     }
 
     @media (max-width:640px){
       .page{
-        padding:0 12px;
+        padding:20px 12px 28px;
       }
 
       .nav{
@@ -507,25 +624,12 @@
         padding:10px 12px;
       }
 
-      .hero{
-        min-height:auto;
-        padding:40px 0 12px;
+      h1{
+        font-size:32px;
       }
 
-      .hero h1{
-        font-size:34px;
-      }
-
-      .hero p{
-        font-size:16px;
-      }
-
-      .section-panel{
+      .content-panel{
         padding:22px 18px;
-      }
-
-      .content-block h2{
-        font-size:24px;
       }
 
       .footer-card{
@@ -552,102 +656,204 @@
     <div class="nav-links">
       <a href="/#herramientas">Herramientas</a>
       <a href="/#precios">Precios</a>
-      <div class="js-blog-dropdown"></div>
+
+      <div class="dropdown">
+        <button class="dropdown-toggle" type="button" aria-label="Abrir menú de blog">
+          <span>Blog</span>
+          <span class="dropdown-arrow">▾</span>
+        </button>
+
+        <div class="dropdown-menu">
+          <div class="menu-title">Artículos</div>
+          <a href="/blog/como-comprimir-imagen.html">Cómo comprimir imágenes sin perder calidad</a>
+          <a href="/blog/jpg-vs-png.html">JPG vs PNG: cuál usar en cada caso</a>
+          <a href="/blog/optimizar-imagenes-web.html">Cómo optimizar imágenes para una web más rápida</a>
+          <a href="/blog/formatos-imagen.html">Formatos de imagen: guía rápida</a>
+          <a href="/blog/reducir-peso-imagen.html">Cómo reducir el peso de una imagen</a>
+          <a href="/blog/convertir-imagen.html">Cómo convertir imágenes sin perder calidad</a>
+          <div class="dropdown-divider"></div>
+          <a class="all-posts" href="/blog/">Ver todos los artículos</a>
+        </div>
+      </div>
     </div>
   </nav>
 </header>
 
 <main class="page">
   <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-badge">Proyecto • confianza • herramientas útiles</div>
-      <h1>Sobre nosotros</h1>
-      <p>
-        Ralyzo es una plataforma de herramientas online gratuitas para imágenes, creada para ayudarte
-        a comprimir, convertir, redimensionar y optimizar archivos de forma rápida, segura y sin instalar programas.
-      </p>
-    </div>
+    <div class="hero-badge">Proyecto • confianza • herramientas útiles</div>
+    <h1>Sobre nosotros</h1>
+    <p>
+      Ralyzo es una plataforma de herramientas online gratuitas para imágenes y archivos,
+      creada para resolver tareas digitales rápidas desde el navegador.
+    </p>
   </section>
 
-  <section class="section">
-    <div class="section-panel">
-      <div class="content-block">
+  <section class="layout">
+    <article class="content-panel">
+      <div class="notice">
+        Ralyzo es un proyecto digital independiente enfocado en herramientas simples, rápidas y útiles para comprimir, convertir, redimensionar, recortar, girar y optimizar imágenes online.
+      </div>
+
+      <section>
         <h2>Qué es Ralyzo</h2>
         <p>
-          Ralyzo es un proyecto independiente enfocado en ofrecer herramientas web simples, útiles y accesibles para trabajar
-          con imágenes directamente desde el navegador. La plataforma está pensada para resolver necesidades comunes de usuarios,
-          estudiantes, creadores de contenido, negocios y profesionales que requieren optimizar archivos visuales de forma rápida
-          y sin complicaciones técnicas.
+          Ralyzo es una plataforma web creada para ofrecer herramientas online gratuitas que ayudan a trabajar
+          con imágenes y archivos de forma práctica. El sitio está pensado para usuarios que necesitan resolver
+          tareas comunes sin instalar programas pesados ni depender de procesos complicados.
         </p>
-      </div>
+        <p>
+          Desde Ralyzo puedes comprimir imágenes, convertir formatos, redimensionar fotos, recortar archivos,
+          girar imágenes, adaptar contenido para redes sociales, extraer texto con OCR y usar otras funciones
+          útiles directamente desde el navegador.
+        </p>
+      </section>
 
-      <div class="content-block">
-        <h2>Qué puedes hacer en la plataforma</h2>
-        <ul>
-          <li>Comprimir imágenes sin perder demasiada calidad visual</li>
-          <li>Convertir imágenes entre formatos como JPG, PNG y WEBP</li>
-          <li>Redimensionar imágenes para web, documentos y redes sociales</li>
-          <li>Recortar y girar imágenes online</li>
-          <li>Extraer texto de imágenes con herramientas OCR</li>
-          <li>Preparar imágenes para publicaciones, sitios web y contenido digital</li>
-        </ul>
-      </div>
-
-      <div class="content-block">
+      <section>
         <h2>Nuestra misión</h2>
         <p>
-          La misión de Ralyzo es ofrecer herramientas online gratuitas para imágenes con una experiencia rápida, clara y útil,
-          permitiendo a cualquier persona trabajar con archivos visuales sin depender de software complejo. Buscamos que el sitio
-          sea práctico, accesible y valioso para tareas reales del día a día.
+          La misión de Ralyzo es ofrecer herramientas digitales accesibles, claras y funcionales para personas
+          que necesitan optimizar imágenes o archivos en pocos pasos. Buscamos que cada herramienta sea fácil
+          de entender, rápida de usar y útil para tareas reales del día a día.
         </p>
-      </div>
+      </section>
 
-      <div class="content-block">
-        <h2>Privacidad y funcionamiento</h2>
+      <section>
+        <h2>Qué puedes hacer en Ralyzo</h2>
+        <ul>
+          <li>Comprimir imágenes para reducir su peso y mejorar su uso en web o redes sociales.</li>
+          <li>Convertir imágenes entre formatos como PNG y JPG.</li>
+          <li>Redimensionar imágenes para documentos, páginas web, formularios o redes sociales.</li>
+          <li>Recortar imágenes para eliminar partes no deseadas o mejorar el encuadre.</li>
+          <li>Girar imágenes y corregir su orientación.</li>
+          <li>Adaptar imágenes al tamaño exacto para Instagram, WhatsApp, TikTok, YouTube y más.</li>
+          <li>Extraer texto desde imágenes mediante herramientas OCR.</li>
+          <li>Girar PDF por páginas y descargar el archivo final corregido.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Enfoque de privacidad</h2>
         <p>
-          Muchas de las funciones de Ralyzo trabajan directamente en el navegador del usuario, lo que ayuda a mejorar la privacidad,
-          reducir tiempos de espera y evitar procesos innecesarios. Nuestro enfoque es construir una plataforma funcional, ligera
-          y fácil de usar, manteniendo una experiencia segura y eficiente.
+          Muchas herramientas de Ralyzo están diseñadas para funcionar directamente en el navegador mediante
+          tecnologías web. Esto permite que varias tareas se realicen en el propio dispositivo del usuario,
+          ayudando a mejorar la rapidez y reduciendo procesos innecesarios.
         </p>
-      </div>
+        <p>
+          Aun así, recomendamos no utilizar archivos altamente sensibles o confidenciales en ninguna herramienta
+          online si no tienes claro cómo funciona el proceso técnico.
+        </p>
+      </section>
 
-      <div class="content-block">
+      <section>
+        <h2>Valores del proyecto</h2>
+        <div class="cards-grid">
+          <div class="mini-card">
+            <h3>Utilidad real</h3>
+            <p>Las herramientas se crean pensando en tareas comunes y necesidades prácticas.</p>
+          </div>
+
+          <div class="mini-card">
+            <h3>Simplicidad</h3>
+            <p>La idea es que cualquier usuario pueda usar Ralyzo sin conocimientos técnicos avanzados.</p>
+          </div>
+
+          <div class="mini-card">
+            <h3>Rapidez</h3>
+            <p>Buscamos que las herramientas carguen rápido y funcionen directamente desde el navegador.</p>
+          </div>
+
+          <div class="mini-card">
+            <h3>Transparencia</h3>
+            <p>Publicamos páginas legales claras sobre privacidad, cookies y condiciones de uso.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
         <h2>Compromiso con la calidad</h2>
         <p>
-          Ralyzo se encuentra en constante evolución. Trabajamos en nuevas funciones, mejoras visuales, optimización del rendimiento
-          y contenido informativo relacionado con el uso de imágenes. El objetivo es que la plataforma siga creciendo con utilidad real,
-          claridad y una experiencia cada vez mejor para el usuario.
+          Ralyzo se encuentra en constante evolución. Trabajamos en nuevas funciones, mejoras visuales,
+          optimización del rendimiento y contenido informativo relacionado con el uso de imágenes y archivos.
         </p>
-      </div>
-
-      <div class="content-block">
-        <h2>Transparencia</h2>
         <p>
-          Ralyzo es un proyecto independiente enfocado en aportar valor mediante herramientas útiles y contenido original.
-          Parte del sitio puede incluir publicidad para sostener el desarrollo, mantenimiento y mejora continua de la plataforma,
-          procurando siempre no afectar negativamente la experiencia del usuario.
+          El objetivo es que la plataforma siga creciendo con utilidad real, claridad y una experiencia cada vez
+          mejor para el usuario.
         </p>
-      </div>
+      </section>
 
-      <div class="content-block">
+      <section>
+        <h2>Publicidad y sostenibilidad</h2>
+        <p>
+          Ralyzo puede incluir publicidad para sostener el desarrollo, mantenimiento y mejora continua del sitio.
+          La intención es que la publicidad permita mantener herramientas gratuitas sin afectar negativamente
+          la experiencia del usuario.
+        </p>
+        <p>
+          Puedes revisar más información sobre este punto en la
+          <a href="/privacidad.html" style="color:#93C5FD;font-weight:700;">Política de Privacidad</a>
+          y en la
+          <a href="/cookies.html" style="color:#93C5FD;font-weight:700;">Política de Cookies</a>.
+        </p>
+      </section>
+
+      <section>
         <h2>Autor e identidad del proyecto</h2>
         <p>
-          Ralyzo es un proyecto digital independiente creado con el propósito de ofrecer soluciones prácticas para el trabajo con imágenes.
-          El sitio combina herramientas online, optimización web y contenido informativo con enfoque en utilidad, rendimiento y experiencia
-          de usuario. Su desarrollo continúa con la intención de consolidarse como una plataforma confiable y accesible.
+          Ralyzo es un proyecto digital independiente creado con el propósito de ofrecer soluciones prácticas
+          para el trabajo con imágenes y archivos. El sitio combina herramientas online, optimización web
+          y contenido informativo con enfoque en utilidad, rendimiento y experiencia de usuario.
         </p>
-      </div>
+      </section>
 
-      <div class="content-block">
+      <section>
         <h2>Contacto</h2>
+        <p>
+          Si tienes dudas, sugerencias, reportes de errores o comentarios sobre el funcionamiento del sitio,
+          puedes escribirnos mediante el siguiente correo:
+        </p>
+
         <div class="contact-box">
-          <p>
-            Si tienes dudas, sugerencias o necesitas ayuda, puedes escribirnos a:
+          <p class="contact-email">
+            <a href="mailto:adag30301@gmail.com">adag30301@gmail.com</a>
           </p>
-          <p class="contact-email">adag30301@gmail.com</p>
+        </div>
+      </section>
+    </article>
+
+    <aside>
+      <div class="side-card">
+        <h3>Páginas legales</h3>
+        <div class="side-links">
+          <a href="/privacidad.html"><span>Política de privacidad</span><span>→</span></a>
+          <a href="/terminos.html"><span>Términos de uso</span><span>→</span></a>
+          <a href="/cookies.html"><span>Política de cookies</span><span>→</span></a>
+          <a href="/sobre.html"><span>Sobre Ralyzo</span><span>→</span></a>
         </div>
       </div>
-    </div>
+
+      <div class="side-card">
+        <h3>Herramientas principales</h3>
+        <div class="side-links">
+          <a href="/comprimir-imagen"><span>Comprimir imagen</span><span>→</span></a>
+          <a href="/png-a-jpg"><span>PNG a JPG</span><span>→</span></a>
+          <a href="/jpg-a-png"><span>JPG a PNG</span><span>→</span></a>
+          <a href="/redimensionar-imagen"><span>Redimensionar imagen</span><span>→</span></a>
+          <a href="/recortar-imagen"><span>Recortar imagen</span><span>→</span></a>
+          <a href="/girar-imagen"><span>Girar imagen</span><span>→</span></a>
+          <a href="/redimensionar-redes-sociales"><span>Redimensionar para redes</span><span>→</span></a>
+          <a href="/girar-pdf"><span>Girar PDF</span><span>→</span></a>
+        </div>
+      </div>
+
+      <div class="side-card">
+        <h3>Proyecto independiente</h3>
+        <p>
+          Ralyzo se desarrolla con el objetivo de ofrecer herramientas útiles, gratuitas y fáciles de usar
+          para tareas digitales comunes.
+        </p>
+      </div>
+    </aside>
   </section>
 </main>
 
@@ -660,8 +866,8 @@
           <span>RALYZO</span>
         </div>
         <p>
-          Herramientas online gratuitas para comprimir, convertir y optimizar imágenes de forma rápida,
-          segura y directamente desde tu navegador.
+          Herramientas online gratuitas para comprimir, convertir, redimensionar, recortar, girar y optimizar imágenes
+          de forma rápida, segura y directamente desde tu navegador.
         </p>
       </div>
 
@@ -670,16 +876,19 @@
         <a href="/#herramientas">Herramientas</a>
         <a href="/blog/">Blog</a>
         <a href="/#precios">Precios</a>
+        <a href="/sobre.html">Sobre nosotros</a>
+        <a href="/privacidad.html">Privacidad</a>
+        <a href="/terminos.html">Términos</a>
+        <a href="/cookies.html">Cookies</a>
       </div>
     </div>
 
     <div class="footer-bottom">
       <div>© 2026 Ralyzo. Todos los derechos reservados.</div>
-      <div>Proyecto independiente de herramientas online para imágenes.</div>
+      <div>Proyecto independiente de herramientas online para imágenes y archivos.</div>
     </div>
   </div>
 </footer>
 
-<script src="/blog-menu.js"></script>
 </body>
 </html>
