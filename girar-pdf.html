@@ -4,8 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Girar PDF por páginas online gratis | Rotar PDF online | Ralyzo</title>
-  <meta name="description" content="Girar PDF por páginas online gratis. Rotar PDF gratis, girar PDF online, ordenar y girar PDF o unir y girar PDF fácilmente desde tu navegador con Ralyzo." />
+  <title>Girar PDF por páginas online gratis | Rotar PDF y guardarlo | Ralyzo</title>
+  <meta name="description" content="Girar PDF por páginas online gratis. Rota PDF de vertical a horizontal, gira páginas individuales, aprende cómo girar un PDF y guardarlo, y descarga el documento corregido desde tu navegador." />
+  <meta name="keywords" content="girar pdf, girar pdf por páginas, rotar pdf gratis, girar pdf online, girar pdf online gratis, rotar pdf de vertical a horizontal, como girar un pdf y guardarlo, rotar páginas, unir y girar pdf, girar pdf ilovepdf" />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://ralyzo.com/girar-pdf" />
 
@@ -17,9 +18,79 @@
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Girar PDF por páginas online gratis | Ralyzo" />
-  <meta name="twitter:description" content="Gira páginas individuales de un PDF y descarga el resultado online." />
+  <meta name="twitter:description" content="Gira páginas individuales de un PDF, rota PDF de vertical a horizontal y descarga el resultado online." />
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337166112417872" crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"Girar PDF por páginas",
+    "applicationCategory":"UtilitiesApplication",
+    "operatingSystem":"Web",
+    "url":"https://ralyzo.com/girar-pdf",
+    "description":"Herramienta online gratis para girar PDF por páginas, rotar páginas individuales y descargar el documento corregido desde el navegador.",
+    "offers":{
+      "@type":"Offer",
+      "price":"0",
+      "priceCurrency":"USD"
+    },
+    "publisher":{
+      "@type":"Organization",
+      "name":"Ralyzo"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"¿Cómo girar un PDF y guardarlo?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Sube tu archivo PDF, elige la página que quieres rotar, presiona girar a la izquierda o derecha y luego descarga el PDF girado con los cambios aplicados."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"¿Puedo girar PDF por páginas?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Sí. La herramienta permite girar páginas individuales de un PDF sin afectar necesariamente todas las páginas del documento."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"¿Puedo rotar PDF de vertical a horizontal?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Sí. Puedes girar una página 90 grados para pasarla de vertical a horizontal o de horizontal a vertical."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"¿La herramienta para rotar PDF es gratis?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Sí. Puedes usar la herramienta de Ralyzo para rotar PDF gratis directamente desde tu navegador."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"¿Necesito instalar programas para girar PDF online?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"No. La herramienta funciona online desde el navegador, sin instalar programas adicionales."
+        }
+      }
+    ]
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -49,12 +120,21 @@
     }
 
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+
+    html{
+      scroll-behavior:smooth;
+      width:100%;
+      max-width:100%;
+      overflow-x:hidden;
+    }
+
     body{
       margin:0;
       font-family:'Inter',sans-serif;
       background:linear-gradient(180deg,#020B1F 0%, #06112A 100%);
       color:var(--text);
+      width:100%;
+      max-width:100%;
       overflow-x:hidden;
     }
 
@@ -63,6 +143,7 @@
 
     .container{
       width:min(var(--container), calc(100% - 40px));
+      max-width:100%;
       margin:0 auto;
     }
 
@@ -74,10 +155,12 @@
       backdrop-filter:blur(10px);
       border-bottom:1px solid var(--line);
       overflow:visible;
+      max-width:100%;
     }
 
     .nav{
       max-width:1200px;
+      width:100%;
       margin:0 auto;
       min-height:78px;
       position:relative;
@@ -120,6 +203,7 @@
       font-weight:600;
       position:relative;
       z-index:5;
+      max-width:100%;
     }
 
     .nav-links > a,
@@ -173,8 +257,12 @@
     .dropdown-menu{
       position:absolute;
       top:calc(100% + 16px);
-      right:0;
-      min-width:320px;
+      left:50%;
+      right:auto;
+      transform:translateX(-50%) translateY(8px);
+      width:min(92vw, 340px);
+      min-width:unset;
+      max-width:92vw;
       background:#0F172A;
       border:1px solid rgba(51,65,85,.95);
       border-radius:16px;
@@ -182,17 +270,18 @@
       box-shadow:0 16px 40px rgba(0,0,0,.35);
       opacity:0;
       visibility:hidden;
-      transform:translateY(8px);
       transition:opacity .2s ease, visibility .2s ease, transform .2s ease;
       pointer-events:none;
       z-index:1200;
+      overflow-wrap:break-word;
+      word-break:normal;
     }
 
     .dropdown:hover .dropdown-menu,
     .dropdown:focus-within .dropdown-menu{
       opacity:1;
       visibility:visible;
-      transform:translateY(0);
+      transform:translateX(-50%) translateY(0);
       pointer-events:auto;
     }
 
@@ -204,6 +293,8 @@
       line-height:1.5;
       transition:.2s ease;
       font-weight:500;
+      word-break:normal;
+      overflow-wrap:break-word;
     }
 
     .dropdown-menu a:hover{
@@ -234,11 +325,14 @@
     main{
       padding:28px 0 32px;
       min-height:calc(100vh - 78px);
+      max-width:100%;
+      overflow:hidden;
     }
 
     .hero{
       text-align:center;
       margin-bottom:20px;
+      max-width:100%;
     }
 
     .eyebrow{
@@ -255,6 +349,8 @@
       letter-spacing:.06em;
       text-transform:uppercase;
       margin-bottom:16px;
+      max-width:100%;
+      text-align:center;
     }
 
     h1{
@@ -262,6 +358,7 @@
       font-size:48px;
       line-height:1.05;
       letter-spacing:-.03em;
+      word-break:break-word;
     }
 
     .hero p{
@@ -278,6 +375,7 @@
       gap:18px;
       align-items:start;
       margin-top:24px;
+      max-width:100%;
     }
 
     .panel{
@@ -285,6 +383,7 @@
       border:1px solid rgba(51,65,85,.76);
       border-radius:24px;
       box-shadow:var(--shadow);
+      min-width:0;
     }
 
     .workspace{padding:18px}
@@ -295,6 +394,7 @@
       gap:14px;
       position:sticky;
       top:94px;
+      min-width:0;
     }
 
     .upload-zone{
@@ -344,6 +444,7 @@
       font-size:30px;
       line-height:1.2;
       color:#F8FAFC;
+      word-break:break-word;
     }
 
     .upload-inner p{
@@ -366,6 +467,7 @@
       color:#93C5FD;
       font-size:14px;
       font-weight:600;
+      line-height:1.5;
     }
 
     .btn{
@@ -380,6 +482,7 @@
       font-weight:700;
       cursor:pointer;
       transition:.2s ease;
+      text-align:center;
     }
 
     .btn-primary{background:var(--primary);color:#fff}
@@ -471,6 +574,7 @@
       display:flex;
       flex-direction:column;
       gap:12px;
+      min-width:0;
     }
 
     .thumb-head{
@@ -547,6 +651,7 @@
       border:1px solid #1F2937;
       border-radius:18px;
       padding:14px;
+      min-width:0;
     }
 
     .side-card h3{
@@ -566,6 +671,7 @@
       color:#93C5FD;
       font-size:14px;
       font-weight:600;
+      line-height:1.5;
     }
 
     .status.success{color:#86EFAC}
@@ -623,9 +729,122 @@
       line-height:1.3;
     }
 
+    .content-section{
+      margin-top:22px;
+    }
+
+    .content-panel{
+      background:rgba(15,23,42,.46);
+      border:1px solid rgba(51,65,85,.75);
+      border-radius:24px;
+      padding:28px;
+      box-shadow:var(--shadow);
+      margin-bottom:18px;
+    }
+
+    .content-panel h2{
+      margin:0 0 14px;
+      font-size:30px;
+      line-height:1.2;
+      letter-spacing:-.02em;
+    }
+
+    .content-panel h3{
+      margin:22px 0 10px;
+      font-size:20px;
+      line-height:1.3;
+    }
+
+    .content-panel p{
+      margin:0 0 16px;
+      color:#CBD5E1;
+      line-height:1.85;
+      font-size:16px;
+    }
+
+    .content-panel strong{
+      color:#F8FAFC;
+    }
+
+    .content-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .content-card{
+      background:#111827;
+      border:1px solid #1F2937;
+      border-radius:18px;
+      padding:20px;
+      min-width:0;
+    }
+
+    .content-card h3{
+      margin:0 0 10px;
+      font-size:18px;
+    }
+
+    .content-card p{
+      margin:0;
+      font-size:15px;
+      color:#CBD5E1;
+      line-height:1.75;
+    }
+
+    .steps-list{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .step-item{
+      background:rgba(255,255,255,.035);
+      border:1px solid rgba(148,163,184,.14);
+      border-radius:18px;
+      padding:18px;
+      min-width:0;
+    }
+
+    .step-number{
+      width:38px;
+      height:38px;
+      border-radius:14px;
+      background:rgba(37,99,235,.16);
+      border:1px solid rgba(96,165,250,.22);
+      color:#BFDBFE;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+      margin-bottom:10px;
+    }
+
+    .step-item h3{
+      margin:0 0 8px;
+      font-size:17px;
+    }
+
+    .step-item p{
+      margin:0;
+      font-size:14px;
+      line-height:1.7;
+    }
+
+    .faq-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+      margin-top:18px;
+    }
+
     footer{
       margin-top:18px;
       padding:0 24px 24px;
+      max-width:100%;
+      overflow:hidden;
     }
 
     .footer-card{
@@ -636,6 +855,7 @@
       border-radius:24px;
       padding:18px 22px;
       box-shadow:var(--shadow);
+      overflow:hidden;
     }
 
     .footer-top{
@@ -647,7 +867,7 @@
       align-items:flex-start;
     }
 
-    .footer-brand{max-width:620px}
+    .footer-brand{max-width:620px;min-width:0}
 
     .footer-logo{
       display:flex;
@@ -677,6 +897,7 @@
       gap:16px;
       flex-wrap:wrap;
       padding-top:4px;
+      max-width:100%;
     }
 
     .footer-nav a{
@@ -700,6 +921,9 @@
     @media (max-width:1100px){
       .app-grid{grid-template-columns:1fr}
       .sidebar{position:static;top:auto}
+      .content-grid,
+      .steps-list,
+      .faq-grid{grid-template-columns:1fr}
     }
 
     @media (max-width:950px){
@@ -712,10 +936,11 @@
       .logo-center{top:18px}
 
       .dropdown-menu{
-        right:auto;
         left:50%;
+        right:auto;
         transform:translateX(-50%) translateY(8px);
-        width:min(92vw,340px);
+        width:min(90vw, 320px);
+        max-width:90vw;
       }
 
       .dropdown:hover .dropdown-menu,
@@ -733,6 +958,18 @@
       }
       .seo-box{
         grid-template-columns:1fr;
+      }
+
+      header,
+      .nav,
+      main,
+      .container,
+      .panel,
+      .workspace,
+      .sidebar,
+      .content-panel,
+      .footer-card{
+        max-width:100% !important;
       }
     }
 
@@ -754,6 +991,8 @@
       .workspace,.sidebar{padding:10px}
       .top-toolbar{flex-direction:column;align-items:stretch}
       .thumb-grid{grid-template-columns:1fr}
+      .content-panel{padding:22px 18px}
+      .content-panel h2{font-size:26px}
       .footer-card{padding:18px}
       .footer-top,.footer-bottom{flex-direction:column;align-items:flex-start}
     }
@@ -800,8 +1039,8 @@
       <div class="eyebrow">PDF • por páginas • online gratis</div>
       <h1>Girar PDF por páginas online gratis</h1>
       <p>
-        Gira PDF por páginas, rotar PDF gratis, girar PDF online y preparar archivos sin instalar programas.
-        Puedes rotar páginas individuales, girar todas a la vez y descargar el documento final en segundos.
+        Gira PDF por páginas, rota PDF gratis, cambia páginas de vertical a horizontal y aprende cómo girar un PDF
+        y guardarlo directamente desde tu navegador, sin instalar programas.
       </p>
     </div>
   </section>
@@ -814,12 +1053,12 @@
           <h2>Sube tu PDF para girarlo por páginas</h2>
           <p>
             Arrastra tu archivo aquí o selecciónalo desde tu dispositivo. Después podrás rotar PDF por páginas,
-            girar PDF online gratis, ordenar y girar PDF visualmente y descargar el archivo final.
+            girar PDF online gratis, rotar páginas de vertical a horizontal y descargar el archivo final.
           </p>
           <div class="upload-actions">
             <button type="button" class="btn btn-primary" id="selectPdfBtn">Seleccionar PDF</button>
           </div>
-          <div class="hint">Girar PDF por páginas • Rotar PDF gratis • Girar PDF online</div>
+          <div class="hint">Girar PDF por páginas • Rotar PDF gratis • Girar PDF online • Rotar páginas</div>
         </div>
       </div>
 
@@ -858,14 +1097,16 @@
       </div>
 
       <div class="side-card">
-        <h3>Búsquedas con potencial SEO</h3>
+        <h3>Búsquedas relacionadas</h3>
         <div class="seo-box">
           <div class="seo-pill">Girar PDF por páginas</div>
           <div class="seo-pill">Unir y girar PDF</div>
           <div class="seo-pill">Rotar PDF gratis</div>
-          <div class="seo-pill">Ordenar y girar PDF</div>
+          <div class="seo-pill">Rotar PDF de vertical a horizontal</div>
           <div class="seo-pill">Girar PDF online</div>
-          <div class="seo-pill">Girar PDF online gratis</div>
+          <div class="seo-pill">Cómo girar un PDF y guardarlo</div>
+          <div class="seo-pill">Girar PDF iLovePDF</div>
+          <div class="seo-pill">Rotar páginas</div>
         </div>
       </div>
 
@@ -875,6 +1116,7 @@
           <li>Rotar PDF por páginas individualmente.</li>
           <li>Girar una página a la izquierda o derecha.</li>
           <li>Rotar todo el PDF de una sola vez.</li>
+          <li>Pasar páginas de vertical a horizontal.</li>
           <li>Descargar el PDF final ya corregido.</li>
           <li>Usarlo todo desde tu navegador, sin instalar nada.</li>
         </ul>
@@ -887,9 +1129,132 @@
           <a href="/jpg-a-png"><span>JPG a PNG</span><span>→</span></a>
           <a href="/png-a-jpg"><span>PNG a JPG</span><span>→</span></a>
           <a href="/redimensionar-imagen"><span>Redimensionar imagen</span><span>→</span></a>
+          <a href="/girar-imagen"><span>Girar imagen</span><span>→</span></a>
         </div>
       </div>
     </aside>
+  </section>
+
+  <section class="content-section">
+    <div class="content-panel">
+      <h2>Cómo girar un PDF y guardarlo</h2>
+      <p>
+        Para <strong>girar un PDF y guardarlo</strong> con Ralyzo, solo debes subir tu archivo, revisar las miniaturas
+        de las páginas y elegir si quieres girar una página específica hacia la izquierda o hacia la derecha.
+        Cuando termines, presiona el botón de descarga para obtener el PDF corregido.
+      </p>
+      <p>
+        Esta herramienta es útil cuando recibes un documento escaneado con una o varias páginas torcidas,
+        horizontales, verticales o giradas en una orientación incorrecta. En vez de repetir el escaneo o instalar
+        un editor pesado, puedes corregir la orientación desde el navegador.
+      </p>
+
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <h3>Sube el PDF</h3>
+          <p>Selecciona tu documento desde el dispositivo o arrástralo al área de carga.</p>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <h3>Elige las páginas</h3>
+          <p>Revisa las miniaturas y localiza las páginas que necesitan rotación.</p>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <h3>Gira el contenido</h3>
+          <p>Usa los botones para rotar páginas a la izquierda o a la derecha.</p>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">4</div>
+          <h3>Descarga el PDF</h3>
+          <p>Guarda el archivo final con las páginas corregidas.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-panel">
+      <h2>Rotar PDF de vertical a horizontal</h2>
+      <p>
+        Si tu documento tiene páginas en posición vertical cuando deberían verse horizontales, puedes usar esta
+        herramienta para <strong>rotar PDF de vertical a horizontal</strong>. También funciona al revés: si una página
+        horizontal necesita quedar vertical, puedes girarla hasta dejarla correctamente orientada.
+      </p>
+      <p>
+        Este caso es muy común en documentos escaneados, formularios, cédulas, contratos, certificados, recibos,
+        reportes o archivos enviados desde aplicaciones móviles. La ventaja de girar el PDF por páginas es que no
+        tienes que modificar todo el documento si solo una hoja está mal orientada.
+      </p>
+
+      <div class="content-grid">
+        <div class="content-card">
+          <h3>Girar una sola página</h3>
+          <p>Ideal cuando únicamente una hoja del documento aparece de lado o invertida.</p>
+        </div>
+
+        <div class="content-card">
+          <h3>Girar todas las páginas</h3>
+          <p>Útil si todo el PDF fue escaneado con la orientación incorrecta.</p>
+        </div>
+
+        <div class="content-card">
+          <h3>Guardar el resultado</h3>
+          <p>Después de rotar, puedes descargar el PDF final con los cambios aplicados.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-panel">
+      <h2>Girar PDF online gratis desde el navegador</h2>
+      <p>
+        Ralyzo permite <strong>girar PDF online gratis</strong> sin instalar programas. La herramienta está pensada para
+        tareas rápidas: subir un PDF, revisar sus páginas, rotarlas y descargar el archivo corregido.
+      </p>
+      <p>
+        Si buscabas opciones como <strong>girar PDF por páginas</strong>, <strong>rotar PDF gratis</strong>,
+        <strong>rotar páginas</strong>, <strong>unir y girar PDF</strong> o una alternativa para girar PDF online,
+        esta página reúne una solución simple y directa para corregir la orientación de tus documentos.
+      </p>
+    </div>
+
+    <div class="content-panel">
+      <h2>Preguntas frecuentes sobre girar PDF</h2>
+
+      <div class="faq-grid">
+        <div class="content-card">
+          <h3>¿Puedo girar PDF por páginas?</h3>
+          <p>Sí. Puedes girar páginas individuales del PDF sin tener que rotar todo el documento.</p>
+        </div>
+
+        <div class="content-card">
+          <h3>¿Cómo girar un PDF y guardarlo?</h3>
+          <p>Sube el archivo, gira las páginas necesarias y luego usa el botón de descarga para guardar el PDF final.</p>
+        </div>
+
+        <div class="content-card">
+          <h3>¿Puedo rotar PDF gratis?</h3>
+          <p>Sí. La herramienta permite rotar PDF gratis directamente desde el navegador.</p>
+        </div>
+
+        <div class="content-card">
+          <h3>¿Sirve para rotar páginas escaneadas?</h3>
+          <p>Sí. Es útil para corregir páginas escaneadas que quedaron en orientación vertical, horizontal o invertida.</p>
+        </div>
+
+        <div class="content-card">
+          <h3>¿Puedo girar todas las páginas a la vez?</h3>
+          <p>Sí. La herramienta incluye botones para girar todas las páginas hacia la izquierda o derecha.</p>
+        </div>
+
+        <div class="content-card">
+          <h3>¿Necesito instalar algo?</h3>
+          <p>No. Puedes girar PDF online desde el navegador sin instalar aplicaciones adicionales.</p>
+        </div>
+      </div>
+    </div>
   </section>
 </main>
 
@@ -912,6 +1277,10 @@
         <a href="/#herramientas">Herramientas</a>
         <a href="/blog/">Blog</a>
         <a href="/#precios">Precios</a>
+        <a href="/sobre.html">Sobre nosotros</a>
+        <a href="/privacidad.html">Privacidad</a>
+        <a href="/terminos.html">Términos</a>
+        <a href="/cookies.html">Cookies</a>
       </div>
     </div>
 
