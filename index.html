@@ -4,19 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Ralyzo | Herramientas online para imágenes</title>
-  <meta name="description" content="Ralyzo ofrece herramientas online rápidas para comprimir, convertir, redimensionar, recortar, girar imágenes, extraer texto con OCR y adaptar imágenes para redes sociales directamente desde tu navegador." />
+  <title>Ralyzo | Herramientas online gratis para imágenes y PDF</title>
+  <meta name="description" content="Ralyzo ofrece herramientas online gratuitas para comprimir, convertir, redimensionar, recortar, girar imágenes, extraer texto con OCR, adaptar imágenes para redes sociales y girar PDF por páginas desde tu navegador." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://ralyzo.com/" />
 
-  <meta property="og:title" content="Ralyzo | Herramientas online para imágenes" />
-  <meta property="og:description" content="Comprime, convierte, extrae texto y optimiza imágenes online en segundos con Ralyzo." />
+  <meta property="og:title" content="Ralyzo | Herramientas online gratis para imágenes y PDF" />
+  <meta property="og:description" content="Comprime, convierte, extrae texto, adapta imágenes para redes sociales y gira PDF por páginas online en segundos con Ralyzo." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ralyzo.com/" />
   <meta property="og:site_name" content="Ralyzo" />
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337166112417872"
     crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Ralyzo",
+    "url": "https://ralyzo.com/",
+    "description": "Herramientas online gratuitas para imágenes y PDF.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Ralyzo"
+    }
+  }
+  </script>
 
   <script type="application/ld+json">
   {
@@ -28,15 +42,15 @@
         "name": "¿Las herramientas de Ralyzo son gratis?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Sí, todas las herramientas online como compresión, conversión, OCR y redimensionado de imágenes son gratuitas."
+          "text": "Sí, Ralyzo ofrece herramientas online gratuitas para comprimir, convertir, redimensionar, recortar, girar imágenes, extraer texto con OCR, adaptar imágenes para redes sociales y trabajar con PDF."
         }
       },
       {
         "@type": "Question",
-        "name": "¿Tengo que subir mis imágenes a un servidor?",
+        "name": "¿Tengo que instalar algún programa para usar Ralyzo?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Muchas funciones de Ralyzo trabajan directamente en el navegador para ofrecer más privacidad y rapidez."
+          "text": "No. Las herramientas de Ralyzo funcionan directamente desde el navegador, por lo que puedes usarlas desde celular, tablet o computadora sin instalar programas."
         }
       },
       {
@@ -53,6 +67,22 @@
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Ralyzo permite trabajar con formatos populares como JPG, PNG y WebP en la mayoría de sus herramientas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo girar PDF por páginas en Ralyzo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Ralyzo incluye una herramienta para girar PDF por páginas, rotar páginas individuales y descargar el documento corregido desde el navegador."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Ralyzo sirve para preparar imágenes para redes sociales?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Puedes adaptar imágenes al tamaño exacto para Instagram, TikTok, YouTube, Facebook, LinkedIn, Pinterest, X y WhatsApp."
         }
       }
     ]
@@ -233,9 +263,12 @@
     .dropdown-menu{
       position:absolute;
       top:calc(100% + 16px);
-      right:0;
-      min-width:320px;
-      max-width:min(92vw, 340px);
+      left:50%;
+      right:auto;
+      transform:translateX(-50%) translateY(8px);
+      width:min(92vw, 340px);
+      min-width:unset;
+      max-width:92vw;
       background:#0F172A;
       border:1px solid rgba(51,65,85,.95);
       border-radius:16px;
@@ -243,17 +276,18 @@
       box-shadow:0 16px 40px rgba(0,0,0,.35);
       opacity:0;
       visibility:hidden;
-      transform:translateY(8px);
       transition:opacity .2s ease, visibility .2s ease, transform .2s ease;
       pointer-events:none;
       z-index:1200;
+      overflow-wrap:break-word;
+      word-break:normal;
     }
 
     .dropdown:hover .dropdown-menu,
     .dropdown:focus-within .dropdown-menu{
       opacity:1;
       visibility:visible;
-      transform:translateY(0);
+      transform:translateX(-50%) translateY(0);
       pointer-events:auto;
     }
 
@@ -265,7 +299,8 @@
       line-height:1.5;
       transition:.2s ease;
       font-weight:500;
-      word-break:break-word;
+      word-break:normal;
+      overflow-wrap:break-word;
     }
 
     .dropdown-menu a:hover{
@@ -347,7 +382,7 @@
 
     .hero p{
       margin:0 auto 28px;
-      max-width:760px;
+      max-width:780px;
       font-size:22px;
       color:var(--muted-2);
       line-height:1.65;
@@ -425,7 +460,7 @@
 
     .section-subtitle{
       margin:0 auto 30px;
-      max-width:780px;
+      max-width:840px;
       text-align:center;
       color:var(--muted-2);
       line-height:1.8;
@@ -477,6 +512,91 @@
       font-size:15px;
       line-height:1.7;
       word-break:break-word;
+    }
+
+    .info-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:20px;
+      margin-top:24px;
+    }
+
+    .info-card{
+      background:#111827;
+      border:1px solid #1F2937;
+      border-radius:18px;
+      padding:24px;
+      min-width:0;
+    }
+
+    .info-card h3{
+      margin:0 0 12px;
+      font-size:22px;
+      line-height:1.3;
+    }
+
+    .info-card p{
+      margin:0;
+      color:#CBD5E1;
+      line-height:1.8;
+      font-size:16px;
+    }
+
+    .content-text{
+      color:#CBD5E1;
+      font-size:17px;
+      line-height:1.85;
+      max-width:940px;
+      margin:0 auto;
+    }
+
+    .content-text p{
+      margin:0 0 18px;
+    }
+
+    .content-text strong{
+      color:#F8FAFC;
+    }
+
+    .steps-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:16px;
+      margin-top:24px;
+    }
+
+    .step-card{
+      background:rgba(15,23,42,.82);
+      border:1px solid rgba(51,65,85,.8);
+      border-radius:18px;
+      padding:22px;
+      text-align:center;
+    }
+
+    .step-number{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      background:rgba(37,99,235,.18);
+      border:1px solid rgba(96,165,250,.22);
+      color:#BFDBFE;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+      margin-bottom:12px;
+    }
+
+    .step-card h3{
+      margin:0 0 8px;
+      font-size:19px;
+    }
+
+    .step-card p{
+      margin:0;
+      color:#94A3B8;
+      line-height:1.7;
+      font-size:15px;
     }
 
     .pricing-grid{
@@ -759,7 +879,9 @@
 
       .tools-grid,
       .blog-grid,
-      .pricing-grid{
+      .pricing-grid,
+      .info-grid,
+      .steps-grid{
         grid-template-columns:1fr;
       }
 
@@ -774,10 +896,11 @@
       }
 
       .dropdown-menu{
-        right:auto;
         left:50%;
+        right:auto;
         transform:translateX(-50%) translateY(8px);
-        width:min(92vw,340px);
+        width:min(90vw, 320px);
+        max-width:90vw;
       }
 
       .dropdown:hover .dropdown-menu,
@@ -802,6 +925,8 @@
       .tools-grid,
       .pricing-grid,
       .blog-grid,
+      .info-grid,
+      .steps-grid,
       .footer-card{
         width:100% !important;
         max-width:100% !important;
@@ -900,7 +1025,7 @@
       <a href="#herramientas">Herramientas</a>
       <a href="#precios">Precios</a>
 
-       <div class="js-blog-dropdown"></div>
+      <div class="js-blog-dropdown"></div>
     </div>
   </nav>
 </header>
@@ -908,15 +1033,38 @@
 <main class="page">
   <section class="hero">
     <div class="hero-inner">
-      <div class="hero-badge">Herramientas online para imágenes</div>
-      <h1>Comprime, convierte y optimiza imágenes en segundos</h1>
+      <div class="hero-badge">Herramientas online para imágenes y PDF</div>
+      <h1>Comprime, convierte y optimiza archivos en segundos</h1>
       <p>
-        Usa herramientas online rápidas para comprimir, convertir, redimensionar, recortar, girar imágenes,
-        extraer texto y adaptar imágenes para redes sociales directamente desde tu navegador.
+        Usa Ralyzo para comprimir imágenes, convertir formatos, redimensionar fotos, recortar, girar imágenes,
+        extraer texto con OCR, preparar contenido para redes sociales y girar PDF por páginas desde tu navegador.
       </p>
       <div class="hero-actions">
         <a class="hero-cta" href="#herramientas">Ver herramientas</a>
         <a class="hero-secondary" href="/blog/">Ir al blog</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-panel">
+      <h2 class="section-title">Qué es Ralyzo</h2>
+      <p class="section-subtitle">
+        Ralyzo es una plataforma de herramientas online pensada para resolver tareas rápidas con imágenes y documentos
+        sin instalar programas. Su objetivo es ayudarte a preparar archivos para páginas web, redes sociales,
+        trabajos, formularios, documentos y publicaciones digitales de forma sencilla.
+      </p>
+
+      <div class="content-text">
+        <p>
+          Muchas veces una imagen pesa demasiado, está en el formato incorrecto, no tiene el tamaño adecuado o necesita
+          un pequeño ajuste antes de compartirse. En lugar de descargar programas pesados, Ralyzo reúne herramientas
+          prácticas para hacer esos cambios directamente desde el navegador.
+        </p>
+        <p>
+          También estamos incorporando herramientas para documentos PDF, como la opción de <strong>girar PDF por páginas</strong>,
+          útil cuando un archivo tiene hojas escaneadas en orientación incorrecta o páginas que necesitan rotarse antes de enviarse.
+        </p>
       </div>
     </div>
   </section>
@@ -926,7 +1074,7 @@
       <h2 class="section-title">Herramientas disponibles</h2>
       <p class="section-subtitle">
         Usa nuestras herramientas para comprimir, convertir, redimensionar, recortar, girar imágenes,
-        extraer texto con OCR y adaptar contenido al tamaño exacto para redes sociales.
+        extraer texto con OCR, adaptar contenido al tamaño exacto para redes sociales y corregir páginas de PDF.
       </p>
 
       <div class="tools-grid">
@@ -969,6 +1117,83 @@
           <h3>Imagen a texto</h3>
           <p>Extrae texto de imágenes y documentos con OCR online gratis.</p>
         </a>
+
+        <a class="tool-card" href="/girar-pdf">
+          <h3>Girar PDF</h3>
+          <p>Rota páginas individuales de un PDF online gratis y descarga el documento corregido.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-panel">
+      <h2 class="section-title">Por qué usar herramientas online</h2>
+      <p class="section-subtitle">
+        Las herramientas online son útiles cuando necesitas hacer cambios rápidos sin depender de programas pesados,
+        instalaciones o procesos complicados.
+      </p>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Rápido y práctico</h3>
+          <p>
+            Puedes realizar tareas comunes como comprimir, convertir, recortar o redimensionar archivos en pocos pasos.
+            Esto es útil para estudiantes, creadores de contenido, administradores de páginas web y usuarios que necesitan
+            preparar archivos de forma puntual.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h3>Diseñado para el navegador</h3>
+          <p>
+            Ralyzo está pensado para funcionar desde el navegador, tanto en computadoras como en dispositivos móviles.
+            Esto permite usar las herramientas sin instalar aplicaciones adicionales.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h3>Contenido listo para usar</h3>
+          <p>
+            Las herramientas ayudan a preparar imágenes para sitios web, redes sociales, correos, documentos y publicaciones.
+            También puedes corregir PDFs que tengan páginas giradas o mal orientadas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-panel">
+      <h2 class="section-title">Cómo usar Ralyzo</h2>
+      <p class="section-subtitle">
+        El proceso está diseñado para que cualquier usuario pueda trabajar con sus archivos sin conocimientos técnicos.
+      </p>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Elige una herramienta</h3>
+          <p>Selecciona si quieres comprimir, convertir, redimensionar, extraer texto, adaptar para redes o girar PDF.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Sube tu archivo</h3>
+          <p>Arrastra el archivo o selecciónalo desde tu dispositivo. Cada herramienta indica qué formatos acepta.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Ajusta el resultado</h3>
+          <p>Configura tamaño, formato, giro, recorte, calidad o encuadre según la herramienta que estés usando.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h3>Descarga el archivo</h3>
+          <p>Cuando el resultado esté listo, descárgalo directamente desde el navegador para usarlo donde necesites.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1014,7 +1239,7 @@
       <h2 class="section-title">Blog</h2>
       <p class="section-subtitle">
         Consejos útiles para optimizar imágenes y sacar el máximo provecho a tus archivos
-        antes de subirlos a una web, tienda o red social.
+        antes de subirlos a una web, tienda, documento o red social.
       </p>
 
       <div class="blog-grid">
@@ -1039,6 +1264,20 @@
           <span class="blog-read">Leer artículo →</span>
         </a>
 
+        <a class="blog-card" href="/blog/formatos-imagen.html">
+          <span class="blog-tag">Guía</span>
+          <h3>Formatos de imagen: guía rápida</h3>
+          <p>Conoce los formatos más usados y aprende cuándo conviene usar JPG, PNG, WebP o SVG.</p>
+          <span class="blog-read">Leer artículo →</span>
+        </a>
+
+        <a class="blog-card" href="/blog/errores-optimizar-imagenes.html">
+          <span class="blog-tag">Optimización</span>
+          <h3>Errores comunes al optimizar imágenes</h3>
+          <p>Evita fallos que pueden afectar la velocidad, la calidad visual y la experiencia del usuario.</p>
+          <span class="blog-read">Leer artículo →</span>
+        </a>
+
         <a class="blog-card blog-card-more" href="/blog/index.html">
           <span class="blog-tag">Más contenido</span>
           <h3>Explora más artículos del blog</h3>
@@ -1054,26 +1293,47 @@
 
   <section class="section">
     <div class="section-panel">
+      <h2 class="section-title">Consejos para preparar mejor tus archivos</h2>
+      <div class="content-text">
+        <p>
+          Antes de subir una imagen a una página web, red social o documento, conviene revisar su tamaño, peso y formato.
+          Una imagen demasiado pesada puede tardar más en cargar, mientras que una imagen mal dimensionada puede verse
+          borrosa o ocupar más espacio del necesario.
+        </p>
+        <p>
+          Para fotografías suele ser útil trabajar con JPG o WebP. Para imágenes con transparencia, PNG puede ser más adecuado.
+          Si necesitas publicar en redes sociales, es importante adaptar el archivo al tamaño recomendado por cada plataforma.
+        </p>
+        <p>
+          En documentos PDF, una de las tareas más comunes es corregir páginas escaneadas en orientación incorrecta.
+          Por eso la herramienta de girar PDF por páginas permite rotar páginas individuales sin modificar el contenido del resto del documento.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-panel">
       <h2 class="section-title">Preguntas frecuentes</h2>
       <p class="section-subtitle">
         Respuestas rápidas sobre nuestras herramientas online para imágenes, conversión, compresión,
-        redimensionado, OCR y optimización web.
+        redimensionado, OCR, PDF y optimización web.
       </p>
 
       <div class="blog-grid">
         <div class="blog-card">
           <h3>¿Las herramientas de Ralyzo son gratis?</h3>
-          <p>Sí, todas las herramientas online como compresión, conversión, OCR y redimensionado de imágenes son gratuitas.</p>
+          <p>Sí, las herramientas online como compresión, conversión, OCR, redimensionado de imágenes y giro de PDF se pueden usar gratis.</p>
         </div>
 
         <div class="blog-card">
-          <h3>¿Tengo que subir mis imágenes a un servidor?</h3>
-          <p>Muchas funciones de Ralyzo trabajan directamente en tu navegador para ofrecer más privacidad y rapidez.</p>
+          <h3>¿Tengo que instalar algún programa?</h3>
+          <p>No. Ralyzo funciona desde el navegador, por lo que puedes usarlo desde celular, tablet o computadora sin instalar aplicaciones.</p>
         </div>
 
         <div class="blog-card">
           <h3>¿Pierdo calidad al comprimir imágenes?</h3>
-          <p>Depende del nivel de compresión, pero las herramientas están optimizadas para mantener la mejor calidad visual posible.</p>
+          <p>Depende del nivel de compresión, pero las herramientas están pensadas para mantener una buena calidad visual.</p>
         </div>
 
         <div class="blog-card">
@@ -1087,8 +1347,23 @@
         </div>
 
         <div class="blog-card">
+          <h3>¿Puedo girar PDF por páginas?</h3>
+          <p>Sí, puedes subir un PDF, rotar páginas individuales y descargar el documento corregido directamente desde el navegador.</p>
+        </div>
+
+        <div class="blog-card">
           <h3>¿Ralyzo sirve para redes sociales?</h3>
           <p>Sí, puedes adaptar imágenes al tamaño exacto para Instagram, TikTok, YouTube, Facebook, LinkedIn, Pinterest, X y otras plataformas.</p>
+        </div>
+
+        <div class="blog-card">
+          <h3>¿Qué herramienta debo usar si una imagen pesa mucho?</h3>
+          <p>En ese caso puedes usar la herramienta de comprimir imagen para reducir el tamaño del archivo antes de compartirlo o subirlo a una web.</p>
+        </div>
+
+        <div class="blog-card">
+          <h3>¿Qué hago si una imagen está en el formato incorrecto?</h3>
+          <p>Puedes usar las herramientas de conversión, como PNG a JPG o JPG a PNG, según el formato que necesites.</p>
         </div>
       </div>
     </div>
@@ -1104,26 +1379,26 @@
           <span>RALYZO</span>
         </div>
         <p>
-          Herramientas online gratuitas para comprimir, convertir y optimizar imágenes de forma rápida,
-          segura y directamente desde tu navegador.
+          Herramientas online gratuitas para comprimir, convertir, redimensionar, recortar, girar imágenes,
+          extraer texto con OCR, adaptar imágenes para redes sociales y trabajar con archivos PDF desde tu navegador.
         </p>
       </div>
 
-     <div class="footer-nav">
-       <a href="/">Inicio</a>
-       <a href="#herramientas">Herramientas</a>
-       <a href="/blog/">Blog</a>
-       <a href="#precios">Precios</a>
-       <a href="/sobre.html">Sobre nosotros</a>
-       <a href="/privacidad.html">Privacidad</a>
-       <a href="/terminos.html">Términos</a>
-       <a href="/cookies.html">Cookies</a>
-    </div>
+      <div class="footer-nav">
+        <a href="/">Inicio</a>
+        <a href="#herramientas">Herramientas</a>
+        <a href="/blog/">Blog</a>
+        <a href="#precios">Precios</a>
+        <a href="/sobre.html">Sobre nosotros</a>
+        <a href="/privacidad.html">Privacidad</a>
+        <a href="/terminos.html">Términos</a>
+        <a href="/cookies.html">Cookies</a>
+      </div>
     </div>
 
     <div class="footer-bottom">
       <div>© 2026 Ralyzo. Todos los derechos reservados.</div>
-      <div>Herramientas de imágenes online seguras. Política de privacidad. Uso de cookies. Términos claros.</div>
+      <div>Herramientas de imágenes y PDF online. Uso de cookies. Política de privacidad. Términos claros.</div>
     </div>
   </div>
 </footer>
