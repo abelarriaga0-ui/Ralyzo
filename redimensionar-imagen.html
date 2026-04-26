@@ -1,112 +1,860 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redimensionar Imagen Online Gratis | Ralyzo</title>
-  <meta name="description" content="Redimensiona imágenes online gratis con Ralyzo. Cambia el ancho y alto de tus fotos de forma rápida, segura y sin subir archivos.">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Redimensionar Imagen Online Gratis | Cambiar tamaño JPG y PNG | Ralyzo</title>
+  <meta name="description" content="Redimensionar imagen online gratis con Ralyzo. Cambia el tamaño de imágenes JPG, PNG o WebP por píxeles o centímetros, sin perder calidad y desde tu navegador." />
+  <meta name="keywords" content="redimensionar imagen, redimensionar imagen online, redimensionar imagen gratis, redimensionar imagen a cm, redimensionar imagen online cm, redimensionar imagen sin perder calidad, redimensionar imagen PNG, redimensionar imagen para Instagram, redimensionar imagen AI, cambiar tamaño imagen, ajustar tamaño imagen" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://ralyzo.com/redimensionar-imagen" />
+
+  <meta property="og:title" content="Redimensionar Imagen Online Gratis | Ralyzo" />
+  <meta property="og:description" content="Cambia el ancho y alto de tus imágenes online gratis por píxeles o centímetros, rápido y sin instalar programas." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ralyzo.com/redimensionar-imagen" />
+  <meta property="og:site_name" content="Ralyzo" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Redimensionar Imagen Online Gratis | Ralyzo" />
+  <meta name="twitter:description" content="Redimensiona imágenes JPG, PNG o WebP online gratis desde tu navegador." />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337166112417872"
+    crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"Redimensionar Imagen Online",
+    "applicationCategory":"UtilitiesApplication",
+    "operatingSystem":"Web",
+    "url":"https://ralyzo.com/redimensionar-imagen",
+    "description":"Herramienta online gratis para redimensionar imágenes JPG, PNG y WebP por píxeles o centímetros desde el navegador.",
+    "offers":{
+      "@type":"Offer",
+      "price":"0",
+      "priceCurrency":"USD"
+    },
+    "publisher":{
+      "@type":"Organization",
+      "name":"Ralyzo"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"¿Cómo redimensionar una imagen online gratis?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Sube una imagen, escribe el nuevo ancho y alto, elige si quieres trabajar en píxeles o centímetros y descarga la imagen redimensionada."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"¿Puedo redimensionar una imagen a centímetros?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Sí. Puedes elegir centímetros como unidad y definir una resolución en DPI para convertir esas medidas a píxeles."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"¿Puedo redimensionar imagen PNG?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Sí. Puedes subir imágenes PNG, JPG o WebP y cambiar sus dimensiones desde el navegador."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"¿Redimensionar una imagen reduce su calidad?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Al reducir una imagen normalmente se mantiene buena calidad visual. Al aumentar demasiado una imagen, puede perder nitidez porque se están creando píxeles nuevos."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"¿Puedo redimensionar una imagen para Instagram?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Sí. Puedes cambiar el tamaño de una imagen para adaptarla a publicaciones, historias o formatos de redes sociales."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <style>
+    :root{
+      --bg:#020B1F;
+      --bg-2:#06112A;
+      --panel:#0F172A;
+      --panel-2:#111827;
+      --panel-3:#0B1325;
+      --text:#F8FAFC;
+      --muted:#CBD5E1;
+      --muted-2:#94A3B8;
+      --line:rgba(148,163,184,.14);
+      --primary:#2563EB;
+      --primary-hover:#1D4ED8;
+      --success:#16A34A;
+      --danger:#EF4444;
+      --shadow:0 16px 40px rgba(0,0,0,.28);
+      --container:1200px;
+    }
+
+    *{box-sizing:border-box}
+
+    html{
+      scroll-behavior:smooth;
+      width:100%;
+      max-width:100%;
+      overflow-x:hidden;
+    }
+
+    body{
+      margin:0;
+      font-family:'Inter',sans-serif;
+      background:linear-gradient(180deg,#020B1F 0%, #06112A 100%);
+      color:var(--text);
+      width:100%;
+      max-width:100%;
+      overflow-x:hidden;
+    }
+
+    a{text-decoration:none;color:inherit}
+    button,input,select{font:inherit}
+
+    .container{
+      width:min(var(--container), calc(100% - 40px));
+      max-width:100%;
+      margin:0 auto;
+    }
+
     header{
       position:sticky;
       top:0;
       z-index:1000;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:20px 40px;
-      border-bottom:1px solid #1F2937;
-      background:rgba(11,18,32,.88);
+      background:rgba(2,11,31,.9);
       backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+      max-width:100%;
+      overflow:visible;
     }
 
-    .header-inner{
-      width:100%;
+    .nav{
       max-width:1200px;
+      width:100%;
+      margin:0 auto;
+      min-height:78px;
+      position:relative;
       display:flex;
-      justify-content:center;
       align-items:center;
+      justify-content:center;
+      padding:0 24px;
       gap:18px;
       flex-wrap:wrap;
+      overflow:visible;
     }
 
     .logo{
-      text-align:center;
-      font-weight:700;
       font-size:20px;
-      line-height:1;
-    }
-
-    .logo a{
+      font-weight:800;
+      letter-spacing:.04em;
+      white-space:nowrap;
       color:#F8FAFC;
-      text-decoration:none;
     }
 
-    .header-tool-select{
-      width:260px;
-      padding:14px 18px;
-      border-radius:14px;
+    .tool-select{
+      min-width:240px;
+      max-width:100%;
+      padding:12px 14px;
+      border-radius:12px;
       border:1px solid #334155;
       background:#0F172A;
       color:#F8FAFC;
-      font-size:14px;
-      font-family:Inter,sans-serif;
       outline:none;
       cursor:pointer;
     }
 
-    .header-tool-select:focus{
+    .tool-select:focus{
       border-color:#2563EB;
     }
 
-    .tools-section{
+    main{
+      padding:28px 0 34px;
+      min-height:calc(100vh - 78px);
+      max-width:100%;
+      overflow:hidden;
+    }
+
+    .hero{
+      text-align:center;
+      margin-bottom:22px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.18);
+      background:rgba(255,255,255,.03);
+      color:#BFDBFE;
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      margin-bottom:16px;
+      max-width:100%;
       text-align:center;
     }
 
-    .tools-section h3{
-      margin:0 0 20px;
-      font-size:18px;
-      color:#F8FAFC;
+    h1{
+      margin:0 0 14px;
+      font-size:46px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+      word-break:break-word;
     }
 
-    .tool-links{
+    .hero p{
+      margin:0 auto;
+      max-width:900px;
+      color:var(--muted-2);
+      font-size:18px;
+      line-height:1.75;
+    }
+
+    .app-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 320px;
+      gap:18px;
+      align-items:start;
+      margin-top:24px;
+      max-width:100%;
+    }
+
+    .panel{
+      background:rgba(15,23,42,.52);
+      border:1px solid rgba(51,65,85,.76);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      min-width:0;
+    }
+
+    .workspace{
+      padding:18px;
       display:flex;
-      flex-wrap:wrap;
-      gap:12px;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .sidebar{
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      position:sticky;
+      top:96px;
+      min-width:0;
+    }
+
+    .upload-zone{
+      width:100%;
+      border:2px dashed rgba(96,165,250,.35);
+      border-radius:22px;
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      min-height:260px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:28px;
+      transition:.2s ease;
+      cursor:pointer;
+    }
+
+    .upload-zone:hover,
+    .upload-zone.dragover{
+      border-color:#60A5FA;
+      background:rgba(37,99,235,.08);
+    }
+
+    .upload-inner{
+      width:100%;
+      max-width:760px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
       justify-content:center;
     }
 
-    .tool-links a{
-      padding:10px 16px;
-      border-radius:10px;
-      background:#0F172A;
-      border:1px solid #334155;
-      color:#CBD5E1;
-      text-decoration:none;
+    .upload-icon{
+      width:74px;
+      height:74px;
+      border-radius:20px;
+      background:rgba(37,99,235,.14);
+      border:1px solid rgba(96,165,250,.2);
+      display:grid;
+      place-items:center;
+      font-size:32px;
+      margin-bottom:18px;
+    }
+
+    .upload-inner h2{
+      margin:0 0 10px;
+      font-size:30px;
+      line-height:1.18;
+      color:#F8FAFC;
+      word-break:break-word;
+    }
+
+    .upload-inner p{
+      margin:0 0 18px;
+      color:var(--muted-2);
+      line-height:1.75;
+      font-size:16px;
+      max-width:760px;
+    }
+
+    .upload-actions{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:4px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:48px;
+      padding:12px 18px;
+      border:none;
+      border-radius:14px;
+      font-weight:700;
+      cursor:pointer;
+      transition:.2s ease;
+      text-align:center;
+    }
+
+    .btn-primary{
+      background:var(--primary);
+      color:#fff;
+    }
+
+    .btn-primary:hover{
+      background:var(--primary-hover);
+      transform:translateY(-1px);
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(148,163,184,.18);
+      color:#E2E8F0;
+    }
+
+    .btn-secondary:hover{
+      background:rgba(255,255,255,.05);
+      transform:translateY(-1px);
+    }
+
+    .btn-success{
+      background:var(--success);
+      color:#fff;
+    }
+
+    .btn-success:hover{
+      filter:brightness(1.03);
+      transform:translateY(-1px);
+    }
+
+    .btn-danger{
+      background:rgba(239,68,68,.12);
+      color:#FCA5A5;
+      border:1px solid rgba(239,68,68,.18);
+    }
+
+    .btn-danger:hover{
+      background:rgba(239,68,68,.18);
+      transform:translateY(-1px);
+    }
+
+    .hidden{display:none !important}
+
+    .controls-card,
+    .info-card,
+    .side-card,
+    .article-panel{
+      background:#111827;
+      border:1px solid #1F2937;
+      border-radius:18px;
+    }
+
+    .controls-card{
+      padding:16px;
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+      align-items:end;
+    }
+
+    .field label{
+      display:block;
       font-size:14px;
+      color:#CBD5E1;
+      margin-bottom:8px;
+      text-align:left;
+      font-weight:700;
+    }
+
+    .field input,
+    .field select{
+      width:100%;
+      min-height:46px;
+      padding:12px 14px;
+      border-radius:12px;
+      border:1px solid #334155;
+      background:#0F172A;
+      color:#F8FAFC;
+      outline:none;
+    }
+
+    .field input:focus,
+    .field select:focus{
+      border-color:#2563EB;
+    }
+
+    .check-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:#CBD5E1;
+      font-size:14px;
+      font-weight:700;
+      min-height:46px;
+    }
+
+    .check-row input{
+      width:18px;
+      height:18px;
+      accent-color:#2563EB;
+    }
+
+    .actions-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      grid-column:1 / -1;
+    }
+
+    .status{
+      min-height:22px;
+      color:#93C5FD;
+      font-size:14px;
+      font-weight:600;
+      padding:0 4px;
+      line-height:1.5;
+    }
+
+    .result-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .result-box{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(148,163,184,.12);
+      border-radius:18px;
+      padding:16px;
+      min-width:0;
+    }
+
+    .result-box h3{
+      margin:0 0 14px;
+      font-size:18px;
+    }
+
+    .preview-wrap{
+      background:#091122;
+      border:1px solid rgba(51,65,85,.8);
+      border-radius:14px;
+      min-height:280px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      padding:14px;
+    }
+
+    .preview-wrap img{
+      display:block;
+      max-width:100%;
+      max-height:420px;
+      border-radius:10px;
+      background:#fff;
+      box-shadow:0 8px 20px rgba(0,0,0,.26);
+    }
+
+    .meta{
+      margin-top:12px;
+      color:#94A3B8;
+      font-size:14px;
+      line-height:1.8;
+      text-align:left;
+    }
+
+    .download-wrap{
+      margin-top:14px;
+      display:flex;
+      justify-content:flex-start;
+    }
+
+    .content-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .info-card{
+      padding:18px;
+      text-align:left;
+      min-width:0;
+    }
+
+    .info-card h3{
+      margin:0 0 12px;
+      font-size:18px;
+      line-height:1.3;
+    }
+
+    .info-card p,
+    .info-card li{
+      color:#CBD5E1;
+      line-height:1.75;
+      font-size:15px;
+      margin:0;
+    }
+
+    .info-card ul{
+      margin:0;
+      padding-left:18px;
+    }
+
+    .info-card li + li{
+      margin-top:6px;
+    }
+
+    .info-card.full{
+      grid-column:1 / -1;
+    }
+
+    .side-card{
+      padding:14px;
+      min-width:0;
+    }
+
+    .side-card h3{
+      margin:0 0 12px;
+      font-size:17px;
+      line-height:1.2;
+      text-align:left;
+    }
+
+    .seo-box{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+    }
+
+    .seo-pill{
+      padding:12px 14px;
+      border-radius:14px;
+      background:#F3F4F6;
+      color:#111827;
+      font-weight:700;
+      line-height:1.35;
+      font-size:14px;
+    }
+
+    .tips{
+      margin:0;
+      padding-left:18px;
+      color:#CBD5E1;
+      line-height:1.75;
+      font-size:14px;
+      text-align:left;
+    }
+
+    .tips li{margin-bottom:5px}
+
+    .tool-links{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .tool-links a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:rgba(255,255,255,.035);
+      border:1px solid transparent;
+      color:var(--muted);
+      font-weight:600;
       transition:.2s ease;
     }
 
     .tool-links a:hover{
-      border-color:#2563EB;
+      color:var(--text);
+      border-color:rgba(148,163,184,.14);
+      background:rgba(255,255,255,.05);
+    }
+
+    .article-panel{
+      padding:24px;
+      margin-top:18px;
+      text-align:left;
+    }
+
+    .article-panel h2{
+      margin:0 0 12px;
+      font-size:28px;
+      line-height:1.2;
+      letter-spacing:-.02em;
+    }
+
+    .article-panel h3{
+      margin:22px 0 10px;
+      font-size:20px;
+      line-height:1.3;
+    }
+
+    .article-panel p,
+    .article-panel li{
+      color:#CBD5E1;
+      line-height:1.85;
+      font-size:16px;
+    }
+
+    .article-panel ul{
+      padding-left:20px;
+      margin:0;
+    }
+
+    footer{
+      margin-top:18px;
+      padding:0 24px 24px;
+      max-width:100%;
+      overflow:hidden;
+    }
+
+    .footer-card{
+      max-width:1200px;
+      margin:0 auto;
+      background:rgba(15,23,42,.46);
+      border:1px solid rgba(51,65,85,.75);
+      border-radius:24px;
+      padding:18px 22px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .footer-top{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+      align-items:flex-start;
+    }
+
+    .footer-brand{
+      max-width:620px;
+      min-width:0;
+    }
+
+    .footer-logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-size:20px;
+      font-weight:800;
+      letter-spacing:.04em;
+      margin-bottom:8px;
       color:#F8FAFC;
-      background:#111c34;
+    }
+
+    .footer-brand p{
+      margin:0;
+      color:#CBD5E1;
+      line-height:1.7;
+      font-size:15px;
+    }
+
+    .footer-nav{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      padding-top:4px;
+      max-width:100%;
+    }
+
+    .footer-nav a{
+      color:#E2E8F0;
+      font-weight:700;
+    }
+
+    .footer-nav a:hover{
+      color:#ffffff;
+    }
+
+    .footer-bottom{
+      border-top:1px solid rgba(148,163,184,.14);
+      padding-top:14px;
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      color:#94A3B8;
+      font-size:13px;
+    }
+
+    .drop-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.75);
+      backdrop-filter:blur(3px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      padding:20px;
+    }
+
+    .drop-overlay.active{
+      display:flex;
+    }
+
+    .drop-overlay-content{
+      text-align:center;
+      color:#fff;
+      animation:fadeIn .2s ease;
+      padding:20px;
+    }
+
+    .drop-overlay-content p{
+      font-size:42px;
+      font-weight:700;
+      margin:0 0 10px;
+    }
+
+    .drop-overlay-content span{
+      font-size:16px;
+      color:#CBD5E1;
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0;transform:scale(.96)}
+      to{opacity:1;transform:scale(1)}
+    }
+
+    @media (max-width:1100px){
+      .app-grid{
+        grid-template-columns:1fr;
+      }
+
+      .sidebar{
+        position:static;
+        top:auto;
+      }
+    }
+
+    @media (max-width:900px){
+      .result-grid,
+      .content-grid,
+      .controls-card{
+        grid-template-columns:1fr;
+      }
+
+      .actions-row{
+        grid-column:auto;
+      }
+
+      h1{
+        font-size:38px;
+      }
+
+      .hero p{
+        font-size:17px;
+      }
     }
 
     @media (max-width:640px){
-      header{
-        padding:16px 20px;
+      .container{
+        width:min(var(--container), calc(100% - 20px));
       }
 
-      .header-inner{
-        gap:12px;
+      .nav{
+        padding:14px 16px;
       }
 
-      .header-tool-select{
-        width:230px;
-        padding:12px 14px;
+      .tool-select{
+        width:100%;
+        min-width:0;
+      }
+
+      main{
+        padding-top:18px;
+      }
+
+      .workspace,
+      .sidebar{
+        padding:10px;
+      }
+
+      .upload-zone{
+        min-height:auto;
+        padding:22px 16px;
+      }
+
+      .upload-inner h2{
+        font-size:26px;
+      }
+
+      .drop-overlay-content p{
+        font-size:30px;
+      }
+
+      .footer-card{
+        padding:18px;
+      }
+
+      .footer-top,
+      .footer-bottom{
+        flex-direction:column;
+        align-items:flex-start;
       }
     }
   </style>
@@ -114,114 +862,274 @@
 <body>
 
 <header>
-  <div class="header-inner">
+  <nav class="nav">
     <div class="logo"><a href="/">◢ RALYZO</a></div>
 
-    <select class="header-tool-select" id="headerToolSelect">
+    <select class="tool-select" id="headerToolSelect" aria-label="Ir a otra herramienta">
       <option value="">Ir a otra herramienta</option>
-      <option value="/comprimir-imagen">Comprimir</option>
+      <option value="/comprimir-imagen">Comprimir imagen</option>
       <option value="/png-a-jpg">PNG a JPG</option>
       <option value="/jpg-a-png">JPG a PNG</option>
-      <option value="/recortar-imagen">Recortar</option>
-      <option value="/girar-imagen">Girar</option>
+      <option value="/recortar-imagen">Recortar imagen</option>
+      <option value="/girar-imagen">Girar imagen</option>
+      <option value="/redimensionar-redes-sociales">Redimensionar para redes</option>
+      <option value="/girar-pdf">Girar PDF</option>
     </select>
-  </div>
+  </nav>
 </header>
 
-<main class="page">
-
-  <h1>Redimensionar imagen</h1>
-  <p class="subtitle">Cambia el tamaño de tus imágenes fácilmente.</p>
-
-  <section class="card">
-    <div class="upload">
-      <p>Selecciona una imagen</p>
-      <input type="file" id="imageInput" accept="image/png, image/jpeg, image/jpg">
-    </div>
-
-    <div class="controls">
-      <div>
-        <label for="widthInput">Ancho</label>
-        <input type="number" id="widthInput" placeholder="Ej. 800">
-      </div>
-
-      <div>
-        <label for="heightInput">Alto</label>
-        <input type="number" id="heightInput" placeholder="Ej. 600">
-      </div>
-
-      <button id="runBtn">Redimensionar imagen</button>
-    </div>
-
-    <p id="status" class="status"></p>
-  </section>
-
-  <!-- SE ELIMINÓ BLOQUE DE PUBLICIDAD -->
-
-  <section id="resultSection" class="preview-wrap" style="display:none;">
-    <div class="preview-box">
-      <h3>Original</h3>
-      <img id="originalPreview" alt="Vista previa de la imagen original">
-      <div id="originalMeta" class="meta"></div>
-    </div>
-
-    <div class="preview-box">
-      <h3>Redimensionada</h3>
-      <img id="resultPreview" alt="Vista previa de la imagen redimensionada">
-      <div id="resultMeta" class="meta"></div>
-      <a id="downloadLink" class="download">Descargar</a>
-    </div>
-  </section>
-
-  <section class="card seo-section">
-    <h2>Redimensionar imagen Online sin perder calidad online gratis</h2>
+<main class="container">
+  <section class="hero">
+    <div class="eyebrow">Redimensionar imagen • online gratis • píxeles y cm</div>
+    <h1>Redimensionar Imagen Online Gratis</h1>
     <p>
-      Redimensionar imagen gratis sin perder calidad online de forma rápida. 
-      Cambia el tamaño de tus fotos ajustando ancho y alto para adaptarlas 
-      a páginas web, redes sociales o cualquier plataforma.
-    </p>
-
-    <h3>¿Cómo redimensionar una imagen?</h3>
-    <ul>
-      <li>Selecciona una imagen desde tu dispositivo</li>
-      <li>Ingresa el nuevo ancho y alto que necesitas</li>
-      <li>Haz clic en redimensionar y descarga el resultado</li>
-    </ul>
-
-    <h3>¿Para qué sirve redimensionar una imagen?</h3>
-    <ul>
-      <li>Ajustar fotos para páginas web o blogs</li>
-      <li>Preparar imágenes para redes sociales</li>
-      <li>Reducir dimensiones para cumplir requisitos de formularios o plataformas</li>
-      <li>Redimencionar imagen pixeles</li>
-      <li>Redimencionar imagen png</li>
-    </ul>
-
-    <h3>Rápido, seguro y privado</h3>
-    <p>
-      Todo el proceso se realiza en tu navegador usando JavaScript y Canvas API.
-      Tus imágenes no salen de tu dispositivo.
+      Cambia el tamaño de tus imágenes JPG, PNG o WebP de forma rápida. Puedes redimensionar imagen online por píxeles,
+      usar medidas en centímetros, mantener proporción y descargar el resultado desde tu navegador.
     </p>
   </section>
 
-  <section class="card tools-section">
-    <h3>Otras herramientas</h3>
-    <div class="tool-links">
-      <a href="/comprimir-imagen">Comprimir</a>
-      <a href="/png-a-jpg">PNG a JPG</a>
-      <a href="/jpg-a-png">JPG a PNG</a>
-      <a href="/recortar-imagen">Recortar</a>
-      <a href="/girar-imagen">Girar</a>
+  <section class="app-grid">
+    <div class="panel workspace">
+      <div class="upload-zone" id="uploadZone" role="button" tabindex="0">
+        <div class="upload-inner">
+          <div class="upload-icon">📐</div>
+          <h2>Sube una imagen para redimensionarla</h2>
+          <p>
+            Arrastra tu imagen aquí, selecciónala desde tu dispositivo o pégala con Ctrl + V.
+            Después define el nuevo ancho y alto en píxeles o centímetros.
+          </p>
+
+          <div class="upload-actions">
+            <button type="button" class="btn btn-primary" id="selectImageBtn">Seleccionar imagen</button>
+          </div>
+        </div>
+      </div>
+
+      <input id="imageInput" type="file" accept="image/png,image/jpeg,image/jpg,image/webp" class="hidden" />
+
+      <div class="controls-card">
+        <div class="field">
+          <label for="unitSelect">Unidad</label>
+          <select id="unitSelect">
+            <option value="px" selected>Píxeles</option>
+            <option value="cm">Centímetros</option>
+          </select>
+        </div>
+
+        <div class="field" id="dpiField">
+          <label for="dpiInput">DPI para centímetros</label>
+          <input type="number" id="dpiInput" value="300" min="72" max="600" step="1" />
+        </div>
+
+        <div class="field">
+          <label for="widthInput" id="widthLabel">Nuevo ancho en píxeles</label>
+          <input type="number" id="widthInput" placeholder="Ej. 1080" min="1" />
+        </div>
+
+        <div class="field">
+          <label for="heightInput" id="heightLabel">Nuevo alto en píxeles</label>
+          <input type="number" id="heightInput" placeholder="Ej. 1080" min="1" />
+        </div>
+
+        <div class="field">
+          <label for="formatSelect">Formato de descarga</label>
+          <select id="formatSelect">
+            <option value="image/png" selected>PNG</option>
+            <option value="image/jpeg">JPG</option>
+            <option value="image/webp">WebP</option>
+          </select>
+        </div>
+
+        <div class="check-row">
+          <input type="checkbox" id="keepRatio" checked />
+          <label for="keepRatio">Mantener proporción</label>
+        </div>
+
+        <div class="actions-row">
+          <button type="button" class="btn btn-secondary" id="resizeBtn">Redimensionar imagen</button>
+          <button type="button" class="btn btn-danger" id="resetBtn">Restablecer</button>
+        </div>
+      </div>
+
+      <div id="status" class="status">Selecciona una imagen para comenzar.</div>
+
+      <div id="resultSection" class="result-grid hidden">
+        <div class="result-box">
+          <h3>Imagen original</h3>
+          <div class="preview-wrap">
+            <img id="originalPreview" alt="Vista previa de la imagen original">
+          </div>
+          <div id="originalMeta" class="meta"></div>
+        </div>
+
+        <div class="result-box">
+          <h3>Imagen redimensionada</h3>
+          <div class="preview-wrap">
+            <img id="resultPreview" alt="Vista previa de la imagen redimensionada">
+          </div>
+          <div id="resultMeta" class="meta"></div>
+          <div class="download-wrap">
+            <button id="downloadBtn" class="btn btn-success" type="button">Descargar imagen</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <div class="info-card">
+          <h3>¿Cómo redimensionar una imagen?</h3>
+          <ul>
+            <li>Selecciona una imagen JPG, PNG o WebP.</li>
+            <li>Escribe el nuevo ancho y alto.</li>
+            <li>Elige si quieres mantener proporción.</li>
+            <li>Descarga la imagen redimensionada.</li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <h3>Redimensionar imagen sin perder calidad</h3>
+          <p>
+            Para mantener buena calidad, lo ideal es reducir dimensiones de forma proporcional.
+            Aumentar demasiado una imagen puede hacer que pierda nitidez.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h3>Redimensionar imagen a cm</h3>
+          <p>
+            Puedes trabajar con centímetros usando un valor DPI. Esto ayuda cuando necesitas preparar imágenes
+            para impresión, documentos, tareas o formularios.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h3>Redimensionar imagen para Instagram</h3>
+          <p>
+            Si necesitas una medida exacta para Instagram u otra red social, coloca el ancho y alto requerido
+            en píxeles y descarga la imagen final.
+          </p>
+        </div>
+
+        <div class="info-card full">
+          <h3>Medidas útiles para redes sociales</h3>
+          <ul>
+            <li>Instagram post cuadrado: 1080 × 1080 px.</li>
+            <li>Instagram story o reel: 1080 × 1920 px.</li>
+            <li>YouTube miniatura: 1280 × 720 px.</li>
+            <li>Formato horizontal común: 1200 × 630 px.</li>
+          </ul>
+        </div>
+      </div>
     </div>
+
+    <aside class="panel sidebar">
+      <div class="side-card">
+        <h3>Búsquedas con potencial SEO</h3>
+        <div class="seo-box">
+          <div class="seo-pill">Redimensionar imagen online</div>
+          <div class="seo-pill">Redimensionar imagen gratis</div>
+          <div class="seo-pill">Redimensionar imagen a cm</div>
+          <div class="seo-pill">Redimensionar imagen online cm</div>
+          <div class="seo-pill">Redimensionar imagen sin perder calidad</div>
+          <div class="seo-pill">Redimensionar imagen PNG</div>
+          <div class="seo-pill">Redimensionar imagen para Instagram</div>
+          <div class="seo-pill">Redimensionar imagen AI</div>
+        </div>
+      </div>
+
+      <div class="side-card">
+        <h3>Qué puedes hacer</h3>
+        <ul class="tips">
+          <li>Cambiar ancho y alto de una imagen.</li>
+          <li>Redimensionar JPG, PNG o WebP.</li>
+          <li>Trabajar en píxeles o centímetros.</li>
+          <li>Mantener proporción automáticamente.</li>
+          <li>Preparar imágenes para web, redes o documentos.</li>
+          <li>Descargar en PNG, JPG o WebP.</li>
+        </ul>
+      </div>
+
+      <div class="side-card">
+        <h3>Herramientas relacionadas</h3>
+        <div class="tool-links">
+          <a href="/comprimir-imagen"><span>Comprimir imagen</span><span>→</span></a>
+          <a href="/png-a-jpg"><span>PNG a JPG</span><span>→</span></a>
+          <a href="/jpg-a-png"><span>JPG a PNG</span><span>→</span></a>
+          <a href="/recortar-imagen"><span>Recortar imagen</span><span>→</span></a>
+          <a href="/girar-imagen"><span>Girar imagen</span><span>→</span></a>
+          <a href="/redimensionar-redes-sociales"><span>Redimensionar para redes</span><span>→</span></a>
+        </div>
+      </div>
+    </aside>
   </section>
 
+  <section class="article-panel">
+    <h2>Redimensionar imagen online gratis</h2>
+    <p>
+      Con esta herramienta puedes redimensionar imagen online gratis sin instalar programas. Sirve para cambiar
+      el tamaño de una foto, ajustar imágenes para una página web, preparar archivos para formularios o adaptar
+      una imagen a una medida específica.
+    </p>
+
+    <h3>Redimensionar imagen a cm online</h3>
+    <p>
+      Si necesitas redimensionar imagen a cm, puedes seleccionar la unidad centímetros y definir un DPI.
+      El DPI convierte la medida física en píxeles. Por ejemplo, para impresión suele usarse 300 DPI,
+      mientras que para pantalla se usan medidas en píxeles.
+    </p>
+
+    <h3>Redimensionar imagen sin perder calidad</h3>
+    <p>
+      Redimensionar una imagen sin perder calidad depende del cambio que realices. Reducir una imagen suele mantener
+      buen resultado visual. En cambio, aumentar demasiado una imagen pequeña puede generar pérdida de nitidez.
+      Para mejores resultados, usa imágenes originales con buena resolución.
+    </p>
+
+    <h3>Redimensionar imagen PNG, JPG o WebP</h3>
+    <p>
+      Puedes subir imágenes PNG, JPG, JPEG o WebP. Después puedes descargar el resultado en PNG, JPG o WebP,
+      según el uso que necesites. PNG puede ser útil para gráficos y capturas; JPG es práctico para fotos ligeras;
+      WebP suele ofrecer buena relación entre calidad y tamaño.
+    </p>
+
+    <h3>Preguntas frecuentes</h3>
+    <ul>
+      <li><strong>¿Puedo redimensionar imagen gratis?</strong> Sí, puedes cambiar el tamaño de tus imágenes sin pagar.</li>
+      <li><strong>¿Puedo redimensionar imagen a cm?</strong> Sí, selecciona centímetros y define el DPI.</li>
+      <li><strong>¿Funciona con PNG?</strong> Sí, acepta PNG, JPG, JPEG y WebP.</li>
+      <li><strong>¿Puedo usarlo para Instagram?</strong> Sí, puedes colocar medidas como 1080 × 1080 px o 1080 × 1920 px.</li>
+      <li><strong>¿Necesito instalar algo?</strong> No, funciona directamente desde el navegador.</li>
+    </ul>
+  </section>
 </main>
 
 <footer>
-  © 2026 Ralyzo ·
-  <a href="/politica-privacidad">Privacidad</a> ·
-  <a href="/terminos-condiciones">Términos</a> ·
-  <a href="/cookies">Cookies</a>
+  <div class="footer-card">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">◢ RALYZO</div>
+        <p>
+          Herramientas online gratuitas para comprimir, convertir, redimensionar, recortar y optimizar imágenes
+          de forma rápida, segura y directamente desde tu navegador.
+        </p>
+      </div>
+
+      <div class="footer-nav">
+        <a href="/">Inicio</a>
+        <a href="/comprimir-imagen">Comprimir imagen</a>
+        <a href="/png-a-jpg">PNG a JPG</a>
+        <a href="/jpg-a-png">JPG a PNG</a>
+        <a href="/blog/">Blog</a>
+        <a href="/privacidad.html">Privacidad</a>
+        <a href="/terminos.html">Términos</a>
+        <a href="/cookies.html">Cookies</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 Ralyzo. Todos los derechos reservados.</div>
+      <div>Redimensionar imagen online gratis, cambiar tamaño por píxeles o centímetros y descargar al instante.</div>
+    </div>
+  </div>
 </footer>
 
 <div id="dropOverlay" class="drop-overlay">
@@ -231,15 +1139,423 @@
   </div>
 </div>
 
-<script src="js/redimensionar-imagen.js"></script>
-<script src="js/file-input-enhancer.js"></script>
-
 <script>
+  const imageInput = document.getElementById("imageInput");
+  const uploadZone = document.getElementById("uploadZone");
+  const selectImageBtn = document.getElementById("selectImageBtn");
+  const resizeBtn = document.getElementById("resizeBtn");
+  const resetBtn = document.getElementById("resetBtn");
+  const unitSelect = document.getElementById("unitSelect");
+  const dpiField = document.getElementById("dpiField");
+  const dpiInput = document.getElementById("dpiInput");
+  const widthInput = document.getElementById("widthInput");
+  const heightInput = document.getElementById("heightInput");
+  const widthLabel = document.getElementById("widthLabel");
+  const heightLabel = document.getElementById("heightLabel");
+  const keepRatio = document.getElementById("keepRatio");
+  const formatSelect = document.getElementById("formatSelect");
+  const statusText = document.getElementById("status");
+
+  const resultSection = document.getElementById("resultSection");
+  const originalPreview = document.getElementById("originalPreview");
+  const resultPreview = document.getElementById("resultPreview");
+  const originalMeta = document.getElementById("originalMeta");
+  const resultMeta = document.getElementById("resultMeta");
+  const downloadBtn = document.getElementById("downloadBtn");
+  const dropOverlay = document.getElementById("dropOverlay");
+
+  let originalFile = null;
+  let originalImage = null;
+  let originalDataUrl = "";
+  let resultUrl = "";
+  let resultFileName = "imagen-redimensionada.png";
+  let originalWidth = 0;
+  let originalHeight = 0;
+  let isUpdatingByRatio = false;
+
+  function formatBytes(bytes) {
+    if (bytes < 1024) return bytes + " B";
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
+    return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+  }
+
+  function setStatus(message) {
+    statusText.textContent = message;
+  }
+
+  function isImageFile(file) {
+    return file && file.type && file.type.startsWith("image/");
+  }
+
+  function loadImage(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        const img = new Image();
+        img.onload = () => resolve({ img, dataUrl: reader.result });
+        img.onerror = reject;
+        img.src = reader.result;
+      };
+
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function pxToCm(px, dpi) {
+    return (px * 2.54) / dpi;
+  }
+
+  function cmToPx(cm, dpi) {
+    return Math.round((cm * dpi) / 2.54);
+  }
+
+  function getExtensionFromMime(mime) {
+    if (mime === "image/jpeg") return "jpg";
+    if (mime === "image/webp") return "webp";
+    return "png";
+  }
+
+  function updateUnitLabels() {
+    const isCm = unitSelect.value === "cm";
+    dpiField.style.display = isCm ? "block" : "none";
+    widthLabel.textContent = isCm ? "Nuevo ancho en centímetros" : "Nuevo ancho en píxeles";
+    heightLabel.textContent = isCm ? "Nuevo alto en centímetros" : "Nuevo alto en píxeles";
+
+    if (originalImage) {
+      const dpi = Math.max(Number(dpiInput.value) || 300, 1);
+
+      if (isCm) {
+        widthInput.value = pxToCm(originalWidth, dpi).toFixed(2);
+        heightInput.value = pxToCm(originalHeight, dpi).toFixed(2);
+      } else {
+        widthInput.value = originalWidth;
+        heightInput.value = originalHeight;
+      }
+    }
+  }
+
+  function updateRatioFromWidth() {
+    if (!keepRatio.checked || !originalImage || isUpdatingByRatio) return;
+
+    const widthValue = Number(widthInput.value);
+    if (!widthValue || widthValue <= 0) return;
+
+    isUpdatingByRatio = true;
+    heightInput.value = unitSelect.value === "cm"
+      ? (widthValue * originalHeight / originalWidth).toFixed(2)
+      : Math.round(widthValue * originalHeight / originalWidth);
+    isUpdatingByRatio = false;
+  }
+
+  function updateRatioFromHeight() {
+    if (!keepRatio.checked || !originalImage || isUpdatingByRatio) return;
+
+    const heightValue = Number(heightInput.value);
+    if (!heightValue || heightValue <= 0) return;
+
+    isUpdatingByRatio = true;
+    widthInput.value = unitSelect.value === "cm"
+      ? (heightValue * originalWidth / originalHeight).toFixed(2)
+      : Math.round(heightValue * originalWidth / originalHeight);
+    isUpdatingByRatio = false;
+  }
+
+  async function assignFile(file) {
+    if (!isImageFile(file)) {
+      alert("Selecciona una imagen válida.");
+      return;
+    }
+
+    try {
+      const { img, dataUrl } = await loadImage(file);
+
+      originalFile = file;
+      originalImage = img;
+      originalDataUrl = dataUrl;
+      originalWidth = img.width;
+      originalHeight = img.height;
+
+      originalPreview.src = originalDataUrl;
+      originalMeta.innerHTML = `
+        Nombre: ${file.name}<br>
+        Tamaño: ${formatBytes(file.size)}<br>
+        Resolución: ${originalWidth} × ${originalHeight} px<br>
+        Formato: ${file.type || "imagen"}
+      `;
+
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.add(file);
+      imageInput.files = dataTransfer.files;
+
+      updateUnitLabels();
+
+      resultSection.classList.add("hidden");
+      if (resultUrl) {
+        URL.revokeObjectURL(resultUrl);
+        resultUrl = "";
+      }
+
+      setStatus("Imagen cargada correctamente. Ahora puedes cambiar sus dimensiones.");
+    } catch (error) {
+      console.error(error);
+      setStatus("Error: no se pudo cargar la imagen.");
+    }
+  }
+
+  function getTargetSize() {
+    const widthValue = Number(widthInput.value);
+    const heightValue = Number(heightInput.value);
+
+    if (!widthValue || !heightValue || widthValue <= 0 || heightValue <= 0) {
+      return null;
+    }
+
+    if (unitSelect.value === "cm") {
+      const dpi = Math.max(Number(dpiInput.value) || 300, 1);
+      return {
+        width: cmToPx(widthValue, dpi),
+        height: cmToPx(heightValue, dpi),
+        displayWidth: `${widthValue} cm`,
+        displayHeight: `${heightValue} cm`,
+        dpi
+      };
+    }
+
+    return {
+      width: Math.round(widthValue),
+      height: Math.round(heightValue),
+      displayWidth: `${Math.round(widthValue)} px`,
+      displayHeight: `${Math.round(heightValue)} px`,
+      dpi: null
+    };
+  }
+
+  function canvasToBlob(canvas, mimeType) {
+    return new Promise((resolve) => {
+      const quality = mimeType === "image/jpeg" || mimeType === "image/webp" ? 0.92 : undefined;
+      canvas.toBlob((blob) => resolve(blob), mimeType, quality);
+    });
+  }
+
+  async function resizeImage() {
+    if (!originalImage || !originalFile) {
+      alert("Selecciona una imagen primero.");
+      return;
+    }
+
+    const target = getTargetSize();
+
+    if (!target) {
+      alert("Ingresa un ancho y alto válidos.");
+      return;
+    }
+
+    if (target.width < 1 || target.height < 1) {
+      alert("Las dimensiones resultantes son demasiado pequeñas.");
+      return;
+    }
+
+    resizeBtn.disabled = true;
+    setStatus("Redimensionando imagen...");
+
+    try {
+      const outputFormat = formatSelect.value;
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+
+      canvas.width = target.width;
+      canvas.height = target.height;
+
+      if (outputFormat === "image/jpeg") {
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
+      ctx.drawImage(originalImage, 0, 0, target.width, target.height);
+
+      const blob = await canvasToBlob(canvas, outputFormat);
+
+      if (!blob) {
+        throw new Error("No se pudo generar la imagen redimensionada.");
+      }
+
+      if (resultUrl) {
+        URL.revokeObjectURL(resultUrl);
+      }
+
+      resultUrl = URL.createObjectURL(blob);
+      resultPreview.src = resultUrl;
+
+      const extension = getExtensionFromMime(outputFormat);
+      const baseName = originalFile.name.replace(/\.[^.]+$/, "") || "imagen";
+      resultFileName = `${baseName}-redimensionada.${extension}`;
+
+      const dpiText = target.dpi ? `<br>DPI usado: ${target.dpi}` : "";
+
+      resultMeta.innerHTML = `
+        Tamaño: ${formatBytes(blob.size)}<br>
+        Resolución final: ${target.width} × ${target.height} px<br>
+        Medida ingresada: ${target.displayWidth} × ${target.displayHeight}${dpiText}<br>
+        Formato: ${extension.toUpperCase()}
+      `;
+
+      resultSection.classList.remove("hidden");
+      setStatus("Imagen redimensionada correctamente.");
+    } catch (error) {
+      console.error(error);
+      setStatus("Error: " + (error.message || "No se pudo redimensionar la imagen."));
+    } finally {
+      resizeBtn.disabled = false;
+    }
+  }
+
+  function resetTool() {
+    imageInput.value = "";
+    originalFile = null;
+    originalImage = null;
+    originalDataUrl = "";
+    originalWidth = 0;
+    originalHeight = 0;
+    widthInput.value = "";
+    heightInput.value = "";
+    unitSelect.value = "px";
+    dpiInput.value = "300";
+    formatSelect.value = "image/png";
+    keepRatio.checked = true;
+    originalPreview.removeAttribute("src");
+    resultPreview.removeAttribute("src");
+    originalMeta.innerHTML = "";
+    resultMeta.innerHTML = "";
+    resultSection.classList.add("hidden");
+
+    if (resultUrl) {
+      URL.revokeObjectURL(resultUrl);
+      resultUrl = "";
+    }
+
+    updateUnitLabels();
+    setStatus("Selecciona una imagen para comenzar.");
+  }
+
+  selectImageBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    imageInput.click();
+  });
+
+  uploadZone.addEventListener("click", () => imageInput.click());
+
+  uploadZone.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      imageInput.click();
+    }
+  });
+
+  uploadZone.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    uploadZone.classList.add("dragover");
+  });
+
+  uploadZone.addEventListener("dragleave", () => {
+    uploadZone.classList.remove("dragover");
+  });
+
+  uploadZone.addEventListener("drop", (e) => {
+    e.preventDefault();
+    uploadZone.classList.remove("dragover");
+    const file = e.dataTransfer.files[0];
+    assignFile(file);
+  });
+
+  imageInput.addEventListener("change", () => {
+    const file = imageInput.files[0];
+    if (file) assignFile(file);
+  });
+
+  widthInput.addEventListener("input", updateRatioFromWidth);
+  heightInput.addEventListener("input", updateRatioFromHeight);
+
+  unitSelect.addEventListener("change", updateUnitLabels);
+  dpiInput.addEventListener("input", () => {
+    if (unitSelect.value === "cm") updateUnitLabels();
+  });
+
+  resizeBtn.addEventListener("click", resizeImage);
+  resetBtn.addEventListener("click", resetTool);
+
+  downloadBtn.addEventListener("click", () => {
+    if (!resultUrl) return;
+
+    const link = document.createElement("a");
+    link.href = resultUrl;
+    link.download = resultFileName;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  });
+
+  let dragCounter = 0;
+
+  document.addEventListener("dragenter", (e) => {
+    e.preventDefault();
+    dragCounter++;
+    dropOverlay.classList.add("active");
+  });
+
+  document.addEventListener("dragover", (e) => {
+    e.preventDefault();
+  });
+
+  document.addEventListener("dragleave", (e) => {
+    e.preventDefault();
+    dragCounter--;
+    if (dragCounter <= 0) {
+      dragCounter = 0;
+      dropOverlay.classList.remove("active");
+    }
+  });
+
+  document.addEventListener("drop", (e) => {
+    e.preventDefault();
+    dragCounter = 0;
+    dropOverlay.classList.remove("active");
+
+    const files = e.dataTransfer.files;
+    if (!files || !files.length) return;
+
+    assignFile(files[0]);
+  });
+
+  document.addEventListener("paste", (e) => {
+    const items = e.clipboardData?.items;
+    if (!items) return;
+
+    for (const item of items) {
+      if (item.type.startsWith("image/")) {
+        const file = item.getAsFile();
+        if (file) assignFile(file);
+        break;
+      }
+    }
+  });
+
   document.getElementById("headerToolSelect").addEventListener("change", function(){
     if(this.value){
       window.location.href = this.value;
     }
   });
+
+  window.addEventListener("beforeunload", () => {
+    if (resultUrl) {
+      URL.revokeObjectURL(resultUrl);
+    }
+  });
+
+  updateUnitLabels();
 </script>
 
 </body>
