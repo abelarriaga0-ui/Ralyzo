@@ -1,300 +1,785 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recortar Imagen Online Gratis | Ralyzo</title>
-  <meta name="description" content="Recorta imágenes online gratis con Ralyzo. Ajusta tus fotos fácilmente, rápido y sin subir archivos.">
-  <meta name="robots" content="index,follow">
-  <link rel="canonical" href="https://ralyzo.com/recortar-imagen">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Recortar Imagen Online Gratis | Recortar fotos y PNG | Ralyzo</title>
+  <meta name="description" content="Recortar imagen online gratis con Ralyzo. Recorta fotos, PNG, JPG o WebP desde tu navegador, ajusta el área con tijera, recorta con forma y descarga el resultado sin instalar programas." />
+  <meta name="keywords" content="recortar imagen, recortar imagen con forma, recortar imagen gratis, recortar imagen online contorno, recortar fotos por el contorno, recortar imagen en PC, recortar imagen con tijera, recortar foto online, recortar PNG online, recortar JPG online" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://ralyzo.com/recortar-imagen" />
+
+  <meta property="og:title" content="Recortar Imagen Online Gratis | Ralyzo" />
+  <meta property="og:description" content="Recorta imágenes online gratis, selecciona el área de una foto y descarga el resultado desde tu navegador." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ralyzo.com/recortar-imagen" />
+  <meta property="og:site_name" content="Ralyzo" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Recortar Imagen Online Gratis | Ralyzo" />
+  <meta name="twitter:description" content="Recorta fotos, PNG, JPG o WebP online gratis y sin instalar programas." />
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337166112417872"
+    crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"Recortar Imagen Online",
+    "applicationCategory":"UtilitiesApplication",
+    "operatingSystem":"Web",
+    "url":"https://ralyzo.com/recortar-imagen",
+    "description":"Herramienta online gratis para recortar imágenes JPG, PNG y WebP directamente desde el navegador.",
+    "offers":{
+      "@type":"Offer",
+      "price":"0",
+      "priceCurrency":"USD"
+    },
+    "publisher":{
+      "@type":"Organization",
+      "name":"Ralyzo"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"¿Cómo recortar una imagen online gratis?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Sube una imagen, selecciona con el mouse o el dedo el área que quieres conservar, presiona recortar y descarga el resultado."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"¿Puedo recortar una imagen con forma?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Sí. Puedes usar recorte libre, cuadrado o circular. El recorte circular se descarga en PNG con fondo transparente."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"¿Puedo recortar imagen PNG?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Sí. Puedes subir imágenes PNG, JPG, JPEG o WebP y recortarlas desde el navegador."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"¿Recortar una imagen elimina el fondo?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"No necesariamente. Recortar una imagen permite quitar partes externas o seleccionar una zona, pero no elimina automáticamente el fondo por contorno de objetos."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"¿Funciona para recortar imagen en PC y celular?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Sí. La herramienta funciona desde computadoras, tablets y celulares compatibles con navegador moderno."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <style>
+    :root{
+      --bg:#020B1F;
+      --bg-2:#06112A;
+      --panel:#0F172A;
+      --panel-2:#111827;
+      --panel-3:#0B1325;
+      --text:#F8FAFC;
+      --muted:#CBD5E1;
+      --muted-2:#94A3B8;
+      --line:rgba(148,163,184,.14);
+      --primary:#2563EB;
+      --primary-hover:#1D4ED8;
+      --success:#16A34A;
+      --danger:#EF4444;
+      --shadow:0 16px 40px rgba(0,0,0,.28);
+      --container:1200px;
+    }
+
     *{box-sizing:border-box}
+
+    html{
+      scroll-behavior:smooth;
+      width:100%;
+      max-width:100%;
+      overflow-x:hidden;
+    }
 
     body{
       margin:0;
-      font-family:Inter,sans-serif;
-      background:#0B1220;
-      color:#F8FAFC;
+      font-family:'Inter',sans-serif;
+      background:linear-gradient(180deg,#020B1F 0%, #06112A 100%);
+      color:var(--text);
+      width:100%;
+      max-width:100%;
+      overflow-x:hidden;
+    }
+
+    a{text-decoration:none;color:inherit}
+    button,input,select{font:inherit}
+
+    .container{
+      width:min(var(--container), calc(100% - 40px));
+      max-width:100%;
+      margin:0 auto;
     }
 
     header{
       position:sticky;
       top:0;
       z-index:1000;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:20px 40px;
-      border-bottom:1px solid #1F2937;
-      background:rgba(11,18,32,.88);
+      background:rgba(2,11,31,.9);
       backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+      max-width:100%;
+      overflow:visible;
     }
 
-    .header-inner{
-      width:100%;
+    .nav{
       max-width:1200px;
+      width:100%;
+      margin:0 auto;
+      min-height:78px;
+      position:relative;
       display:flex;
-      justify-content:center;
       align-items:center;
+      justify-content:center;
+      padding:0 24px;
       gap:18px;
       flex-wrap:wrap;
+      overflow:visible;
     }
 
     .logo{
-      text-align:center;
-      font-weight:700;
       font-size:20px;
-      letter-spacing:1px;
-      line-height:1;
-    }
-
-    .logo a{
+      font-weight:800;
+      letter-spacing:.04em;
+      white-space:nowrap;
       color:#F8FAFC;
-      text-decoration:none;
     }
 
-    .header-tool-select{
-      width:260px;
-      padding:14px 18px;
-      border-radius:14px;
+    .tool-select{
+      min-width:240px;
+      max-width:100%;
+      padding:12px 14px;
+      border-radius:12px;
       border:1px solid #334155;
       background:#0F172A;
       color:#F8FAFC;
-      font-size:14px;
-      font-family:Inter,sans-serif;
       outline:none;
       cursor:pointer;
     }
 
-    .header-tool-select:focus{
+    .tool-select:focus{
       border-color:#2563EB;
     }
 
-    .page{
-      max-width:1100px;
-      margin:0 auto;
-      padding:40px 20px 60px;
+    main{
+      padding:28px 0 34px;
+      min-height:calc(100vh - 78px);
+      max-width:100%;
+      overflow:hidden;
+    }
+
+    .hero{
+      text-align:center;
+      margin-bottom:22px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.18);
+      background:rgba(255,255,255,.03);
+      color:#BFDBFE;
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      margin-bottom:16px;
+      max-width:100%;
+      text-align:center;
     }
 
     h1{
-      font-size:42px;
-      margin:0 0 12px;
-      text-align:center;
+      margin:0 0 14px;
+      font-size:46px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+      word-break:break-word;
     }
 
-    .subtitle{
-      text-align:center;
-      color:#94A3B8;
-      margin-bottom:40px;
+    .hero p{
+      margin:0 auto;
+      max-width:900px;
+      color:var(--muted-2);
+      font-size:18px;
+      line-height:1.75;
     }
 
-    .card{
-      background:#111827;
-      border:1px solid #1F2937;
-      border-radius:16px;
-      padding:24px;
-      margin-bottom:24px;
-    }
-
-    .upload{
-      border:2px dashed #2563EB;
-      border-radius:14px;
-      padding:30px 20px;
-      text-align:center;
-      background:rgba(37,99,235,.06);
-    }
-
-    input[type="file"]{
-      margin-top:16px;
-      color:#F8FAFC;
-    }
-
-    .controls{
+    .app-grid{
       display:grid;
-      gap:16px;
+      grid-template-columns:minmax(0,1fr) 320px;
+      gap:18px;
+      align-items:start;
       margin-top:24px;
+      max-width:100%;
     }
 
-    button{
-      background:#2563EB;
-      color:#fff;
-      border:none;
-      padding:14px 20px;
-      border-radius:10px;
-      cursor:pointer;
-      font-size:16px;
-      font-weight:600;
-    }
-
-    button:hover{
-      opacity:.95;
-    }
-
-    button:disabled{
-      opacity:.5;
-      cursor:not-allowed;
-    }
-
-    .status{
-      margin-top:18px;
-      color:#93C5FD;
-      text-align:center;
-      min-height:24px;
+    .panel{
+      background:rgba(15,23,42,.52);
+      border:1px solid rgba(51,65,85,.76);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      min-width:0;
     }
 
     .workspace{
-      display:grid;
-      grid-template-columns:1.3fr .9fr;
-      gap:24px;
-      align-items:start;
-      margin-top:24px;
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
     }
 
-    .canvas-wrap{
-      background:#0F172A;
-      border:1px solid #1F2937;
+    .sidebar{
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      position:sticky;
+      top:96px;
+      min-width:0;
+    }
+
+    .upload-zone{
+      width:100%;
+      border:2px dashed rgba(96,165,250,.35);
+      border-radius:22px;
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      min-height:220px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:28px;
+      transition:.2s ease;
+      cursor:pointer;
+    }
+
+    .upload-zone:hover,
+    .upload-zone.dragover{
+      border-color:#60A5FA;
+      background:rgba(37,99,235,.08);
+    }
+
+    .upload-inner{
+      width:100%;
+      max-width:760px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .upload-icon{
+      width:74px;
+      height:74px;
+      border-radius:20px;
+      background:rgba(37,99,235,.14);
+      border:1px solid rgba(96,165,250,.2);
+      display:grid;
+      place-items:center;
+      font-size:32px;
+      margin-bottom:18px;
+    }
+
+    .upload-inner h2{
+      margin:0 0 10px;
+      font-size:30px;
+      line-height:1.18;
+      color:#F8FAFC;
+      word-break:break-word;
+    }
+
+    .upload-inner p{
+      margin:0 0 18px;
+      color:var(--muted-2);
+      line-height:1.75;
+      font-size:16px;
+      max-width:760px;
+    }
+
+    .upload-actions{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:4px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:48px;
+      padding:12px 18px;
+      border:none;
       border-radius:14px;
+      font-weight:700;
+      cursor:pointer;
+      transition:.2s ease;
+      text-align:center;
+    }
+
+    .btn-primary{
+      background:var(--primary);
+      color:#fff;
+    }
+
+    .btn-primary:hover{
+      background:var(--primary-hover);
+      transform:translateY(-1px);
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(148,163,184,.18);
+      color:#E2E8F0;
+    }
+
+    .btn-secondary:hover{
+      background:rgba(255,255,255,.05);
+      transform:translateY(-1px);
+    }
+
+    .btn-success{
+      background:var(--success);
+      color:#fff;
+    }
+
+    .btn-success:hover{
+      filter:brightness(1.03);
+      transform:translateY(-1px);
+    }
+
+    .btn-danger{
+      background:rgba(239,68,68,.12);
+      color:#FCA5A5;
+      border:1px solid rgba(239,68,68,.18);
+    }
+
+    .btn-danger:hover{
+      background:rgba(239,68,68,.18);
+      transform:translateY(-1px);
+    }
+
+    .hidden{display:none !important}
+
+    .controls-card,
+    .editor-card,
+    .result-box,
+    .info-card,
+    .side-card,
+    .article-panel{
+      background:#111827;
+      border:1px solid #1F2937;
+      border-radius:18px;
+    }
+
+    .controls-card{
+      padding:16px;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+      align-items:end;
+    }
+
+    .field label{
+      display:block;
+      font-size:14px;
+      color:#CBD5E1;
+      margin-bottom:8px;
+      text-align:left;
+      font-weight:700;
+    }
+
+    .field select{
+      width:100%;
+      min-height:46px;
+      padding:12px 14px;
+      border-radius:12px;
+      border:1px solid #334155;
+      background:#0F172A;
+      color:#F8FAFC;
+      outline:none;
+    }
+
+    .field select:focus{
+      border-color:#2563EB;
+    }
+
+    .actions-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      grid-column:1 / -1;
+    }
+
+    .status{
+      min-height:22px;
+      color:#93C5FD;
+      font-size:14px;
+      font-weight:600;
+      padding:0 4px;
+      line-height:1.5;
+    }
+
+    .editor-card{
       padding:16px;
     }
 
-    .canvas-wrap h3,
-    .preview-box h3{
-      margin:0 0 14px;
+    .editor-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+
+    .editor-head h3{
+      margin:0;
       font-size:18px;
+    }
+
+    .badge{
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(37,99,235,.14);
+      border:1px solid rgba(96,165,250,.2);
+      color:#BFDBFE;
+      font-size:12px;
+      font-weight:800;
     }
 
     .canvas-stage{
       width:100%;
-      background:#020617;
-      border-radius:10px;
-      overflow:auto;
-      min-height:280px;
+      background:#091122;
+      border:1px solid rgba(51,65,85,.8);
+      border-radius:14px;
+      min-height:300px;
       display:flex;
-      justify-content:center;
       align-items:center;
-      padding:8px;
+      justify-content:center;
+      overflow:auto;
+      padding:14px;
+      touch-action:none;
     }
 
-    canvas{
+    #cropCanvas{
       max-width:100%;
       height:auto;
       display:block;
-      border-radius:8px;
+      border-radius:10px;
+      background:#020617;
       cursor:crosshair;
-      background:#020617;
-    }
-
-    .preview-box{
-      background:#0F172A;
-      border:1px solid #1F2937;
-      border-radius:14px;
-      padding:16px;
-    }
-
-    .preview-box img{
-      width:100%;
-      max-height:360px;
-      object-fit:contain;
-      border-radius:10px;
-      background:#020617;
-    }
-
-    .download{
-      display:inline-block;
-      margin-top:14px;
-      background:#10B981;
-      color:#fff;
-      text-decoration:none;
-      padding:12px 16px;
-      border-radius:10px;
-      font-weight:600;
-    }
-
-    .download.hidden{
-      display:none;
+      box-shadow:0 8px 20px rgba(0,0,0,.26);
+      touch-action:none;
     }
 
     .helper{
-      margin-top:12px;
+      margin:12px 0 0;
       color:#94A3B8;
       font-size:14px;
       line-height:1.7;
     }
 
-    .seo-section h2{
-      font-size:28px;
-      margin:0 0 16px;
+    .result-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
     }
 
-    .seo-section h3{
-      font-size:20px;
-      margin:24px 0 12px;
+    .result-box{
+      padding:16px;
+      min-width:0;
     }
 
-    .seo-section p,
-    .seo-section li{
-      color:#CBD5E1;
-      line-height:1.8;
-    }
-
-    .seo-section ul{
-      margin:0 0 16px 18px;
-      padding:0;
-    }
-
-    .tools-section{
-      text-align:center;
-    }
-
-    .tools-section h3{
-      margin:0 0 20px;
+    .result-box h3{
+      margin:0 0 14px;
       font-size:18px;
-      color:#F8FAFC;
     }
+
+    .preview-wrap{
+      background:#091122;
+      border:1px solid rgba(51,65,85,.8);
+      border-radius:14px;
+      min-height:280px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      padding:14px;
+    }
+
+    .preview-wrap img{
+      display:block;
+      max-width:100%;
+      max-height:420px;
+      border-radius:10px;
+      background:#fff;
+      box-shadow:0 8px 20px rgba(0,0,0,.26);
+    }
+
+    .meta{
+      margin-top:12px;
+      color:#94A3B8;
+      font-size:14px;
+      line-height:1.8;
+      text-align:left;
+    }
+
+    .download-wrap{
+      margin-top:14px;
+      display:flex;
+      justify-content:flex-start;
+    }
+
+    .content-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .info-card{
+      padding:18px;
+      text-align:left;
+      min-width:0;
+    }
+
+    .info-card h3{
+      margin:0 0 12px;
+      font-size:18px;
+      line-height:1.3;
+    }
+
+    .info-card p,
+    .info-card li{
+      color:#CBD5E1;
+      line-height:1.75;
+      font-size:15px;
+      margin:0;
+    }
+
+    .info-card ul{
+      margin:0;
+      padding-left:18px;
+    }
+
+    .info-card li + li{
+      margin-top:6px;
+    }
+
+    .info-card.full{
+      grid-column:1 / -1;
+    }
+
+    .side-card{
+      padding:14px;
+      min-width:0;
+    }
+
+    .side-card h3{
+      margin:0 0 12px;
+      font-size:17px;
+      line-height:1.2;
+      text-align:left;
+    }
+
+    .seo-box{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+    }
+
+    .seo-pill{
+      padding:12px 14px;
+      border-radius:14px;
+      background:#F3F4F6;
+      color:#111827;
+      font-weight:700;
+      line-height:1.35;
+      font-size:14px;
+    }
+
+    .tips{
+      margin:0;
+      padding-left:18px;
+      color:#CBD5E1;
+      line-height:1.75;
+      font-size:14px;
+      text-align:left;
+    }
+
+    .tips li{margin-bottom:5px}
 
     .tool-links{
       display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      justify-content:center;
+      flex-direction:column;
+      gap:10px;
     }
 
     .tool-links a{
-      padding:10px 16px;
-      border-radius:10px;
-      background:#0F172A;
-      border:1px solid #334155;
-      color:#CBD5E1;
-      text-decoration:none;
-      font-size:14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:rgba(255,255,255,.035);
+      border:1px solid transparent;
+      color:var(--muted);
+      font-weight:600;
       transition:.2s ease;
     }
 
     .tool-links a:hover{
-      border-color:#2563EB;
-      color:#F8FAFC;
-      background:#111c34;
+      color:var(--text);
+      border-color:rgba(148,163,184,.14);
+      background:rgba(255,255,255,.05);
+    }
+
+    .article-panel{
+      padding:24px;
+      margin-top:18px;
+      text-align:left;
+    }
+
+    .article-panel h2{
+      margin:0 0 12px;
+      font-size:28px;
+      line-height:1.2;
+      letter-spacing:-.02em;
+    }
+
+    .article-panel h3{
+      margin:22px 0 10px;
+      font-size:20px;
+      line-height:1.3;
+    }
+
+    .article-panel p,
+    .article-panel li{
+      color:#CBD5E1;
+      line-height:1.85;
+      font-size:16px;
+    }
+
+    .article-panel ul{
+      padding-left:20px;
+      margin:0;
     }
 
     footer{
-      margin-top:40px;
-      padding:20px;
-      border-top:1px solid #1F2937;
-      text-align:center;
+      margin-top:18px;
+      padding:0 24px 24px;
+      max-width:100%;
+      overflow:hidden;
+    }
+
+    .footer-card{
+      max-width:1200px;
+      margin:0 auto;
+      background:rgba(15,23,42,.46);
+      border:1px solid rgba(51,65,85,.75);
+      border-radius:24px;
+      padding:18px 22px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .footer-top{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+      align-items:flex-start;
+    }
+
+    .footer-brand{
+      max-width:620px;
+      min-width:0;
+    }
+
+    .footer-logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-size:20px;
+      font-weight:800;
+      letter-spacing:.04em;
+      margin-bottom:8px;
+      color:#F8FAFC;
+    }
+
+    .footer-brand p{
+      margin:0;
+      color:#CBD5E1;
+      line-height:1.7;
+      font-size:15px;
+    }
+
+    .footer-nav{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      padding-top:4px;
+      max-width:100%;
+    }
+
+    .footer-nav a{
+      color:#E2E8F0;
+      font-weight:700;
+    }
+
+    .footer-nav a:hover{
+      color:#ffffff;
+    }
+
+    .footer-bottom{
+      border-top:1px solid rgba(148,163,184,.14);
+      padding-top:14px;
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
       color:#94A3B8;
-      font-size:14px;
-    }
-
-    footer a{
-      color:#93C5FD;
-      text-decoration:none;
-      margin:0 4px;
-    }
-
-    footer a:hover{
-      text-decoration:underline;
+      font-size:13px;
     }
 
     .drop-overlay{
@@ -306,6 +791,7 @@
       align-items:center;
       justify-content:center;
       z-index:9999;
+      padding:20px;
       pointer-events:none;
     }
 
@@ -316,6 +802,7 @@
     .drop-overlay-content{
       text-align:center;
       color:#fff;
+      animation:fadeIn .2s ease;
       padding:20px;
     }
 
@@ -330,32 +817,86 @@
       color:#CBD5E1;
     }
 
-    @media (max-width:900px){
-      .workspace{
+    @keyframes fadeIn{
+      from{opacity:0;transform:scale(.96)}
+      to{opacity:1;transform:scale(1)}
+    }
+
+    @media (max-width:1100px){
+      .app-grid{
         grid-template-columns:1fr;
+      }
+
+      .sidebar{
+        position:static;
+        top:auto;
+      }
+    }
+
+    @media (max-width:900px){
+      .result-grid,
+      .content-grid,
+      .controls-card{
+        grid-template-columns:1fr;
+      }
+
+      .actions-row{
+        grid-column:auto;
+      }
+
+      h1{
+        font-size:38px;
+      }
+
+      .hero p{
+        font-size:17px;
       }
     }
 
     @media (max-width:640px){
-      header{
-        padding:16px 20px;
+      .container{
+        width:min(var(--container), calc(100% - 20px));
       }
 
-      .header-inner{
-        gap:12px;
+      .nav{
+        padding:14px 16px;
       }
 
-      .header-tool-select{
-        width:230px;
-        padding:12px 14px;
+      .tool-select{
+        width:100%;
+        min-width:0;
       }
 
-      h1{
-        font-size:32px;
+      main{
+        padding-top:18px;
+      }
+
+      .workspace,
+      .sidebar{
+        padding:10px;
+      }
+
+      .upload-zone{
+        min-height:auto;
+        padding:22px 16px;
+      }
+
+      .upload-inner h2{
+        font-size:26px;
       }
 
       .drop-overlay-content p{
         font-size:30px;
+      }
+
+      .footer-card{
+        padding:18px;
+      }
+
+      .footer-top,
+      .footer-bottom{
+        flex-direction:column;
+        align-items:flex-start;
       }
     }
   </style>
@@ -363,116 +904,279 @@
 <body>
 
 <header>
-  <div class="header-inner">
+  <nav class="nav">
     <div class="logo"><a href="/">◢ RALYZO</a></div>
 
-    <select class="header-tool-select" id="headerToolSelect">
+    <select class="tool-select" id="headerToolSelect" aria-label="Ir a otra herramienta">
       <option value="">Ir a otra herramienta</option>
-      <option value="/comprimir-imagen">Comprimir</option>
+      <option value="/comprimir-imagen">Comprimir imagen</option>
       <option value="/png-a-jpg">PNG a JPG</option>
       <option value="/jpg-a-png">JPG a PNG</option>
-      <option value="/redimensionar-imagen">Redimensionar</option>
-      <option value="/girar-imagen">Girar</option>
+      <option value="/redimensionar-imagen">Redimensionar imagen</option>
+      <option value="/girar-imagen">Girar imagen</option>
+      <option value="/redimensionar-redes-sociales">Redimensionar para redes</option>
+      <option value="/girar-pdf">Girar PDF</option>
     </select>
-  </div>
+  </nav>
 </header>
 
-<main class="page">
+<main class="container">
+  <section class="hero">
+    <div class="eyebrow">Recortar imagen • online gratis • con tijera</div>
+    <h1>Recortar Imagen Online Gratis</h1>
+    <p>
+      Recorta imágenes JPG, PNG o WebP directamente desde tu navegador. Selecciona el área que quieres conservar,
+      usa recorte libre, cuadrado o circular y descarga el resultado sin instalar programas.
+    </p>
+  </section>
 
-  <h1>Recortar imagen</h1>
-  <p class="subtitle">Recorta tus imágenes con tijera de forma rápida y sencilla.</p>
+  <section class="app-grid">
+    <div class="panel workspace">
+      <div class="upload-zone" id="uploadZone" role="button" tabindex="0">
+        <div class="upload-inner">
+          <div class="upload-icon">✂️</div>
+          <h2>Sube una imagen para recortarla</h2>
+          <p>
+            Arrastra tu imagen aquí, selecciónala desde tu dispositivo o pégala con Ctrl + V.
+            Luego marca con el mouse o el dedo el área que deseas conservar.
+          </p>
 
-  <section class="card">
-    <div class="upload">
-      <p>Selecciona una imagen o arrástrala aquí</p>
-      <input type="file" id="imageInput" accept="image/png, image/jpeg, image/jpg, image/webp">
-    </div>
+          <div class="upload-actions">
+            <button type="button" class="btn btn-primary" id="selectImageBtn">Seleccionar imagen</button>
+          </div>
+        </div>
+      </div>
 
-    <p id="status" class="status"></p>
+      <input id="imageInput" type="file" accept="image/png,image/jpeg,image/jpg,image/webp" class="hidden" />
 
-    <div class="workspace">
-      <div class="canvas-wrap">
-        <h3>Selecciona el área a recortar</h3>
+      <div class="controls-card">
+        <div class="field">
+          <label for="cropMode">Tipo de recorte</label>
+          <select id="cropMode">
+            <option value="free" selected>Libre</option>
+            <option value="square">Cuadrado 1:1</option>
+            <option value="circle">Circular con fondo transparente</option>
+            <option value="story">Vertical 9:16</option>
+            <option value="horizontal">Horizontal 16:9</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="formatSelect">Formato de descarga</label>
+          <select id="formatSelect">
+            <option value="image/png" selected>PNG</option>
+            <option value="image/jpeg">JPG</option>
+            <option value="image/webp">WebP</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="qualitySelect">Calidad JPG/WebP</label>
+          <select id="qualitySelect">
+            <option value="0.95" selected>Alta calidad</option>
+            <option value="0.85">Equilibrada</option>
+            <option value="0.75">Más ligera</option>
+          </select>
+        </div>
+
+        <div class="actions-row">
+          <button type="button" class="btn btn-secondary" id="cropBtn" disabled>Recortar imagen</button>
+          <button type="button" class="btn btn-danger" id="resetBtn">Restablecer</button>
+        </div>
+      </div>
+
+      <div id="status" class="status">Selecciona una imagen para comenzar.</div>
+
+      <div class="editor-card">
+        <div class="editor-head">
+          <h3>Selecciona el área a recortar</h3>
+          <span class="badge" id="selectionBadge">Sin selección</span>
+        </div>
+
         <div class="canvas-stage">
           <canvas id="cropCanvas"></canvas>
         </div>
+
         <p class="helper">
-          Carga una imagen y arrastra sobre ella para seleccionar el área que deseas conservar.
+          Después de cargar la imagen, arrastra sobre ella para seleccionar el área. En celular puedes usar el dedo.
+          Para un recorte circular, el resultado se descarga como PNG con fondo transparente.
         </p>
       </div>
 
-      <div class="preview-box">
-        <h3>Vista previa recortada</h3>
-        <img id="resultPreview" alt="Vista previa recortada">
-        <div class="controls">
-          <button id="runBtn" disabled>Recortar imagen</button>
+      <div id="resultSection" class="result-grid hidden">
+        <div class="result-box">
+          <h3>Imagen original</h3>
+          <div class="preview-wrap">
+            <img id="originalPreview" alt="Vista previa de la imagen original">
+          </div>
+          <div id="originalMeta" class="meta"></div>
         </div>
-        <a id="downloadLink" class="download hidden" download="ralyzo-recortada.png">Descargar</a>
-        <p class="helper" id="previewInfo">La vista previa aparecerá aquí después de recortar.</p>
+
+        <div class="result-box">
+          <h3>Imagen recortada</h3>
+          <div class="preview-wrap">
+            <img id="resultPreview" alt="Vista previa de la imagen recortada">
+          </div>
+          <div id="resultMeta" class="meta"></div>
+          <div class="download-wrap">
+            <button id="downloadBtn" class="btn btn-success" type="button">Descargar imagen</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <div class="info-card">
+          <h3>¿Cómo recortar una imagen?</h3>
+          <ul>
+            <li>Selecciona una imagen JPG, PNG o WebP.</li>
+            <li>Marca el área que quieres conservar.</li>
+            <li>Elige recorte libre, cuadrado o circular.</li>
+            <li>Descarga la imagen recortada.</li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <h3>Recortar imagen con forma</h3>
+          <p>
+            Puedes usar recorte cuadrado, horizontal, vertical o circular. El recorte circular se exporta en PNG
+            para conservar el fondo transparente alrededor de la forma.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h3>Recortar imagen con tijera</h3>
+          <p>
+            El recorte funciona como una tijera digital: eliges una zona de la imagen y eliminas todo lo que queda fuera
+            del área seleccionada.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h3>Recortar fotos por el contorno</h3>
+          <p>
+            Esta herramienta permite recortar por área seleccionada. Si buscas recortar exactamente el contorno de una persona
+            u objeto, se necesitaría una función específica de eliminación de fondo.
+          </p>
+        </div>
+
+        <div class="info-card full">
+          <h3>Consejos para recortar mejor</h3>
+          <ul>
+            <li>Evita cortar partes importantes del sujeto principal.</li>
+            <li>Usa recorte cuadrado para perfiles o publicaciones 1:1.</li>
+            <li>Usa formato vertical 9:16 para historias o contenido móvil.</li>
+            <li>Usa PNG si necesitas conservar transparencia en un recorte circular.</li>
+          </ul>
+        </div>
       </div>
     </div>
+
+    <aside class="panel sidebar">
+      <div class="side-card">
+        <h3>Búsquedas con potencial SEO</h3>
+        <div class="seo-box">
+          <div class="seo-pill">Recortar imagen con forma</div>
+          <div class="seo-pill">Recortar imagen gratis</div>
+          <div class="seo-pill">Recortar imagen online contorno</div>
+          <div class="seo-pill">Recortar fotos por el contorno</div>
+          <div class="seo-pill">Recortar imagen en PC</div>
+          <div class="seo-pill">Recortar imagen con tijera</div>
+        </div>
+      </div>
+
+      <div class="side-card">
+        <h3>Qué puedes hacer</h3>
+        <ul class="tips">
+          <li>Recortar imágenes online gratis.</li>
+          <li>Recortar fotos desde PC o celular.</li>
+          <li>Usar recorte libre, cuadrado, circular o proporcional.</li>
+          <li>Descargar en PNG, JPG o WebP.</li>
+          <li>Preparar imágenes para redes sociales, documentos o web.</li>
+        </ul>
+      </div>
+
+      <div class="side-card">
+        <h3>Herramientas relacionadas</h3>
+        <div class="tool-links">
+          <a href="/comprimir-imagen"><span>Comprimir imagen</span><span>→</span></a>
+          <a href="/redimensionar-imagen"><span>Redimensionar imagen</span><span>→</span></a>
+          <a href="/png-a-jpg"><span>PNG a JPG</span><span>→</span></a>
+          <a href="/jpg-a-png"><span>JPG a PNG</span><span>→</span></a>
+          <a href="/girar-imagen"><span>Girar imagen</span><span>→</span></a>
+          <a href="/redimensionar-redes-sociales"><span>Redimensionar para redes</span><span>→</span></a>
+        </div>
+      </div>
+    </aside>
   </section>
 
-  <section class="card seo-section">
-    <h2>Recortar imagen online gratis sin marca de agua</h2>
+  <section class="article-panel">
+    <h2>Recortar imagen online gratis</h2>
     <p>
-      Recorta imágenes online gratis sin marca de agua de manera sencilla.
-      Elimina partes no deseadas y enfoca solo lo importante en tus fotos
-      sin necesidad de instalar programas.
+      Con esta herramienta puedes recortar imagen online gratis sin instalar programas. Sirve para eliminar partes
+      innecesarias de una foto, ajustar una imagen para redes sociales, preparar un documento visual o enfocar la atención
+      en una zona específica.
     </p>
 
-    <h3>¿Cómo recortar imagen online?</h3>
-    <ul>
-      <li>Selecciona la imagen que deseas recortar</li>
-      <li>Marca con el mouse el área que quieres conservar</li>
-      <li>Haz clic en recortar imagen</li>
-      <li>Descarga la imagen recortada</li>
-    </ul>
-
-    <h3>¿Para qué sirve recortar imagen en pc?</h3>
-    <ul>
-      <li>Eliminar partes no deseadas de una foto</li>
-      <li>Enfocar un elemento específico</li>
-      <li>Adaptar imágenes para redes sociales</li>
-    </ul>
-
-    <h3>Rápido, seguro y privado</h3>
+    <h3>Recortar imagen con forma</h3>
     <p>
-      Esta herramienta funciona completamente en tu navegador usando JavaScript.
-      Tus imágenes no se suben a ningún servidor.
+      Puedes recortar una imagen con forma cuadrada, circular, horizontal o vertical. El modo circular es útil para perfiles,
+      avatares, presentaciones y diseños donde necesitas una imagen con apariencia redonda. Para conservar transparencia,
+      el recorte circular se descarga como PNG.
     </p>
 
-    <h2>¿Por qué recortar una imagen?</h2>
-<p>
-Recortar imágenes permite eliminar partes innecesarias y centrar la atención en lo importante. Es ideal para mejorar la composición visual.
-</p>
+    <h3>Recortar imagen online contorno</h3>
+    <p>
+      Muchas personas buscan recortar imagen online por contorno o recortar fotos por el contorno. Es importante diferenciar
+      entre recortar una zona y eliminar el fondo alrededor de una persona u objeto. Esta herramienta recorta el área que
+      tú seleccionas; para separar automáticamente un objeto del fondo se necesita una herramienta específica de recorte por IA.
+    </p>
 
-<h2>Consejos para recortar correctamente</h2>
-<ul>
-  <li>Mantén proporciones adecuadas</li>
-  <li>Evita cortar elementos importantes</li>
-  <li>Usa el recorte para mejorar el enfoque visual</li>
-</ul>
+    <h3>Recortar imagen en PC o celular</h3>
+    <p>
+      Puedes usar Ralyzo desde PC, tablet o celular. En computadora seleccionas el área con el mouse; en móvil puedes marcar
+      el área usando el dedo. Todo se procesa desde el navegador.
+    </p>
+
+    <h3>Preguntas frecuentes</h3>
+    <ul>
+      <li><strong>¿Puedo recortar imagen gratis?</strong> Sí, puedes recortar imágenes sin pagar y sin registro.</li>
+      <li><strong>¿Funciona con PNG?</strong> Sí, acepta PNG, JPG, JPEG y WebP.</li>
+      <li><strong>¿Puedo recortar con forma circular?</strong> Sí, selecciona el modo circular y descarga en PNG.</li>
+      <li><strong>¿Recorta automáticamente el fondo?</strong> No. Esta herramienta recorta la zona seleccionada, pero no elimina fondos automáticamente.</li>
+      <li><strong>¿Funciona en celular?</strong> Sí, puedes seleccionar el área con el dedo en pantallas táctiles.</li>
+    </ul>
   </section>
-
-  <section class="card tools-section">
-    <h3>Otras herramientas</h3>
-    <div class="tool-links">
-      <a href="/comprimir-imagen">Comprimir</a>
-      <a href="/png-a-jpg">PNG a JPG</a>
-      <a href="/jpg-a-png">JPG a PNG</a>
-      <a href="/redimensionar-imagen">Redimensionar</a>
-      <a href="/girar-imagen">Girar</a>
-    </div>
-  </section>
-
 </main>
 
 <footer>
-  © 2026 Ralyzo ·
-  <a href="/politica-privacidad">Privacidad</a> ·
-  <a href="/terminos-condiciones">Términos</a> ·
-  <a href="/cookies">Cookies</a>
+  <div class="footer-card">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">◢ RALYZO</div>
+        <p>
+          Herramientas online gratuitas para comprimir, convertir, redimensionar, recortar y optimizar imágenes
+          de forma rápida, segura y directamente desde tu navegador.
+        </p>
+      </div>
+
+      <div class="footer-nav">
+        <a href="/">Inicio</a>
+        <a href="/comprimir-imagen">Comprimir imagen</a>
+        <a href="/redimensionar-imagen">Redimensionar imagen</a>
+        <a href="/png-a-jpg">PNG a JPG</a>
+        <a href="/jpg-a-png">JPG a PNG</a>
+        <a href="/blog/">Blog</a>
+        <a href="/privacidad.html">Privacidad</a>
+        <a href="/terminos.html">Términos</a>
+        <a href="/cookies.html">Cookies</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 Ralyzo. Todos los derechos reservados.</div>
+      <div>Recortar imagen online gratis, recortar fotos con forma y descargar al instante.</div>
+    </div>
+  </div>
 </footer>
 
 <div id="dropOverlay" class="drop-overlay">
@@ -484,267 +1188,555 @@ Recortar imágenes permite eliminar partes innecesarias y centrar la atención e
 
 <script>
   const imageInput = document.getElementById("imageInput");
-  const runBtn = document.getElementById("runBtn");
-  const statusText = document.getElementById("status");
+  const uploadZone = document.getElementById("uploadZone");
+  const selectImageBtn = document.getElementById("selectImageBtn");
   const cropCanvas = document.getElementById("cropCanvas");
   const ctx = cropCanvas.getContext("2d");
+  const cropBtn = document.getElementById("cropBtn");
+  const resetBtn = document.getElementById("resetBtn");
+  const cropMode = document.getElementById("cropMode");
+  const formatSelect = document.getElementById("formatSelect");
+  const qualitySelect = document.getElementById("qualitySelect");
+  const statusText = document.getElementById("status");
+  const selectionBadge = document.getElementById("selectionBadge");
+
+  const resultSection = document.getElementById("resultSection");
+  const originalPreview = document.getElementById("originalPreview");
   const resultPreview = document.getElementById("resultPreview");
-  const downloadLink = document.getElementById("downloadLink");
-  const previewInfo = document.getElementById("previewInfo");
+  const originalMeta = document.getElementById("originalMeta");
+  const resultMeta = document.getElementById("resultMeta");
+  const downloadBtn = document.getElementById("downloadBtn");
   const dropOverlay = document.getElementById("dropOverlay");
 
-  let image = null;
-  let imageLoaded = false;
-  let imageScale = 1;
-
+  let imageFile = null;
+  let imageObj = null;
+  let originalDataUrl = "";
+  let imageScaleX = 1;
+  let imageScaleY = 1;
   let selection = null;
   let isDragging = false;
   let startX = 0;
   let startY = 0;
+  let resultUrl = "";
+  let resultFileName = "ralyzo-recortada.png";
+
+  function formatBytes(bytes) {
+    if (bytes < 1024) return bytes + " B";
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
+    return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+  }
+
+  function setStatus(message) {
+    statusText.textContent = message;
+  }
 
   function isImageFile(file) {
     return file && file.type && file.type.startsWith("image/");
   }
 
-  function assignFileToInput(file) {
-    if (!isImageFile(file)) return;
-    const dataTransfer = new DataTransfer();
-    dataTransfer.items.add(file);
-    imageInput.files = dataTransfer.files;
-    loadSelectedFile(file);
+  function getExtensionFromMime(mime) {
+    if (mime === "image/jpeg") return "jpg";
+    if (mime === "image/webp") return "webp";
+    return "png";
   }
 
-  function getCanvasCoordinates(event) {
-    const rect = cropCanvas.getBoundingClientRect();
-    const scaleX = cropCanvas.width / rect.width;
-    const scaleY = cropCanvas.height / rect.height;
-
-    return {
-      x: (event.clientX - rect.left) * scaleX,
-      y: (event.clientY - rect.top) * scaleY
-    };
+  function getRatioForMode() {
+    if (cropMode.value === "square" || cropMode.value === "circle") return 1;
+    if (cropMode.value === "story") return 9 / 16;
+    if (cropMode.value === "horizontal") return 16 / 9;
+    return null;
   }
 
-  function drawCanvas() {
-    if (!imageLoaded || !image) return;
+  function loadImage(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
 
-    ctx.clearRect(0, 0, cropCanvas.width, cropCanvas.height);
-    ctx.drawImage(image, 0, 0, cropCanvas.width, cropCanvas.height);
+      reader.onload = () => {
+        const img = new Image();
+        img.onload = () => resolve({ img, dataUrl: reader.result });
+        img.onerror = reject;
+        img.src = reader.result;
+      };
 
-    if (selection && selection.width > 0 && selection.height > 0) {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.45)";
-      ctx.fillRect(0, 0, cropCanvas.width, cropCanvas.height);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
 
-      ctx.clearRect(selection.x, selection.y, selection.width, selection.height);
-      ctx.drawImage(
-        image,
-        selection.x * imageScale,
-        selection.y * imageScale,
-        selection.width * imageScale,
-        selection.height * imageScale,
-        selection.x,
-        selection.y,
-        selection.width,
-        selection.height
-      );
-
-      ctx.strokeStyle = "#3B82F6";
-      ctx.lineWidth = 2;
-      ctx.setLineDash([8, 6]);
-      ctx.strokeRect(selection.x, selection.y, selection.width, selection.height);
-      ctx.setLineDash([]);
+  function updateSelectionBadge() {
+    if (!selection || selection.width < 2 || selection.height < 2) {
+      selectionBadge.textContent = "Sin selección";
+      return;
     }
+
+    const originalW = Math.round(selection.width * imageScaleX);
+    const originalH = Math.round(selection.height * imageScaleY);
+    selectionBadge.textContent = `${originalW} × ${originalH} px`;
   }
 
   function normalizeSelection(sel) {
-    const x = Math.max(0, Math.min(sel.x, sel.x + sel.width));
-    const y = Math.max(0, Math.min(sel.y, sel.y + sel.height));
-    const width = Math.abs(sel.width);
-    const height = Math.abs(sel.height);
+    let x = Math.min(sel.x, sel.x + sel.width);
+    let y = Math.min(sel.y, sel.y + sel.height);
+    let width = Math.abs(sel.width);
+    let height = Math.abs(sel.height);
 
-    const maxWidth = cropCanvas.width - x;
-    const maxHeight = cropCanvas.height - y;
+    x = Math.max(0, x);
+    y = Math.max(0, y);
+
+    if (x + width > cropCanvas.width) width = cropCanvas.width - x;
+    if (y + height > cropCanvas.height) height = cropCanvas.height - y;
 
     return {
       x,
       y,
-      width: Math.min(width, maxWidth),
-      height: Math.min(height, maxHeight)
+      width: Math.max(0, width),
+      height: Math.max(0, height)
     };
   }
 
-  function loadSelectedFile(file) {
+  function constrainSelectionByMode(rawSelection) {
+    const ratio = getRatioForMode();
+
+    if (!ratio) return rawSelection;
+
+    let dx = rawSelection.width;
+    let dy = rawSelection.height;
+
+    const signX = dx < 0 ? -1 : 1;
+    const signY = dy < 0 ? -1 : 1;
+    const absDx = Math.abs(dx);
+    const absDy = Math.abs(dy);
+
+    if (absDx / ratio <= absDy) {
+      dy = (absDx / ratio) * signY;
+    } else {
+      dx = (absDy * ratio) * signX;
+    }
+
+    return {
+      x: rawSelection.x,
+      y: rawSelection.y,
+      width: dx,
+      height: dy
+    };
+  }
+
+  function getPointerPosition(event) {
+    const rect = cropCanvas.getBoundingClientRect();
+    const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+    const clientY = event.touches ? event.touches[0].clientY : event.clientY;
+    const scaleX = cropCanvas.width / rect.width;
+    const scaleY = cropCanvas.height / rect.height;
+
+    return {
+      x: Math.max(0, Math.min((clientX - rect.left) * scaleX, cropCanvas.width)),
+      y: Math.max(0, Math.min((clientY - rect.top) * scaleY, cropCanvas.height))
+    };
+  }
+
+  function drawCanvas() {
+    ctx.clearRect(0, 0, cropCanvas.width, cropCanvas.height);
+
+    if (!imageObj) return;
+
+    ctx.drawImage(imageObj, 0, 0, cropCanvas.width, cropCanvas.height);
+
+    if (selection && selection.width > 2 && selection.height > 2) {
+      const sel = normalizeSelection(selection);
+
+      ctx.save();
+      ctx.fillStyle = "rgba(0,0,0,.48)";
+      ctx.fillRect(0, 0, cropCanvas.width, cropCanvas.height);
+
+      ctx.beginPath();
+
+      if (cropMode.value === "circle") {
+        const radius = Math.min(sel.width, sel.height) / 2;
+        ctx.arc(sel.x + sel.width / 2, sel.y + sel.height / 2, radius, 0, Math.PI * 2);
+      } else {
+        ctx.rect(sel.x, sel.y, sel.width, sel.height);
+      }
+
+      ctx.clip();
+      ctx.drawImage(imageObj, 0, 0, cropCanvas.width, cropCanvas.height);
+      ctx.restore();
+
+      ctx.save();
+      ctx.strokeStyle = "#60A5FA";
+      ctx.lineWidth = 2;
+      ctx.setLineDash([8, 6]);
+
+      if (cropMode.value === "circle") {
+        const radius = Math.min(sel.width, sel.height) / 2;
+        ctx.beginPath();
+        ctx.arc(sel.x + sel.width / 2, sel.y + sel.height / 2, radius, 0, Math.PI * 2);
+        ctx.stroke();
+      } else {
+        ctx.strokeRect(sel.x, sel.y, sel.width, sel.height);
+      }
+
+      ctx.setLineDash([]);
+      ctx.restore();
+    }
+
+    updateSelectionBadge();
+  }
+
+  async function assignFile(file) {
     if (!isImageFile(file)) {
-      statusText.textContent = "Selecciona una imagen válida.";
+      alert("Selecciona una imagen válida.");
       return;
     }
 
-    const reader = new FileReader();
-    reader.onload = () => {
-      const img = new Image();
-      img.onload = () => {
-        image = img;
-        imageLoaded = true;
+    try {
+      const { img, dataUrl } = await loadImage(file);
 
-        const maxWidth = 760;
-        const maxHeight = 500;
-        const scale = Math.min(maxWidth / img.width, maxHeight / img.height, 1);
+      imageFile = file;
+      imageObj = img;
+      originalDataUrl = dataUrl;
 
-        cropCanvas.width = Math.round(img.width * scale);
-        cropCanvas.height = Math.round(img.height * scale);
-        imageScale = img.width / cropCanvas.width;
+      const maxWidth = 820;
+      const maxHeight = 560;
+      const scale = Math.min(maxWidth / img.width, maxHeight / img.height, 1);
 
-        selection = null;
-        resultPreview.removeAttribute("src");
-        downloadLink.classList.add("hidden");
-        previewInfo.textContent = "La vista previa aparecerá aquí después de recortar.";
-        runBtn.disabled = false;
-        statusText.textContent = "Imagen cargada. Selecciona el área a recortar.";
-        drawCanvas();
-      };
-      img.onerror = () => {
-        statusText.textContent = "No se pudo cargar la imagen.";
-      };
-      img.src = reader.result;
-    };
-    reader.onerror = () => {
-      statusText.textContent = "No se pudo leer el archivo.";
-    };
-    reader.readAsDataURL(file);
+      cropCanvas.width = Math.round(img.width * scale);
+      cropCanvas.height = Math.round(img.height * scale);
+
+      imageScaleX = img.width / cropCanvas.width;
+      imageScaleY = img.height / cropCanvas.height;
+
+      selection = null;
+      cropBtn.disabled = false;
+
+      originalPreview.src = originalDataUrl;
+      originalMeta.innerHTML = `
+        Nombre: ${file.name}<br>
+        Tamaño: ${formatBytes(file.size)}<br>
+        Resolución: ${img.width} × ${img.height} px<br>
+        Formato: ${file.type || "imagen"}
+      `;
+
+      resultSection.classList.add("hidden");
+      resultPreview.removeAttribute("src");
+      resultMeta.innerHTML = "";
+
+      if (resultUrl) {
+        URL.revokeObjectURL(resultUrl);
+        resultUrl = "";
+      }
+
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.add(file);
+      imageInput.files = dataTransfer.files;
+
+      setStatus("Imagen cargada. Selecciona el área que deseas recortar.");
+      drawCanvas();
+    } catch (error) {
+      console.error(error);
+      setStatus("No se pudo cargar la imagen.");
+    }
   }
 
-  imageInput.addEventListener("change", () => {
-    const file = imageInput.files[0];
-    if (file) loadSelectedFile(file);
-  });
+  function canvasToBlob(canvas, mimeType, quality) {
+    return new Promise((resolve) => {
+      canvas.toBlob((blob) => resolve(blob), mimeType, quality);
+    });
+  }
 
-  cropCanvas.addEventListener("mousedown", (event) => {
-    if (!imageLoaded) return;
+  async function cropImage() {
+    if (!imageObj || !imageFile) {
+      alert("Selecciona una imagen primero.");
+      return;
+    }
 
-    const pos = getCanvasCoordinates(event);
+    if (!selection || selection.width < 3 || selection.height < 3) {
+      alert("Selecciona primero un área válida para recortar.");
+      return;
+    }
+
+    try {
+      let sel = normalizeSelection(selection);
+
+      if (cropMode.value === "circle") {
+        const size = Math.min(sel.width, sel.height);
+        sel = {
+          x: sel.x + (sel.width - size) / 2,
+          y: sel.y + (sel.height - size) / 2,
+          width: size,
+          height: size
+        };
+      }
+
+      const sourceX = Math.round(sel.x * imageScaleX);
+      const sourceY = Math.round(sel.y * imageScaleY);
+      const sourceWidth = Math.round(sel.width * imageScaleX);
+      const sourceHeight = Math.round(sel.height * imageScaleY);
+
+      const outputCanvas = document.createElement("canvas");
+      outputCanvas.width = sourceWidth;
+      outputCanvas.height = sourceHeight;
+
+      const outputCtx = outputCanvas.getContext("2d");
+
+      let outputFormat = formatSelect.value;
+
+      if (cropMode.value === "circle") {
+        outputFormat = "image/png";
+      }
+
+      if (outputFormat === "image/jpeg") {
+        outputCtx.fillStyle = "#ffffff";
+        outputCtx.fillRect(0, 0, outputCanvas.width, outputCanvas.height);
+      }
+
+      if (cropMode.value === "circle") {
+        outputCtx.save();
+        outputCtx.beginPath();
+        outputCtx.arc(outputCanvas.width / 2, outputCanvas.height / 2, outputCanvas.width / 2, 0, Math.PI * 2);
+        outputCtx.clip();
+        outputCtx.drawImage(
+          imageObj,
+          sourceX,
+          sourceY,
+          sourceWidth,
+          sourceHeight,
+          0,
+          0,
+          outputCanvas.width,
+          outputCanvas.height
+        );
+        outputCtx.restore();
+      } else {
+        outputCtx.drawImage(
+          imageObj,
+          sourceX,
+          sourceY,
+          sourceWidth,
+          sourceHeight,
+          0,
+          0,
+          outputCanvas.width,
+          outputCanvas.height
+        );
+      }
+
+      const quality = parseFloat(qualitySelect.value);
+      const blob = await canvasToBlob(outputCanvas, outputFormat, quality);
+
+      if (!blob) {
+        throw new Error("No se pudo generar la imagen recortada.");
+      }
+
+      if (resultUrl) {
+        URL.revokeObjectURL(resultUrl);
+      }
+
+      resultUrl = URL.createObjectURL(blob);
+      resultPreview.src = resultUrl;
+
+      const extension = getExtensionFromMime(outputFormat);
+      const baseName = imageFile.name.replace(/\.[^.]+$/, "") || "imagen";
+      resultFileName = `${baseName}-recortada.${extension}`;
+
+      resultMeta.innerHTML = `
+        Tamaño: ${formatBytes(blob.size)}<br>
+        Resolución final: ${outputCanvas.width} × ${outputCanvas.height} px<br>
+        Formato: ${extension.toUpperCase()}<br>
+        Modo: ${cropMode.options[cropMode.selectedIndex].text}
+      `;
+
+      resultSection.classList.remove("hidden");
+      setStatus("Imagen recortada correctamente.");
+    } catch (error) {
+      console.error(error);
+      setStatus("Error: " + (error.message || "No se pudo recortar la imagen."));
+    }
+  }
+
+  function resetTool() {
+    imageInput.value = "";
+    imageFile = null;
+    imageObj = null;
+    originalDataUrl = "";
+    selection = null;
+    cropCanvas.width = 0;
+    cropCanvas.height = 0;
+    originalPreview.removeAttribute("src");
+    resultPreview.removeAttribute("src");
+    originalMeta.innerHTML = "";
+    resultMeta.innerHTML = "";
+    resultSection.classList.add("hidden");
+    cropBtn.disabled = true;
+    selectionBadge.textContent = "Sin selección";
+
+    if (resultUrl) {
+      URL.revokeObjectURL(resultUrl);
+      resultUrl = "";
+    }
+
+    setStatus("Selecciona una imagen para comenzar.");
+  }
+
+  function startSelection(event) {
+    if (!imageObj) return;
+
+    event.preventDefault();
+
+    const pos = getPointerPosition(event);
     isDragging = true;
     startX = pos.x;
     startY = pos.y;
     selection = { x: startX, y: startY, width: 0, height: 0 };
     drawCanvas();
-  });
+  }
 
-  window.addEventListener("mousemove", (event) => {
-    if (!isDragging || !imageLoaded) return;
+  function moveSelection(event) {
+    if (!isDragging || !imageObj) return;
 
-    const pos = getCanvasCoordinates(event);
-    selection = {
+    event.preventDefault();
+
+    const pos = getPointerPosition(event);
+    const rawSelection = {
       x: startX,
       y: startY,
       width: pos.x - startX,
       height: pos.y - startY
     };
-    drawCanvas();
-  });
 
-  window.addEventListener("mouseup", () => {
+    selection = constrainSelectionByMode(rawSelection);
+    drawCanvas();
+  }
+
+  function endSelection() {
     if (!isDragging) return;
+
     isDragging = false;
 
     if (selection) {
       selection = normalizeSelection(selection);
+
       if (selection.width < 5 || selection.height < 5) {
         selection = null;
-        statusText.textContent = "Selecciona un área más grande para recortar.";
+        setStatus("Selecciona un área más grande para recortar.");
       } else {
-        statusText.textContent = "Área seleccionada. Ahora pulsa “Recortar imagen”.";
+        setStatus("Área seleccionada. Ahora pulsa “Recortar imagen”.");
       }
+
       drawCanvas();
+    }
+  }
+
+  selectImageBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    imageInput.click();
+  });
+
+  uploadZone.addEventListener("click", () => imageInput.click());
+
+  uploadZone.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      imageInput.click();
     }
   });
 
-  runBtn.addEventListener("click", () => {
-    if (!imageLoaded || !image) {
-      statusText.textContent = "Primero selecciona una imagen.";
-      return;
+  uploadZone.addEventListener("dragover", (event) => {
+    event.preventDefault();
+    uploadZone.classList.add("dragover");
+  });
+
+  uploadZone.addEventListener("dragleave", () => {
+    uploadZone.classList.remove("dragover");
+  });
+
+  uploadZone.addEventListener("drop", (event) => {
+    event.preventDefault();
+    uploadZone.classList.remove("dragover");
+    const file = event.dataTransfer.files[0];
+    assignFile(file);
+  });
+
+  imageInput.addEventListener("change", () => {
+    const file = imageInput.files[0];
+    if (file) assignFile(file);
+  });
+
+  cropCanvas.addEventListener("mousedown", startSelection);
+  window.addEventListener("mousemove", moveSelection);
+  window.addEventListener("mouseup", endSelection);
+
+  cropCanvas.addEventListener("touchstart", startSelection, { passive:false });
+  window.addEventListener("touchmove", moveSelection, { passive:false });
+  window.addEventListener("touchend", endSelection);
+
+  cropMode.addEventListener("change", () => {
+    selection = null;
+
+    if (cropMode.value === "circle") {
+      formatSelect.value = "image/png";
+      setStatus("Modo circular activado. Selecciona un área para recortar en forma circular.");
+    } else if (imageObj) {
+      setStatus("Modo de recorte cambiado. Selecciona nuevamente el área.");
     }
 
-    if (!selection || selection.width <= 0 || selection.height <= 0) {
-      statusText.textContent = "Selecciona primero el área que deseas recortar.";
-      return;
-    }
+    drawCanvas();
+  });
 
-    try {
-      const outputCanvas = document.createElement("canvas");
-      outputCanvas.width = Math.round(selection.width * imageScale);
-      outputCanvas.height = Math.round(selection.height * imageScale);
+  cropBtn.addEventListener("click", cropImage);
+  resetBtn.addEventListener("click", resetTool);
 
-      const outputCtx = outputCanvas.getContext("2d");
-      outputCtx.drawImage(
-        image,
-        Math.round(selection.x * imageScale),
-        Math.round(selection.y * imageScale),
-        Math.round(selection.width * imageScale),
-        Math.round(selection.height * imageScale),
-        0,
-        0,
-        outputCanvas.width,
-        outputCanvas.height
-      );
+  downloadBtn.addEventListener("click", () => {
+    if (!resultUrl) return;
 
-      const outputUrl = outputCanvas.toDataURL("image/png");
-      resultPreview.src = outputUrl;
-      downloadLink.href = outputUrl;
-      downloadLink.classList.remove("hidden");
-      previewInfo.textContent = `Resultado listo: ${outputCanvas.width} × ${outputCanvas.height}px`;
-      statusText.textContent = "Imagen recortada correctamente.";
-    } catch (error) {
-      console.error(error);
-      statusText.textContent = "No se pudo procesar la imagen. Intenta con otra.";
-    }
+    const link = document.createElement("a");
+    link.href = resultUrl;
+    link.download = resultFileName;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
   });
 
   let dragCounter = 0;
 
-  document.addEventListener("dragenter", (e) => {
-    e.preventDefault();
+  document.addEventListener("dragenter", (event) => {
+    event.preventDefault();
     dragCounter++;
     dropOverlay.classList.add("active");
   });
 
-  document.addEventListener("dragover", (e) => {
-    e.preventDefault();
+  document.addEventListener("dragover", (event) => {
+    event.preventDefault();
   });
 
-  document.addEventListener("dragleave", (e) => {
-    e.preventDefault();
+  document.addEventListener("dragleave", (event) => {
+    event.preventDefault();
     dragCounter--;
+
     if (dragCounter <= 0) {
       dragCounter = 0;
       dropOverlay.classList.remove("active");
     }
   });
 
-  document.addEventListener("drop", (e) => {
-    e.preventDefault();
+  document.addEventListener("drop", (event) => {
+    event.preventDefault();
     dragCounter = 0;
     dropOverlay.classList.remove("active");
 
-    const files = e.dataTransfer.files;
+    const files = event.dataTransfer.files;
     if (!files || !files.length) return;
 
-    const file = files[0];
-    if (!isImageFile(file)) {
-      statusText.textContent = "Suelta una imagen válida.";
-      return;
-    }
-
-    assignFileToInput(file);
+    assignFile(files[0]);
   });
 
-  document.addEventListener("paste", (e) => {
-    const items = e.clipboardData?.items;
+  document.addEventListener("paste", (event) => {
+    const items = event.clipboardData?.items;
     if (!items) return;
 
     for (const item of items) {
       if (item.type.startsWith("image/")) {
         const file = item.getAsFile();
-        if (file) assignFileToInput(file);
+        if (file) assignFile(file);
         break;
       }
     }
@@ -753,6 +1745,12 @@ Recortar imágenes permite eliminar partes innecesarias y centrar la atención e
   document.getElementById("headerToolSelect").addEventListener("change", function(){
     if(this.value){
       window.location.href = this.value;
+    }
+  });
+
+  window.addEventListener("beforeunload", () => {
+    if (resultUrl) {
+      URL.revokeObjectURL(resultUrl);
     }
   });
 </script>
