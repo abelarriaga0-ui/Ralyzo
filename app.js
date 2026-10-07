@@ -398,3 +398,103 @@
     var r = await Promise.all([API.adminStats(), API.adminUsers(), API.models(), API.adminSecrets().catch(function () { return []; })]);
     st.admin = { stats: r[0], users: r[1], models: r[2], secrets: r[3] };
   }
+
+  // ---------- render / hydrate ----------
+  function hydrate(scope) {
+    (scope || root).querySelectorAll('img[data-img]').forEach(function (img) {
+      var p = img.getAttribute('data-img'); if (!p) { img.removeAttribute('data-img'); return; }
+      API.imageUrl(p).then(function (u) { if (u) img.src = u; });
+    });
+    (scope || root).querySelectorAll('video[data-video]').forEach(function (v) {
+      API.videoUrl(v.getAttribute('data-video')).then(function (u) { if (u) { v.src = u; v.removeAttribute('data-video'); } });
+    });
+    (scope || root).querySelectorAll('a[data-dl]').forEach(function (a) {
+      API.videoUrl(a.getAttribute('data-dl')).then(function (u) { if (u) { a.href = u; a.removeAttribute('data-dl'); } });
+    });
+  }
+  async function render() {
+    if (!st.user) { authView(); return; }
+    var r = (location.hash || '#/').replace(/^#\/?/, '').split('?')[0];
+    try {
+      if (r === 'wallet') { st.ledger = await API.ledger(); }
+      if (r === 'admin' && st.profile && st.profile.is_admin) { await loadAdmin(); }
+    } catch (e) { toast(e.message); }
+    var views = { '': dashboard, products: productsView, generate: generateView, history: historyView, wallet: walletView, admin: adminView };
+    root.innerHTML = (views[r] || dashboard)();
+    hydrate();
+    window.scrollTo(0, 0);
+  }
+  function sig() { return st.gens.map(function (g) { return g.id + g.status; }).join('|'); }
+  async function poll() {
+    if (!st.user || st.polling) return;
+    var active = st.gens.filter(function (g) { return ACTIVE.indexOf(g.status) >= 0; });
+    if (!active.length) return;
+    st.polling = true;
+    try {
+      var before = sig();
+      for (var i = 0; i < active.length; i++) { try { await API.refresh(active[i].id); } catch (e) { /* next tick */ } }
+      st.gens = await API.generations(); await reloadWallet();
+      var r = (location.hash || '#/').replace(/^#\/?/, '');
+      if (sig() !== before && (r === '' || r === 'history' || r === 'wallet')) { var y = window.scrollY; await render(); window.scrollTo(0, y); }
+    } finally { st.polling = false; }
+  }
+
+  // ---------- events ----------
+  root.addEventListener('click', async function (e) {
+    var el = e.target.closest('[data-act]'); if (!el) return;
+    var act = el.getAttribute('data-act');
+    try {
+      if (act === 'tab') { st.authTab = el.getAttribute('data-v'); authView(); }
+      else if (act === 'google') {
+        await API.signInGoogle();
+        if (API.mode === 'demo') { st.user = await API.session(); await loadAll(); location.hash = '#/'; await render(); }
+      }
+      else if (act === 'logout') { e.preventDefault(); await API.signOut(); st.user = null; location.hash = '#/'; render(); }
+      else if (act === 'newprod') productSheet();
+      else if (act === 'editprod') productSheet(st.products.filter(function (p) { return p.id === el.getAttribute('data-id'); })[0]);
+      else if (act === 'scenes') { var g = st.g; g.scenes = Math.min(5, Math.max(1, g.scenes + Number(el.getAttribute('data-d')))); root.querySelector('.stepper output').textContent = g.scenes; }
+      else if (act === 'generate') await doGenerate();
+      else if (act === 'cancel') { await API.cancel(el.getAttribute('data-id')); toast('Cancelado. Te devolvimos lo reservado.'); await Promise.all([reloadWallet(), API.generations().then(function (x) { st.gens = x; })]); render(); }
+      else if (act === 'paypal' || act === 'testtop') await doTopup(act === 'paypal' ? 'paypal' : 'test');
+      else if (act === 'savemodel') await saveModel(el);
+      else if (act === 'newmodel') {
+        var k = (prompt('Identificador corto del modelo (sin espacios), por ejemplo seedance-2-5') || '').trim().toLowerCase().replace(/[^a-z0-9._-]/g, '-');
+        if (k) { await API.saveModel({ key: k, label: k, provider: 'byteplus', endpoint: '', per_second_usd: { '720p': 0, '1080p': 0 }, audio_multiplier: 1, durations: [5, 10], aspect_ratios: ['9:16', '1:1', '16:9'], extra_params: {}, video_url_path: 'content.video_url', active: false, sort: 50, note: 'Pendiente de configurar.' }); toast('Modelo agregado, apagado.'); await render(); }
+      }
+      else if (act === 'adjust') adjustSheet(el.getAttribute('data-id'), el.getAttribute('data-email'));
+      else if (act === 'setpw') pwSheet(el.getAttribute('data-id'), el.getAttribute('data-email'));
+      else if (act === 'savekey') await saveKeys(el);
+      else if (act === 'testkey') await testKey(el);
+      else if (act === 'golive') await goLive(true);
+      else if (act === 'gomock') await goLive(false);
+    } catch (err) { toast(err.message || 'Algo salió mal.'); }
+  });
+  document.addEventListener('click', async function (e) {
+    var el = e.target.closest('[data-act=closesheet],[data-act=delprod]'); if (!el) return;
+    if (el.getAttribute('data-act') === 'closesheet') { st.sheet && st.sheet.close(); return; }
+    if (confirm('¿Borrar este producto? Los videos ya generados se conservan en el historial.')) {
+      try { await API.deleteProduct(el.getAttribute('data-id')); st.products = await API.products(); st.sheet && st.sheet.close(); render(); } catch (err) { toast(err.message); }
+    }
+  });
+  function onInput(e) {
+    var n = e.target.name;
+    if (n === 'amt') {
+      st.topAmount = Number(e.target.value);
+      var c = root.querySelector('input[name=custom]'); if (c) c.value = st.topAmount;
+      var box = document.getElementById('topsum'); if (box) box.innerHTML = topSummary();
+    } else if (n === 'custom') {
+      st.topAmount = Number(e.target.value) || 0;
+      root.querySelectorAll('input[name=amt]').forEach(function (r) { r.checked = Number(r.value) === st.topAmount; });
+      var box2 = document.getElementById('topsum'); if (box2) box2.innerHTML = topSummary();
+    } else if (e.target.closest('#gform')) { readG(); }
+  }
+  root.addEventListener('toggle', function (e) { if (e.target.classList && e.target.classList.contains('qd')) st.qOpen = e.target.open; }, true);
+  root.addEventListener('input', onInput);
+  root.addEventListener('change', function (e) { if (e.target.name === 'amt' || e.target.closest('#gform')) onInput(e); });
+
+  async function doTopup(provider) {
+    var err = document.getElementById('toperr'); err.textContent = '';
+    try {
+      var r = await API.topup(Number(st.topAmount), provider);
+      if (r.status === 'completed') { toast('Recarga lista.'); await reloadWallet(); st.ledger = await API.ledger(); render(); }
+      else if (r.approve_url) location.href = r.approve_url;
