@@ -98,3 +98,103 @@
 
   // ---------- dashboard ----------
   function genMini(g) {
+    var name = g.products ? g.products.name : 'Producto';
+    return '<div class="item"><img class="thumb" alt="" data-img="' + esc(g.products && g.products.image_path || '') + '"><div><div class="t">' + esc(name) + '</div>' +
+      '<div class="m">' + esc(styleLabel(g.params.style)) + ' · ' + g.params.duration + ' s · ' + when(g.created_at) + '</div></div>' +
+      '<span class="pill ' + (g.status === 'succeeded' ? 'ok' : g.status === 'failed' ? 'bad' : 'run') + '">' + STATUS[g.status] + '</span></div>';
+  }
+  function dashboard() {
+    var run = st.gens.filter(function (g) { return ACTIVE.indexOf(g.status) >= 0; });
+    var done = st.gens.filter(function (g) { return g.status === 'succeeded'; }).slice(0, 3);
+    var steps = (!st.products.length || st.wallet.balance_micro <= 0) ?
+      '<div class="card"><h2>Empieza en 3 pasos</h2><ol class="steps"><li><div><b>Sube un producto</b><br><span class="muted">Foto y descripción. Se guarda para usarlo cuando quieras.</span></div></li>' +
+      '<li><div><b>Recarga saldo</b><br><span class="muted">Desde ' + money(P.usd(st.S.min_topup_usd || 20)) + '. Es tu dinero: se descuenta solo lo que generas.</span></div></li>' +
+      '<li><div><b>Elige y genera</b><br><span class="muted">Ves el costo mientras eliges. Se retiene el máximo y se te devuelve el sobrante.</span></div></li></ol></div>' : '';
+    return shell('<h1>Hola, ' + esc((st.profile && st.profile.display_name) || '') + '</h1><p class="sub">Genera videos de producto con IA y paga exactamente lo que cuestan.</p>' +
+      '<div class="card bal-card"><span class="muted">Saldo disponible</span><div class="big">' + money(st.wallet.balance_micro) + '</div>' +
+      (st.wallet.held_micro > 0 ? '<span class="muted">Retenido en videos en curso: ' + money(st.wallet.held_micro) + '. Lo que sobre vuelve a tu saldo.</span>' : '') +
+      '<div class="row" style="margin-top:.7rem"><a class="btn primary" href="#/generate">Generar video</a><a class="btn" href="#/wallet">Recargar</a></div></div>' + steps +
+      (run.length ? '<h2>En curso</h2><div class="list" style="margin-bottom:1rem">' + run.map(genMini).join('') + '</div>' : '') +
+      (done.length ? '<h2>Últimos videos</h2><div class="list">' + done.map(genMini).join('') + '</div><p style="margin-top:.8rem"><a href="#/history">Ver todo el historial</a></p>' : ''), '');
+  }
+
+  // ---------- products ----------
+  function productsView() {
+    var list = st.products.length ? '<div class="list">' + st.products.map(function (p) {
+      return '<div class="item"><img class="thumb" alt="" data-img="' + esc(p.image_path || '') + '"><div><div class="t">' + esc(p.name) + '</div><div class="m">' + esc((p.description || '').slice(0, 90)) + '</div></div>' +
+        '<div class="row"><button class="btn small" data-act="editprod" data-id="' + p.id + '">Editar</button></div></div>';
+    }).join('') + '</div>' : '<div class="empty"><p><b>Aún no tienes productos.</b></p><p>Sube la foto y la descripción de lo que vendes. Luego solo eliges el producto para generar videos.</p></div>';
+    return shell('<div class="row" style="justify-content:space-between"><h1>Productos</h1><button class="btn primary" data-act="newprod">Nuevo producto</button></div>' +
+      '<p class="sub">Cada producto guarda su foto y su información para no repetirlas.</p>' + list, 'products');
+  }
+  function compress(file) {
+    return new Promise(function (res, rej) {
+      var img = new Image(), url = URL.createObjectURL(file);
+      img.onload = function () {
+        var r = Math.min(1, 1280 / Math.max(img.width, img.height)), c = document.createElement('canvas');
+        c.width = Math.round(img.width * r); c.height = Math.round(img.height * r);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        c.toBlob(function (b) { URL.revokeObjectURL(url); b ? res(b) : rej(new Error('No se pudo procesar la imagen.')); }, 'image/jpeg', 0.85);
+      };
+      img.onerror = function () { rej(new Error('Esa imagen no se puede leer.')); };
+      img.src = url;
+    });
+  }
+  function productSheet(p) {
+    p = p || {};
+    var s = sheet('<h2>' + (p.id ? 'Editar producto' : 'Nuevo producto') + '</h2><form data-form="product" novalidate>' +
+      '<img class="preview" alt="" ' + (p.image_path ? 'data-img="' + esc(p.image_path) + '"' : 'hidden') + ' id="pv">' +
+      '<label class="f"><span>Foto del producto</span><input type="file" name="photo" accept="image/*"><small>Una foto clara, con fondo limpio, da mejores resultados.</small></label>' +
+      '<label class="f"><span>Nombre</span><input type="text" name="name" required maxlength="80" value="' + esc(p.name) + '"></label>' +
+      '<label class="f"><span>Descripción</span><textarea name="description" maxlength="800">' + esc(p.description) + '</textarea><small>Qué es, para qué sirve y cómo se usa. La IA solo usa lo que escribas aquí.</small></label>' +
+      '<label class="f"><span>Puntos fuertes (opcional)</span><textarea name="selling_points" maxlength="600">' + esc(p.selling_points) + '</textarea></label>' +
+      '<label class="f"><span>Público (opcional)</span><input type="text" name="audience" maxlength="120" value="' + esc(p.audience) + '"></label>' +
+      '<div class="err" id="perr" role="alert"></div><div class="row"><button class="btn primary" type="submit">Guardar</button>' +
+      '<button class="btn" type="button" data-act="closesheet">Cancelar</button>' +
+      (p.id ? '<button class="btn danger" type="button" data-act="delprod" data-id="' + p.id + '">Borrar</button>' : '') + '</div></form>');
+    s.el.querySelector('form').dataset.id = p.id || '';
+    hydrate(s.el);
+    s.el.querySelector('input[name=photo]').addEventListener('change', function (e) {
+      var f = e.target.files[0]; if (!f) return;
+      var pv = s.el.querySelector('#pv'); pv.src = URL.createObjectURL(f); pv.hidden = false;
+    });
+    st.sheet = s;
+  }
+
+  // ---------- generate ----------
+  function initG() {
+    var prev = st.g || {};
+    var m = modelByKey(prev.model) && modelByKey(prev.model).active ? modelByKey(prev.model) : activeModels()[0];
+    var g = { product_id: prev.product_id || (st.products[0] && st.products[0].id) || '', style: prev.style || 'ugc_testimonial', angle_mode: prev.angle_mode || 'ai',
+      angle_text: prev.angle_text || '', music: !!prev.music, scenes: prev.scenes || 1, language: prev.language || 'es', notes: prev.notes || '', model: m ? m.key : '' };
+    if (m) {
+      var ress = priced(m);
+      g.resolution = ress.indexOf(prev.resolution) >= 0 ? prev.resolution : ress[0];
+      g.duration = m.durations.indexOf(Number(prev.duration)) >= 0 ? Number(prev.duration) : m.durations[0];
+      g.aspect = m.aspect_ratios.indexOf(prev.aspect) >= 0 ? prev.aspect : (m.aspect_ratios.indexOf('9:16') >= 0 ? '9:16' : m.aspect_ratios[0]);
+    }
+    st.g = g;
+  }
+  function priced(m) { return Object.keys(m.per_second_usd).filter(function (k) { return Number(m.per_second_usd[k]) > 0; }); }
+  function chips(name, opts, val) {
+    return '<div class="chips">' + opts.map(function (o) {
+      return '<label class="chip"><input type="radio" name="' + name + '" value="' + esc(o[0]) + '"' + (String(o[0]) === String(val) ? ' checked' : '') + '><span>' + esc(o[1]) + '</span></label>';
+    }).join('') + '</div>';
+  }
+  function genOptions() {
+    var g = st.g, m = modelByKey(g.model); if (!m) return '';
+    return '<label class="f"><span>Calidad</span>' + chips('resolution', priced(m).map(function (r) { return [r, r]; }), g.resolution) + '</label>' +
+      '<label class="f"><span>Duración</span>' + chips('duration', m.durations.map(function (d) { return [d, d + ' s']; }), g.duration) + '</label>' +
+      '<label class="f"><span>Formato</span>' + chips('aspect', m.aspect_ratios.map(function (a) { return [a, a]; }), g.aspect) + '</label>' +
+      '<label class="switch"><span><b>Música y sonido</b><br><small class="muted">' + (Number(m.audio_multiplier) > 1 ? 'Cuesta ' + Math.round((Number(m.audio_multiplier) - 1) * 100) + ' % más.' : 'Sin costo extra.') + '</small></span><input type="checkbox" name="music"' + (g.music ? ' checked' : '') + '></label>' +
+      '<label class="f"><span>Escenas</span><div class="stepper"><button type="button" data-act="scenes" data-d="-1" aria-label="Menos escenas">−</button><output>' + g.scenes + '</output><button type="button" data-act="scenes" data-d="1" aria-label="Más escenas">+</button></div></label>';
+  }
+  function quotePanel() {
+    var g = st.g, m = modelByKey(g.model), err = P.validate(m, g);
+    if (!st.products.length) return '';
+    if (err) return '<div class="quote"><div class="err">' + esc(err) + '</div></div>';
+    var q = P.quote(m, g, st.S), ai = g.angle_mode === 'ai', enough = st.wallet.balance_micro >= q.max;
+    function row(l, v) { return '<div><dt>' + l + '</dt><dd>' + v + '</dd></div>'; }
+    var small = '<small>Reservamos ' + P.fmtUp(q.max) + ' y te devolvemos al instante lo que no se use. Nunca se cobra más.</small>';
+    var lines = '<dl>' +
+      row('Video ' + g.duration + ' s · ' + g.resolution + (g.music ? ' · con sonido' : ''), money(q.video)) +
