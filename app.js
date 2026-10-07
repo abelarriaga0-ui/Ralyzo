@@ -198,3 +198,103 @@
     var small = '<small>Reservamos ' + P.fmtUp(q.max) + ' y te devolvemos al instante lo que no se use. Nunca se cobra más.</small>';
     var lines = '<dl>' +
       row('Video ' + g.duration + ' s · ' + g.resolution + (g.music ? ' · con sonido' : ''), money(q.video)) +
+      (ai ? row('IA: analiza tu foto y escribe el guion', P.fmtUp(q.aiMin) + ' a ' + P.fmtUp(q.aiMax)) : '') +
+      row('Tarifa de servicio (' + Math.round(q.rate * 1000) / 10 + ' %)', P.fmtUp(q.feeMin) + (q.feeMax !== q.feeMin ? ' a ' + P.fmtUp(q.feeMax) : '')) +
+      (ai ? row('Cargo fijo de la IA', money(q.aiFee)) : '') + '</dl>';
+    return '<div class="quote"><div class="total"><span>Total</span><b>' + P.range(q) + '</b></div>' +
+      '<details class="qd"' + (st.qOpen ? ' open' : '') + '><summary>Ver cómo se arma</summary>' + lines + '</details>' + small +
+      (enough ? '<button class="btn primary block" data-act="generate">Generar video</button>' :
+        '<div class="err">Tu saldo (' + money(st.wallet.balance_micro) + ') no alcanza para reservar ' + P.fmtUp(q.max) + '.</div><a class="btn primary block" href="#/wallet">Recargar saldo</a>') + '</div>';
+  }
+  function generateView() {
+    if (!st.products.length) return shell('<h1>Generar video</h1><div class="empty"><p><b>Primero agrega un producto.</b></p><p>Necesitamos su foto y descripción.</p><a class="btn primary" href="#/products">Ir a productos</a></div>', 'generate');
+    if (!activeModels().length) return shell('<h1>Generar video</h1><div class="empty"><p><b>Todavía no hay modelos activos.</b></p><p>El administrador debe activar al menos uno.</p></div>', 'generate');
+    initG();
+    var g = st.g;
+    var form = '<form id="gform" data-form="gen" novalidate>' +
+      '<div class="card"><h2>1. Producto</h2><label class="f"><select name="product_id">' + st.products.map(function (p) { return '<option value="' + p.id + '"' + (p.id === g.product_id ? ' selected' : '') + '>' + esc(p.name) + '</option>'; }).join('') + '</select></label></div>' +
+      '<div class="card"><h2>2. Estilo</h2>' + P.STYLES.map(function (s) {
+        return '<label class="opt"><input type="radio" name="style" value="' + s.key + '"' + (g.style === s.key ? ' checked' : '') + '><div><b>' + s.label + '</b><small>' + s.hint + '</small></div></label>';
+      }).join('') + '</div>' +
+      '<div class="card"><h2>3. Ángulo de venta</h2>' +
+      '<label class="opt"><input type="radio" name="angle_mode" value="ai"' + (g.angle_mode === 'ai' ? ' checked' : '') + '><div><b>Que lo decida la IA</b><small>Analiza tu foto y tu descripción y propone el guion. Tiene un costo extra pequeño.</small></div></label>' +
+      '<label class="opt"><input type="radio" name="angle_mode" value="user"' + (g.angle_mode === 'user' ? ' checked' : '') + '><div><b>Lo escribo yo</b><small>Sin costo de IA.</small></div></label>' +
+      '<div id="angbox"' + (g.angle_mode === 'user' ? '' : ' hidden') + '><label class="f"><span>Tu ángulo de venta</span><textarea name="angle_text" maxlength="500">' + esc(g.angle_text) + '</textarea></label></div></div>' +
+      '<div class="card"><h2>4. Modelo y calidad</h2><label class="f"><span>Modelo</span><select name="model">' + activeModels().map(function (m) { return '<option value="' + esc(m.key) + '"' + (m.key === g.model ? ' selected' : '') + '>' + esc(m.label) + '</option>'; }).join('') + '</select></label>' +
+      '<div id="opts">' + genOptions() + '</div></div>' +
+      '<div class="card"><h2>5. Idioma y notas</h2><label class="f"><span>Idioma de la voz</span>' + chips('language', P.LANGUAGES.map(function (l) { return [l.key, l.label]; }), g.language) + '</label>' +
+      '<label class="f"><span>Indicaciones (opcional)</span><textarea name="notes" maxlength="500">' + esc(g.notes) + '</textarea></label></div></form>';
+    return shell('<h1>Generar video</h1><p class="sub">Elige y mira cómo se arma tu cuenta abajo.</p>' + form + '<div id="quote">' + quotePanel() + '</div><div class="err" id="generr" role="alert"></div>', 'generate');
+  }
+  function readG() {
+    var f = document.getElementById('gform'); if (!f) return;
+    var d = new FormData(f), g = st.g;
+    g.product_id = d.get('product_id'); g.style = d.get('style'); g.angle_mode = d.get('angle_mode'); g.angle_text = d.get('angle_text') || '';
+    g.language = d.get('language'); g.notes = d.get('notes') || ''; g.music = !!f.elements.music && f.elements.music.checked;
+    var newModel = d.get('model');
+    if (newModel !== g.model) { g.model = newModel; initG(); document.getElementById('opts').innerHTML = genOptions(); }
+    else if (d.get('resolution')) { g.resolution = d.get('resolution'); g.duration = Number(d.get('duration')); g.aspect = d.get('aspect'); }
+    document.getElementById('angbox').hidden = g.angle_mode !== 'ai' ? false : true;
+    document.getElementById('quote').innerHTML = quotePanel();
+  }
+  async function doGenerate() {
+    var err = document.getElementById('generr'), btn = root.querySelector('[data-act=generate]');
+    err.textContent = ''; if (btn) btn.disabled = true;
+    var g = st.g;
+    var params = { model: g.model, style: g.style, language: g.language, duration: g.duration, resolution: g.resolution, aspect: g.aspect, music: g.music,
+      scenes: g.scenes, angle_mode: g.angle_mode, angle_text: g.angle_text, notes: g.notes };
+    try {
+      var r = await API.generate(g.product_id, params);
+      toast('Listo. Reservamos ' + P.fmtUp(r.held_micro) + '; lo que sobre vuelve a tu saldo.');
+      await Promise.all([reloadWallet(), API.generations().then(function (x) { st.gens = x; })]);
+      location.hash = '#/history';
+    } catch (e) { err.textContent = e.message; if (btn) btn.disabled = false; }
+  }
+
+  // ---------- history ----------
+  function receipt(g) {
+    function row(l, v, cls) { return '<tr><td>' + l + '</td><td class="n ' + (cls || '') + '">' + v + '</td></tr>'; }
+    var back = (g.hold_micro || 0) - (g.charged_micro || 0);
+    return '<details><summary class="muted">Ver la cuenta</summary><div class="tablewrap"><table><tbody>' +
+      row('Costo del modelo de video', money(g.provider_cost_micro)) + (g.ai_cost_micro ? row('Costo de la IA', money(g.ai_cost_micro)) : '') +
+      row('Tarifa de servicio', money(g.fee_micro)) + (g.ai_fee_micro ? row('Cargo fijo de la IA', money(g.ai_fee_micro)) : '') +
+      row('<b>Total cobrado</b>', '<b>' + money(g.charged_micro) + '</b>') + row('Reservado al empezar', money(g.hold_micro)) +
+      row('Devuelto a tu saldo', money(back), 'pos') + '</tbody></table></div></details>';
+  }
+  function genCard(g) {
+    var m = g.params, name = g.products ? g.products.name : 'Producto', body = '';
+    if (ACTIVE.indexOf(g.status) >= 0) {
+      body = '<div class="bar" role="progressbar" aria-label="Progreso"><i></i></div><div class="muted">Reservamos ' + money(g.hold_micro) + '. Cuando termine, se cobra el costo real y se devuelve el resto. ' +
+        (g.status === 'queued' ? '<button class="btn small danger" data-act="cancel" data-id="' + g.id + '">Cancelar</button>' : '') + '</div>';
+    } else if (g.status === 'succeeded') {
+      body = (g.video_deleted || !g.video_path ? '<p class="muted">El video ya se borró de nuestros servidores (se guardan ' + (st.S.video_ttl_hours || 48) + ' h).</p>' :
+        '<video controls playsinline preload="metadata" data-video="' + esc(g.video_path) + '"></video>' +
+        '<div class="row"><a class="btn primary small" data-dl="' + esc(g.video_path) + '" download="ralyzo-' + g.id.slice(0, 8) + '.mp4" href="#">Descargar</a>' +
+        '<span class="muted">Descárgalo: se borra en ' + left(g.video_expires_at) + '.</span></div>') +
+        (g.ai_output && g.ai_output.angle ? '<div class="muted"><b>Ángulo usado:</b> ' + esc(g.ai_output.angle) + '</div>' : '') + receipt(g);
+    } else {
+      body = '<div class="err">' + esc(g.error || (g.status === 'canceled' ? 'Cancelaste esta generación.' : 'No se pudo generar el video.')) + '</div><div class="muted">No se te cobró nada: te devolvimos todo lo reservado.</div>';
+    }
+    return '<div class="gen"><div class="head"><img class="thumb" alt="" data-img="' + esc(g.products && g.products.image_path || '') + '"><div style="flex:1"><div class="t"><b>' + esc(name) + '</b></div>' +
+      '<div class="muted" style="font-size:.85rem">' + esc(styleLabel(m.style)) + ' · ' + m.duration + ' s · ' + esc(m.resolution) + ' · ' + when(g.created_at) + '</div></div>' +
+      '<span class="pill ' + (g.status === 'succeeded' ? 'ok' : g.status === 'failed' || g.status === 'canceled' ? 'bad' : 'run') + '">' + STATUS[g.status] + '</span></div>' + body + '</div>';
+  }
+  function historyView() {
+    return shell('<h1>Historial</h1><p class="sub">Tus videos y lo que costó cada uno.</p>' + (st.gens.length ? '<div class="list">' + st.gens.map(genCard).join('') + '</div>' :
+      '<div class="empty"><p><b>Todavía no generas videos.</b></p><a class="btn primary" href="#/generate">Generar el primero</a></div>'), 'history');
+  }
+
+  // ---------- wallet ----------
+  function topSummary() {
+    var amt = Number(st.topAmount) || 0, min = Number(st.S.min_topup_usd || 20), t = P.topup(P.usd(Math.max(amt, 0)), st.S), ok = amt >= min;
+    var test = st.profile && st.profile.is_admin && st.S.allow_test_topups;
+    return (ok ? '<table><tbody><tr><td>Se suma a tu saldo</td><td class="n">' + money(t.net) + '</td></tr><tr><td>Cargo de recarga <small class="muted">(lo que cobra la pasarela)</small></td><td class="n">' + money(t.fee) + '</td></tr><tr><td><b>Pagas</b></td><td class="n"><b>' + money(t.gross) + '</b></td></tr></tbody></table>' :
+      '<div class="err">La recarga mínima es ' + money(P.usd(min)) + '.</div>') +
+      '<div class="err" id="toperr" role="alert"></div><div class="row" style="margin-top:.8rem"><button class="btn primary" data-act="paypal"' + (ok ? '' : ' disabled') + '>Pagar con PayPal</button>' +
+      (test ? '<button class="btn" data-act="testtop"' + (ok ? '' : ' disabled') + '>Recarga de prueba (admin)</button>' : '') + '</div>';
+  }
+  function walletView() {
+    var amt = Number(st.topAmount) || 0, min = Number(st.S.min_topup_usd || 20);
+    var kinds = { topup: 'Recarga', hold: 'Reserva', charge: 'Cobro', release: 'Devolución', adjustment: 'Ajuste' };
+    var rows = st.ledger.map(function (l) {
+      var plus = l.kind === 'topup' || l.kind === 'release' || (l.kind === 'adjustment' && l.amount_micro > 0);
