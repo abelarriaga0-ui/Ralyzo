@@ -498,3 +498,117 @@
       var r = await API.topup(Number(st.topAmount), provider);
       if (r.status === 'completed') { toast('Recarga lista.'); await reloadWallet(); st.ledger = await API.ledger(); render(); }
       else if (r.approve_url) location.href = r.approve_url;
+    } catch (e) { err.textContent = e.message; }
+  }
+  async function saveModel(btn) {
+    var card = btn.closest('[data-model]'), key = card.getAttribute('data-model'), q = function (n) { return card.querySelector('[name=' + n + ']'); };
+    var rates = {}; q('rates').value.split(/[,\n]/).forEach(function (p) { var kv = p.split('='); if (kv.length === 2 && kv[0].trim()) rates[kv[0].trim()] = Number(kv[1]); });
+    var extra; try { extra = JSON.parse(q('extra_params').value || '{}'); } catch (e) { throw new Error('Los parámetros extra no son un JSON válido.'); }
+    var nums = function (s) { return s.split(',').map(function (x) { return Number(x.trim()); }).filter(function (x) { return x > 0; }); };
+    await API.saveModel({ key: key, label: q('label').value, provider: q('provider').value, endpoint: q('endpoint').value.trim(), per_second_usd: rates, audio_multiplier: Number(q('audio_multiplier').value) || 1,
+      durations: nums(q('durations').value), aspect_ratios: q('aspect_ratios').value.split(',').map(function (x) { return x.trim(); }).filter(Boolean), extra_params: extra, video_url_path: q('video_url_path').value.trim() || 'video.url', active: q('active').checked });
+    toast('Modelo guardado.'); st.models = (await API.models()).filter(function (m) { return m.active || st.profile.is_admin; }); await render();
+  }
+  async function saveKeys(btn) {
+    var card = btn.closest('details'), names = btn.getAttribute('data-names').split(','), n = 0;
+    btn.disabled = true;
+    try {
+      for (var i = 0; i < names.length; i++) {
+        var el = card.querySelector('[name=' + names[i] + ']'); if (!el) continue;
+        var v = String(el.value || '').trim();
+        if (names[i] === 'PAYPAL_ENV') { await API.adminSetSecret('PAYPAL_ENV', v); n++; }
+        else if (v) { await API.adminSetSecret(names[i], v); n++; }
+      }
+      toast(n ? 'Guardado.' : 'No escribiste nada nuevo.');
+      st.admin.secrets = await API.adminSecrets(); await render();
+    } finally { btn.disabled = false; }
+  }
+  async function testKey(btn) {
+    var t = btn.getAttribute('data-t'), out = document.getElementById('t-' + t);
+    out.textContent = 'Probando…'; btn.disabled = true;
+    try { var r = await API.adminTest(t); out.innerHTML = '<span class="' + (r.ok ? 'pos' : 'neg') + '">' + (r.ok ? '✔ ' : '✖ ') + esc(r.msg) + '</span>'; }
+    catch (e) { out.innerHTML = '<span class="neg">✖ ' + esc(e.message) + '</span>'; }
+    btn.disabled = false;
+  }
+  async function goLive(on) {
+    if (on && !confirm('¿Pasar a modo real? Los videos se generarán de verdad y se cobrará a los clientes.')) return;
+    await API.saveSetting('provider_mode', on ? 'live' : 'mock'); st.S.provider_mode = on ? 'live' : 'mock';
+    await API.saveSetting('allow_test_topups', !on); st.S.allow_test_topups = !on;
+    var models = await API.models();
+    for (var i = 0; i < models.length; i++) { if (models[i].provider === 'mock' && models[i].active === on) await API.saveModel(Object.assign({}, models[i], { active: !on })); }
+    st.models = (await API.models()).filter(function (m) { return m.active || st.profile.is_admin; });
+    toast(on ? 'Modo real activado.' : 'Volviste al modo de prueba.'); await render();
+  }
+  function pwSheet(userId, email) {
+    var s = sheet('<h2>Cambiar contraseña</h2><p class="muted">' + esc(email) + '</p><form data-form="setpw"><label class="f"><span>Nueva contraseña (8 o más caracteres)</span><input type="text" name="pw" required minlength="8" autocomplete="off"></label>' +
+      '<div class="err" id="pwerr"></div><div class="row"><button class="btn primary" type="submit">Cambiar</button><button class="btn" type="button" data-act="closesheet">Cancelar</button></div></form>');
+    s.el.querySelector('form').dataset.uid = userId; st.sheet = s;
+  }
+  function adjustSheet(userId, email) {
+    var s = sheet('<h2>Ajustar saldo</h2><p class="muted">' + esc(email) + '</p><form data-form="adjust"><label class="f"><span>Monto en USD (usa negativo para descontar)</span><input type="number" step="0.01" name="amount" required></label>' +
+      '<label class="f"><span>Motivo</span><input type="text" name="note" required maxlength="100"></label><div class="err" id="adjerr"></div><div class="row"><button class="btn primary" type="submit">Aplicar</button><button class="btn" type="button" data-act="closesheet">Cancelar</button></div></form>');
+    s.el.querySelector('form').dataset.uid = userId; st.sheet = s;
+  }
+  document.addEventListener('submit', async function (e) {
+    var f = e.target, kind = f.getAttribute('data-form'); if (!kind) return;
+    e.preventDefault();
+    try {
+      if (kind === 'auth') {
+        var d = new FormData(f), er = document.getElementById('autherr'); er.textContent = '';
+        if (!d.get('email') || String(d.get('password') || '').length < 8) { er.textContent = 'Escribe tu correo y una contraseña de al menos 8 caracteres.'; return; }
+        if (st.authTab === 'signup') {
+          var r = await API.signUp(d.get('email'), d.get('password'), d.get('name'));
+          if (r.needsConfirm) { er.className = 'ok-msg'; er.textContent = 'Te enviamos un correo para confirmar tu cuenta. Confírmala y vuelve a entrar.'; st.authTab = 'login'; return; }
+        } else { await API.signIn(d.get('email'), d.get('password')); }
+        st.user = await API.session(); await loadAll(); location.hash = '#/'; await render();
+      } else if (kind === 'product') {
+        var pd = new FormData(f), er2 = document.getElementById('perr'); er2.textContent = '';
+        if (!String(pd.get('name') || '').trim()) { er2.textContent = 'Ponle un nombre al producto.'; return; }
+        var file = f.elements.photo.files[0], blob = file ? await compress(file) : null, id = f.dataset.id;
+        if (!id && !blob) { er2.textContent = 'Sube la foto del producto.'; return; }
+        await API.saveProduct({ id: id || null, name: pd.get('name').trim(), description: pd.get('description') || '', selling_points: pd.get('selling_points') || '', audience: pd.get('audience') || '' }, blob, st.user.id);
+        st.products = await API.products(); st.sheet.close(); toast('Producto guardado.'); render();
+      } else if (kind === 'settings') {
+        var er3 = document.getElementById('seterr'); er3.textContent = '';
+        for (var i = 0; i < SETS.length; i++) for (var j = 0; j < SETS[i][1].length; j++) {
+          var m = SETS[i][1][j], el = f.elements[m[0]]; if (!el) continue;
+          var v = m[3] === 'bool' ? el.checked : (m[3] === 'text' || m[3] === 'select') ? el.value.trim() : Number(el.value);
+          if (typeof v === 'number' && !isFinite(v)) throw new Error('Revisa el número de: ' + m[1]);
+          if (JSON.stringify(v) !== JSON.stringify(st.S[m[0]])) { await API.saveSetting(m[0], v); st.S[m[0]] = v; }
+        }
+        toast('Configuración guardada.'); await render();
+      } else if (kind === 'setpw') {
+        var er5 = document.getElementById('pwerr'); er5.textContent = '';
+        try { await API.adminSetPassword(f.dataset.uid, new FormData(f).get('pw')); st.sheet.close(); toast('Contraseña cambiada. Compártesela al cliente.'); }
+        catch (x) { er5.textContent = x.message; }
+      } else if (kind === 'adjust') {
+        var ad = new FormData(f), er4 = document.getElementById('adjerr'); er4.textContent = '';
+        try { await API.adminAdjust(f.dataset.uid, Number(ad.get('amount')), ad.get('note')); st.sheet.close(); toast('Saldo ajustado.'); await reloadWallet(); await render(); }
+        catch (x) { er4.textContent = x.message; }
+      }
+    } catch (err) {
+      var box = document.getElementById('autherr') || document.getElementById('perr') || document.getElementById('seterr');
+      if (box) { box.className = 'err'; box.textContent = err.message; } else toast(err.message);
+    }
+  });
+  window.addEventListener('hashchange', render);
+
+  // ---------- boot ----------
+  async function boot() {
+    try { API.init(); } catch (e) { root.innerHTML = '<div class="auth"><p class="err">No se pudo conectar con el servidor.</p></div>'; return; }
+    try { st.user = await API.session(); } catch (e) { st.user = null; }
+    if (st.user) {
+      try { await loadAll(); } catch (e) { toast(e.message); }
+      var q = new URLSearchParams(location.search), order = q.get('token');
+      if (q.get('paypal') && order && !DEMO) {
+        try { await API.topupCapture(order); toast('Recarga con PayPal acreditada.'); await reloadWallet(); } catch (e) { toast(e.message); }
+        history.replaceState(null, '', location.pathname + '#/wallet');
+      } else if (q.get('cancelled')) { toast('Cancelaste el pago. No se cobró nada.'); history.replaceState(null, '', location.pathname + '#/wallet'); }
+    }
+    var qe = new URLSearchParams(location.search).get('error_description');
+    if (qe) { toast('No se pudo entrar con Google: ' + qe); history.replaceState(null, '', location.pathname); }
+    await render();
+    setInterval(poll, 4000);
+  }
+  boot();
+})();
