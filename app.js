@@ -298,3 +298,103 @@
     var kinds = { topup: 'Recarga', hold: 'Reserva', charge: 'Cobro', release: 'Devolución', adjustment: 'Ajuste' };
     var rows = st.ledger.map(function (l) {
       var plus = l.kind === 'topup' || l.kind === 'release' || (l.kind === 'adjustment' && l.amount_micro > 0);
+      return '<tr><td>' + when(l.created_at) + '</td><td>' + (kinds[l.kind] || l.kind) + '<br><small class="muted">' + esc(l.note || '') + '</small></td><td class="n ' + (plus ? 'pos' : 'neg') + '">' + (plus ? '+' : '−') + money(Math.abs(l.amount_micro)) + '</td></tr>';
+    }).join('');
+    return shell('<h1>Saldo</h1><div class="card bal-card"><span class="muted">Disponible</span><div class="big">' + money(st.wallet.balance_micro) + '</div>' +
+      '<span class="muted">Retenido: ' + money(st.wallet.held_micro) + '</span></div>' +
+      '<div class="card"><h2>Recargar</h2><div class="chips" style="margin-bottom:.8rem">' + [20, 50, 100].map(function (v) {
+        return '<label class="chip"><input type="radio" name="amt" value="' + v + '"' + (amt === v ? ' checked' : '') + '><span>$' + v + '</span></label>';
+      }).join('') + '</div><label class="f"><span>Otro monto (USD)</span><input type="number" name="custom" min="' + min + '" max="2000" step="1" inputmode="decimal" value="' + (amt || '') + '"></label>' +
+      '<div id="topsum">' + topSummary() + '</div>' +
+      '<p class="muted" style="margin-top:.8rem">Tu saldo es prepago: solo se descuenta lo que generas. El saldo no se retira.</p></div>' +
+      '<div class="card"><h2>Movimientos</h2>' + (rows ? '<div class="tablewrap"><table><tbody>' + rows + '</tbody></table></div>' : '<p class="muted">Todavía no hay movimientos.</p>') + '</div>' +
+      '<p><a href="#/" data-act="logout">Cerrar sesión</a></p>', 'wallet');
+  }
+
+  // ---------- admin ----------
+  var SETS = [
+    ['Precios', [['service_fee_pct', 'Tarifa de servicio', '%'], ['ai_fixed_fee_usd', 'Cargo fijo de la IA', '$'], ['min_topup_usd', 'Recarga mínima', '$'], ['topup_fee_pct', 'Cargo de recarga (porcentaje)', '%'], ['topup_fee_fixed_usd', 'Cargo de recarga (fijo)', '$'], ['video_contingency_pct', 'Colchón sobre el precio del video (rango)', '%']]],
+    ['IA de análisis', [['ai_cost_min_usd', 'Costo de IA estimado, mínimo', '$'], ['ai_cost_max_usd', 'Costo de IA estimado, máximo', '$'], ['ai_price_in_per_mtok_usd', 'Precio IA, entrada por millón de tokens', '$'], ['ai_price_out_per_mtok_usd', 'Precio IA, salida por millón de tokens', '$']]],
+    ['Operación', [['provider_mode', 'Modo del proveedor', '', 'select'], ['mock_seconds', 'Segundos del modo simulado', 's'], ['video_ttl_hours', 'Horas que se guarda cada video', 'h'], ['max_generation_minutes', 'Minutos máximos por generación', 'min'], ['allow_test_topups', 'Permitir recargas de prueba (solo admin)', '', 'bool'], ['app_url', 'Dirección pública de la app', '', 'text']]]
+  ];
+  function secMap() { var m = {}; ((st.admin && st.admin.secrets) || []).forEach(function (x) { m[x.name] = x; }); return m; }
+  function keysReady() {
+    var m = secMap();
+    return { fal: !!(m.BYTEPLUS_API_KEY && m.BYTEPLUS_API_KEY.set), ai: !!(m.OPENAI_API_KEY && m.OPENAI_API_KEY.set), pp: !!(m.PAYPAL_CLIENT_ID && m.PAYPAL_CLIENT_ID.set && m.PAYPAL_CLIENT_SECRET && m.PAYPAL_CLIENT_SECRET.set) };
+  }
+  function checklist() {
+    var S = st.S, k = keysReady(), models = (st.admin && st.admin.models) || st.models;
+    var real = models.filter(function (m) { return m.active && m.provider !== 'mock' && priced(m).length && m.endpoint; });
+    var items = [
+      [k.fal, 'Llave de BytePlus pegada (genera los videos)'], [k.ai, 'Llave de OpenAI pegada (escribe el guion)'], [k.pp, 'PayPal conectado (Client ID y Secret)'],
+      [real.length > 0, 'Al menos un modelo real activo, con endpoint y precio'], [!!S.app_url, 'Dirección pública de la app'],
+      [S.provider_mode === 'live', 'Modo real activado (hoy: ' + (S.provider_mode === 'live' ? 'real' : 'prueba') + ')'], [!S.allow_test_topups, 'Recargas de prueba apagadas']
+    ];
+    var ready = k.fal && k.ai && k.pp && real.length > 0 && !!S.app_url;
+    var live = S.provider_mode === 'live';
+    return '<div class="card"><h2>Antes de lanzar</h2><ul style="list-style:none;padding:0;margin:0">' + items.map(function (i) {
+      return '<li style="margin-bottom:.35rem"><span class="' + (i[0] ? 'pos' : 'neg') + '">' + (i[0] ? '✔' : '✖') + '</span> ' + i[1] + '</li>';
+    }).join('') + '</ul><div class="row" style="margin-top:.8rem">' +
+      (live ? '<button class="btn" data-act="gomock">Volver a modo de prueba</button>' : '<button class="btn primary" data-act="golive"' + (ready ? '' : ' disabled') + '>Pasar a modo real</button>') +
+      '</div>' + (!live && !ready ? '<p class="muted" style="margin-top:.6rem">Pega las tres conexiones de abajo y se habilita el botón.</p>' : '') + '</div>';
+  }
+  function connCard() {
+    var m = secMap();
+    function state(n) { var x = m[n]; return x && x.set ? '<span class="pos">✔ guardada' + (x.last4 ? ' (••••' + esc(x.last4) + ')' : '') + '</span>' : '<span class="neg">✖ falta</span>'; }
+    function field(n, label, ph) { return '<label class="f"><span>' + label + ' ' + state(n) + '</span><input type="password" autocomplete="off" name="' + n + '" placeholder="' + ph + '"></label>'; }
+    function actions(names, test) {
+      return '<div class="row"><button class="btn primary small" data-act="savekey" data-names="' + names + '">Guardar</button><button class="btn small" data-act="testkey" data-t="' + test + '">Probar conexión</button></div><div class="muted" id="t-' + test + '" style="margin-top:.4rem"></div>';
+    }
+    var env = (m.PAYPAL_ENV && m.PAYPAL_ENV.value) || 'sandbox';
+    return '<div class="card" id="conn"><h2>Conexiones</h2><p class="muted">Pega aquí tus llaves. Se guardan cifradas en el servidor y nunca se vuelven a mostrar completas. Deja un campo vacío si no quieres cambiarlo.</p>' +
+      '<details open><summary>BytePlus (ByteDance): genera los videos</summary><div style="margin-top:.7rem">' + field('BYTEPLUS_API_KEY', 'Llave de BytePlus ModelArk', 'Pega aquí tu llave') + '<small class="muted">Es la API oficial del creador de Seedance. En la consola de BytePlus, ModelArk, API Key: crea la llave y activa los modelos Seedance que vas a vender.</small>' + actions('BYTEPLUS_API_KEY', 'byteplus') + '</div></details>' +
+      '<details open style="margin-top:.8rem"><summary>OpenAI: la IA que escribe el guion</summary><div style="margin-top:.7rem">' + field('OPENAI_API_KEY', 'Llave de OpenAI', 'Pega aquí tu llave') + '<small class="muted">Se crea en platform.openai.com, en API keys. Usa el modelo gpt-5.4-mini; si quieres otro, escribe su nombre en Administración, IA de análisis.</small>' + actions('OPENAI_API_KEY', 'openai') + '</div></details>' +
+      '<details open style="margin-top:.8rem"><summary>PayPal: cobra las recargas</summary><div style="margin-top:.7rem">' + field('PAYPAL_CLIENT_ID', 'Client ID', 'Pega aquí el Client ID') + field('PAYPAL_CLIENT_SECRET', 'Secret', 'Pega aquí el Secret') +
+      '<label class="f"><span>Entorno ' + state('PAYPAL_ENV') + '</span><select name="PAYPAL_ENV"><option value="sandbox"' + (env === 'sandbox' ? ' selected' : '') + '>sandbox (pruebas)</option><option value="live"' + (env === 'live' ? ' selected' : '') + '>live (cobros reales)</option></select></label>' +
+      '<small class="muted">Se crea en developer.paypal.com, en Apps y credenciales. Empieza con sandbox y cambia a live cuando todo funcione.</small>' + actions('PAYPAL_CLIENT_ID,PAYPAL_CLIENT_SECRET,PAYPAL_ENV', 'paypal') + '</div></details></div>';
+  }
+  function setField(m) {
+    var key = m[0], v = st.S[key], label = m[1], unit = m[2], kind = m[3];
+    var input = kind === 'bool' ? '<input type="checkbox" name="' + key + '"' + (v ? ' checked' : '') + '>' :
+      kind === 'select' ? '<select name="' + key + '"><option value="mock"' + (v === 'mock' ? ' selected' : '') + '>mock (simulado)</option><option value="live"' + (v === 'live' ? ' selected' : '') + '>live (real)</option></select>' :
+      kind === 'text' ? '<input type="text" name="' + key + '" value="' + esc(v) + '" placeholder="https://tudominio.com/">' :
+      '<input type="number" step="any" name="' + key + '" value="' + esc(v) + '">';
+    return '<label class="f"><span>' + label + (unit ? ' (' + unit + ')' : '') + '</span>' + input + '</label>';
+  }
+  function modelCard(m) {
+    var rates = Object.keys(m.per_second_usd).map(function (k) { return k + '=' + m.per_second_usd[k]; }).join(', ');
+    return '<details class="card" data-model="' + esc(m.key) + '"><summary>' + esc(m.label) + ' <span class="pill ' + (m.active ? 'ok' : '') + '">' + (m.active ? 'activo' : 'apagado') + '</span></summary><div style="margin-top:.8rem">' +
+      '<label class="f"><span>Nombre visible</span><input type="text" name="label" value="' + esc(m.label) + '"></label>' +
+      '<label class="f"><span>Proveedor</span><select name="provider"><option value="mock"' + (m.provider === 'mock' ? ' selected' : '') + '>mock</option><option value="byteplus"' + (m.provider === 'byteplus' ? ' selected' : '') + '>byteplus</option></select></label>' +
+      '<label class="f"><span>Endpoint del proveedor</span><input type="text" name="endpoint" value="' + esc(m.endpoint) + '"><small>El identificador del modelo en BytePlus, por ejemplo dreamina-seedance-2-0-fast-260128. Sin esto, el modelo no puede generar.</small></label>' +
+      '<label class="f"><span>Precio por segundo (USD) según calidad</span><input type="text" name="rates" value="' + esc(rates) + '"><small>Formato: 720p=0.10, 1080p=0.20 (tu costo real, sin tu tarifa).</small></label>' +
+      '<label class="f"><span>Multiplicador con sonido</span><input type="number" step="any" name="audio_multiplier" value="' + esc(m.audio_multiplier) + '"></label>' +
+      '<label class="f"><span>Duraciones (segundos)</span><input type="text" name="durations" value="' + esc(m.durations.join(', ')) + '"></label>' +
+      '<label class="f"><span>Formatos</span><input type="text" name="aspect_ratios" value="' + esc(m.aspect_ratios.join(', ')) + '"></label>' +
+      '<label class="f"><span>Parámetros extra del proveedor (JSON)</span><textarea name="extra_params">' + esc(JSON.stringify(m.extra_params || {})) + '</textarea></label>' +
+      '<label class="f"><span>Dónde viene la URL del video en la respuesta</span><input type="text" name="video_url_path" value="' + esc(m.video_url_path) + '"></label>' +
+      '<label class="switch"><span><b>Activo para los clientes</b></span><input type="checkbox" name="active"' + (m.active ? ' checked' : '') + '></label>' +
+      '<div class="row"><button class="btn primary small" data-act="savemodel" data-key="' + esc(m.key) + '">Guardar modelo</button></div></div></details>';
+  }
+  function adminView() {
+    if (!st.profile || !st.profile.is_admin) return shell('<h1>Administración</h1><p class="err">Solo para administradores.</p>', 'admin');
+    var a = st.admin || {}, s = a.stats || {}, gross = (s.charged_micro || 0) - (s.provider_cost_micro || 0) - (s.ai_cost_micro || 0);
+    function stat(l, v) { return '<div><small>' + l + '</small><b>' + v + '</b></div>'; }
+    var users = (a.users || []).map(function (u) {
+      return '<tr><td>' + esc(u.email) + (u.is_admin ? ' <span class="pill">admin</span>' : '') + '</td><td class="n">' + money(u.balance_micro) + '</td><td class="n">' + money(u.held_micro) +
+        '</td><td><button class="btn small" data-act="adjust" data-id="' + u.id + '" data-email="' + esc(u.email) + '">Ajustar</button> <button class="btn small" data-act="setpw" data-id="' + u.id + '" data-email="' + esc(u.email) + '">Contraseña</button></td></tr>';
+    }).join('');
+    return shell('<h1>Administración</h1><p class="sub">Tus números reales y los controles del negocio.</p>' + checklist() + connCard() +
+      '<div class="card"><h2>Resultados</h2><div class="stat">' + stat('Usuarios', s.users || 0) + stat('Recargado (real)', money(s.topups_micro)) + stat('Cobrado en videos', money(s.charged_micro)) +
+      stat('Costo del proveedor', money(s.provider_cost_micro)) + stat('Costo de IA', money(s.ai_cost_micro)) + stat('Ganancia bruta en videos', money(gross)) + stat('Cargos de recarga', money(s.topup_fees_micro)) +
+      stat('Saldos de clientes', money(s.balances_micro)) + stat('Retenido ahora', money(s.held_micro)) + stat('Videos ok / fallidos', (s.ok || 0) + ' / ' + (s.failed || 0)) + '</div>' +
+      '<p class="muted" style="margin-top:.6rem">Saldos de clientes es dinero que ya recibiste pero aún no gastaron: no es ganancia.</p></div>' +
+      '<form data-form="settings">' + SETS.map(function (g) { return '<details class="card"' + (g[0] === 'Precios' ? ' open' : '') + '><summary>' + g[0] + '</summary><div style="margin-top:.8rem">' + g[1].map(setField).join('') + '</div></details>'; }).join('') +
+      '<div class="err" id="seterr"></div><button class="btn primary" type="submit">Guardar configuración</button></form>' +
+      '<h2 style="margin-top:1.4rem">Modelos de video</h2>' + (a.models || []).map(modelCard).join('') + '<button class="btn" data-act="newmodel">Agregar modelo</button>' +
+      '<h2 style="margin-top:1.4rem">Usuarios</h2><div class="card"><div class="tablewrap"><table><thead><tr><th>Correo</th><th class="n">Saldo</th><th class="n">Retenido</th><th></th></tr></thead><tbody>' + users + '</tbody></table></div></div>', 'admin');
+  }
+  async function loadAdmin() {
+    var r = await Promise.all([API.adminStats(), API.adminUsers(), API.models(), API.adminSecrets().catch(function () { return []; })]);
+    st.admin = { stats: r[0], users: r[1], models: r[2], secrets: r[3] };
+  }
